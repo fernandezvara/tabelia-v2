@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  image: MyString
+  price: MyString
+  max_height: MyString
+  max_width: MyString
+  description: MyString
+  status: MyString
+  accepted: MyString
+  original: MyString
+
+two:
+  name: MyString
+  image: MyString
+  price: MyString
+  max_height: MyString
+  max_width: MyString
+  description: MyString
+  status: MyString
+  accepted: MyString
+  original: MyString
