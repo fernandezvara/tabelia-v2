@@ -14,8 +14,11 @@ gem 'mongoid_slug'
 
 # Crypt
 gem 'bcrypt-ruby', :require => "bcrypt"
+gem 'omniauth'
 
-
+group :development do
+  gem 'faker'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -1,0 +1,24 @@
+<%= render :partial => '/partials/common/htmlhead' %>
+<body class="page-home" style="background-color: #fafafa;">
+  <div id="page" style="background-color: #fafafa; padding-left: 0px; padding-right:0px; border-left: 1px solid #eee; border-right: 1px solid #eee;">
+    <%= render :partial => '/partials/common/header' %>
+    <hr class="full">
+    <div id="content">
+      <section class="width4 stroke">
+        <section class="column width3 first" style="background-color:#0f0;">
+          <div class="left-container">
+          <%= yield :left %>
+          </div>
+          <br />
+        </section>
+        <section class="column width1" style="background-color:#ddd;">
+          <%= yield :right %>
+          <br />
+        </section>
+      </section>
+    </div><!-- content -->
+    <hr class="full">
+    <%= render :partial => '/partials/common/footer' %>
+  </div>
+</body>
+</html>
