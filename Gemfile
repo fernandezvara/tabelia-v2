@@ -16,6 +16,9 @@ gem 'mongoid_slug'
 gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'omniauth'
 
+#Pretty Forms
+gem 'simple_form'
+
 group :development do
   gem 'faker'
 end

@@ -15,11 +15,12 @@ Tabelia::Application.routes.draw do
 
   get "pages/indexloggedin"
 
-get 'login'  => "sessions#new",  :as => "login"
+  get 'login'  => "sessions#new",  :as => "login"
+  match 'auth/:provider/callback', :controller => 'sessions', :action => 'create_external', :as => 'create_external'
 
-resources :sessions
+  resources :sessions
 
-root :to => 'pages#index'
+  root :to => 'pages#index'
 
 
 
