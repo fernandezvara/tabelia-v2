@@ -7,6 +7,9 @@ class UsersController < ApplicationController
   end
   
   def index
+    @users = User.page(params[:page]).per(30)
+    @title = t("users.index.title")
+    render :layout => 'main'
   end
 
   def new

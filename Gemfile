@@ -18,6 +18,7 @@ gem 'omniauth'
 
 #Pretty Forms
 gem 'simple_form'
+gem 'kaminari'
 
 group :development do
   gem 'faker'

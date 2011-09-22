@@ -10,7 +10,9 @@ Tabelia::Application.routes.draw do
   match 'auth/:provider/callback', :controller => 'sessions', :action => 'create_external', :as => 'create_external'
 
   resources :sessions
-  resources :users
+  resources :users do
+    get 'page/:page', :action => :index, :on => :collection
+  end
   root :to => 'pages#index'
 
 

@@ -46,10 +46,10 @@ a.abutton {
 
 }
 .pagination {
-	text-align:right;
+	text-align:center;
 }
 
-.pagination span {
+.pagination span.gap {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -70,7 +70,7 @@ a.abutton {
 	top: -3px;	
 }
 
-.pagination em {
+.pagination span.current {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0, #ff7878), color-stop(1, #bf3939) );
 	background:-moz-linear-gradient( center top, #ff7878 0%, #bf3939 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7878', endColorstr='#bf3939');

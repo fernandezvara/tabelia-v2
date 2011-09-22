@@ -31,6 +31,17 @@ p.tags {
 	font-weight:bold;
 }
 
+.box .title a.add {
+	color: #fff;
+	float:right;
+	text-transform: none;
+	font-weight:normal;
+}
+
+.box .title a.add:hover {
+	text-decoration: underline;
+}
+
 .box .content {
 	padding: 5px 10px 10px 10px;
 	border-bottom: 1px solid #fff;
