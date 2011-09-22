@@ -1,0 +1,8 @@
+/********** flash **********/
+div.error, div.notice, div.success {z-index:1000;padding: 15px; border-top:2px solid #ddd; font-size:1.4em; bottom:0px; height:30px; position:fixed; width:100%; text-align:center;}
+div.error {background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}
+div.notice {background:#FFF6BF;color:#514721;border-color:#FFD324;}
+div.success {background:#E6EFC2;color:#264409;border-color:#C6D880;}
+div.error a {color:#8a1f11; background:none; padding:0; margin:0; }
+div.notice a {color:#514721; background:none; padding:0; margin:0; }
+div.success a {color:#264409; background:none; padding:0; margin:0; }

@@ -29,6 +29,13 @@ class User
   validates_presence_of :password, :on => :create
   
   has_many :arts
+  has_many :authorizations
+  
+  
+  def is_admin?
+    # returns true if admin
+    false unless self.admin == true
+  end
   
   def self.authenticate(email, password)
   	user = User.where(:email => email).first

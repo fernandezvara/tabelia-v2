@@ -5,9 +5,8 @@
       <% if current_user.nil? %>
           <a href="/login" rel="modal">log in</a><a href="/signup" rel="modal">sign up</a>
       <% else %>
-          <%= link_to 'Admin', '/admin' if current_user.is_admin? %>
-          <%= link_to current_user.name, user_path(current_user.slug) %>
-          <%= link_to 'sign out', log_out_path %>
+          <%= link_to current_user.name, user_profile_path(current_user.username) %>
+          <%= link_to 'sign out', logout_path %>
       <% end %>
     </div>
   </div>

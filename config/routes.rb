@@ -1,25 +1,16 @@
 Tabelia::Application.routes.draw do
-  get "users/index"
-
-  get "users/new"
-
-  get "users/create"
-
-  get "users/show"
-
-  get "users/update"
-
-  get "pages/index"
 
   get "pages/help"
 
-  get "pages/indexloggedin"
 
-  get 'login'  => "sessions#new",  :as => "login"
+  get 'logout' => "sessions#destroy", :as => 'logout'
+  get 'login'  => "sessions#new",     :as => "login"
+  match "user/:username", :controller => 'users', :action => 'show', :as => "user_profile"
+  
   match 'auth/:provider/callback', :controller => 'sessions', :action => 'create_external', :as => 'create_external'
 
   resources :sessions
-
+  resources :users
   root :to => 'pages#index'
 
 

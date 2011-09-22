@@ -4,6 +4,8 @@
  *= require facebox
  *= require simpleform
  *= require buttons
+ *= require flashbar
+ *= require boxes
  *= require_self
 */
 

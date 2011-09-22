@@ -1,12 +1,16 @@
 class PagesController < ApplicationController
   def index
-    render :layout => 'main'
+    if current_user
+      render :layout => 'main'
+    else
+      render 'notloggedin', :layout => 'main'
+    end
   end
 
   def help
   end
 
-  def indexloggedin
+  def notloggedin
   end
 
 end

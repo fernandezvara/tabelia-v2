@@ -6,6 +6,15 @@
   <%= javascript_include_tag "tabelia" %>
   <%= csrf_meta_tags %>
   <link href='http://fonts.googleapis.com/css?family=Cabin&amp;v2' rel='stylesheet' type='text/css'>
+  <% if flash.count > 0 %>
+  <script type="text/javascript">
+  $(document).ready(function() {
+  	<%- flash.each do |key, msg| -%>
+  	flashBar("<%= msg %>", "<%= key %>", {});
+  	<%- end -%>
+  });
+  </script>
+  <% end %>
 </head>
 
 

@@ -19,9 +19,50 @@ class SessionsController < ApplicationController
   end
 
   def create_external
+    auth = request.env['omniauth.auth']
+
+    remote_user = Authorization.where(:provider => auth["provider"], :uid => auth["uid"]).first
+    
+    if remote_user.nil?
+      if current_user 
+        current_user.authorizations.create!(:provider => auth["provider"], :uid => auth["uid"])
+        notice = "You have associated your " + auth['provider'].titleize + " and Tabelia accounts! You can use it for log in later."
+      else  
+        random_password = ActiveSupport::SecureRandom.hex(10)
+        new_user = User.create!(
+          :email => auth["user_info"]["email"] || random_password.to_s + "@change.me", 
+          :name => auth["user_info"]["name"] || "change_me", 
+          :password => random_password, 
+          :password_confirmation => random_password)
+        cookies.permanent[:auth_token] = new_user.auth_token
+        remote_user = Authorization.create!(:provider => auth["provider"], :uid => auth["uid"], :user => new_user)
+        
+        # Creates activity...
+        #Activity.create! :what => 'signup', :activitable => new_user, :originator => new_user
+        notice = "Welcome to tabelia!"
+      end
+    else
+      if current_user
+        auths_for_current_user = current_user.authorizations.where(:provider => auth["provider"], :uid => auth["uid"]).count
+        if auths_for_current_user == 0
+          notice = "You need to log out this account before log in again with other!"
+        else
+          notice = "You are already logged in!"
+        end
+      else
+        user = remote_user.user
+        cookies.permanent[:auth_token] = user.auth_token
+        notice = "Logged in!"
+      end
+    end
+    
+    redirect_to_or_default(root_url, :notice => notice)
+
   end
 
   def destroy
+    cookies.delete(:auth_token)
+    redirect_to root_url, :notice => "Logged out!"
   end
 
 end

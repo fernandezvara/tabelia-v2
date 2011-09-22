@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+  
+  def show
+    @user = User.where(:username => params[:username]).first
+    @title = @user.name.to_s
+    render :layout => 'main'
+  end
+  
   def index
   end
 
@@ -8,8 +15,7 @@ class UsersController < ApplicationController
   def create
   end
 
-  def show
-  end
+
 
   def update
   end
