@@ -1,0 +1,6 @@
+es:
+    sessions:
+        new:
+            title: "Inicio de sesión"
+            use_one_of: "o usa uno de estos servicios para iniciar sesión..."
+            submit: "Entrar ..."

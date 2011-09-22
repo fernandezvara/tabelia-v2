@@ -1,0 +1,91 @@
+/**** simple_form ****/
+.simple_form {
+	margin-bottom: 20px;
+}
+
+.simple_form label {
+	font: 12px/20px Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	float: left;
+	width: 100px;
+	text-align: right;
+	margin: 4px 10px;
+}
+
+.simple_form div.input {
+	margin-bottom: 10px;
+}
+
+.simple_form div.input input[type=text], .simple_form div.input input[type=password], .simple_form div.input textarea, .simple_form div.input select {
+	font: 12px/16px Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	width:235px;
+	margin: 0 10px 0 0;
+	padding: 5px;
+	background: #F8F8F5;
+	border-left: 1px solid #D1CEC6;
+	border-top: 1px solid #D1CEC6;
+	border-right: 1px solid #EDEDE8;
+	border-bottom: 1px solid #EDEDE8;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+} 
+
+.simple_form div.input textarea {
+	height: 150px;
+} 
+
+.simple_form div.boolean, .simple_form input[type=submit] {
+	margin-left: 120px;
+	clear:left;
+}
+
+.simple_form div.boolean label, .simple_form label.collection_radio {
+	float: none;
+	margin: 0;
+}
+
+.simple_form label.collection_radio {
+	margin-right: 10px;
+	margin-left: 2px;
+}
+
+.simple_form .error {
+	clear: left;
+	margin-left: 120px;
+	font-size: 12px;
+	color: #D00;
+	display: block;
+}
+
+.simple_form .hint {
+	clear: left;
+	margin-left: 120px;
+	font-size: 12px;
+	color: #aaa;
+	display: block;
+	font-style: italic;
+}
+
+input[disabled] {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f3f3f3), color-stop(1, #f0f0f0) );
+	background:-moz-linear-gradient( center top, #f3f3f3 5%, #f0f0f0 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f3f3f3', endColorstr='#f0f0f0');
+	background-color:#f0f3f0;
+	border:1px solid #dcdcdc;
+	color:#ddd;
+	text-shadow:1px 1px 0px #ffffff;
+}
+
+
+div#error_in_form {
+	width:80%;
+	margin: 0 auto 10px auto;
+	padding:5px;
+	color: #c20000;
+	border: 1px solid #c20000;
+	background-color: #fec1c1;
+	display:none;
+}

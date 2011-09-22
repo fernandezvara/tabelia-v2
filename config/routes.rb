@@ -1,10 +1,23 @@
 Tabelia::Application.routes.draw do
+  get "users/index"
+
+  get "users/new"
+
+  get "users/create"
+
+  get "users/show"
+
+  get "users/update"
+
   get "pages/index"
 
   get "pages/help"
 
   get "pages/indexloggedin"
 
+get 'login'  => "sessions#new",  :as => "login"
+
+resources :sessions
 
 root :to => 'pages#index'
 

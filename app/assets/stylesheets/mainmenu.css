@@ -76,11 +76,8 @@ ul.menu li li li.sfHover ul {
 	left:			15em; /* match ul width */
 	top:			0;
 }
-
-
 .menu {
 	float:right;
-
 }
 .menu a {
 	padding: 	6px 10px 5px 10px;
@@ -90,17 +87,11 @@ ul.menu li li li.sfHover ul {
 
 }
 
-.menu li a {
+.menu li a {}
 
-}
+ul.menu ul li a {}
 
-ul.menu ul li a {
-
-}
-
-ul.menu li.sfHover a.sf-with-ul {
-
-}
+ul.menu li.sfHover a.sf-with-ul {}
 
 .menu li {
 		z-index:99;
@@ -114,8 +105,6 @@ ul.menu li.sfHover a.sf-with-ul {
 .menu li li:hover, .menu li li.sfHover,
 .menu a:focus, .menu a:hover, .menu a:active {
 	outline:		0;
-
-
 }
 
 .menu a:hover {

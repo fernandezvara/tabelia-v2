@@ -1,0 +1,22 @@
+<p><span class="title"><%= t("sessions.new.title") %></span> <%#= link_to 'create a new account', sign_up_path(:go => params[:go]), :rel => 'modal' %></p>
+<br />
+<div id="error_in_form"></div>
+<%= form_tag sessions_path, :class => 'simple_form', :remote => true do %>
+  <div class="input">
+	<%= label_tag :email %>
+	<%= text_field_tag :email, params[:email] %>
+  </div>
+  <div class="input">
+	<%= label_tag :password %>
+	<%= password_field_tag :password %>
+  </div>
+  <p class="button"><%= submit_tag "Log in" %></p>
+<% end %>
+
+<hr />
+
+<p><span class="important"><%= t("sessions.new.use_one_of")%></span></p>
+
+<%= link_to image_tag('social/twitter_64.png',  :alt => "Twitter",  :class => "effect"), '/auth/twitter' %>
+<%= link_to image_tag('social/facebook_64.png', :alt => "Facebook", :class => "effect"), '/auth/facebook' %>
+<%= link_to image_tag('social/google_64.png',   :alt => "Google",   :class => "effect"), '/auth/google' %>

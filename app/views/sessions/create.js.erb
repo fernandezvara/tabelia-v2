@@ -1,0 +1,10 @@
+<% if @error %>
+	$("div#error_in_form").show();
+	$("div#error_in_form").html("<%= escape_javascript @error %>");
+	$("input[type='submit']").attr("value", "<%= t('sessions.new.submit') %>");
+	$("input[type='submit']").removeAttr("disabled");
+<% end %>
+
+<% if @redirect %>
+	window.location.replace("<%= escape_javascript(@redirect) %>");
+<% end %>

@@ -5,4 +5,8 @@ $(document).ready(function(){
     autoArrows:  true,
     dropShadows: true
     });
+	$.facebox.settings.closeImage = '/assets/facebox/closelabel.png';
+	$.facebox.settings.loadingImage = '/assets/preload.gif';
+	
+	$('a[rel*=modal]').facebox();
 });
