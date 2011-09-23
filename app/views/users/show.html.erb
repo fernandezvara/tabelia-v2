@@ -5,48 +5,14 @@
 <div class="unitx1 right">
   <a href="#" class="abutton">Follow</a>
 </div>
-<div class="box purple">
-  <div class="title">my art<a class="add" href="#">see all...</a></div>
-  <div class="content">
-    <p>Un párrafo</p>
-    <p>Probemos con <a href="#">un enlace</a></p>
-    <p>otro parrafo</p>
-    <p class="tags"><a href="#" class="tag">un tag</a><a href="#" class="tag">otro tag</a><a href="#" class="tag">y otro tag</a></p>
-        <p>otro parrafo</p>
-      </div>
-</div>
+  <%= render :partial => 'partials/user/profile/myart' %>
 <div class="unitx3 left">
-  <div class="box purple">
-    <div class="title">sobre mi</div>
-    <div class="content">
-      <p>Un párrafo</p>
-      <p>Probemos con <a href="#">un enlace</a></p>
-      <p>otro parrafo</p>
-      <p class="tags"><a href="#" class="tag">un tag</a><a href="#" class="tag">otro tag</a><a href="#" class="tag">y otro tag</a></p>
-          <p>otro parrafo</p>
-        </div>
-  </div>
+  <%= render :partial => 'partials/user/profile/about' %>
 </div>
 <div class="unitx3 right">
-  <div class="box blue">
-    <div class="title">comments</div>
-    <div class="content">
-      <p>Un párrafo</p>
-      <p>Probemos con <a href="#">un enlace</a></p>
-      <p>otro parrafo</p>
-      <p><a href="#" class="tag">un tag</a><a href="#" class="tag">otro tag</a><a href="#" class="tag">y otro tag</a></p>
-    </div>
-  </div>
+  <%= render :partial => 'partials/user/profile/comments' %>
 </div>
 <% end %>
 <% content_for :right do %>
-<div class="box purple">
-  <div class="content">
-    <p>Un párrafo</p>
-    <p>Probemos con <a href="#">un enlace</a></p>
-    <p>otro parrafo</p>
-    <p class="tags"><a href="#" class="tag">un tag</a><a href="#" class="tag">otro tag</a><a href="#" class="tag">y otro tag</a></p>
-        <p>otro parrafo</p>
-      </div>
-</div>
+  <%= render :partial => 'partials/user/profile/profileinfo' %>
 <% end %>

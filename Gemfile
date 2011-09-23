@@ -20,6 +20,10 @@ gem 'omniauth'
 gem 'simple_form'
 gem 'kaminari'
 
+#Images
+gem 'rmagick'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+
 group :development do
   gem 'faker'
 end

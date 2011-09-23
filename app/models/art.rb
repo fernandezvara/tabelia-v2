@@ -17,4 +17,6 @@ class Art
   
   slug :name
   
+  mount_uploader :image,    ImageUploader
+  
 end

@@ -1,14 +1,27 @@
 Tabelia::Application.routes.draw do
 
+  get "arts/show"
+
+  get "arts/new"
+
+  get "arts/create"
+
+  get "arts/edit"
+
+  get "arts/update"
+
   get "pages/help"
 
-
+  
   get 'logout' => "sessions#destroy", :as => 'logout'
   get 'login'  => "sessions#new",     :as => "login"
-  match "user/:username", :controller => 'users', :action => 'show', :as => "user_profile"
+  match "user/:username",      :controller => 'users', :action => 'show',          :as => "user_profile"
+  match "user/:username/art",  :controller => 'arts',  :action => 'user_art_show', :as => "user_arts"
+  match "art/:slug",           :controller => 'arts',  :action => 'show',          :as => "art_profile"
   
   match 'auth/:provider/callback', :controller => 'sessions', :action => 'create_external', :as => 'create_external'
 
+  resources :arts, :only => [:new, :create, :edit, :update]
   resources :sessions
   resources :users do
     get 'page/:page', :action => :index, :on => :collection

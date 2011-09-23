@@ -1,0 +1,10 @@
+<div class="box green">
+  <div class="title">SOBRE MI</div>
+  <div class="content">
+    <% if @user.about.nil? == true %>
+      El usuario no ha escrito nada sobre él
+    <% else %>
+      <%= @user.about %>
+    <% end %>
+  </div>
+</div>

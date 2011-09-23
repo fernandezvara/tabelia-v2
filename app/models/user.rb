@@ -28,6 +28,9 @@ class User
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   
+  # Avatar
+  mount_uploader :avatar, AvatarUploader
+  
   has_many :arts
   has_many :authorizations
   

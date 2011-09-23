@@ -20,37 +20,30 @@ p.tags {
 .box {
 	margin-left: 0px;
 	clear:left;
+	margin-bottom: 10px;
 }
 
 .box .title {
-	border-bottom: 1px solid #fff;
 	margin-bottom: 0px;
 	padding: 5px 10px;
-	color: #fff;
-	text-transform: uppercase;
 	font-weight:bold;
+	font-size:14px;
+	color:#464646;
 }
-
-.box .title a.add {
-	color: #fff;
+.box .title a {
 	float:right;
-	text-transform: none;
 	font-weight:normal;
 }
-
-.box .title a.add:hover {
-	text-decoration: underline;
-}
-
 .box .content {
 	padding: 5px 10px 10px 10px;
 	border-bottom: 1px solid #fff;
 }
-.purple .title {
-	background-color: #8e248e;
-}
-.purple .content {
+
+.purple {
 	background-color:#f7f0f7;
+}
+.purple .title {
+	border-bottom: 1px solid #8e248e;
 }
 .purple a {
 	color: #8e248e;
@@ -67,11 +60,11 @@ p.tags {
 	background-color: #fff;
 	color: #8e248e;
 }
-.orange .title {
-	background-color: #ff8700;
-}
-.orange .content {
+.orange {
 	background-color:#f8e7d4;
+}
+.orange .title {
+	border-bottom: 1px solid #ff8700;
 }
 .orange a {
 	color: #ff8700;
@@ -88,11 +81,11 @@ p.tags {
 	background-color: #fff;
 	color: #ff8700;
 }
-.blue .title {
-	background-color: #6d9aaa;
-}
-.blue .content {
+.blue {
 	background-color:#e4f2f7;
+}
+.blue .title {
+	border-bottom: 1px solid #6d9aaa;
 }
 .blue a {
 	color: #6d9aaa;
@@ -109,11 +102,11 @@ p.tags {
 	background-color: #fff;
 	color: #6d9aaa;
 }
-.green .title {
-	background-color: #617f5a;
-}
-.green .content {
+.green {
 	background-color:#dcecd8;
+}
+.green .title {
+	border-bottom: 1px solid #617f5a;
 }
 .green a {
 	color: #617f5a;

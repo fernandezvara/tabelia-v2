@@ -3,12 +3,12 @@
 <div class="paginate">
   <%= paginate @users, :inner_window => 1 %>
 </div>
-<ul id="people">
+<ul id="listing">
   <% @users.each do |user| %>
     <%= render :partial => 'partials/lists/user', :locals => { :user => user } %>
   <% end %>
 </ul>
-<div class="paginate clear">
+<div class="paginate">
   <%= paginate @users, :inner_window => 1 %>
 </div>
 <% end %>
