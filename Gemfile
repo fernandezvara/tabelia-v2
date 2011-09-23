@@ -24,6 +24,8 @@ gem 'kaminari'
 gem 'rmagick'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
+
+
 group :development do
   gem 'faker'
 end

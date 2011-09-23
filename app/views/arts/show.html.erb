@@ -1,2 +1,20 @@
-<h1>Arts#show</h1>
-<p>Find me in app/views/arts/show.html.erb</p>
+<% content_for :left do %>
+<div class="unitx5 left">
+  <h2><%= @art.name %></h2>
+</div>
+<div class="unitx1 right">
+  <a href="#" class="abutton">Like</a>
+</div>
+  <%= render :partial => 'partials/art/profile/art' %>
+<div class="unitx3 left">
+  <%= render :partial => 'partials/art/profile/description' %>
+</div>
+<div class="unitx3 right">
+  <%= render :partial => 'partials/art/profile/comments' %>
+</div>
+<% end %>
+
+<% content_for :right do %>
+  <%= render :partial => 'partials/art/profile/artinfo' %>
+  <%= render :partial => 'partials/art/profile/moreartfromuser' %>
+<% end %>

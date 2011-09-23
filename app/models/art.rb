@@ -4,6 +4,7 @@ class Art
   include Mongoid::Slug
   
   belongs_to :user
+  belongs_to :category
   
   field :name,           :type => String,   :presence => true
   field :image,          :type => String
@@ -19,4 +20,8 @@ class Art
   
   mount_uploader :image,    ImageUploader
   
+  
+  def other_art_of_user(limit)
+    Art.where(:user_id => self.user.id.to_s).excludes(:id => self.id.to_s).limit(limit)
+  end
 end

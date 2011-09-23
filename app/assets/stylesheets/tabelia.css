@@ -18,7 +18,7 @@ hr						{ background: #c20000; }
 
 .header-login           { background-color: #c20000; color: #fff; height:40px; }
 .header-login .in       { padding: 5px 10px 5px 0px; line-height:30px;}
-.header-login .logo     { margin-left: 20px; height: 40px; overflow:hide; }
+.header-login .logo     { margin-left: 20px; height: 40px; overflow:hidden; }
 .header-login a         { color: #fff; text-decoration: none; margin-left:15px;}
 .header-login a:hover   { text-decoration: none; }
 
@@ -50,3 +50,4 @@ ul#listing div.likes     { padding: 10px 10px 10px 0; width: 100px; height:75px;
 div.image_thumb          { height: 95px; width: 85px; overflow:hidden; display:inline;}
 div.image_thumb a        { line-height: 0px;}
 div.image_thumb img      { padding:10px 10px 10px 0;line-height: 0px;}
+div.userinfo             { width: 125px; padding-top: 5px;}

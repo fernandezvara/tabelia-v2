@@ -1,0 +1,19 @@
+<div class="box purple">
+  <div class="content">
+      <p>Category: <%= link_to @art.category.en, category_path(:slug => @art.category.slug) %></p>
+      <p>liked by x users</p>
+      <p>listed <%= time_ago_in_words(@art.created_at) %> ago</p>
+  </div>
+  <div class="content">
+    <div class="image_thumb">
+      <%= image_tag(@art.user.avatar.url(:thumb).to_s, :alt => @art.user.name) %>
+    </div>
+    <div class="userinfo right">
+      <p><%= link_to @art.user.name, user_profile_path(:username => @art.user.username) %></p>
+      <br />
+      <p>x followers</p>
+      <p>follows x users</p>
+      <p><a href="#">Follow</a></p>
+    </div>
+  </div>
+</div>
