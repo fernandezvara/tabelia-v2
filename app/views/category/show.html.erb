@@ -1,2 +1,18 @@
-<h1>Category#show</h1>
-<p>Find me in app/views/category/show.html.erb</p>
+<% content_for :left do %>
+  <h2>Category : <%= @category.en %></h2>
+  <div class="paginate">
+    <%= paginate @arts, :inner_window => 1 %>
+  </div>
+  <ul id="listing">
+    <% @arts.each do |art| %>
+      <%= render :partial => 'partials/lists/art', :locals => { :art => art } %>
+    <% end %>
+  </ul>
+  <div class="paginate">
+    <%= paginate @arts, :inner_window => 1 %>
+  </div>
+<% end %>
+
+<% content_for :right do %>
+  
+<% end %>

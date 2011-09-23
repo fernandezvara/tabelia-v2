@@ -33,8 +33,21 @@ class GraphClient
   end
   
   def self.new(relation, obj, obj2)
-    data = Net::HTTP.get(URI.parse("http://localhost:9000/new/#{relation}/#{obj.class.to_s}/#{obj.id.to_s}/#{obj2.class.to_s}/#{obj2.id.to_s}"))
-    return ActiveSupport::JSON.decode(data)['ok'].to_s
+    if self.connected?('Forward', relation, obj, obj2) == false
+      data = Net::HTTP.get(URI.parse("http://localhost:9000/new/#{relation}/#{obj.class.to_s}/#{obj.id.to_s}/#{obj2.class.to_s}/#{obj2.id.to_s}"))
+      return ActiveSupport::JSON.decode(data)['ok'].to_s
+    else
+      return false
+    end
+  end
+  
+  def self.remove(relation, obj, obj2)
+    if self.connected?('Forward', relation, obj, obj2) != false
+      data = Net::HTTP.get(URI.parse("http://localhost:9000/remove/#{relation}/#{obj.class.to_s}/#{obj.id.to_s}/#{obj2.class.to_s}/#{obj2.id.to_s}"))
+      return ActiveSupport::JSON.decode(data)['ok'].to_s
+    else
+      return false
+    end
   end
   
   def self.connected?(direction, relation, obj, obj2)

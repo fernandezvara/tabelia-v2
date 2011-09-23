@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
   
-  before_filter :last_page_to_session
+  before_filter :last_page_to_session, :load_categories
   
   def last_page_to_session
     # writes what was the last page the user visited. To return where you was before log in.
@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
   
   def current_user
     @current_user ||= User.where(:auth_token => cookies[:auth_token]).first if cookies[:auth_token]
+  end
+  
+  def load_categories
+    @categories = Category.all
   end
   
 end

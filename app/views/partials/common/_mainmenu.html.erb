@@ -5,14 +5,15 @@
       <li><%= link_to "Gente", users_path %></li>
       <li><a href="#">Categorias</a>
       <ul class="sub-menu">
-          <li><a href="#">Categoria 1</a></li>
-          <li><a href="#">Categoria 1</a></li>
-          <li><a href="#">Categoria 1</a></li>
-          <li><a href="#">Categoria 1</a></li>
+        <% @categories.each do |category| %>
+          <li><%= link_to category.en, category_show_path(:slug => category.slug) %></li>
+        <% end %>
+
       </ul>
       </li>
       <li><a href="#">mi</a>
       <ul class="sub-menu">
+        <li><a href="#">Categoria 1</a></li>
         <li><a href="#">Categoria 1</a></li>
         <li><a href="#">Categoria 1</a></li>
         <li><a href="#">Categoria 1</a></li>

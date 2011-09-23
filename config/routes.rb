@@ -1,5 +1,13 @@
 Tabelia::Application.routes.draw do
 
+  get "actions/follow"
+
+  get "actions/unfollow"
+
+  get "actions/like"
+
+  get "actions/unlike"
+
   get "category/show"
   get "arts/show"
   get "arts/new"
@@ -10,11 +18,18 @@ Tabelia::Application.routes.draw do
   
   get 'logout' => "sessions#destroy", :as => 'logout'
   get 'login'  => "sessions#new",     :as => "login"
-  match "user/:username",      :controller => 'users', :action => 'show',          :as => "user_profile"
-  match "user/:username/art",  :controller => 'arts',  :action => 'user_art_show', :as => "user_arts"
-  match "art/:slug",           :controller => 'arts',  :action => 'show',          :as => "art_profile"
-  match "category/:slug",      :controller => 'category', :action => 'show',       :as => "category"
-  match 'auth/:provider/callback', :controller => 'sessions', :action => 'create_external', :as => 'create_external'
+  
+  # routes for javascript events...
+  match "action/follow/:username",   :controller => 'actions',  :action => 'follow',          :as => 'action_follow'
+  match "action/unfollow/:username", :controller => 'actions',  :action => 'unfollow',        :as => 'action_unfollow'
+  
+  match "category/:slug",            :controller => 'category', :action => 'show',            :as => 'category_show'
+  
+  match "user/:username",            :controller => 'users',    :action => 'show',            :as => "user_profile"
+  match "user/:username/art",        :controller => 'arts',     :action => 'user_art_show',   :as => "user_arts"
+  match "art/:slug",                 :controller => 'arts',     :action => 'show',            :as => "art_profile"
+  match "category/:slug",            :controller => 'category', :action => 'show',            :as => "category"
+  match 'auth/:provider/callback',   :controller => 'sessions', :action => 'create_external', :as => 'create_external'
 
   resources :arts, :only => [:new, :create, :edit, :update]
   resources :sessions
