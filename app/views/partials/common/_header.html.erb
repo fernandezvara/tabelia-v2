@@ -1,6 +1,10 @@
 <header id="branding" class="full" style="position:fixed; z-index:1000;">
   <div class="header-login">
     <div class="align-left logo"><%= link_to image_tag("logo.png"), root_path %></div>
+    <div class="align-left search">
+      <span class="search-bg"><input type="text" name="search" id="search" /></span>
+    </div>
+      
     <div class="in align-right">
 <%= render :partial => '/partials/common/mainmenu' %>
     </div>

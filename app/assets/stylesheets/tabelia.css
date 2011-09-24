@@ -56,3 +56,6 @@ div.userinfo             { width: 125px; padding-top: 5px;}
 
 div#like_status a,
 div#follow_status a      { top:10px; }
+
+span.search-bg           { background-color:#fafafa; display:block; padding:2px 5px; margin-top:15px;}
+input#search             { background-color:transparent; border: 0px; color:#7d7d7d; width:300px; line-height:18px;}
