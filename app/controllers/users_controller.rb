@@ -3,7 +3,10 @@ class UsersController < ApplicationController
   def show
     @user = User.where(:username => params[:username]).first
     @title = @user.name.to_s
-    render :layout => 'main'
+    respond_to do |format|
+      format.html { render :layout => 'main' }
+      format.js
+    end
   end
   
   def index

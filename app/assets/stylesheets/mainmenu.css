@@ -1,115 +1,40 @@
-#topmenu { 
-	font-size:		12px;
-	padding:		0;
-	margin:			0;
-	float:			right;
-	}
-#topmenu .homemenu a, #topmenu .homemenu span { color:#7d7d7d; }
-#topmenu .homemenu ul li a, #topmenu .homemenu ul li span {
-	font-size:11px;
-	text-transform: uppercase;
-	border-top-right-radius: 6px; -moz-border-radius-topright: 6px; -webkit-border-top-right-radius: 6px;
-	border-top-left-radius: 6px; -moz-border-radius-topleft: 6px; -webkit-border-top-left-radius: 6px;
-	}
-#topmenu .homemenu ul li:hover>a { background: #eee; }
-#topmenu .homemenu ul ul li:first-child {border-top:		1px solid #272727; }
-#topmenu .homemenu ul ul li:last-child {border-bottom:		4px solid #181818;}
-#topmenu .homemenu ul ul li { background: #333333; border-bottom:1px solid #272727;	}
+#topmenu { 	padding: 0;margin: 0;float: right; }
+#topmenu .homemenu a, #topmenu .homemenu span { color:#fff; font-size:12px; }
+#topmenu .homemenu ul li a, #topmenu .homemenu ul li span { text-decoration:none; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;	}
+#topmenu .homemenu ul li:hover>a { background: #d40000; }
+#topmenu .homemenu ul ul { }
+#topmenu .homemenu ul ul li:first-child { border-top: 1px solid #b30000; }
+#topmenu .homemenu ul ul li:last-child { border-bottom:	2px solid #c20000;}
+#topmenu .homemenu ul ul li { background: #aa0000; border-bottom:1px solid #c20000;	}
 #topmenu .homemenu ul ul li:hover {	 }
-#topmenu .homemenu ul ul li a {	color:#AFAFAF !important; font-size: 12px !important; text-transform: none !important;}
-#topmenu .homemenu ul ul li:hover>a { text-shadow: 1px 1px #111; background: #272727; 
-	border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
-	border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;}
-#topmenu .homemenu ul ul li.current-menu-item a { background: #181818 !important; 
-	border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
-	border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
-	}
-	.menu, .menu * {
-	margin:			0;
-	padding:		0;
-	list-style:		none;
-}
-.menu {
-
-}
-.menu ul {
-	position:		absolute;
-	top:			-999em;
-	width:			200px; /* left offset of submenus need to match (see below) */
-}
-
-.menu ul li {
-	width:			100%;
-}
-.menu li:hover {
-	visibility:		inherit; /* fixes IE7 'sticky bug' */
-}
-.menu li {
-	float:			left;
-	position:		relative;
-}
-.menu a {
-	display:		block;
-	position:		relative;
-}
-.menu li:hover ul,
-.menu li.sfHover ul {
-	left:			0;
-	top:			31px; /* match top ul list item height */
-	z-index:		99;
-}
-ul.menu li:hover li ul,
-ul.menu li.sfHover li ul {
-	top:			-999em;
-}
-ul.menu li li:hover ul,
-ul.menu li li.sfHover ul {
-	left:			15em; /* match ul width */
-	top:			0;
-}
-ul.menu li li:hover li ul,
-ul.menu li li.sfHover li ul {
-	top:			-999em;
-}
-ul.menu li li li:hover ul,
-ul.menu li li li.sfHover ul {
-	left:			15em; /* match ul width */
-	top:			0;
-}
-.menu {
-	float:right;
-}
-.menu a {
-	padding: 	6px 10px 5px 10px;
-	text-decoration:none;
-}
-.menu a, .sf-menu a:visited  { /* visited pseudo selector so IE6 applies text colour*/
-
-}
-
+#topmenu .homemenu ul ul li a {	margin-left: 2px; color:#fff !important; font-size: 12px !important; text-transform: none !important;}
+#topmenu .homemenu ul ul li:hover>a {  background: #c20000; border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;}
+#topmenu .homemenu ul ul li.current-menu-item a { background: #181818 !important;  }
+.menu, .menu * { margin: 0; padding: 0; list-style:	none; }
+.menu {}
+.menu ul { position: absolute; top:	-999em; width: 200px; /* left offset of submenus need to match (see below) */}
+.menu ul li { width: 100%; }
+.menu li:hover { visibility:	inherit; /* fixes IE7 'sticky bug' */}
+.menu li { float: left; position: relative; }
+.menu a { display: block; position:	relative; }
+.menu li:hover ul, .menu li.sfHover ul { left: 0; top: 31px; /* match top ul list item height */ z-index: 99; }
+ul.menu li:hover li ul, ul.menu li.sfHover li ul { top: -999em; }
+ul.menu li li:hover ul, ul.menu li li.sfHover ul { left: 15em; /* match ul width */ top: 0; }
+ul.menu li li:hover li ul, ul.menu li li.sfHover li ul { top: -999em; }
+ul.menu li li li:hover ul, ul.menu li li li.sfHover ul { left: 15em; /* match ul width */ top: 0; }
+.menu { float:right; }
+.menu a { padding: 	6px 10px 5px 10px; text-decoration:none; }
+.menu a.img { padding: 	6px 10px 0 10px; }
+.menu a, .sf-menu a:visited  { /* visited pseudo selector so IE6 applies text colour*/}
 .menu li a {}
-
 ul.menu ul li a {}
-
 ul.menu li.sfHover a.sf-with-ul {}
-
-.menu li {
-		z-index:99;
-}
-.menu li li {
-
-}
-.menu li li li {
-
-}
+.menu li { z-index:99; }
+.menu li li {}
+.menu li li li {}
 .menu li li:hover, .menu li li.sfHover,
-.menu a:focus, .menu a:hover, .menu a:active {
-	outline:		0;
-}
-
-.menu a:hover {
-
-}
+.menu a:focus, .menu a:hover, .menu a:active { outline: 0;}
+.menu a:hover {}
 
 /*** arrows **/
 .menu a.sf-with-ul {

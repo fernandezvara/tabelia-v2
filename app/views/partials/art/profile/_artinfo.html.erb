@@ -6,10 +6,10 @@
   </div>
   <div class="content">
     <div class="image_thumb">
-      <%= image_tag(@art.user.avatar.url(:thumb).to_s, :alt => @art.user.name) %>
+      <%= link_to image_tag(@art.user.avatar.url(:thumb).to_s, :alt => @art.user.name), user_profile_path(:username => @art.user.username), :remote => true %>
     </div>
     <div class="userinfo right">
-      <p><%= link_to @art.user.name, user_profile_path(:username => @art.user.username) %></p>
+      <p><%= link_to @art.user.name, user_profile_path(:username => @art.user.username), :remote => true %></p>
       <br />
       <p>x followers</p>
       <p>follows x users</p>

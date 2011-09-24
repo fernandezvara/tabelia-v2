@@ -1,16 +1,8 @@
-<header id="branding" class="full">
-  <div class="header-login full">
+<header id="branding" class="full" style="position:fixed; z-index:1000;">
+  <div class="header-login">
     <div class="align-left logo"><%= link_to image_tag("logo.png"), root_path %></div>
     <div class="in align-right">
-      <% if current_user.nil? %>
-          <a href="/login" rel="modal">log in</a><a href="/signup" rel="modal">sign up</a>
-      <% else %>
-          <%= link_to current_user.name, user_profile_path(current_user.username) %>
-          <%= link_to 'sign out', logout_path %>
-      <% end %>
+<%= render :partial => '/partials/common/mainmenu' %>
     </div>
-  </div>
-	<div class="width3" style="float:right">
-    <%= render :partial => '/partials/common/mainmenu' %>
   </div>
 </header>

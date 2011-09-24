@@ -10,17 +10,18 @@
 */
 
 /* BASICS */
-body                    { font-family: Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif; color:#7D7D7D;}
-#page					{ margin: 0 auto 36px auto; background-color: #fafafa; padding-left: 0px; padding-right:0px; }
+body                    { font-family: Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif; color:#7D7D7D; background-color:#f0f0f0;}
+#page					{ margin: 0 auto 36px auto; background-color: #fafafa; padding-left: 0px; padding-right:0px; box-shadow: 0px 2px 7px #999;}
 section					{ padding-bottom: 0 !important; }
 hr						{ background: #c20000; }
-#branding a				{ border: none; }
+section#main            { min-height:500px;}
 
-.header-login           { background-color: #c20000; color: #fff; height:40px; }
-.header-login .in       { padding: 5px 10px 5px 0px; line-height:30px;}
-.header-login .logo     { margin-left: 20px; height: 40px; overflow:hidden; }
-.header-login a         { color: #fff; text-decoration: none; margin-left:15px;}
-.header-login a:hover   { text-decoration: none; }
+footer                  { margin-bottom:18px; }
+footer p                { padding: 0 10px; text-align:right;}
+.header-login           { color: #fff; height:50px; width:990px; margin: 0 auto;}
+.header-login .in       { padding: 10px 10px 10px 0px; line-height:30px;}
+.header-login .logo     { padding: 5px 10px 0 0; height: 45px; overflow:hidden; }
+header                  { background-color: #c20000; box-shadow: 0px 2px 5px #999; height:50px;}
 
 .left-container         { padding-left: 5px;}
 a                       { color:#c20000; }
@@ -53,4 +54,5 @@ div.image_thumb a        { line-height: 0px;}
 div.image_thumb img      { padding:10px 10px 10px 0;line-height: 0px;}
 div.userinfo             { width: 125px; padding-top: 5px;}
 
-img { overflow:hidden;}
+div#like_status a,
+div#follow_status a      { top:10px; }

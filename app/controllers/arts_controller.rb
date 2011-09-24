@@ -9,7 +9,11 @@ class ArtsController < ApplicationController
     @user = User.where(:username => params[:username]).first
     @arts = @user.arts.page(params[:page]).per(30)
     @title = t("users.index.title")
-    render :layout => 'main'
+    respond_to do |format|
+      format.html { render :layout => 'main' }
+      format.js
+    end
+    
   end
 
   def new

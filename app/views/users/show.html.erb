@@ -1,22 +1,9 @@
+<% content_for :title do %>
+  <%= render :partial => 'partials/user/profile/title' %>
+<% end %>
 <% content_for :left do %>
-<div class="unitx5 left">
-  <h2><%= @user.name %></h2>
-</div>
-<div class="unitx1 right" id="follow_status">
-  <% if GraphClient.connected?('Forward', 'Follow', current_user, @user) == false %>
-    <%= link_to 'Follow', action_follow_path(:username => @user.username), :remote => true, :class => 'abutton' %>
-  <% else %>
-    <%= link_to 'Unfollow', action_unfollow_path(:username => @user.username), :remote => true, :class => 'abutton' %>
-  <% end %>
-</div>
-  <%= render :partial => 'partials/user/profile/myart' %>
-<div class="unitx3 left">
-  <%= render :partial => 'partials/user/profile/about' %>
-</div>
-<div class="unitx3 right">
-  <%= render :partial => 'partials/user/profile/comments' %>
-</div>
+  <%= render :partial => 'partials/user/profile/left' %>
 <% end %>
 <% content_for :right do %>
-  <%= render :partial => 'partials/user/profile/profileinfo' %>
+  <%= render :partial => 'partials/user/profile/right' %>
 <% end %>

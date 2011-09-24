@@ -1,17 +1,20 @@
 <%= render :partial => '/partials/common/htmlhead' %>
-<body class="page-home" style="background-color: #fafafa;">
-  <div id="page">
-    <%= render :partial => '/partials/common/header' %>
-    <hr class="full">
+<body class="page-home">
+  <%= render :partial => '/partials/common/header' %>
+  <div id="page" style ="top:50px">
+    
     <div id="content">
-      <section class="width4 stroke">
-        <section class="column width3 first">
+      <section class="width4 stroke" id='main'>
+        <section class="column width3 first" id="main-title">
+          <%= yield :title %>
+        </section>        
+        <section class="column width3 first" id="main-left">
           <div class="left-container">
           <%= yield :left %>
           </div>
           <br />
         </section>
-        <section class="column width1">
+        <section class="column width1" id="main-right">
           <%= yield :right %>
           <br />
         </section>
