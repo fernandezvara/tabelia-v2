@@ -76,7 +76,7 @@ nav, figure, section, footer					{ display: block; }
 body								{ font-size: 75%; line-height: 1.5; /*12/18*/ }
 
 h1, h2, h3, h4, h5      			{ position: relative; color: #464646;}
-h1, h2								{ line-height: 28px; margin-bottom: 10px; }
+h1, h2								{ line-height: 28px; margin-bottom: 15px; }
 h1, h2, h3, h4						{ margin-top: 18px; }
 h3, h4, h5      					{ line-height: 18px; }
 h1									{ font-size: 28px; top: 10px; }

@@ -2,9 +2,12 @@ input[type=submit], input[type=button], a.abutton, .pagination a {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
-	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	/* background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% ); 
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+
+	background: #ededed url('/assets/icons/search1.png') no-repeat 0 0; */
+
 	background-color:#ededed;
 	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
@@ -20,9 +23,9 @@ input[type=submit], input[type=button], a.abutton, .pagination a {
 }
 
 input[type=submit]:hover, input[type=button]:hover, a.abutton:hover, .pagination a:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	/* background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
 	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed'); */
 	background-color:#dfdfdf;
 	cursor: hand;
 }
@@ -71,10 +74,13 @@ a.abutton {
 }
 
 .pagination span.current {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0, #ff7878), color-stop(1, #bf3939) );
+	/* background:-webkit-gradient( linear, left top, left bottom, color-stop(0, #ff7878), color-stop(1, #bf3939) );
 	background:-moz-linear-gradient( center top, #ff7878 0%, #bf3939 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7878', endColorstr='#bf3939');
-	background-color:#c20000;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7878', endColorstr='#bf3939'); */
+	-moz-box-shadow:inset 0px 1px 0px 0px #ff0000;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ff0000;
+	box-shadow:inset 0px 1px 0px 0px #ff0000;
+	background-color:#d40000;
 	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
@@ -86,4 +92,42 @@ a.abutton {
 	text-shadow:1px 1px 0px #ff0000;
 	position:relative;
 	top: -3px;
+}
+
+a.follow {
+	padding:2px 12px 2px 24px;
+	background: #ededed url('/assets/icons/plusgrey.png') no-repeat 6px 5px;
+}
+
+a.follow:hover {
+	padding:2px 12px 2px 24px;
+	background: #00ac00 url('/assets/icons/plusgreen.png') no-repeat 6px 5px;
+	color:#fff !important;
+	-moz-box-shadow:inset 0px 1px 0px 0px #0f0;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #0f0;
+	box-shadow:inset 0px 1px 0px 0px #0f0;
+	border: 1px solid #006000;
+	text-shadow:0 0;
+}
+
+a.unfollow {
+	padding:2px 12px 2px 24px;
+	background: #00ac00 url('/assets/icons/checkgreen.png') no-repeat 6px 5px;
+	color:#fff !important;
+	-moz-box-shadow:inset 0px 1px 0px 0px #0f0;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #0f0;
+	box-shadow:inset 0px 1px 0px 0px #0f0;
+	border: 1px solid #006000;
+	text-shadow:0 0;
+}
+
+a.unfollow:hover {
+	padding:2px 12px 2px 24px;
+	background: #ee0000 url('/assets/icons/cancel.png') no-repeat 6px 5px;
+	color:#fff !important;
+	-moz-box-shadow:inset 0px 1px 0px 0px #f00;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #f00;
+	box-shadow:inset 0px 1px 0px 0px #f00;
+	border: 1px solid #c20000;
+	text-shadow:0 0;
 }
