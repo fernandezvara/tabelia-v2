@@ -4,7 +4,15 @@
   </div>
   <div class="text">
     <p class="s12">
-      <%= link_to comment.author.name, user_profile_path(:username => comment.author.username) %>: <%= comment.text %>
+      <strong>
+      <% if comment.author == current_user %>
+        <%= link_to 'Tú', user_profile_path(:username => comment.author.username) %>
+      <% else %>
+        <%= link_to comment.author.name, user_profile_path(:username => comment.author.username) %>
+      <% end %>
+      </strong>
+      <%= comment.text %>
     </p>
+    <p class="s11 align-right"><span class="time_ago" info="<%= comment.created_at.to_i %>"><%= time_ago_in_words(comment.created_at) %> ago.</span></p>
   </div>
 </li>

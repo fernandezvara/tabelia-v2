@@ -32,7 +32,8 @@ Tabelia::Application.routes.draw do
   match 'auth/:provider/callback',   :controller => 'sessions', :action => 'create_external', :as => 'create_external'
 
   match 'user/comment/:username',    :controller => 'comments', :action => 'create',          :as => 'comment_user'
-
+  match 'view/comments/:username/:last',    :controller => 'comments', :action => 'view',          :as => 'view_more_comments'
+  
   resources :arts, :only => [:new, :create, :edit, :update]
   resources :sessions
   resources :users do

@@ -152,11 +152,10 @@ ul.comments li .text, ul.answer li .text {
 	width:290px; 
 }
 
+p.more {
+	text-align:center;
+}
 
-div#hide {
-	display:none;
-	position:absolute;
-	top:5px;
-	left: 250px;
-	z-index:500;
+p.more a {
+	top:0;
 }

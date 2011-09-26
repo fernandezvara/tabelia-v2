@@ -1,11 +1,17 @@
 <div class="box blue">
-  <div class="title">comments</div>
+  <div class="title">COMMENTS</div>
   <div class="content">
     <%= render :partial => 'partials/user/profile/newcomment' %>
-    <ul class="comments">
-      <% @user.comments_received.order_by(:created_at, :desc).each do |comment| %>
+    <ul class="comments" count="<%= @user.comments_received.count %>">
+      <% @user.comments_received.order_by(:created_at, :desc).limit(10).each do |comment| %>
         <%= render :partial => 'partials/user/profile/comment', :locals => { :comment => comment } %>
+        <% @last_comment = comment %>
       <% end %>
     </ul>
+    <% if @user.comments_received.count > 10 %>
+          <p class="more">
+            <%= link_to "Ver más", view_more_comments_path(:username => @user.username, :last => @last_comment.created_at.to_i), :class=> 'abutton', :remote => true, :walk => 'no' %>
+          </p>
+    <% end %>
   </div>
 </div>
