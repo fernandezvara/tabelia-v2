@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.where(:username => params[:username]).first
+    @comment = Comment.new
     @title = @user.name.to_s
     respond_to do |format|
       format.html { render :layout => 'main' }

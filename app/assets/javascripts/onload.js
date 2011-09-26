@@ -15,9 +15,10 @@ $(document).ready(function(){
 			history.pushState(null, "", this.href);
 			return false;
 		}
-
 	});
 	$(window).bind("popstate", function() {
 		$.getScript(location.href);
 	});
 });
+
+

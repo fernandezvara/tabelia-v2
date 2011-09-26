@@ -3,5 +3,6 @@
 //= require mainmenu
 //= require facebox
 //= require flashbar
+//= require autogrow
 
 //= require onload

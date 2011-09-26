@@ -1,0 +1,2 @@
+$('ul.comments').prepend("<%= escape_javascript(<%= render :partial => 'partials/user/profile/comment', :locals => { :comment => @comment} %>)");
+$('textarea#text').val("Escribe un comentario...");

@@ -33,7 +33,8 @@ class User
   
   has_many :arts
   has_many :authorizations
-  
+  references_many :comments_received, :class_name => 'Comment', :foreign_key => 'receiver_id'
+  references_many :comments_authored, :class_name => 'Comment', :foreign_key => 'author_id'
   
   def is_admin?
     # returns true if admin

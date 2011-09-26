@@ -123,3 +123,40 @@ p.tags {
 	background-color: #fff;
 	color: #617f5a;
 }
+
+/* COMMENTS */
+ul.comments, ul.answer {
+	list-style:none;
+	margin: 0 0 0 0;
+}
+
+ul.comments li, ul.answer li {
+	background-color:#fafafa;
+	margin-bottom:5px;
+	padding:5px; 
+	overflow:auto;
+}
+
+ul.comments li .comment, ul.answer li .comment {
+	margin-bottom:5px;
+	overflow:auto;
+}
+
+ul.comments li .actor, ul.answer li .actor {
+	margin-right:5px; float:left;
+}
+
+ul.comments li .text, ul.answer li .text {
+	float:right; 
+	vertical-align:top; 
+	width:290px; 
+}
+
+
+div#hide {
+	display:none;
+	position:absolute;
+	top:5px;
+	left: 250px;
+	z-index:500;
+}

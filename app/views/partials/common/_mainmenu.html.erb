@@ -1,15 +1,14 @@
 <div id="topmenu">
   <div class="homemenu">
     <ul id="mainmenu" class="menu">
-      <li><%= link_to image_tag("icons/home-1.png"), root_path, :class => 'img' %></li>
+      <li><%= link_to image_tag("icons/home-1.png"), root_path, :alt => 'Home', :class => 'img' %></li>
       <li><%= link_to "Gente", users_path %></li>
       <li><a href="#">Categorias</a>
-      <ul class="sub-menu">
-        <% @categories.each do |category| %>
-          <li><%= link_to category.en, category_show_path(:slug => category.slug) %></li>
-        <% end %>
-      </ul>
-      </li>
+        <ul class="sub-menu">
+          <% @categories.each do |category| %>
+            <li><%= link_to category.en, category_show_path(:slug => category.slug) %></li>
+          <% end %>
+        </ul>
       </li>
       <% if current_user.nil? %>
           <li><a href="/login" rel="modal">log in</a></li>

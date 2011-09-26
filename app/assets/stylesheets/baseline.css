@@ -67,7 +67,7 @@ table											{ font: inherit; width: 100%; }
 
 /* html 5 */
 article, aside, header, hgroup,
-nav, figure, section, footer					{ display: block; }
+nav, figure, section, footer					{ display: block;}
 
 /* Debug */
 .debug											{ outline: solid gold 1px; }
@@ -89,7 +89,7 @@ h2:first-child,
 h3:first-child,
 h4:first-child						{ margin-top: 0; margin-left:10px;}
 
-p, pre, address						{ font-size: 13px; line-height: 18px; position: relative; top: 5px; display:block;}
+p, pre, address						{ font-size: 13px; line-height: 18px; position: relative; top: 5px; display:block; }
 small								{ font-size: 11px; }
 abbr, code, kbd,
 samp, small, var					{ line-height: 15px; }

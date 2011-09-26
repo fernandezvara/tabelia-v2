@@ -1,0 +1,38 @@
+<%= form_tag(comment_user_path(:username => @user.username), :remote => true) do |f| %>
+<ul class="answer">
+  <li>
+    <div class="actor">
+      <%= image_tag(current_user.avatar.url(:mini).to_s, :alt => current_user.name) %>
+    </div>
+    <div class="text">
+      <!-- <textarea id="aa" rows="1" style="width:260px; line-height:18px;"></textarea> -->
+      <%= text_area_tag :text, nil, :style => 'width:260px; line-height:18px;' %>
+      <%= submit_tag " ", :class=> "comment_submit" %>
+      <!--<a href="#" style="float:right; display:none" id="submit" class="abutton new_answer" data-remote="true" walk="no">&nbsp;</a> -->
+    </div>
+  </li>
+</ul>
+<% end %>
+<script type="text/javascript">
+  $('textarea').expandingTextArea().val("Escribe un comentario");
+  $('textarea').focus(function() {
+    if ($(this).val() == 'Escribe un comentario') {
+      $(this).val('');
+    }
+  });
+  $('textarea').blur(function(){
+    if ($(this).val().length > 2) {
+      $("input.comment_submit").show();
+    } else {
+      $("input.comment_submit").hide();
+      $(this).val("Escribe un comentario");
+    }
+  });
+  $('textarea').keyup(function(){
+    if ($(this).val().length > 2) {
+      $("input.comment_submit").show();
+    } else {
+      $("input.comment_submit").hide();
+    }
+  });
+</script>
