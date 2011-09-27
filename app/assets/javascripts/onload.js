@@ -19,6 +19,10 @@ $(document).ready(function(){
 	$(window).bind("popstate", function() {
 		$.getScript(location.href);
 	});
+	$("li.message").live("click", function(e) {
+		e.preventDefault();
+		$(this).find('a').click();
+	})
 });
 
 

@@ -1,9 +1,5 @@
 Tabelia::Application.routes.draw do
 
-  get "messages/inbox"
-
-  get "messages/outbox"
-
   get "messages/notifications"
 
   get "messages/new"
@@ -30,6 +26,11 @@ Tabelia::Application.routes.draw do
   
   get 'logout' => "sessions#destroy", :as => 'logout'
   get 'login'  => "sessions#new",     :as => "login"
+  
+  # messaging routes
+  match "inbox",                     :controller => 'messages', :action => 'inbox',           :as => 'inbox'
+  match "outbox",                    :controller => 'messages', :action => 'outbox',          :as => 'outbox'
+  match "messages/view/:id",         :controller => 'messages', :action => 'view',            :as => 'message_view'
   
   # routes for javascript events...
   match "action/follow/:username",   :controller => 'actions',  :action => 'follow',          :as => 'action_follow'

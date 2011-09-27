@@ -1,0 +1,13 @@
+<% if message.readed == true %>
+<li class="message readed" id="<%= message.id.to_s %>">
+<% else %>
+<li class="message unreaded" id="<%= message.id.to_s %>">
+<% end %>
+  <div class="avatar">
+    <%= image_tag(message.messageraw.sender.avatar.url(:mini).to_s, :alt => message.messageraw.sender.name) %>
+  </div>
+  <div class="data">
+    <p><strong><%= link_to message.messageraw.subject, message_view_path(message.id.to_s), :remote => true, :walk => 'no' %></strong></p>
+    <p class="s11"><%= message.messageraw.sender.name %> · <%= time_ago_in_words(message.messageraw.created_at) %> ago</p>
+  </div>
+</li>

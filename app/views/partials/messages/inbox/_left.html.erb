@@ -1,6 +1,10 @@
 <div class="unitx2 left">
-  left
+  <ul class="messages">
+    <% @messages.each do |message| %>
+        <%= render :partial => 'partials/messages/message', :locals => { :message => message } %>
+    <% end %>
+  </ul>
 </div>
 <div class="unitx4 right">
-  middle
+
 </div>
