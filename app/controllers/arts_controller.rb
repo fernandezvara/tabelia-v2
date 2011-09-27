@@ -1,6 +1,7 @@
 class ArtsController < ApplicationController
   def show
     @art = Art.where(:slug => params[:slug]).first
+    @comments = @art.artcomments
     @title = t("users.index.title")
     render :layout => 'main'
   end

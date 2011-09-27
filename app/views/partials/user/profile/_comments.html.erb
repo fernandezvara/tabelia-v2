@@ -3,7 +3,7 @@
   <div class="content">
     <%= render :partial => 'partials/user/profile/newcomment' %>
     <ul class="comments" count="<%= @user.comments_received.count %>">
-      <% @user.comments_received.order_by(:created_at, :desc).limit(10).each do |comment| %>
+      <% @comments.each do |comment| %>
         <%= render :partial => 'partials/user/profile/comment', :locals => { :comment => comment } %>
         <% @last_comment = comment %>
       <% end %>

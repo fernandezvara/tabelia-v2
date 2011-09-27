@@ -1,0 +1,8 @@
+<% @comments.each do |comment| %>
+	$("ul.comments").append("<%= escape_javascript(render :partial => 'partials/art/profile/comment', :locals => { :comment => comment }) %>");
+<% end %>
+	<% if @nolink == true %>
+		$("p.more").hide();
+	<% else %>
+		$("p.more").html("<%= escape_javascript(link_to('Ver más', view_more_art_comments_path(:slug => @art.slug, :last => @last_comment_time), :class=> 'abutton', :remote => true, :walk => 'no')) %>");
+	<% end %>

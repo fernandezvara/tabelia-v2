@@ -137,12 +137,12 @@ input.comment_submit {
 	vertical-align:top;
 	top:0;
 	padding:3px 10px 3px 10px;
-	background: #ededed url('/assets/icons/answer.png') no-repeat 3px 3px;
+	background: #ededed url('/assets/icons/commentgrey.png') no-repeat 3px 3px;
 }
 
 input.comment_submit:hover {
 	padding:3px 10px 3px 10px;
-	background: #7d7d7d url('/assets/icons/answerwhite.png') no-repeat 3px 3px;
+	background: #7d7d7d url('/assets/icons/comment.png') no-repeat 3px 3px;
 	-moz-box-shadow:inset 0px 1px 0px 0px #aaa;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #aaa;
 	box-shadow:inset 0px 1px 0px 0px #aaa;

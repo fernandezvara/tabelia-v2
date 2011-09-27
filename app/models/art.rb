@@ -6,6 +6,8 @@ class Art
   belongs_to :user
   belongs_to :category
   
+  has_many :artcomments
+  
   field :name,           :type => String,   :presence => true
   field :image,          :type => String
   field :price,          :type => Integer,  :presence => true

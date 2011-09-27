@@ -2,17 +2,13 @@
   <div class="actor">
     <%= link_to image_tag(comment.author.avatar.url(:mini).to_s, :alt => comment.author.name) %>
   </div>
-  <div class="text">
-    <p class="s12">
-      <strong>
+  <div class="text s12">
       <% if comment.author == current_user %>
-        <%= link_to 'Tú', user_profile_path(:username => comment.author.username) %>
+        <% link = link_to 'Tú', user_profile_path(:username => comment.author.username) %>
       <% else %>
-        <%= link_to comment.author.name, user_profile_path(:username => comment.author.username) %>
+        <% link = link_to comment.author.name, user_profile_path(:username => comment.author.username) %>
       <% end %>
-      </strong>
-      <%= comment.text %>
-    </p>
+      <%= simple_format("<strong>#{link}</strong>: " + comment.text) %>
     <p class="s11 align-right"><span class="time_ago" info="<%= comment.created_at.to_i %>"><%= time_ago_in_words(comment.created_at) %> ago.</span></p>
   </div>
 </li>

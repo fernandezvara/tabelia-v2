@@ -34,6 +34,9 @@ Tabelia::Application.routes.draw do
   match 'user/comment/:username',    :controller => 'comments', :action => 'create',          :as => 'comment_user'
   match 'view/comments/:username/:last',    :controller => 'comments', :action => 'view',          :as => 'view_more_comments'
   
+  match 'art/comment/:slug',           :controller => 'comments', :action => 'create_art',        :as => 'comment_art'
+  match 'art/comments/:slug/:last',    :controller => 'comments', :action => 'view_art',          :as => 'view_more_art_comments'
+  
   resources :arts, :only => [:new, :create, :edit, :update]
   resources :sessions
   resources :users do

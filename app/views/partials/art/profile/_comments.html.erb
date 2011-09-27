@@ -1,6 +1,17 @@
 <div class="box blue">
-  <div class="title">comments</div>
+  <div class="title">COMMENTS</div>
   <div class="content">
-    <p>TODO!</p>
+    <%= render :partial => 'partials/art/profile/newcomment' %>
+    <ul class="comments" count="<%= @art.artcomments.count %>">
+      <% @comments.each do |comment| %>
+        <%= render :partial => 'partials/art/profile/comment', :locals => { :comment => comment } %>
+        <% @last_comment = comment %>
+      <% end %>
+    </ul>
+    <% if @art.artcomments.count > 10 %>
+          <p class="more">
+            <%= link_to "Ver más", view_more_art_comments_path(:slug => @art.slug, :last => @last_comment.created_at.to_i), :class=> 'abutton', :remote => true, :walk => 'no' %>
+          </p>
+    <% end %>
   </div>
 </div>

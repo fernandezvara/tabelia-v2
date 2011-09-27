@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   def show
     @user = User.where(:username => params[:username]).first
     @comment = Comment.new
+    @comments = @user.comments_received.order_by(:created_at, :desc).limit(10)
     @title = @user.name.to_s
     respond_to do |format|
       format.html { render :layout => 'main' }

@@ -4,5 +4,5 @@
 	<% if @nolink == true %>
 		$("p.more").hide();
 	<% else %>
-		$("p.more").html("<%= escape_javascript(link_to('Ver más', view_more_comments_path(:username => @user.username, :last => @last_comment_time), :remote => true, :walk => 'no')) %>");
+		$("p.more").html("<%= escape_javascript(link_to('Ver más', view_more_comments_path(:username => @user.username, :last => @last_comment_time), :class=> 'abutton', :remote => true, :walk => 'no')) %>");
 	<% end %>
