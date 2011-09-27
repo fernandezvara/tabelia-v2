@@ -132,6 +132,43 @@ a.unfollow:hover {
 	text-shadow:0 0;
 }
 
+a.like {
+	padding:2px 12px 2px 24px;
+	background: #ededed url('/assets/icons/heartgrey.png') no-repeat 6px 5px;
+}
+
+a.like:hover {
+	padding:2px 12px 2px 24px;
+	background: #ededed url('/assets/icons/heartred.png') no-repeat 6px 5px;
+}
+
+a.unlike {
+	padding:2px 12px 2px 24px;
+	background: #ededed url('/assets/icons/heartred2.png') no-repeat 6px 5px;
+}
+
+a.unlike:hover {
+	padding:2px 12px 2px 24px;
+	background: #ee0000 url('/assets/icons/cancel.png') no-repeat 6px 5px;
+	color:#fff !important;
+	-moz-box-shadow:inset 0px 1px 0px 0px #f00;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #f00;
+	box-shadow:inset 0px 1px 0px 0px #f00;
+	border: 1px solid #c20000;
+	text-shadow:0 0;
+}
+
+a.message {
+	padding:2px 12px 2px 24px;
+	background: #ededed url('/assets/icons/mailgrey.png') no-repeat 6px 5px;
+}
+
+a.message:hover {
+	padding:2px 12px 2px 24px;
+	background: #ededed url('/assets/icons/mailwhite.png') no-repeat 6px 5px;
+	color: #fff !important;
+}
+
 input.comment_submit {
 	display:none;
 	vertical-align:top;

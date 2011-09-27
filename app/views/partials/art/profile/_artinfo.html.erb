@@ -1,7 +1,7 @@
 <div class="box purple">
   <div class="content">
       <p>Category: <%= link_to @art.category.en, category_path(:slug => @art.category.slug) %></p>
-      <%= render :partial => 'partials/art/profile/liked_by' %>
+      <p id="liked_by"><%= render :partial => 'partials/art/profile/liked_by' %></p>
       <p>listed <%= time_ago_in_words(@art.created_at) %> ago</p>
   </div>
   <div class="content">
@@ -11,9 +11,8 @@
     <div class="userinfo right">
       <p><%= link_to @art.user.name, user_profile_path(:username => @art.user.username), :remote => true %></p>
       <br />
-      <p>x followers</p>
-      <p>follows x users</p>
-      <p><a href="#">Follow</a></p>
+      <p><%= pluralize(GraphClient.get_count('Backward', 'Follow', @art.user), 'follower') %></p>
+      <p>follows <%= pluralize(GraphClient.get_count('Forward', 'Follow', @art.user), 'user') %></p>
     </div>
   </div>
 </div>

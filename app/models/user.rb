@@ -6,7 +6,7 @@ class User
   
   attr_accessor :password
   
-  before_create :generate_username, :generate_token
+  before_create :generate_username, :generate_token, :create_mailfolders
   before_save :encrypt_password
   
   field :email,         :type => String, :presence => true
@@ -35,8 +35,21 @@ class User
   has_many :authorizations
   has_many :artcomments
   
+  has_many :mailfolders
+  
   references_many :comments_received, :class_name => 'Comment', :foreign_key => 'receiver_id'
   references_many :comments_authored, :class_name => 'Comment', :foreign_key => 'author_id'
+  
+  references_many :messages_received, :class_name => 'Comment', :foreign_key => 'receiver_id'
+  references_many :messages_send,     :class_name => 'Comment', :foreign_key => 'sender_id'
+  
+  def inbox
+    self.mailfolders.where(:type => 'i').first
+  end
+  
+  def outbox
+    self.mailfolders.where(:type => 'o').first
+  end
   
   def is_admin?
     # returns true if admin
@@ -53,6 +66,16 @@ class User
   end
   
   private
+  
+  # creates mail folders for the user on creation
+  def create_mailfolders
+    inbox = Mailfolder.create(:user => self, :type => 'i')
+    outbox = Mailfolder.create(:user => self, :type => 'o')
+    self.mailfolders << inbox
+    self.mailfolders << outbox
+    inbox.save
+    outbox.save
+  end
   
   def encrypt_password
   	if password.present?

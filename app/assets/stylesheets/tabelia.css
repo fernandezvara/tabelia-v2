@@ -11,17 +11,17 @@
 
 /* BASICS */
 body                    { font-family: Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif; color:#7D7D7D; background-color:#f0f0f0;}
-#page					{ margin: 0 auto 36px auto; background-color: #fafafa; padding-left: 0px; padding-right:0px; box-shadow: 0px 2px 7px #999;}
+#page					{ margin: 0 auto 36px auto; background-color: #fafafa; padding-left: 0px; padding-right:0px; box-shadow: 0px 2px 7px #bbb;}
 section					{ padding-bottom: 0 !important; }
 hr						{ background: #c20000; }
 section#main            { min-height:500px;}
 
 footer                  { margin-bottom:18px; }
 footer p                { padding: 0 10px; text-align:right;}
-.header-login           { color: #fff; height:50px; width:990px; margin: 0 auto;}
+.header-login           { background-color: #c20000; color: #fff; height:50px; width:990px; margin: 0 auto; box-shadow: 0px 2px 7px #999;}
 .header-login .in       { padding: 10px 10px 10px 0px; line-height:30px;}
 .header-login .logo     { padding: 5px 10px 0 0; height: 45px; overflow:hidden; }
-header                  { background-color: #c20000; box-shadow: 0px 2px 5px #999; height:50px;}
+header                  { background-color: #f0f0f0; height:50px;}
 
 .left-container         { padding-left: 5px;}
 a                       { color:#c20000; }
@@ -55,7 +55,8 @@ div.image_thumb img      { padding:10px 10px 10px 0;line-height: 0px;}
 div.userinfo             { width: 125px; padding-top: 5px;}
 
 div#like_status a,
-div#follow_status a      { top:10px; }
+div#follow_status a,
+div#message a            { top:10px; }
 
 span.search-bg           { background:#fafafa url(/assets/icons/search.png) no-repeat !important; background-position: 290px 4px !important; display:block; padding:2px 5px; margin-top:15px; }
 input#search             { background-color:transparent; border: 0px; color:#7d7d7d; width:278px; margin-right:20px; line-height:18px;}

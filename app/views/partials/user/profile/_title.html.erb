@@ -1,4 +1,4 @@
-<div class="unitx5 left">
+<div class="unitx4 left">
   <h2><%= @user.name %></h2>
 </div>
 <div class="unitx1 align-right" id="follow_status">
@@ -9,4 +9,7 @@
       <%= link_to 'Following', action_unfollow_path(:username => @user.username), :remote => true, :class => ['abutton', 'unfollow'], :walk => 'no' %>
     <% end %>
   <% end %>
+</div>
+<div class="unitx1 align-right" id="message">
+      <%= link_to 'Message', action_follow_path(:username => @user.username), :remote => true, :class => ['abutton', 'message'], :walk => 'no' %>
 </div>

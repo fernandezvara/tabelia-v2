@@ -1,2 +1,2 @@
-<p><%= GraphClient.get_count('Backward', 'Follow', user) %> followers</p>
-<p>follows <%= GraphClient.get_count('Forward', 'Follow', user) %> users</p>
+<p><%= pluralize(GraphClient.get_count('Backward', 'Follow', user), 'follower') %></p>
+<p>follows <%= pluralize(GraphClient.get_count('Forward', 'Follow', user), 'user') %></p>
