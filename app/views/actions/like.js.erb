@@ -1,0 +1,7 @@
+<% if @result == "true" %>
+	$("div#like_status").html("<%= escape_javascript(link_to('You like it', action_unlike_path(:slug => @art.slug), :remote => true, :class=> ['abutton', 'unlike'], :walk => 'no')) %>");
+	$("p#liked_by").html("<%= escape_javascript(render :partial => 'partials/art/profile/liked_by') %>")
+	flashBar("You like '<%= @art.name %>'.", "notice", {});
+<% else %>
+	alert("<%= @result %>");
+<% end %>

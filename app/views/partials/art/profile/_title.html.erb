@@ -1,6 +1,12 @@
 <div class="unitx5 left">
   <h2><%= @art.name %></h2>
 </div>
-<div class="unitx1 right" id ="like_status">
-  <a href="#" class="abutton">Like</a>
+<div class="unitx1 align-right" id="like_status">
+  <% if current_user != @art.user %>
+    <% if GraphClient.connected?('Forward', 'Like', current_user, @art) == false %>
+      <%= link_to 'Like', action_like_path(:slug => @art.slug), :remote => true, :class => ['abutton', 'like'], :walk => 'no' %>
+    <% else %>
+      <%= link_to 'You like it', action_unlike_path(:slug => @art.slug), :remote => true, :class => ['abutton', 'unlike'], :walk => 'no' %>
+    <% end %>
+  <% end %>
 </div>

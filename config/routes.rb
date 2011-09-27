@@ -22,6 +22,8 @@ Tabelia::Application.routes.draw do
   # routes for javascript events...
   match "action/follow/:username",   :controller => 'actions',  :action => 'follow',          :as => 'action_follow'
   match "action/unfollow/:username", :controller => 'actions',  :action => 'unfollow',        :as => 'action_unfollow'
+  match "action/like/:slug",         :controller => 'actions',  :action => 'like',            :as => 'action_like'
+  match "action/unlike/:slug",       :controller => 'actions',  :action => 'unlike',          :as => 'action_unlike'
   
   match "category/:slug",            :controller => 'category', :action => 'show',            :as => 'category_show'
   

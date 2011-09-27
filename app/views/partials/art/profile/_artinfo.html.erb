@@ -1,7 +1,7 @@
 <div class="box purple">
   <div class="content">
       <p>Category: <%= link_to @art.category.en, category_path(:slug => @art.category.slug) %></p>
-      <p>liked by x users</p>
+      <%= render :partial => 'partials/art/profile/liked_by' %>
       <p>listed <%= time_ago_in_words(@art.created_at) %> ago</p>
   </div>
   <div class="content">
