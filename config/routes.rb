@@ -1,5 +1,17 @@
 Tabelia::Application.routes.draw do
 
+  get "messages/inbox"
+
+  get "messages/outbox"
+
+  get "messages/notifications"
+
+  get "messages/new"
+
+  get "messages/create"
+
+  get "messages/reply"
+
   get "actions/follow"
 
   get "actions/unfollow"
