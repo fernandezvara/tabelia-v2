@@ -1,3 +1,3 @@
-$("li#<%= @message.id.to_s%>").find("div.messagebody").html("<%= escape_javascript(simple_format(@message.messageraw.text))%>");
+$("div.messagebody").html("<%= escape_javascript(simple_format(@message.messageraw.text))%>");
 $("li#<%= @message.id.to_s%>").find("div.messagebody").slideDown();
 $("li#<%= @message.id.to_s%>").removeClass("unreaded").addClass("read");

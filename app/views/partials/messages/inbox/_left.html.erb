@@ -1,10 +1,10 @@
-<div class="unitx2 left">
+<div class="messagelist left">
   <ul class="messages">
     <% @messages.each do |message| %>
         <%= render :partial => 'partials/messages/message', :locals => { :message => message } %>
     <% end %>
   </ul>
 </div>
-<div class="unitx4 right">
-
+<div class="unitx4 right messagebody">
+  <%= simple_format(@messages.first.messageraw.text) %>
 </div>

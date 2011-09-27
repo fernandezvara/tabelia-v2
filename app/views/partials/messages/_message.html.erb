@@ -1,8 +1,15 @@
-<% if message.readed == true %>
-<li class="message readed" id="<%= message.id.to_s %>">
-<% else %>
-<li class="message unreaded" id="<%= message.id.to_s %>">
-<% end %>
+<% if message.readed == true 
+  read_status = "readed"
+else 
+  read_status = "unreaded"
+end 
+if message == @messages.first
+  selected = " selected"
+else
+  selected = ""
+end
+%>
+<li class="message <%= "#{read_status}#{selected}" %>" id="<%= message.id.to_s %>">
   <div class="avatar">
     <%= image_tag(message.messageraw.sender.avatar.url(:mini).to_s, :alt => message.messageraw.sender.name) %>
   </div>
