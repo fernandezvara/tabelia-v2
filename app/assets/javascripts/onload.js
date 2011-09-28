@@ -19,10 +19,12 @@ $(document).ready(function(){
 	$(window).bind("popstate", function() {
 		$.getScript(location.href);
 	});
-	$("li.message").live("click", function(e) {
-		e.preventDefault();
-		$(this).find('a').click();
-	})
+	$("li.message").hover(function(){
+		$(this).find("div.actions").show();
+	},
+	function() {
+		$(this).find("div.actions").hide();
+	});
 });
 
 

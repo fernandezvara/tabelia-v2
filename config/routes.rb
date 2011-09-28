@@ -6,7 +6,7 @@ Tabelia::Application.routes.draw do
 
   get "messages/create"
 
-  get "messages/reply"
+
 
   get "actions/follow"
 
@@ -31,7 +31,8 @@ Tabelia::Application.routes.draw do
   match "inbox",                     :controller => 'messages', :action => 'inbox',           :as => 'inbox'
   match "outbox",                    :controller => 'messages', :action => 'outbox',          :as => 'outbox'
   match "messages/view/:id",         :controller => 'messages', :action => 'view',            :as => 'message_view'
-  
+  match "messages/reply/:id",        :controller => 'messages', :action => 'reply',           :as => 'message_reply'
+
   # routes for javascript events...
   match "action/follow/:username",   :controller => 'actions',  :action => 'follow',          :as => 'action_follow'
   match "action/unfollow/:username", :controller => 'actions',  :action => 'unfollow',        :as => 'action_unfollow'

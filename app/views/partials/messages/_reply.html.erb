@@ -1,0 +1,18 @@
+<%= form_tag message_reply_path(:id => @message.id.to_s), :remote => true do %>
+
+  <%= text_area_tag :text, nil, :style => 'width:612px; line-height:18px;' %>
+
+  <%= submit_tag "Reply", :disabled => 'disabled', :class => 'replysubmit'%>
+<% end %>
+<script type="text/javascript">
+  $('textarea').expandingTextArea();
+  $('textarea').keyup(function(){
+    if ($(this).val().length > 2) {
+      $("input.replysubmit").removeAttr("disabled");
+    } else {
+      $("input.replysubmit").attr("disabled", "disabled");
+    }
+  });
+</script>
+
+

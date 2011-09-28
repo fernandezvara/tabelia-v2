@@ -35,13 +35,13 @@ class User
   has_many :authorizations
   has_many :artcomments
   
-  has_many :mailfolders
+  # There is only an 'inbox' folder. All the conversations of the user are a conversation.
+  # A conversations have many messages
+  has_and_belongs_to_many :conversations
   
   references_many :comments_received, :class_name => 'Comment', :foreign_key => 'receiver_id'
   references_many :comments_authored, :class_name => 'Comment', :foreign_key => 'author_id'
   
-  references_many :messages_received, :class_name => 'Comment', :foreign_key => 'receiver_id'
-  references_many :messages_send,     :class_name => 'Comment', :foreign_key => 'sender_id'
   
   def inbox
     self.mailfolders.where(:type => 'i').first

@@ -2,9 +2,11 @@ class Message
   include Mongoid::Document
   include Mongoid::Timestamps::Created
 
-  field :readed,      type: Boolean, default: false
-  field :in_reply_to, type: String
+  field :text, type: String
   
-  belongs_to :mailfolder
-  belongs_to :messageraw
+  referenced_in :receiver, :class_name => 'User'
+  referenced_in :sender,   :class_name => 'User'
+
+  embedded_in :bucket
+
 end

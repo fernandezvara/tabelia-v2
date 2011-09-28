@@ -1,0 +1,4 @@
+$("section#main-title").html('<%= escape_javascript(render :partial => "partials/messages/inbox/title") %>');
+$("section#main-left").html('<%= escape_javascript(render :partial => "partials/messages/inbox/left") %>');
+$("section#main-right").html('<%= escape_javascript(render :partial => "partials/messages/inbox/right") %>');
+document.title = "<%= escape_javascript(title) %>";

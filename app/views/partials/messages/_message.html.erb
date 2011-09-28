@@ -1,20 +1,26 @@
-<% if message.readed == true 
+<% if conversation.messages.count == 1 
+  first_message = conversation.messages.first
+  last_message  = conversation.messages.first
+else
+  first_message = conversation.order_by(:updated_at, :asc).first
+  last_message = conversation.order_by(:updated_at, :asc).last
+end
+if conversation.readed == true 
   read_status = "readed"
 else 
   read_status = "unreaded"
 end 
-if message == @messages.first
-  selected = " selected"
-else
-  selected = ""
-end
 %>
-<li class="message <%= "#{read_status}#{selected}" %>" id="<%= message.id.to_s %>">
+<li class="message <%= "#{read_status}" %>" id="<%= message.id.to_s %>">
   <div class="avatar">
-    <%= image_tag(message.messageraw.sender.avatar.url(:mini).to_s, :alt => message.messageraw.sender.name) %>
+    <%= image_tag(first_message.sender.avatar.url(:mini).to_s, :alt => first_message.sender.name) %>
   </div>
   <div class="data">
-    <p><strong><%= link_to message.messageraw.subject, message_view_path(message.id.to_s), :remote => true, :walk => 'no' %></strong></p>
-    <p class="s11"><%= message.messageraw.sender.name %> · <%= time_ago_in_words(message.messageraw.created_at) %> ago</p>
+    <p><strong><%= link_to conversation.subject, message_view_path(:id => conversation.id.to_s), :remote => true %></strong></p>
+    <p>Último mensaje: <%= time_ago_in_words(message.messageraw.created_at) %> ago, enviado por <%= link_to last_message.sender.name, user_profile_path(:username => last_message.sender.username) %></p>
+  </div>
+  <div class="actions">
+    <%= link_to 'Ver', message_view_path(message.id.to_s), :remote => true, :class=> 'abutton' %>
+     <a href="#" class="abutton">Borrar</a>
   </div>
 </li>
