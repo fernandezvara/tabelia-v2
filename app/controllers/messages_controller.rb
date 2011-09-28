@@ -16,6 +16,22 @@ class MessagesController < ApplicationController
     end
   end
 
+  def view
+    @bucket = Bucket.where(:slug => params[:slug]).first
+    @conversation = @bucket.conversations.where(:user_id => current_user.id).first
+    
+    if @bucket.nil? == true or @conversation.nil? == true
+      redirect_to root_url
+    else
+      @messages = @bucket.messages.order_by(:created_at, :asc)
+      respond_to do |format|
+        format.html { render :layout => 'main' }
+        format.js
+      end
+    end
+  end
+
+
   def view_old
     @message = current_user.inbox.messages.find(params[:id])
     if @message.readed != true

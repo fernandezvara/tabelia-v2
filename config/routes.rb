@@ -30,7 +30,7 @@ Tabelia::Application.routes.draw do
   # messaging routes
   match "inbox",                     :controller => 'messages', :action => 'inbox',           :as => 'inbox'
   match "outbox",                    :controller => 'messages', :action => 'outbox',          :as => 'outbox'
-  match "messages/view/:id",         :controller => 'messages', :action => 'view',            :as => 'message_view'
+  match "messages/view/:slug",       :controller => 'messages', :action => 'view',            :as => 'message_view'
   match "messages/reply/:id",        :controller => 'messages', :action => 'reply',           :as => 'message_reply'
 
   # routes for javascript events...

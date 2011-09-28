@@ -1,55 +1,45 @@
 <div class="unitx6" id="msg">
   <div class="unitx6" id="header">
     <div class="avatar">
-      <%= image_tag(@message.messageraw.sender.avatar.url(:mini).to_s, :alt => @message.messageraw.sender.name) %>
+      <%#= image_tag(@message.messageraw.sender.avatar.url(:mini).to_s, :alt => @message.messageraw.sender.name) %>
     </div>
     <div class="data">
-      <p><strong><%= @message.messageraw.subject %></strong></p>
-      <p class="s11"><%= @message.messageraw.sender.name %> · <%= time_ago_in_words(@message.messageraw.created_at) %> ago</p>
+      <p><strong><%= @bucket.subject %></strong></p>
+      <p class="s11"><%#= @message.messageraw.sender.name %> · <%#= time_ago_in_words(@message.messageraw.created_at) %> ago</p>
     </div>
     <div class="actions">
        <a href="#" class="abutton">Borrar</a>
     </div>
   </div>
+  <% @messages.each do |message| %>
   <div class="unitx6">
-      <div style="unitx1">&nbsp;</div>
-      <div class="unitx5 right" id="messagebody">
-        <% if @message.messageraw.sender == current_user %>
-          <% sender = "Tú" %>
-        <% else %>
-          <% sender = @message.messageraw.sender.name %>
-        <% end %>
-        <div class="unitx5" id="title"><strong><%= sender %></strong> · <%= time_ago_in_words(@message.messageraw.created_at) %> ago.</div>
-        <div class="unitx5" id="data"><%= simple_format(@message.messageraw.text) %>
-        </div>
-        <div class="unitx5" id="reply">
-          <%= form_tag message_reply_path(:id => @message.id.to_s) do %>
-            <%= text_area_tag :text, nil, :style => 'width:612px; line-height:18px;' %>
-            <%= submit_tag "Reply", :disabled => 'disabled', :class => 'replysubmit' %>
-          <% end %>
-        </div>
-
-        <script type="text/javascript">
-          $('textarea').expandingTextArea();
-          $('textarea').keyup(function(){
-            if ($(this).val().length > 2) {
-              $("input.replysubmit").removeAttr("disabled");
-            } else {
-              $("input.replysubmit").attr("disabled", "disabled");
-            }
-          });
-        </script>
-      <% @array_conversation.each do |msg| %>
-        <div class="unitx5" id="messagebody">
-          <% if msg.sender == current_user %>
-            <% sender = "Tú" %>
-          <% else %>
-            <% sender = msg.sender.name %>
-          <% end %>
-          <div class="unitx5" id="title"><strong><%= sender %></strong> · <%= time_ago_in_words(msg.created_at) %> ago.</div>
-          <div class="unitx5" id="data"><%= simple_format(msg.text) %></div>
-        </div>
-      <% end %>
+    <div style="unitx1"><%= image_tag message.sender.avatar.url(:mini).to_s %></div>
+    <div class="unitx5 right" id="messagebody">
+      <div class="unitx5" id="title"><strong><%= message.sender.name %></strong> · <%= time_ago_in_words(message.created_at) %> ago.</div>
+      <div class="unitx5" id="data">
+        <%= simple_format(message.text) %>
       </div>
     </div><!-- fin de mensajes -->
+  </div>
+  <% end %>
+  <div class="unitx6">
+    <div style="unitx1">&nbsp;</div>
+    <div class="unitx5" id="reply">
+      <%= form_tag message_reply_path(:id => @bucket.id.to_s) do %>
+        <%= text_area_tag :text, nil, :style => 'width:612px; line-height:18px;' %>
+        <%= submit_tag "Reply", :disabled => 'disabled', :class => 'replysubmit' %>
+      <% end %>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('textarea').expandingTextArea();
+    $('textarea').keyup(function(){
+      if ($(this).val().length > 2) {
+        $("input.replysubmit").removeAttr("disabled");
+      } else {
+        $("input.replysubmit").attr("disabled", "disabled");
+      }
+    });
+  </script>
+    
 </div>

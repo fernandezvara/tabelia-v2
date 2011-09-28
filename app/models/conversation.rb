@@ -7,4 +7,8 @@ class Conversation
   belongs_to :user
   belongs_to :bucket
 
+
+  def related_users
+    
+  end
 end

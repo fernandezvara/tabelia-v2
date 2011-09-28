@@ -1,8 +1,11 @@
 class Bucket
   include Mongoid::Document
+  include Mongoid::Slug
   
   field :subject, type: String
   
+  slug :subject
+  
   has_many :conversations
-  embeds_many :messages
+  has_many :messages
 end
