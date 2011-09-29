@@ -31,7 +31,9 @@ Tabelia::Application.routes.draw do
   match "messages",                  :controller => 'messages', :action => 'inbox',           :as => 'inbox'
   match "messages/view/:slug",       :controller => 'messages', :action => 'view',            :as => 'message_view'
   match "messages/reply/:slug",      :controller => 'messages', :action => 'reply',           :as => 'message_reply'
-
+  match "messages/new/:username",    :controller => 'messages', :action => 'new',             :as => 'new_message'
+  match "messages/create",           :controller => 'messages', :action => 'create',          :as => 'create_message'
+  
   # routes for javascript events...
   match "action/follow/:username",   :controller => 'actions',  :action => 'follow',          :as => 'action_follow'
   match "action/unfollow/:username", :controller => 'actions',  :action => 'unfollow',        :as => 'action_unfollow'

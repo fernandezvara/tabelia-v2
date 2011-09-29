@@ -1,15 +1,15 @@
 <div class="unitx4 left">
   <h2><%= @user.name %></h2>
 </div>
+<% if current_user != @user %>
 <div class="unitx1 align-right" id="follow_status">
-  <% if current_user != @user %>
     <% if GraphClient.connected?('Forward', 'Follow', current_user, @user) == false %>
       <%= link_to 'Follow', action_follow_path(:username => @user.username), :remote => true, :class => ['abutton', 'follow'], :walk => 'no' %>
     <% else %>
       <%= link_to 'Following', action_unfollow_path(:username => @user.username), :remote => true, :class => ['abutton', 'unfollow'], :walk => 'no' %>
     <% end %>
-  <% end %>
 </div>
 <div class="unitx1 align-right" id="message">
-      <%= link_to 'Message', action_follow_path(:username => @user.username), :remote => true, :class => ['abutton', 'message'], :walk => 'no' %>
+      <%= link_to 'Message', new_message_path(:username => @user.username), :rel => 'modal', :class => ['abutton', 'message'] %>
 </div>
+<% end %>

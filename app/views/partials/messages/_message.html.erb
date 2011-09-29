@@ -4,17 +4,12 @@ if item.readed == true
 else 
   read_status = "unreaded"
 end 
-conversation = item.conversation
-puts conversation.inspect
-puts conversation.messages.count
-last_message = conversation.last_message
-if last_message.nil? == true
-  puts "LASTMESSAGE = NULL"
-end
+last_message = item.conversation.last_message
+@other_user = item.conversation.other_participants_than(current_user)[0]
 %>
 <li class="message <%= "#{read_status}" %>" id="<%= item.conversation.slug.to_s %>">
   <div class="avatar">
-    <%#= image_tag(@other_user.avatar.url(:mini).to_s, :alt => @other_user.name) %>
+    <%= image_tag(@other_user.avatar.url(:mini).to_s, :alt => @other_user.name) %>
   </div>
   <div class="data">
     <p><strong><%= link_to item.conversation.subject  , message_view_path(:slug => item.conversation.slug.to_s), :remote => true %></strong></p>

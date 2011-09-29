@@ -63,7 +63,7 @@ class Message
       end
       
       return true
-    else
+    rescue
       return false
     end
   end

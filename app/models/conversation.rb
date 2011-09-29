@@ -9,7 +9,7 @@ class Conversation
   has_many :messages
   
   def read!(user)
-    relation = Userconversation.where(:user_id => user.id.to_s, :conversation_id => self.id.to_s)
+    relation = Userconversation.where(:user_id => user.id, :conversation_id => self.id).first
     if relation.nil? == true
       return false
     else
@@ -36,6 +36,18 @@ class Conversation
     participants = Array.new
     relation.each do |rel|
       participants << rel.user
+    end
+    return participants
+  end
+  
+  # returns other participants in the conversation that are not the 'user' passed
+  def other_participants_than(user)
+    relation = Userconversation.where(:conversation_id => self.id.to_s)
+    participants = Array.new
+    relation.each do |rel|
+      if user != rel.user
+        participants << rel.user
+      end
     end
     return participants
   end

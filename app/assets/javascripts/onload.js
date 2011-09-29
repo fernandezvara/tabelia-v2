@@ -7,7 +7,11 @@ $(document).ready(function(){
     });
 	$.facebox.settings.closeImage = '/assets/facebox/closelabel.png';
 	$.facebox.settings.loadingImage = '/assets/preload.gif';
-	$('a[rel*=modal]').facebox();
+	/* $('a[rel*=modal]').facebox(); */
+	$('a[rel*=modal]').live("mousedown", function() { 
+	    $(this).unbind('click'); //everytime you click unbind the past event handled.
+	    $(this).facebox();
+	});
 	$('a[data-remote*=true]').live("click", function(){
 		if ($(this).attr('walk') == 'no') {
 			return false;
