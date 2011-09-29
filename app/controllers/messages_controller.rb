@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class MessagesController < ApplicationController
   
   def inbox
@@ -17,19 +18,52 @@ class MessagesController < ApplicationController
   end
 
   def view
-    @bucket = Bucket.where(:slug => params[:slug]).first
-    @conversation = @bucket.conversations.where(:user_id => current_user.id).first
+    begin
+      @conversation = Conversation.where(:slug => params[:slug]).first
+      relation = Userconversation.where(:user_id => current_user.id.to_s, :conversation_id => @conversation.id.to_s).count
     
-    if @bucket.nil? == true or @conversation.nil? == true
-      redirect_to root_url
-    else
-      @messages = @bucket.messages.order_by(:created_at, :asc)
-      respond_to do |format|
-        format.html { render :layout => 'main' }
-        format.js
+      # be sure this conversation belongs to this user....
+      if relation == 1 and @conversation.nil? == false
+        respond_to do |format|
+          format.html { render :layout => 'main' }
+          format.js
+        end
+      else
+        redirect_to :root
       end
+    rescue
+      redirect_to :root
     end
   end
+
+  def reply
+    begin
+      @conversation = Conversation.where(:slug => params[:slug]).first
+      relation = Userconversation.where(:user_id => current_user.id.to_s, :conversation_id => @conversation.id.to_s).count
+      
+      # be sure this conversation belongs to this user....
+      if relation == 1 and @conversation.nil? == false
+        @message = Message.new
+        @message.text = params[:text]
+        @message.sender = current_user
+        if @message.reply!(@conversation) == true
+          flash[:success] = "Mensaje enviado correctamente."
+          redirect_to inbox_path
+        else
+          flash[:error] = "Error al enviar el mensaje. Intentalo más tarde."
+          redirect_to inbox_path
+        end
+      else
+        redirect_to :root
+      end
+    
+    rescue
+      redirect_to :root
+    end
+
+
+  end
+
 
 
   def view_old

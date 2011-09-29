@@ -2,28 +2,3 @@ $("section#main-title").html('<%= escape_javascript(render :partial => "partials
 $("section#main-left").html('<%= escape_javascript(render :partial => "partials/messages/show/left") %>');
 $("section#main-right").html('<%= escape_javascript(render :partial => "partials/messages/show/right") %>');
 document.title = "<%= escape_javascript(title) %>";
-
-
-
-
-
-/*
-$("ul.messages li").find("div#messagebody").slideUp();
-$("ul.messages").find("li#<%= @message.id.to_s%> div#messagebody #title").html('<strong><%= escape_javascript("#{@message.messageraw.sender.name}") %></strong> · <%= escape_javascript("#{time_ago_in_words(@message.messageraw.created_at)}") %>');
-$("ul.messages").find("li#<%= @message.id.to_s%> div#messagebody #data").html("<%= escape_javascript(simple_format(@message.messageraw.text))%>");
-$("ul.messages").find("li#<%= @message.id.to_s%> div#messagebody #reply").html("<%= escape_javascript(render :partial => 'partials/messages/reply') %>");
-$("ul.messages").find("li#<%= @message.id.to_s%>").find("div#messagebody").slideDown();
-$("ul.messages").find("li#<%= @message.id.to_s%>").removeClass("unreaded").addClass("readed");
-
-
-
-<div class="clear unitx6">
-  <div class="unitx5" id="messagebody">
-    <div class="unitx5" id="title">
-    </div>
-    <div class="unitx5" id="data">
-    </div>
-    <div class="unitx5" id="reply">
-    </div>
-  </div>
-</div> */

@@ -1,31 +1,23 @@
+<div class="unitx6" id="header"></div>
 <div class="unitx6" id="msg">
-  <div class="unitx6" id="header">
-    <div class="avatar">
-      <%#= image_tag(@message.messageraw.sender.avatar.url(:mini).to_s, :alt => @message.messageraw.sender.name) %>
+  <% @conversation.messages.each do |message| %>
+  <div class="unitx6" id="messagebody">
+    <div class="unitx1 left" style="text-align: right">
+      <%= image_tag message.sender.avatar.url(:mini).to_s %>
     </div>
-    <div class="data">
-      <p><strong><%= @bucket.subject %></strong></p>
-      <p class="s11"><%#= @message.messageraw.sender.name %> · <%#= time_ago_in_words(@message.messageraw.created_at) %> ago</p>
-    </div>
-    <div class="actions">
-       <a href="#" class="abutton">Borrar</a>
-    </div>
-  </div>
-  <% @messages.each do |message| %>
-  <div class="unitx6">
-    <div style="unitx1"><%= image_tag message.sender.avatar.url(:mini).to_s %></div>
-    <div class="unitx5 right" id="messagebody">
+    <div class="unitx5 right">
       <div class="unitx5" id="title"><strong><%= message.sender.name %></strong> · <%= time_ago_in_words(message.created_at) %> ago.</div>
       <div class="unitx5" id="data">
         <%= simple_format(message.text) %>
       </div>
-    </div><!-- fin de mensajes -->
+    </div>
   </div>
+  <div class="clear"></div>
   <% end %>
   <div class="unitx6">
-    <div style="unitx1">&nbsp;</div>
-    <div class="unitx5" id="reply">
-      <%= form_tag message_reply_path(:id => @bucket.id.to_s) do %>
+    <div class="unitx1 left">&nbsp;</div>
+    <div class="unitx5 right" id="reply">
+      <%= form_tag message_reply_path(:slug => @conversation.slug.to_s) do %>
         <%= text_area_tag :text, nil, :style => 'width:612px; line-height:18px;' %>
         <%= submit_tag "Reply", :disabled => 'disabled', :class => 'replysubmit' %>
       <% end %>

@@ -28,10 +28,9 @@ Tabelia::Application.routes.draw do
   get 'login'  => "sessions#new",     :as => "login"
   
   # messaging routes
-  match "inbox",                     :controller => 'messages', :action => 'inbox',           :as => 'inbox'
-  match "outbox",                    :controller => 'messages', :action => 'outbox',          :as => 'outbox'
+  match "messages",                  :controller => 'messages', :action => 'inbox',           :as => 'inbox'
   match "messages/view/:slug",       :controller => 'messages', :action => 'view',            :as => 'message_view'
-  match "messages/reply/:id",        :controller => 'messages', :action => 'reply',           :as => 'message_reply'
+  match "messages/reply/:slug",      :controller => 'messages', :action => 'reply',           :as => 'message_reply'
 
   # routes for javascript events...
   match "action/follow/:username",   :controller => 'actions',  :action => 'follow',          :as => 'action_follow'

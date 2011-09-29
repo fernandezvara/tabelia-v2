@@ -55,29 +55,28 @@ ul.messages li:hover {
 
 div#messagebody {
 	background-color: #fff;
-	margin: 0px 0 5px 0;
-	padding:5px;
+	margin: 0px 0 10px 0;
+	padding:0px;
+	overflow:hidden;
 }
 
 div#messagebody div#title {
+	padding:5px 0;
 	color:#464646;
 	border-bottom: 1px solid #ddd;
+	
 }
 div#messagebody div#data {
-	padding:5px 0 10px 0;
-	border-bottom: 1px solid #ddd;
+	padding:5px 0 15px 0;
 }
 
-div#messagebody div#reply {
-	padding:10px 0 10px 0;
-}
-
-div#messagebody div#reply input.replysubmit {
-	margin: 0 0 0 auto;
+div#reply {
+	text-align:right;
 }
 
 div#msg {
 	overflow:hidden;
+	margin-top:20px;
 }
 div#header {
 	border-bottom: 1px solid #ddd;

@@ -6,32 +6,65 @@ class Message
   
   referenced_in :sender,   :class_name => 'User'
 
-  belongs_to :bucket
+  belongs_to :conversation
 
-  def send!(subject)
+
+  # when we send a new message we create the message, the conversation and the relations between users and conversations
+  # we can send a message to an array of users, so every user will have a relation 'Userconversation' for this conversation
+  # so a new message makes:
+  # 
+  # Message.new
+  # Conversation.new, subject = subject
+  # Conversation.new.messages << Message.new
+  # Userconversation.new.user = sender, readed = true, conversation = Conversation.new, save!
+  # 
+  # For every user receiving this conversation:
+  # Userconversation.new.user = receiver, readed = false, conversation = Conversation.new, save!
+  #
+  def send!(to_array, subject)
+    conversation = Conversation.new
+    conversation.subject = subject
     
-    b = Bucket.new
-    b.subject = subject
-    b.messages << self
+    conversation.messages << self
     
     self.save!
-    b.save!
+    conversation.save!
     
+    senderconversation = Userconversation.new
+    senderconversation.user = self.sender
+    senderconversation.readed = true
+    senderconversation.conversation = conversation
+    senderconversation.hidden = false
+    senderconversation.save!
     
-    
-    
-    # Creamos la conversation, relaciona bucket con usuario
-    conv_receiver = self.receiver.conversations.create
-    conv_sender   = self.sender.conversations.create
-    # relacionamos el bucket de mensajes con la conversation
-    conv_receiver.bucket = b
-    conv_sender.bucket = b
-    # receiver no ha leido, sender ha leido
-    conv_receiver.readed = false
-    conv_sender.readed = true
-    # guardamos la relation
-    conv_sender.save!
-    conv_receiver.save!
+    to_array.each do |to|
+      receiverconversation = Userconversation.new
+      receiverconversation.user = to
+      receiverconversation.readed = false
+      receiverconversation.hidden = false
+      receiverconversation.conversation = conversation
+      receiverconversation.save!
+    end
   end
+  
+  def reply!(conversation)
+    begin
+      conversation.messages << self
+      self.save!
+      conversation.save!
     
+      participants = Userconversation.where(:conversation_id => conversation.id.to_s)
+    
+      participants.each do |participant|
+        if participant.user != self.sender
+          participant.readed = false
+          participant.save!
+        end
+      end
+      
+      return true
+    else
+      return false
+    end
+  end
 end

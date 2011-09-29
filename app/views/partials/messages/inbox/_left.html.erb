@@ -1,7 +1,7 @@
 <div class="unitx6 left">
   <ul class="messages">
-    <% @conversations.each do |conversation| %>
-        <%= render :partial => 'partials/messages/message', :locals => { :conversation => conversation } %>
+    <% @conversations.each do |item| %>
+        <%= render :partial => 'partials/messages/message', :locals => { :item => item } %>
     <% end %>
   </ul>
 </div>
