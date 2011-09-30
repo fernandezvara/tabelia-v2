@@ -1,4 +1,4 @@
-#topmenu { 	padding: 0;margin: 0;float: right; }
+#topmenu { 	padding: 0;margin: 0;float: right;  user-select: none; -moz-user-select: none;-khtml-user-select: none;}
 #topmenu .homemenu a, #topmenu .homemenu span { color:#fff; font-size:12px; }
 #topmenu .homemenu ul li a, #topmenu .homemenu ul li span { text-decoration:none; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;	}
 #topmenu .homemenu ul li:hover>a { background: #d40000; }
@@ -35,6 +35,24 @@ ul.menu li.sfHover a.sf-with-ul {}
 .menu li li:hover, .menu li li.sfHover,
 .menu a:focus, .menu a:hover, .menu a:active { outline: 0;}
 .menu a:hover {}
+/* message count */
+ul.menu li span.message_count {
+	/* background-color: #fff;
+	-moz-border-radius: 2px !important;
+	-webkit-border-radius: 2px !important;
+	border-radius: 2px !important; 
+	color: #d80000 !important;
+	padding: 2px 2px;
+	font-weight: bold; */
+	line-height: 10px;
+	position: absolute;
+	top: 15px;
+	left: 29px;
+	font-size: 10px;
+	
+	font-family: Arial, Helvetica, sans-serif;
+}
+/* ************* */
 
 /*** arrows **/
 .menu a.sf-with-ul {

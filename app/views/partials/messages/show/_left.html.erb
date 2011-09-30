@@ -3,10 +3,14 @@
   <% @conversation.messages.each do |message| %>
   <div class="unitx6" id="messagebody">
     <div class="unitx1 left" style="text-align: right">
-      <%= image_tag message.sender.avatar.url(:mini).to_s %>
+      <%= link_to image_tag(message.sender.avatar.url(:mini).to_s, :alt => message.sender.name), user_profile_path(:username => message.sender.username) %>
     </div>
     <div class="unitx5 right">
-      <div class="unitx5" id="title"><strong><%= message.sender.name %></strong> · <%= time_ago_in_words(message.created_at) %> ago.</div>
+      <% if message.sender == current_user %>
+        <div class="unitx5" id="title"><strong>Tú</strong> · <%= time_ago_in_words(message.created_at) %> ago.</div>
+      <% else %>
+      <div class="unitx5" id="title"><strong><%= link_to message.sender.name, user_profile_path(:username => message.sender.username) %></strong> · <%= time_ago_in_words(message.created_at) %> ago.</div>
+      <% end %>
       <div class="unitx5" id="data">
         <%= simple_format(message.text) %>
       </div>

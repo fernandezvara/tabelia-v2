@@ -28,27 +28,29 @@ Tabelia::Application.routes.draw do
   get 'login'  => "sessions#new",     :as => "login"
   
   # messaging routes
-  match "messages",                  :controller => 'messages', :action => 'inbox',           :as => 'inbox'
-  match "messages/view/:slug",       :controller => 'messages', :action => 'view',            :as => 'message_view'
-  match "messages/reply/:slug",      :controller => 'messages', :action => 'reply',           :as => 'message_reply'
-  match "messages/new/:username",    :controller => 'messages', :action => 'new',             :as => 'new_message'
-  match "messages/create",           :controller => 'messages', :action => 'create',          :as => 'create_message'
+  match "messages",                   :controller => 'messages', :action => 'inbox',            :as => 'inbox'
+  match "messages/view/:slug",        :controller => 'messages', :action => 'view',             :as => 'message_view'
+  match "messages/reply/:slug",       :controller => 'messages', :action => 'reply',            :as => 'message_reply'
+  match "messages/new/:username",     :controller => 'messages', :action => 'new',              :as => 'new_message'
+  match "messages/create",            :controller => 'messages', :action => 'create',           :as => 'create_message'
+  match "messages/delete/:slug",      :controller => 'messages', :action => 'delete',           :as => 'delete_message'
+  match "messages/view/:slug/delete", :controller => 'messages', :action => 'delete_from_view', :as => 'delete_message_from_view'
   
   # routes for javascript events...
-  match "action/follow/:username",   :controller => 'actions',  :action => 'follow',          :as => 'action_follow'
-  match "action/unfollow/:username", :controller => 'actions',  :action => 'unfollow',        :as => 'action_unfollow'
-  match "action/like/:slug",         :controller => 'actions',  :action => 'like',            :as => 'action_like'
-  match "action/unlike/:slug",       :controller => 'actions',  :action => 'unlike',          :as => 'action_unlike'
+  match "action/follow/:username",    :controller => 'actions',  :action => 'follow',           :as => 'action_follow'
+  match "action/unfollow/:username",  :controller => 'actions',  :action => 'unfollow',         :as => 'action_unfollow'
+  match "action/like/:slug",          :controller => 'actions',  :action => 'like',             :as => 'action_like'
+  match "action/unlike/:slug",        :controller => 'actions',  :action => 'unlike',           :as => 'action_unlike'
   
-  match "category/:slug",            :controller => 'category', :action => 'show',            :as => 'category_show'
+  match "category/:slug",             :controller => 'category', :action => 'show',             :as => 'category_show'
   
-  match "user/:username",            :controller => 'users',    :action => 'show',            :as => "user_profile"
-  match "user/:username/art",        :controller => 'arts',     :action => 'user_art_show',   :as => "user_arts"
-  match "art/:slug",                 :controller => 'arts',     :action => 'show',            :as => "art_profile"
-  match "category/:slug",            :controller => 'category', :action => 'show',            :as => "category"
-  match 'auth/:provider/callback',   :controller => 'sessions', :action => 'create_external', :as => 'create_external'
+  match "user/:username",             :controller => 'users',    :action => 'show',             :as => "user_profile"
+  match "user/:username/art",         :controller => 'arts',     :action => 'user_art_show',    :as => "user_arts"
+  match "art/:slug",                  :controller => 'arts',     :action => 'show',             :as => "art_profile"
+  match "category/:slug",             :controller => 'category', :action => 'show',             :as => "category"
+  match 'auth/:provider/callback',    :controller => 'sessions', :action => 'create_external',  :as => 'create_external'
 
-  match 'user/comment/:username',    :controller => 'comments', :action => 'create',          :as => 'comment_user'
+  match 'user/comment/:username',     :controller => 'comments', :action => 'create',           :as => 'comment_user'
   match 'view/comments/:username/:last',    :controller => 'comments', :action => 'view',          :as => 'view_more_comments'
   
   match 'art/comment/:slug',           :controller => 'comments', :action => 'create_art',        :as => 'comment_art'

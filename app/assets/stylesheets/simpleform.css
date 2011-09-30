@@ -66,6 +66,10 @@
 	font-style: italic;
 }
 
+.simple_form p.button {
+	text-align: right;
+}
+
 input[disabled] {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -100,4 +104,15 @@ textarea {
 	-webkit-border-radius:3px;
 	border-radius:3px;
 }
+
+.simple_form div.input input[type="text"].new_message_input {
+	width: 400px;
+	margin:0;
+}
+
+.simple_form textarea.new_message_input { 
+	width: 520px;
+	height: 220px;
+	margin:0;
+	padding:5px;
 }

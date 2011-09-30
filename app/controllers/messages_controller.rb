@@ -64,20 +64,80 @@ class MessagesController < ApplicationController
   end
 
   def new
+    @user = User.where(:username => params[:username]).first
+    if @user.nil?
+      redirect_to :root
+    end
   end
 
   def create
-    @message = Messageraw.new
-    @message.sender = current_user
-    @message.receiver = User.where(:username => params[:username]).first
-    @message.subject = params[:subject]
-    @message.text = params[:text]
-    @message.send!
-    @message.original_message = @message.id.to_s
-    @message.save!
-    flash[:success] = "Mensaje enviado correctamente."
+    puts params.inspect
+    
+    @user = User.where(:username => params[:username]).first
+    if @user.nil? == true and current_user
+      redirect_to :root
+    else
+      @message = Message.new
+      @message.sender = current_user
+      @message.text = params[:text]
+      # TODO : LET USERS SEND MESSAGES TO MORE THAN ONE PERSON!!!
+      if @message.send!([@user], params[:subject]) == true
+        @flash_message = "Mensaje enviado correctamente."
+        @flash_type = "success"
+      else
+        @flash_message = "Error enviando el mensaje, por favor, inténtalo más tarde."
+        @flash_type = "error"
+      end
+    end
   end
-
-
-
+  
+  def delete
+    begin
+      @conversation = Conversation.where(:slug => params[:slug]).first
+      relation = Userconversation.where(:user_id => current_user.id.to_s, :conversation_id => @conversation.id.to_s)
+      
+      # be sure this conversation belongs to this user....
+      if relation.count == 1 and @conversation.nil? == false
+        relation_to_change = relation.first
+        relation_to_change.hide = true
+        if relation_to_change.save!
+          @flash_message = "Mensaje borrado."
+          @flash_type = "success"
+        else
+          @flash_message = "Error borrando el mensaje."
+          @flash_type = "error"
+        end
+      else
+        @flash_message = "Error borrando el mensaje."
+        @flash_type = "error"
+      end
+    rescue
+      @flash_message = "Error borrando el mensaje."
+      @flash_type = "error"
+    end
+  end
+    
+  def delete_from_view
+    begin
+      @conversation = Conversation.where(:slug => params[:slug]).first
+      relation = Userconversation.where(:user_id => current_user.id.to_s, :conversation_id => @conversation.id.to_s)
+      # be sure this conversation belongs to this user....
+      if relation.count == 1 and @conversation.nil? == false
+        relation_to_change = relation.first
+        relation_to_change.hide = true
+        if relation_to_change.save!
+          flash[:success] = "Mensaje '#{@conversation.subject}' borrado."
+        else
+          flash[:error] = "Error borrando el mensaje."
+        end
+        redirect_to inbox_path
+      else
+        flash[:error] = "Error borrando el mensaje."
+        redirect_to inbox_path
+      end
+    rescue
+      flash[:error] = "Error borrando el mensaje."
+      redirect_to inbox_path
+    end
+  end
 end

@@ -1,13 +1,15 @@
 $(document).ready(function(){ 
   $('ul.menu').superfish({
-    animation:   {height:'show'},
+    animation:   
+		{
+			height:'show'
+		},
     speed:         'fast',
     autoArrows:  true,
     dropShadows: false
     });
 	$.facebox.settings.closeImage = '/assets/facebox/closelabel.png';
 	$.facebox.settings.loadingImage = '/assets/preload.gif';
-	/* $('a[rel*=modal]').facebox(); */
 	$('a[rel*=modal]').live("mousedown", function() { 
 	    $(this).unbind('click'); //everytime you click unbind the past event handled.
 	    $(this).facebox();
@@ -23,12 +25,20 @@ $(document).ready(function(){
 	$(window).bind("popstate", function() {
 		$.getScript(location.href);
 	});
-	$("li.message").hover(function(){
+	$("li.message").live({
+		mouseover: function() {
+			$(this).find("div.actions").show();
+		},
+		mouseout: function() {
+			$(this).find("div.actions").hide();
+		}
+	});
+	/*$("li.message").live("hover", function(){
 		$(this).find("div.actions").show();
 	},
 	function() {
 		$(this).find("div.actions").hide();
-	});
+	}); */
 });
 
 

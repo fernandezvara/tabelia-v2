@@ -13,11 +13,15 @@ last_message = item.conversation.last_message
   </div>
   <div class="data">
     <p><strong><%= link_to item.conversation.subject  , message_view_path(:slug => item.conversation.slug.to_s), :remote => true %></strong></p>
-    <p>Último mensaje enviado por <%= link_to last_message.sender.name, user_profile_path(:username => last_message.sender.username) %> hace <%= time_ago_in_words(last_message.created_at) %>.</p>
+    <% if last_message.sender == current_user %>
+      <p>Último mensaje enviado por <strong>tí</strong> hace <%= time_ago_in_words(last_message.created_at) %>.</p>
+    <% else %>
+      <p>Último mensaje enviado por <%= link_to last_message.sender.name, user_profile_path(:username => last_message.sender.username) %> hace <%= time_ago_in_words(last_message.created_at) %>.</p>
+    <% end %>
   </div>
   <div class="actions">
     <%= link_to 'Ver', message_view_path(:slug => item.conversation.slug.to_s), :remote => true, :class=> 'abutton' %>
-     <a href="#" class="abutton">Borrar</a>
+    <%= link_to 'Borrar', delete_message_path(:slug => item.conversation.slug.to_s), :remote => true, :class => ['abutton', 'delete'], :walk => 'no' %>
   </div>
 </li>
 <% rescue

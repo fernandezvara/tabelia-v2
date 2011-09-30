@@ -132,6 +132,23 @@ a.unfollow:hover {
 	text-shadow:0 0;
 }
 
+a.delete {
+	padding:2px 9px 2px 24px;
+	background: #ededed url('/assets/icons/cancel.png') no-repeat 6px 5px;
+	text-shadow:0 0;
+}
+
+a.delete:hover {
+	padding:2px 9px 2px 24px;
+	background: #ee0000 url('/assets/icons/cancel.png') no-repeat 6px 5px;
+	color:#fff !important;
+	-moz-box-shadow:inset 0px 1px 0px 0px #f00;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #f00;
+	box-shadow:inset 0px 1px 0px 0px #f00;
+	border: 1px solid #c20000;
+	text-shadow:0 0;
+}
+
 a.like {
 	padding:2px 12px 2px 24px;
 	background: #ededed url('/assets/icons/heartgrey.png') no-repeat 6px 5px;

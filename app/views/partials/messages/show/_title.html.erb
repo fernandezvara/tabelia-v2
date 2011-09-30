@@ -1,1 +1,8 @@
-<h2><%= @conversation.subject %></h2>
+<div class="unitx6 left">
+  <div class="unitx5 left">
+    <h2><%= @conversation.subject %></h2>
+  </div>
+  <div class="unitx1 align-right" id="actions">
+    <%= link_to 'Borrar', delete_message_from_view_path(:slug => @conversation.slug.to_s), :class => ['abutton', 'delete'] %>
+  </div>
+</div>

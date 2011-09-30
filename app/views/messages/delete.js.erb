@@ -1,0 +1,6 @@
+<% if @flash_type == 'success' %>
+	$("ul.messages li#<%= @conversation.slug %>").hide();
+	flashBar("<%= escape_javascript(@flash_message) %>", "<%= escape_javascript(@flash_type) %>", {});
+<% else %>
+	flashBar("<%= escape_javascript(@flash_message) %>", "<%= escape_javascript(@flash_type) %>", {});
+<% end %>

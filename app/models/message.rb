@@ -22,28 +22,33 @@ class Message
   # Userconversation.new.user = receiver, readed = false, conversation = Conversation.new, save!
   #
   def send!(to_array, subject)
-    conversation = Conversation.new
-    conversation.subject = subject
+    begin
+      conversation = Conversation.new
+      conversation.subject = subject
     
-    conversation.messages << self
+      conversation.messages << self
     
-    self.save!
-    conversation.save!
+      self.save!
+      conversation.save!
     
-    senderconversation = Userconversation.new
-    senderconversation.user = self.sender
-    senderconversation.readed = true
-    senderconversation.conversation = conversation
-    senderconversation.hidden = false
-    senderconversation.save!
+      senderconversation = Userconversation.new
+      senderconversation.user = self.sender
+      senderconversation.readed = true
+      senderconversation.conversation = conversation
+      senderconversation.hide = false
+      senderconversation.save!
     
-    to_array.each do |to|
-      receiverconversation = Userconversation.new
-      receiverconversation.user = to
-      receiverconversation.readed = false
-      receiverconversation.hidden = false
-      receiverconversation.conversation = conversation
-      receiverconversation.save!
+      to_array.each do |to|
+        receiverconversation = Userconversation.new
+        receiverconversation.user = to
+        receiverconversation.readed = false
+        receiverconversation.hide = false
+        receiverconversation.conversation = conversation
+        receiverconversation.save!
+      end
+      return true
+    rescue
+      return false
     end
   end
   
@@ -58,6 +63,7 @@ class Message
       participants.each do |participant|
         if participant.user != self.sender
           participant.readed = false
+          participant.hide = false
           participant.save!
         end
       end

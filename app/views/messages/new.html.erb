@@ -1,2 +1,20 @@
-<h1>Messages#new</h1>
-<p>Find me in app/views/messages/new.html.erb</p>
+<div style="width:400">
+  <p><span class="title">NEW MESSAGE</span></p>
+  <br />
+  <div id="error_in_form"></div>
+  <%= form_tag create_message_path, :class => 'simple_form', :remote => true do %>
+    <%= hidden_field_tag :username, params[:username] %>
+    <div class="input">
+      <%= label_tag 'Para:' %>
+      <p><%= @user.name %></p>
+    </div>
+    <div class="input">
+  	<%= label_tag 'Subject:' %>
+  	<%= text_field_tag 'subject', nil, :maxlength => 60, :class => 'new_message_input' %>
+    </div>
+  	<%= text_area_tag :text, nil, :class => 'new_message_input' %>
+
+    <p class="button"><%= submit_tag "Send" %></p>
+  <% end %>
+
+</div>

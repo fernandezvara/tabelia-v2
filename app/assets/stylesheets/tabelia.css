@@ -25,7 +25,8 @@ footer p                { padding: 0 10px; text-align:right;}
 header                  { background-color: #f0f0f0; height:50px;}
 
 .left-container         { padding-left: 5px; overflow:hidden;}
-a                       { color:#c20000; }
+a                       { color:#c20000; text-decoration:none; }
+a:hover                 { text-decoration:underline; }
 span.title              { font-size:14px; font-weight: bold; text-transform:uppercase;}
 span.important          { font-size:12px; font-weight: bold; }
 .left                   { float:left; }
@@ -57,7 +58,8 @@ div.userinfo             { width: 125px; padding-top: 5px;}
 
 div#like_status a,
 div#follow_status a,
-div#message a            { top:10px; }
+div#message a,
+div#actions a            { top:10px; }
 
 span.search-bg           { background:#fafafa url(/assets/icons/search.png) no-repeat !important; background-position: 290px 4px !important; display:block; padding:2px 5px; margin-top:15px; }
 input#search             { background-color:transparent; border: 0px; color:#7d7d7d; width:278px; margin-right:20px; line-height:18px;}
