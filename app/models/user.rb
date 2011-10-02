@@ -6,7 +6,7 @@ class User
   
   attr_accessor :password
   
-  before_create :generate_username, :generate_token, :create_mailfolders
+  before_create :generate_username, :generate_token
   before_save :encrypt_password
   
   field :email,         :type => String, :presence => true
@@ -62,16 +62,6 @@ class User
   end
   
   private
-  
-  # creates mail folders for the user on creation
-  def create_mailfolders
-    inbox = Mailfolder.create(:user => self, :type => 'i')
-    outbox = Mailfolder.create(:user => self, :type => 'o')
-    self.mailfolders << inbox
-    self.mailfolders << outbox
-    inbox.save
-    outbox.save
-  end
   
   def encrypt_password
   	if password.present?

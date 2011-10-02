@@ -11,6 +11,7 @@ gem 'sqlite3'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'mongoid_slug'
+gem 'redis'
 
 # Crypt
 gem 'bcrypt-ruby', :require => "bcrypt"
@@ -24,7 +25,10 @@ gem 'kaminari'
 gem 'rmagick'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
+# Background jobs
+gem 'resque'
 
+gem 'juggernaut'
 
 group :development do
   gem 'faker'

@@ -1,0 +1,26 @@
+<script src="http://192.168.1.36:10000/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://192.168.1.36:10000');
+  var seconds = 15000;
+  setchannel();
+  socket.on('notifications', function (data) {
+    if (data.mailcount) {
+      if (data.mailcount == 0) {
+        $('span.message_count').html('');
+      } else {
+        $('span.message_count').html('' + data.mailcount);
+      } 
+    }
+    if (data.newmail) {
+      flashBar("Tienes un nuevo mensaje de " + data.newmail.sender, "notice", {});
+    }
+    console.log(data);
+  });
+  socket.on("reconnect", function () {
+    setchannel();
+  });
+  function setchannel() {
+    socket.emit('setchannel', "<%= session[:socket_id] %>");
+    socket.emit('updateme');
+  }
+</script>
