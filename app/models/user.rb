@@ -38,6 +38,7 @@ class User
   references_many :comments_received, :class_name => 'Comment', :foreign_key => 'receiver_id'
   references_many :comments_authored, :class_name => 'Comment', :foreign_key => 'author_id'
   
+  embeds_many :useractivities
   
   def unreaded_conversations
     Userconversation.where(:user_id => self.id.to_s, :readed => false, :hide => false).count
