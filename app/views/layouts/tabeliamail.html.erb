@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+</head>
+<body bgcolor="#f0f0f0" link="#c20000" vlink="#c20000" color="#7d7d7d"style="background:#f0f0f0;">
+  <style>
+  a:link    {color:#c20000;text-decoration:none;}
+  a:visited {color:#c20000;text-decoration:none;}
+  a:hover   {color:#c20000;text-decoration:underline;}
+  a:active  {color:#c20000;text-decoration:none;}
+  </style>
+  <table align="center" width="620" height="50" cellpadding="0" cellspacing="0" bgcolor="#c20000">
+    <tr>
+      <td>
+        <img src="http://localhost:3000/assets/logo.png">
+      </td>
+    </tr>
+  </table>
+  <table align="center" width="620" style="border: none;" cellpadding="0" cellspacing="0" bgcolor="#fafafa" style="background:#fafafa;">
+    <tr>
+      <td style="border-bottom: 1px dashed #ccc;">
+        <table width="100%" border="0">
+          <tr>
+            <td style="padding:20px;font-size:13px;line-height:18px">
+              <%= yield :main %>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <!-- bottom -->
+    <tr>
+      <td >
+        <table width="620" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#fafafa" style="background:#fafafa;">
+          <tr>
+            <td style="padding:20px;font-size:11px;line-height:18px">
+                <%= yield :footer %>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

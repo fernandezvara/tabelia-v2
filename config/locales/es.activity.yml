@@ -1,0 +1,11 @@
+es:
+    mail:
+        legal:
+            this_message_was_sended_to: 'Este mensaje ha sido enviado a %{receiver_email}.'
+            you_can_change_your_prefs: 'Si quieres cambiar tus preferencias, por favor, visita la '
+            prefs_page: 'página de preferencias y privacidad'
+        common:
+            hi: '¡Hola, %{receiver_name}!'
+        comment_on_profile:
+            subject: '%{originator_name} ha comentado tu perfil.'
+            main_action: ' ha escrito un comentario en tu perfil.'

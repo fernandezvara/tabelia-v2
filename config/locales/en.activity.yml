@@ -1,0 +1,12 @@
+en:
+    mail:
+        legal:
+            this_message_was_sended_to: 'This message has been sended to %{receiver_email}.'
+            you_can_change_your_prefs: 'If you want to change your mail preferences, please use the '
+            prefs_page: 'preferences and privacy page'
+        common:
+            hi: 'Hi, %{receiver_name}!'
+        comment_on_profile:
+            subject: '%{originator_name} has commented your profile.'
+            main_action: ' has written a comment on your profile.'
+            
