@@ -1,1 +1,10 @@
-some text for the mail!
+<%= t('mail.common.hi', :receiver_name => @receiver.name) %>
+<%= @originator.name %><%= t('mail.comment_on_profile.main_action') %>
+<%= user_profile_url(:username => @originator.username) %>
+
+
+
+-----
+<%= t('mail.legal.this_message_was_sended_to', :receiver_email => @receiver.email) %>
+<%= t('mail.legal.you_can_change_your_prefs_text') %>
+<%= user_profile_url(:username => @receiver.username) %>.

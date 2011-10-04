@@ -25,6 +25,8 @@ class Notificator
     case _what
     when 'cou'
       receiver = User.find(_data['to'])
+      comment  = User.find(_data['to']).comments_received.find(_data['comment'])
+      puts comment.text
     when 'coa'
       art = Art.find(_data['art'])
       receiver = art.user
@@ -40,7 +42,7 @@ class Notificator
     # socket
     case _what
     when 'cou'
-      Juggernaut.publish(receiver.username, { msg: { sender: 'resque' }}) # t("#{receiver.locale}.socket.#{_what}"))
+      Juggernaut.publish(receiver.username, { comment_profile: { posted_by: originator }}) # t("#{receiver.locale}.socket.#{_what}"))
     when 'coa'
       Juggernaut.publish(receiver.username, { msg: { sender: 'resque' }})
     when 'upa'
@@ -53,9 +55,7 @@ class Notificator
     # mail
     case _what
     when 'cou'
-      #if receiver.privacy('receive_mail_when_comment_on_profile') == true
-        #NotifyMailer.send()
-      #end
+      NotifierMailer.comment_on_user(originator, receiver, comment).deliver
     end
     
     
