@@ -1,0 +1,25 @@
+      <li>
+        <% case activity.what %>
+        <% when 'ufu' %>
+          <% @to = User.find(activity.activitydatas.where(:key => 'to').first.value) %>
+          <p><span><%= @user.name %></span><%= t('activity.user_follows_user.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username), :remote => true %></p>
+          <div class="actor left">
+            <%= link_to image_tag(@to.avatar.url(:mini).to_s, :alt => @to.name), user_profile_path(:username => @to.username), :remote => true %>
+          </div>
+          <div class="data right">
+            <p>has <%= GraphClient.get_count("Backward", "Follow", @to) %> followers</p>
+            <p>follows <%= GraphClient.get_count("Forward", "Follow", @to) %> users</p>
+          </div>
+        <% when 'cou' %>
+          <% @to = User.find(activity.activitydatas.where(:key => 'to').first.value) %>
+          <% @comment  = @to.comments_received.find(activity.activitydatas.where(:key => 'comment').first.value)%>
+          <p><span><%= @user.name %></span><%= t('activity.comment_on_profile.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username), :remote => true %><%= t('activity.comment_on_profile.main_action2') %></p>
+          <div class="actor left">
+            <%= link_to image_tag(@to.avatar.url(:mini).to_s, :alt => @to.name), user_profile_path(:username => @to.username), :remote => true %>
+          </div>
+          <div class="data right">
+            <p><%= @comment.text %></p>
+          </div>
+        <% end %>
+        
+      </li>

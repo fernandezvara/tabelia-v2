@@ -6,7 +6,7 @@
   <%= javascript_include_tag "tabelia" %>
   <%= csrf_meta_tags %>
   <% if current_user %>
-    <script src="http://192.168.1.73:8080/application.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://192.168.1.36:8080/application.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
       /* var jug = new Juggernaut({
         secure: ('https:' == document.location.protocol),
@@ -14,7 +14,7 @@
         port: document.location.port || 80
       }); 
       */      
-      var jug = new Juggernaut({ host: '192.168.1.73', port: 8080});
+      var jug = new Juggernaut({ host: '192.168.1.36', port: 8080});
 
       jug.on("connect", function(){ flashBar("Connected", 'notice', {}) });
       jug.on("disconnect", function(){ flashBar("Disconnected", 'notice', {}) });

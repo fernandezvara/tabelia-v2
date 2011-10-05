@@ -22,4 +22,10 @@ en:
         user_likes_art:
             subject: "%{originator_name} likes '%{art_name}'"
             main_action: " likes "
+    activity:
+        user_follows_user:
+            main_action: " begin following to "
+        comment_on_profile:
+            main_action: ' has commented  '
+            main_action2: "'s profile"
             

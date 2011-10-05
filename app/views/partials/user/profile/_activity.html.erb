@@ -1,0 +1,13 @@
+<% activities = Activity.where(:user_id => @user.id.to_s) %>
+<% if activities.count > 0 %>
+<div class="box green">
+  <div class="title">ACTIVITY</div>
+  <div class="content">
+    <ul class="activities">
+  <% activities.each do |activity| %>
+    <%= render :partial => 'partials/activity/user_activity', :locals => { :activity => activity } %>
+  <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
