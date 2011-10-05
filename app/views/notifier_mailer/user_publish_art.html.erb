@@ -1,0 +1,31 @@
+<% content_for :main do %>
+  <p><%= t('mail.common.hi', :receiver_name => @receiver.name) %></p>
+  <p><%= link_to(@originator.name, user_profile_url(:username => @originator.username), :style => 'color:#c20000; text-decoration:none') %><%= t('mail.user_publish_art.main_action') %><%= link_to(@art.name, art_profile_url(:slug => @art.slug), :style => 'color:#c20000; text-decoration:none') %></p>
+  <table width="100%" border="0">
+    <tr>
+      <td style="padding:20px;width:105px">
+        <%= link_to image_tag('http://192.168.1.73:3000' + @originator.avatar.url(:thumb).to_s, :alt => @originator.name), user_profile_url(:username => @originator.username) %>
+      </td>
+      <td style="padding:20px; width: 473px; border:1px solid #ddd; background-color: #f0f0f0; color:#7d7d7d; font-size:12px; line-height:18px;">
+        <table width="100%" border="0">
+          <tr>
+            <td style ="width: 75px; border:0">
+              <%= link_to image_tag('http://192.168.1.73:3000' + @art.image.url(:thumb).to_s, :alt => @art.name), art_profile_url(:slug => @art.slug) %>
+            </td>
+            <td>
+              <p><%= link_to @art.name, art_profile_url(:slug => @art.slug) %></p>
+              <p><%= @art.description %></p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+    
+<% end %>
+
+
+<% content_for :footer do %>
+  <p><%= t('mail.legal.this_message_was_sended_to', :receiver_email => @receiver.email) %></p>
+  <p><%= t('mail.legal.you_can_change_your_prefs') %><%= link_to t('mail.legal.prefs_page'), user_profile_url(:username => @receiver.username), :style => 'color:#c20000; text-decoration:none' %>.</p>
+<% end %>

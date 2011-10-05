@@ -10,3 +10,15 @@ es:
         comment_on_profile:
             subject: '%{originator_name} ha comentado tu perfil.'
             main_action: ' ha escrito un comentario en tu perfil.'
+        comment_on_art:
+            subject: "%{originator_name} ha comentado '%{art_name}'"
+            main_action: " ha escrito un comentario en "
+        user_publish_art:
+            subject: "%{originator_name} ha publicado '%{art_name}'"
+            main_action: " ha publicado '%{art_name}'."
+        user_follows_user:
+            subject: "%{originator_name} se ha hecho seguidor tuyo"
+            main_action: " ha empezado a seguir tu trabajo."
+        user_likes_art:
+            subject: "A %{originator_name} le gusta '%{art_name}'"
+            main_action: " le gusta "

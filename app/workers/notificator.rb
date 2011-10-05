@@ -29,9 +29,11 @@ class Notificator
       puts comment.text
     when 'coa'
       art = Art.find(_data['art'])
+      comment  = Art.find(_data['art']).artcomments.find(_data['comment'])
       receiver = art.user
     when 'upa'
       art = Art.find(_data['art'])
+      receivers = GraphClient.get("Backward", "Follow", originator) # All the ppl following him/her
     when 'ufu'
       receiver = User.find(_data['to'])
     when 'ula'
@@ -42,20 +44,35 @@ class Notificator
     # socket
     case _what
     when 'cou'
-      Juggernaut.publish(receiver.username, { comment_profile: { posted_by: originator }}) # t("#{receiver.locale}.socket.#{_what}"))
+      Juggernaut.publish(receiver.username, { comment_profile: { posted_by: originator.name }}) # t("#{receiver.locale}.socket.#{_what}"))
     when 'coa'
-      Juggernaut.publish(receiver.username, { msg: { sender: 'resque' }})
+      Juggernaut.publish(receiver.username, { comment_art: { posted_by: originator, art: art.name }})
     when 'upa'
     when 'ufu'
-      Juggernaut.publish(receiver.username, { msg: { sender: 'resque' }})
+      Juggernaut.publish(receiver.username, { user_follow_you: { originator: originator.name }})
     when 'ula'
-      Juggernaut.publish(receiver.username, { msg: { sender: 'resque' }})
+      Juggernaut.publish(receiver.username, { user_likes_art: { originator: originator.name, art: art.name }})
     end
     
     # mail
     case _what
     when 'cou'
+      # Sends a mail to the receiver if he/she allows it, telling that the originator has commented his/her profile
       NotifierMailer.comment_on_user(originator, receiver, comment).deliver
+    when 'coa'
+      # Sends a mail to the receiver if he/she allows it, telling that the originator has commented the art
+      NotifierMailer.comment_on_art(originator, receiver, comment, art).deliver
+    when 'upa'
+      # Sends a mail to each follower of originator
+      receivers.each do |receiver|
+        NotifierMailer.user_publish_art(originator, receiver, art).deliver
+      end
+    when 'ufu'
+      # Sends a mail to the receiver if he/she allows it, telling that the originator begins following him/her
+      NotifierMailer.user_follows_user(originator, receiver).deliver
+    when 'ula'
+      # Sends a mail to the receiver if he/she allows it, telling that the originator begins liking his/her art
+      NotifierMailer.user_likes_art(originator, receiver, art).deliver
     end
     
     
@@ -122,8 +139,10 @@ class Notificator
     if members_to_notify.include?(originator) == false
       members_to_notify << originator
     end
-    if members_to_notify.include?(receiver) == false
-      members_to_notify << receiver
+    if receiver
+      if members_to_notify.include?(receiver) == false
+        members_to_notify << receiver
+      end
     end
     members_to_notify.each do |member|
       useractivity = Useractivity.new

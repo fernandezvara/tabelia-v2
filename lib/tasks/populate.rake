@@ -48,4 +48,30 @@ namespace :db do
     end
     
   end
+  
+  desc 'crea relaciones entre usuarios'
+  task :followers => :environment do
+    
+    a = Time.now
+    
+    usercount = User.count
+    (1..40000).each do |n|
+      if n % 100 == 0 
+        puts "#{n} rel. #{(Time.now - a).to_f.to_s} segundos."
+      end
+      
+      user1 = User.skip(rand(usercount)).first
+      user2 = User.skip(rand(usercount)).first
+      
+      if user1 != user2
+        GraphClient.new('Follow', user1, user2)
+      end
+    end
+    
+    puts "Total: #{(Time.now - a).to_f} segundos."
+  end
+  
+  
+  
+  
 end

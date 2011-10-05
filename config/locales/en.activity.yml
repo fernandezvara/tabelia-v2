@@ -8,6 +8,18 @@ en:
         common:
             hi: 'Hi, %{receiver_name}!'
         comment_on_profile:
-            subject: '%{originator_name} has commented your profile.'
+            subject: '%{originator_name} has commented your profile'
             main_action: ' has written a comment on your profile.'
+        comment_on_art:
+            subject: "%{originator_name} has commented on '%{art_name}'"
+            main_action: " has written a comment on "
+        user_publish_art:
+            subject: "%{originator_name} has published '%{art_name}'"
+            main_action: " has published "
+        user_follows_user:
+            subject: "%{originator_name} is following you"
+            main_action: " is following you."
+        user_likes_art:
+            subject: "%{originator_name} likes '%{art_name}'"
+            main_action: " likes "
             

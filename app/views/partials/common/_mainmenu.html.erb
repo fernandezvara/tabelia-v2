@@ -2,7 +2,7 @@
   <div class="homemenu">
     <ul id="mainmenu" class="menu">
       <li><%= link_to image_tag("icons/home-1.png"), root_path, :alt => 'Home', :class => 'img' %></li>
-      <li><%= link_to image_tag("icons/messages.png"), inbox_path, :alt => 'Messages', :class => 'img', :remote => true %><span class="message_count"><%= current_user.unreaded_conversations if current_user.unreaded_conversations > 0 %></span></li>
+      <li><%= link_to image_tag("icons/messages.png"), inbox_path, :alt => 'Messages', :class => 'img', :remote => true %><span class="message_count"><% if current_user %><%= current_user.unreaded_conversations if current_user.unreaded_conversations > 0 %><% end %></span></li>
       <li><%= link_to "Gente", users_path %></li>
       <li><a href="#">Categorias</a>
         <ul class="sub-menu">
