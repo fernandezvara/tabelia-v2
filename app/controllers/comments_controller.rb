@@ -8,6 +8,15 @@ class CommentsController < ApplicationController
         @comment.receiver = @user
         @comment.text = params[:text]
         @comment.save!
+        
+        data = Hash.new
+        data['data'] = Hash.new
+        data['who'] = current_user.id.to_s
+        data['when'] = Time.now
+        data['what'] = "cou"
+        data['data']['to'] = @user.id.to_s
+        data['data']['comment'] = @comment.id.to_s
+        Resque.enqueue(Notificator, data)
       rescue
         
       end
@@ -42,6 +51,15 @@ class CommentsController < ApplicationController
         @comment.art = @art
         @comment.text = params[:text]
         @comment.save!
+        
+        data = Hash.new
+        data['data'] = Hash.new
+        data['who'] = current_user.id.to_s
+        data['when'] = Time.now
+        data['what'] = "coa"
+        data['data']['art'] = @art.id.to_s
+        data['data']['comment'] = @comment.id.to_s
+        Resque.enqueue(Notificator, data)
       rescue
         
       end

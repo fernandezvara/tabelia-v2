@@ -26,7 +26,6 @@ class Notificator
     when 'cou'
       receiver = User.find(_data['to'])
       comment  = User.find(_data['to']).comments_received.find(_data['comment'])
-      puts comment.text
     when 'coa'
       art = Art.find(_data['art'])
       comment  = Art.find(_data['art']).artcomments.find(_data['comment'])
@@ -53,28 +52,6 @@ class Notificator
     when 'ula'
       Juggernaut.publish(receiver.username, { user_likes_art: { originator: originator.name, art: art.name }})
     end
-    
-    # mail
-    case _what
-    when 'cou'
-      # Sends a mail to the receiver if he/she allows it, telling that the originator has commented his/her profile
-      NotifierMailer.comment_on_user(originator, receiver, comment).deliver
-    when 'coa'
-      # Sends a mail to the receiver if he/she allows it, telling that the originator has commented the art
-      NotifierMailer.comment_on_art(originator, receiver, comment, art).deliver
-    when 'upa'
-      # Sends a mail to each follower of originator
-      receivers.each do |receiver|
-        NotifierMailer.user_publish_art(originator, receiver, art).deliver
-      end
-    when 'ufu'
-      # Sends a mail to the receiver if he/she allows it, telling that the originator begins following him/her
-      NotifierMailer.user_follows_user(originator, receiver).deliver
-    when 'ula'
-      # Sends a mail to the receiver if he/she allows it, telling that the originator begins liking his/her art
-      NotifierMailer.user_likes_art(originator, receiver, art).deliver
-    end
-    
     
     # notification
     #case _what
@@ -151,6 +128,28 @@ class Notificator
       member.useractivities << useractivity
       useractivity.save
       member.save
+    end
+    
+    
+    # mail - last since it's the most time consuming task
+    case _what
+    when 'cou'
+      # Sends a mail to the receiver if he/she allows it, telling that the originator has commented his/her profile
+      NotifierMailer.comment_on_user(originator, receiver, comment).deliver
+    when 'coa'
+      # Sends a mail to the receiver if he/she allows it, telling that the originator has commented the art
+      NotifierMailer.comment_on_art(originator, receiver, comment, art).deliver
+    when 'upa'
+      # Sends a mail to each follower of originator
+      receivers.each do |receiver|
+        NotifierMailer.user_publish_art(originator, receiver, art).deliver
+      end
+    when 'ufu'
+      # Sends a mail to the receiver if he/she allows it, telling that the originator begins following him/her
+      NotifierMailer.user_follows_user(originator, receiver).deliver
+    when 'ula'
+      # Sends a mail to the receiver if he/she allows it, telling that the originator begins liking his/her art
+      NotifierMailer.user_likes_art(originator, receiver, art).deliver
     end
     
     puts "#{Time.now.to_f - start}"
