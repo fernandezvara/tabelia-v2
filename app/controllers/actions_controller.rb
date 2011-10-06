@@ -8,11 +8,10 @@ class ActionsController < ApplicationController
       if current_user != @remote_user
         @result = GraphClient.new('Follow', current_user, @remote_user)
         data = Hash.new
-        data['data'] = Hash.new
         data['who'] = current_user.id.to_s
         data['when'] = Time.now
         data['what'] = "ufu"
-        data['data']['to'] = @remote_user.id.to_s
+        data['to'] = @remote_user.id.to_s
         Resque.enqueue(Notificator, data)
       else
         @result = "Relation not valid."
@@ -39,11 +38,10 @@ class ActionsController < ApplicationController
       if current_user != @art.user
         @result = GraphClient.new('Like', current_user, @art)
         data = Hash.new
-        data['data'] = Hash.new
         data['who'] = current_user.id.to_s
         data['when'] = Time.now
         data['what'] = "ula"
-        data['data']['art'] = @art.id.to_s
+        data['art'] = @art.id.to_s
         Resque.enqueue(Notificator, data)
       else
         @result = "Relation not valid."

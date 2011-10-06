@@ -5,5 +5,7 @@ class Activity
   referenced_in :user
   field :when, type: DateTime
   
-  embeds_many :activitydatas
+  field :to,       type: String
+  field :art,      type: String
+  field :comment,  type: String
 end

@@ -23,9 +23,18 @@ en:
             subject: "%{originator_name} likes '%{art_name}'"
             main_action: " likes "
     activity:
+        comment_on_profile:
+            main_action: ' has commented '
+            main_action2: "'s profile"
+        comment_on_art:
+            main_action: ' has commented '
+            main_action2: "'s "
+        user_publish_art:
+            main_action: ' has published '
         user_follows_user:
             main_action: " begin following to "
-        comment_on_profile:
-            main_action: ' has commented  '
-            main_action2: "'s profile"
+        user_likes_art:
+            main_action: " likes "
+            main_action2: "'s "
+
             

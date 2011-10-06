@@ -1,0 +1,22 @@
+<%  user_activities = @current_user.useractivities.order_by(:when, :desc) 
+    ids = Array.new 
+    user_activities.each do |act| 
+      ids << act.activity.id.to_s
+    end
+    puts ids.inspect
+    activities = Activity.find(ids)
+    puts activities.inspect
+
+if activities.count > 0 %>
+<div class="box orange">
+  <div class="title">ACTIVITY</div>
+  <div class="content">
+    <ul class="activities">
+  <% activities.each do |activity| %>
+    <% @user = activity.user %>
+    <%= render :partial => 'partials/activity/user_activity', :locals => { :activity => activity } %>
+  <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>

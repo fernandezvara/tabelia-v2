@@ -14,29 +14,31 @@ class Notificator
     
     start = Time.now.to_f
     
-    _what = data['what']
-    _who  = data['who']
-    _when = data['when']
-    _data = data['data']
+    _what    = data['what']
+    _who     = data['who']
+    _when    = data['when']
+    _to      = data['to']       if data['to']
+    _comment = data['comment']  if data['comment']
+    _art     = data['art']      if data['art']
     
     originator = User.find(_who)
     
     # work with data
     case _what
     when 'cou'
-      receiver = User.find(_data['to'])
-      comment  = User.find(_data['to']).comments_received.find(_data['comment'])
+      receiver = User.find(_to)
+      comment  = User.find(_to).comments_received.find(_comment)
     when 'coa'
-      art = Art.find(_data['art'])
-      comment  = Art.find(_data['art']).artcomments.find(_data['comment'])
+      art = Art.find(_art)
+      comment  = Art.find(_art).artcomments.find(_comment)
       receiver = art.user
     when 'upa'
-      art = Art.find(_data['art'])
+      art = Art.find(_art)
       receivers = GraphClient.get("Backward", "Follow", originator) # All the ppl following him/her
     when 'ufu'
-      receiver = User.find(_data['to'])
+      receiver = User.find(_to)
     when 'ula'
-      art = Art.find(_data['art'])
+      art = Art.find(_art)
       receiver = art.user
     end
     
@@ -82,13 +84,10 @@ class Notificator
     activity.user = originator
     activity.when = _when
     
-    _data.each do |key, value|
-      newdata = Activitydata.new
-      newdata.key = key
-      newdata.value = value
-      activity.activitydatas << newdata
-      newdata.save
-    end
+    activity.to      = _to        if _to
+    activity.art     = _art       if _art
+    activity.comment = _comment   if _comment
+    
     activity.save
 
     # get all followers of the originator
@@ -111,10 +110,10 @@ class Notificator
       members_to_notify = originator_followers | receiver_followers
     end
   
-    # add this activity to all the members that must have it in their activity feed
-    # if the originator is not following the user or the 'thing' we need to add his own activity to his feed
+    # add this activity to all the members that must have it in their activity feed, others than originator
+    
     if members_to_notify.include?(originator) == false
-      members_to_notify << originator
+      members_to_notify.delete(originator)
     end
     if receiver
       if members_to_notify.include?(receiver) == false
