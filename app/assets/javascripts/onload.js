@@ -19,11 +19,13 @@ $(document).ready(function(){
 			return false;
 		} else {
 			history.pushState(null, "", this.href);
+			$("html, body").animate({ scrollTop: 0 }, "slow");
 			return false;
 		}
 	});
 	$(window).bind("popstate", function() {
 		$.getScript(location.href);
+		$("html, body").animate({ scrollTop: 0 }, "slow");
 	});
 	$("li.message").live({
 		mouseover: function() {

@@ -10,6 +10,7 @@
               <%= link_to @user.name, user_profile_path(:username => @user.username), :remote => true %>
             <% end %>
               <%= t('activity.comment_on_profile.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username), :remote => true %><%= t('activity.comment_on_profile.main_action2') %></p>
+              <p class="timeago" time="<%= activity.when.to_i %>"><%= time_ago_in_words(activity.when)%> ago</p>
           <div class="actor left">
             <%= link_to image_tag(@to.avatar.url(:mini).to_s, :alt => @to.name), user_profile_path(:username => @to.username), :remote => true %>
           </div>
@@ -27,6 +28,7 @@
               <%= link_to @user.name, user_profile_path(:username => @user.username), :remote => true %>
             <% end %>
             <%= t('activity.comment_on_art.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username), :remote => true %><%= t('activity.comment_on_art.main_action2') %><%= link_to @art.name, art_profile_path(:slug => @art.slug), :remote => true %></p>
+            <p class="timeago" time="<%= activity.when.to_i %>"><%= time_ago_in_words(activity.when)%> ago</p>
           <div class="actor left">
             <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug), :remote => true %>
           </div>
@@ -42,6 +44,7 @@
               <%= link_to @user.name, user_profile_path(:username => @user.username), :remote => true %>
             <% end %>
             <%= t('activity.user_publish_art.main_action') %><%= link_to @art.name, art_profile_path(:slug => @art.slug), :remote => true %></p>
+            <p class="timeago" time="<%= activity.when.to_i %>"><%= time_ago_in_words(activity.when)%> ago</p>
           <div class="actor left">
             <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug), :remote => true %>
           </div>
@@ -57,6 +60,7 @@
               <%= link_to @user.name, user_profile_path(:username => @user.username), :remote => true %>
             <% end %>
             <%= t('activity.user_follows_user.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username), :remote => true %></p>
+            <p class="timeago" time="<%= activity.when.to_i %>"><%= time_ago_in_words(activity.when)%> ago</p>
           <div class="actor left">
             <%= link_to image_tag(@to.avatar.url(:mini).to_s, :alt => @to.name), user_profile_path(:username => @to.username), :remote => true %>
           </div>
@@ -73,6 +77,7 @@
               <%= link_to @user.name, user_profile_path(:username => @user.username), :remote => true %>
             <% end %>
             <%= t('activity.user_likes_art.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username), :remote => true %><%= t('activity.user_likes_art.main_action2') %><%= link_to @art.name, art_profile_path(:slug => @art.slug), :remote => true %></p>
+            <p class="timeago" time="<%= activity.when.to_i %>"><%= time_ago_in_words(activity.when)%> ago</p>
           <div class="actor left">
             <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug), :remote => true %>
           </div>

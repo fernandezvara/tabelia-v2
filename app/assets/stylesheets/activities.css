@@ -18,7 +18,10 @@ ul.activities li span {
 ul.activities li p {
 	font-size: 12px;
 }
-
+ul.activities li p.timeago {
+	font-size: 10px;
+	line-height: 12px;
+}
 ul.activities li div.actor {
 	width: 30px;
 	margin-left: 10px;
@@ -26,8 +29,12 @@ ul.activities li div.actor {
 }
 
 ul.activities li div.data {
-	width: 280px;
+	width: 270px;
 	margin-top: 5px;
+	border: 1px solid #eee;
+	background-color: #f8f8f8;
+	padding: 3px 5px;
+	min-height: 32px;
 }
 
 ul.activities li div.data p {
