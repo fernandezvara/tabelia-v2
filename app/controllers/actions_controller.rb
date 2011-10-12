@@ -13,6 +13,7 @@ class ActionsController < ApplicationController
         data['what'] = "ufu"
         data['to'] = @remote_user.id.to_s
         Resque.enqueue(Notificator, data)
+        Resque.enqueue(CreateRecommendations, current_user.id.to_s, 'follows_user', @remote_user.class.to_s, @remote_user.id.to_s)
       else
         @result = "Relation not valid."
       end
@@ -43,6 +44,7 @@ class ActionsController < ApplicationController
         data['what'] = "ula"
         data['art'] = @art.id.to_s
         Resque.enqueue(Notificator, data)
+        Resque.enqueue(CreateRecommendations, current_user.id.to_s, 'like_art', @art.class.to_s, @art.id.to_s)
       else
         @result = "Relation not valid."
       end

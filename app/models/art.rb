@@ -22,8 +22,11 @@ class Art
   
   mount_uploader :image,    ImageUploader
   
-  
   def other_art_of_user(limit)
-    Art.where(:user_id => self.user.id.to_s).excludes(:id => self.id.to_s).limit(limit)
+    if limit == 0
+      Art.where(:user_id => self.user.id.to_s).excludes(:id => self.id.to_s)
+    else
+      Art.where(:user_id => self.user.id.to_s).excludes(:id => self.id.to_s).limit(limit)
+    end
   end
 end

@@ -17,7 +17,7 @@
       <% else %>
           <li><%= link_to current_user.name, user_profile_path(current_user.username), :remote => true %>
             <ul class="sub-menu">
-              <li><a href="#">my art</a></li>
+              <li><%= link_to 'my art', arts_path %></li>
               <li><a href="#">settings</a></li>
               <li><a href="#">my orders</a></li>
               <li><%= link_to 'sign out', logout_path %></li>

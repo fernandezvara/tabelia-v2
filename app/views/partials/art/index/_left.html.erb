@@ -1,0 +1,11 @@
+<div class="paginate">
+  <%= paginate @arts, :inner_window => 1 %>
+</div>
+<ul id="listing">
+  <% @arts.each do |art| %>
+    <%= render :partial => 'partials/art/index/art', :locals => { :art => art } %>
+  <% end %>
+</ul>
+<div class="paginate">
+  <%= paginate @arts, :inner_window => 1 %>
+</div>

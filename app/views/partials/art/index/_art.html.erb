@@ -1,0 +1,12 @@
+<li class="<%= cycle('odd', 'even') %>">
+  <div class="artlist left">
+    <div class="avatar left">
+      <%= link_to image_tag(art.image.url(:thumb).to_s, :alt => art.name), edit_art_path(:slug => art.slug) %>
+    </div>      
+    <div class="artdata right">
+      <p><%= link_to art.name, edit_art_path(:slug => art.slug) %></p>
+      <p class="s12">status!</p>
+    </div>
+  </div>
+  <div class="clear"></div>
+</li>

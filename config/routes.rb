@@ -47,6 +47,7 @@ Tabelia::Application.routes.draw do
   match "user/:username",             :controller => 'users',    :action => 'show',             :as => "user_profile"
   match "user/:username/art",         :controller => 'arts',     :action => 'user_art_show',    :as => "user_arts"
   match "art/:slug",                  :controller => 'arts',     :action => 'show',             :as => "art_profile"
+  match "art/:slug/edit",             :controller => 'arts',     :action => 'edit',             :as => "edit_art"
   match "category/:slug",             :controller => 'category', :action => 'show',             :as => "category"
   match 'auth/:provider/callback',    :controller => 'sessions', :action => 'create_external',  :as => 'create_external'
 
@@ -56,7 +57,7 @@ Tabelia::Application.routes.draw do
   match 'art/comment/:slug',           :controller => 'comments', :action => 'create_art',        :as => 'comment_art'
   match 'art/comments/:slug/:last',    :controller => 'comments', :action => 'view_art',          :as => 'view_more_art_comments'
   
-  resources :arts, :only => [:new, :create, :edit, :update]
+  resources :arts, :only => [:index, :new, :create, :update]
   resources :sessions
   resources :users do
     get 'page/:page', :action => :index, :on => :collection
