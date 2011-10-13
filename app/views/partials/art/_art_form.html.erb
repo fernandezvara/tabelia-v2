@@ -1,0 +1,39 @@
+<%= form_for @art, :html => { :multipart => true, :class => 'simple_form' } do |f| %>
+  <%= f.hidden_field :slug %>
+  <div class="input string optional">
+    <%= f.label :name, :class => ['string', 'optional'] %>
+    <%= f.text_field :name, :maxlenght => 50 %>
+    <span class="hint">name your art!</span>
+  </div>
+  <div class="input string optional">
+    <%= f.label :price, :class => ['string', 'optional'] %>
+    <%= f.text_field :price, :maxlenght => 8 %>
+    <span class="hint">please set the price in euros</span>
+  </div>
+  <div class="input text optional">
+    <%= f.label :description, :class => ['text', 'optional'] %>
+    <%= f.text_area :description, :cols => 40, :rows => 10 %>
+    <span class="hint">describe it!</span>
+  </div>
+  <div class="input file optional">
+    <%= f.label :image, :class => ['file', 'optional'] %>
+    <%= f.file_field :image %>
+    <span class="hint">Upload your original file. It must be approved before be shown on the site.</span>
+  </div>
+  <div class="input select optional">
+    <%= f.label :category, :class => ['select', 'optional'] %>
+    <%= f.select :category_id, options_from_collection_for_select(Category.all, 'id', 'en', @art.category_id) %>
+    <span class="hint">Select the category this art belongs.</span>
+  </div>
+  <div class="input string optional">
+    <%= f.label :tags, :class => ['text', 'optional'] %>
+    <%= f.text_field :tags, :maxlenght => 300, :value => @tags %>
+    <span class="hint">Separate each tag with commas(,)</span>
+  </div>
+  <div class="input text optional">
+    <%= f.label :status, :class => ['text', 'optional'] %>
+    <%= f.select :status, [['Active', 1], ['Innactive', 0]] %>
+    <span class="hint">Do you want to show this art?</span>
+  </div>
+  <%= f.submit  %>
+<% end %>

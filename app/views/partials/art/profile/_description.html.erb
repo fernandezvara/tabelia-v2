@@ -5,6 +5,9 @@
   </div>
   <div class="title">TAGS</div>
   <div class="content">
-    <p><a href="#" class="tag">TODO</a><a href="#" class="tag">TODO2</a><a href="#" class="tag">TODO3</a></p>
+    <p><% @tags.each do |tag| %>
+      <%= link_to tag, "#", :class => 'tag' %>
+      <% end %>
+    </p>
   </div>
 </div>

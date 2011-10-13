@@ -1,2 +1,11 @@
-<h1>Arts#edit</h1>
-<p>Find me in app/views/arts/edit.html.erb</p>
+<% content_for :title do %>
+  <%= render :partial => 'partials/art/edit/title' %>
+<% end %>
+
+<% content_for :left do %>
+  <%= render :partial => 'partials/art/edit/left' %>
+<% end %>
+
+<% content_for :right do %>
+  <%= render :partial => 'partials/art/edit/right' %>
+<% end %>

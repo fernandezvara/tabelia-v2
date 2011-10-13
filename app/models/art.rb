@@ -3,6 +3,10 @@ class Art
   include Mongoid::Timestamps
   include Mongoid::Slug
   
+  attr_accessor :tags
+  
+  after_save :create_tags
+  
   belongs_to :user
   belongs_to :category
   
@@ -27,6 +31,16 @@ class Art
       Art.where(:user_id => self.user.id.to_s).excludes(:id => self.id.to_s)
     else
       Art.where(:user_id => self.user.id.to_s).excludes(:id => self.id.to_s).limit(limit)
+    end
+  end
+  
+  private
+  
+  def create_tags
+    Tagging.delete_all_tags_of_object_as_where_creator(self, 'arttag', self.user)
+    tags_array = tags.split(',')
+    tags_array.each do |tag|
+      Tagging.new_tag_for(self, tag, 'arttag', self.user)
     end
   end
 end

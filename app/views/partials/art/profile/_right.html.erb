@@ -1,2 +1,5 @@
 <%= render :partial => 'partials/art/profile/artinfo' %>
 <%= render :partial => 'partials/art/profile/moreartfromuser' %>
+<% if @similar_art.count > 0 %>
+  <%= render :partial => 'partials/art/profile/similar_art' %>
+<% end %>

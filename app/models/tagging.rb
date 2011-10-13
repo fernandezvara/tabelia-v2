@@ -42,6 +42,19 @@ class Tagging
     end
   end
   
+  def self.get_objects_with_tag(tag_text, as)
+    tag = Tag.where(:text => tag_text).first
+    if tag.nil? == true
+      return []
+    else
+      taggings = Tagging.where(:as => as, :tag_id => tag.id)
+      objects = Array.new
+      taggings.each do |tagging|
+        objects << tagging.taggable
+      end
+    end
+  end
+  
   def self.new_tag_for(obj, text, as, user)
     # si el tag que queremos crear ya existe le devolvemos, si no lo creamos, si hay un error en la creacion devolvemos false
     tag = Tag.findorcreate(text)
