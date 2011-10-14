@@ -28,35 +28,23 @@ class UserRanking
         hashUserFollowies[key].each do |followie|
           pr = pr + 0.85*(hashUserScore[followie]/hashUserFollowing_to_count[followie])
         end
-        
         hashUserScore[key] = pr
-      
       end
      #puts "Iteration: #{iteration}."
-     #puts "SCORES:"
-     #puts "-------"
-     #User.all.each do |user|
-     #   puts "#{user.name}: #{hashUserScore[user.id.to_s]}"
-     #end
+
      #puts "TIEMPO EN ESTA ITERACION: #{Time.now.to_i - a} segs."
      #puts "--------------------------------------------------------"
-     
-     
      puts "#{iteration}. #{u.name}: #{hashUserScore[u.id.to_s]}"
-     
     end
     
-    #sortedHash = hashUserScore.sort {|a,b| b[1] <=> a[1]}
-    #i = 0
-    #sortedHash.each do |key, value|
-    #  i = i + 1
-    #  puts "#{i}. #{User.find(key).name} - #{value} - #{hashUserFollowies[key].count}"
-    #end
-    
+    puts "SCORES:"
+    puts "-------"
+    sortedHash = hashUserScore.sort {|a,b| b[1] <=> a[1]}
+    i = 0
+    sortedHash.each do |key, value|
+      i = i + 1
+      puts "#{i}. #{User.find(key).name} - #{value} - #{hashUserFollowies[key].count}"
+    end
     puts "Total: #{Time.now.to_i - begining} segs"
-    
   end
-  
-  
-  
 end

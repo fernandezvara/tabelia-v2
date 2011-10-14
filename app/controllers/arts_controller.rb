@@ -2,15 +2,19 @@ class ArtsController < ApplicationController
   def show
     @art = Art.where(:slug => params[:slug]).first
     @comments = @art.artcomments
-    if @art.user != current_user
-      if request.env['HTTP_REFERER'].nil? == true
-        referrer = "-"
-      else
-        referrer = request.env['HTTP_REFERER']
-      end
-      Resque.enqueue(VisitNew, referrer, @art.class.to_s, @art.id.to_s, current_user.id.to_s)
+    if request.env['HTTP_REFERER'].nil? == true
+      referrer = "-"
+    else
+      referrer = request.env['HTTP_REFERER']
     end
-    arttags = Tagging.of_object_as_where_creator(@art, 'arttag', current_user)
+    if current_user
+      if @art.user != current_user
+        Resque.enqueue(VisitNew, referrer, @art.class.to_s, @art.id.to_s, session[:session_id], current_user.id.to_s)
+      end
+    else
+      Resque.enqueue(VisitNew, referrer, @art.class.to_s, @art.id.to_s, session[:session_id], "")
+    end
+    arttags = Tagging.of_object_as_where_creator(@art, 'arttag', @art.user)
     @tags = Array.new
     arttags.each do |tag|
       @tags << tag.tag.text
@@ -91,6 +95,7 @@ class ArtsController < ApplicationController
     if @art.save!
       Resque.enqueue(FindSimilarArt, @art.id.to_s)
       flash[:success] = "#{@art.name} edited correctly."
+      redirect_to art_profile_path(:slug => @art.slug)
     end
   end
 end

@@ -3,6 +3,7 @@
   <div class="content">
     <%= render :partial => 'partials/art/profile/newcomment' %>
     <ul class="comments" count="<%= @art.artcomments.count %>">
+      <% if @comments.count > 0 %>
       <% @comments.each do |comment| %>
         <%= render :partial => 'partials/art/profile/comment', :locals => { :comment => comment } %>
         <% @last_comment = comment %>
@@ -13,5 +14,9 @@
             <%= link_to "Ver más", view_more_art_comments_path(:slug => @art.slug, :last => @last_comment.created_at.to_i), :class=> 'abutton', :remote => true, :walk => 'no' %>
           </p>
     <% end %>
+      <% else %>
+        <p>There are no comments yet.<br/></p>
+      <% end %>
+      
   </div>
 </div>

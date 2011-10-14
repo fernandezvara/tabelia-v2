@@ -11,6 +11,7 @@ class Art
   belongs_to :category
   
   has_many :artcomments
+  has_many :statistics
   
   field :name,           :type => String,   :presence => true
   field :image,          :type => String

@@ -1,3 +1,4 @@
+<% if current_user %>
 <%= form_tag(comment_user_path(:username => @user.username), :remote => true) do |f| %>
 <ul class="answer">
   <li>
@@ -34,3 +35,4 @@
     }
   });
 </script>
+<% end %>

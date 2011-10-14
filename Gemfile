@@ -11,6 +11,7 @@ gem 'rails', '3.1.0'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'mongoid_slug'
+gem 'trackoid'
 gem 'redis'
 
 # Crypt

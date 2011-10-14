@@ -54,7 +54,5 @@ class CreateRecommendations
        puts 'already recommended'
      end
    end
-
   end
-  
 end

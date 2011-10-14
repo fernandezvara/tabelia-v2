@@ -29,11 +29,7 @@ class FindSimilarArt
         puts "Added: #{art.name} --> #{related.name}"
       else
         puts "Not Added: #{art.name} --> #{related.name}"
-      end
-        
+      end 
     end
-    
-    
   end
-  
 end

@@ -5,7 +5,7 @@ class Visit
   field :visited_type
   field :visited_id
   field :visitor
-  
+  field :session_id
   field :from
   
 end
