@@ -24,6 +24,7 @@ class ArtsController < ApplicationController
     similar_arts.each do |similar|
       @similar_art << Art.find(similar.similar_id)
     end
+    @art_colors = ColorRelation.colors_of(@art)
     @title = t("users.index.title")
     render :layout => 'main'
   end

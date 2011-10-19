@@ -43,7 +43,10 @@ class AdminController < ApplicationController
     @art.image = params[:art][:image] if params[:art][:image].nil? == false
     @art.max_height = params[:art][:max_height]
     @art.max_width = params[:art][:max_width]
+    @art.accepted = params[:art][:accepted]
     if @art.save
+      Resque.enqueue(FindSimilarArt, @art.id.to_s)
+      Resque.enqueue(ColorsFromImage, @art.id.to_s)
       flash[:success] = "Arte actualizado correctamente"
     else
       flash[:error] = "No se ha podido actualizar la obra"

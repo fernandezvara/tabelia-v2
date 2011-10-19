@@ -2,6 +2,7 @@
 <div class="box round">
 <h2>Arte: <%= @art.name %></h2>
 <br />
+<div class="left">
 <%= form_for @art, :url => admin_art_update_path(@art) do |f| %>
   <ul>
     <li>
@@ -54,7 +55,10 @@
       <%= f.submit %>
     </li>
   </ul>
-
+</div>
+<div class="right">
+  <%= image_tag @art.image.url(:cart).to_s %>
+</div>
 <% end %>
 </div>
 <% end %>

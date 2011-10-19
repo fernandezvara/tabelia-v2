@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  red: 1
+  green: 1
+  blue: 1
+  rgb: MyString
+
+two:
+  red: 1
+  green: 1
+  blue: 1
+  rgb: MyString

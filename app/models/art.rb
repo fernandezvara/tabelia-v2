@@ -11,6 +11,8 @@ class Art
   belongs_to :category
   
   has_many :artcomments
+  has_many :color_relations
+  
   
   field :name,           :type => String,   :presence => true
   #field :image,          :type => String

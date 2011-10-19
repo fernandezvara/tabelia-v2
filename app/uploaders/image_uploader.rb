@@ -13,10 +13,18 @@ class ImageUploader < CarrierWave::Uploader::Base
     "/assets/fallback/art_" + [version_name, "default.jpg"].compact.join('_')
   end
 
+
   process :resize_to_fit => [730, 730]
 
+  version :normal do 
+    process :resize_to_fit => [730, 730]
+    process :watermark_normal
+    process :title_it
+  end
+  
   version :cart do
     process :resize_to_fit => [300,300]
+    process :watermark_cart
   end
 
   version :thumb do
@@ -29,5 +37,39 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def extension_white_list
     %w(jpg jpeg)
+  end
+  
+  def title_it
+    manipulate! do |img|
+      text = Magick::Draw.new
+      text.gravity = Magick::SouthEastGravity
+      text.pointsize = 14
+      text.fill = 'white'
+      text.font = "#{Rails.root}/app/assets/images/wm/cabin.ttf"
+      text.stroke = 'none'
+      text.annotate(img, 0, 0, 0, 0, "© #{model.name} - #{model.user.name}")
+      text.gravity = Magick::SouthWestGravity
+      text.fill = 'black'
+      text.annotate(img, 0, 0, 0, 0, "© #{model.name} - #{model.user.name}")
+      img
+    end
+  end
+  
+  def watermark_normal
+    manipulate! do |img|
+      logo = Magick::Image.read(Rails.root + 'app/assets/images/wm/wm-normal.png').first
+      center_cols = (img.columns/2) - (logo.columns/2)
+      center_rows = (img.rows/2) - (logo.rows/2)
+      img = img.dissolve(logo, 0.33, 1, center_cols, center_rows)
+    end
+  end
+  
+  def watermark_cart
+    manipulate! do |img|
+      logo = Magick::Image.read(Rails.root + 'app/assets/images/wm/wm-cart.png').first
+      center_cols = (img.columns/2) - (logo.columns/2)
+      center_rows = (img.rows/2) - (logo.rows/2)
+      img = img.dissolve(logo, 0.33, 1, center_cols, center_rows)
+    end
   end
 end

@@ -1,3 +1,14 @@
-  <div class="content center">
-    <%= image_tag(@art.image.url.to_s, :alt => @art.name) %>
+  <div class="content center" style="margin-bottom:10px; overflow:hidden;">
+    <%= image_tag(@art.image.url(:normal).to_s, :alt => @art.name) %>
+    <div class="clear" style="overflow:hidden;">
+    <% art_colors_count = @art_colors.count
+      if art_colors_count > 0
+      @width = (736 / art_colors_count).to_i
+      @art_colors.each do |color|
+     %>
+     
+     <div style="background-color:<%= color.color.rgb %>; width:<%= @width %>px; height:20px; float:left;"></div>
+     <% end %>
+     <% end %>
+     </div>
   </div>
