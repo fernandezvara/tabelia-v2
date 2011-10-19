@@ -1,0 +1,29 @@
+<% content_for :main do %>
+<h2>Users</h2>
+<div class="paginate">
+  <%= paginate @users, :inner_window => 1 %>
+</div>
+<table>
+  <thead>
+    <th scope="col">Nombre</th>
+    <th scope="col">E-mail</th>
+    <th scope="col">Obras</th>
+    <th scope="col">País</th>
+    <th scope="col">Acciones</th>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%= link_to user.name, admin_user_edit_path(:username => user.username) %></td>
+      <td><%= user.email %></td>
+      <td><%= user.arts.count %></td>
+      <td></td>
+      <td><%= link_to 'Editar', admin_user_edit_path(:username => user.username) %> | <%= link_to 'Ver perfil', user_profile_path(:username => user.username) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<div class="paginate">
+  <%= paginate @users, :inner_window => 1 %>
+</div>
+<% end %>

@@ -15,6 +15,15 @@ class VisitNew
     
     visit.save!
     
+    
+    # Visits counter for today...
+    if Stat.count(:conditions => {:st_type => obj_type, :st_id => obj_id}) == 0
+      stat = Stat.create(:st_type => obj_type, :st_id => obj_id)
+    else
+      stat = Stat.where(:st_type => obj_type, :st_id => obj_id).first
+    end
+    stat.visits.inc
+
     puts visit.inspect
   end
   

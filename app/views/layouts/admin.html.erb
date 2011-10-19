@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  dir="ltr" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>tabelia Admin </title>
+
+<%= stylesheet_link_tag    "admin" %>
+<%= javascript_include_tag "admin" %>
+<%= csrf_meta_tags %>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#navigation').droppy({
+		speed: 10
+	});
+});
+</script>
+<link href='http://fonts.googleapis.com/css?family=Cabin&amp;v2' rel='stylesheet' type='text/css'>
+<% if flash.count > 0 %>
+<script type="text/javascript">
+$(document).ready(function() {
+	<%- flash.each do |key, msg| -%>
+	flashBar("<%= msg %>", "<%= key %>", {});
+	<%- end -%>
+});
+</script>
+<% end %>
+</head>
+
+<body>
+<%= render :partial => 'partials/admin/header' %>
+<%= render :partial => 'partials/admin/navigation' %>
+<div id="main">
+  <%= render :partial => 'partials/admin/title' %>
+  <%= render :partial => 'partials/admin/main' %>
+  <%= render :partial => 'partials/admin/sidebar' %>
+</div>
+<%= render :partial => 'partials/admin/footer' %>
+</body>
+</html>

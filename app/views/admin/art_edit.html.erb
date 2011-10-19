@@ -1,0 +1,60 @@
+<% content_for :main do %>
+<div class="box round">
+<h2>Arte: <%= @art.name %></h2>
+<br />
+<%= form_for @art, :url => admin_art_update_path(@art) do |f| %>
+  <ul>
+    <li>
+      <%= f.label :name %>
+      <div>
+      <%= f.text_field :name, :maxlenght => 50, :class => ['text', 'medium'] %>
+      </div>
+      <label class="note">Nombre</label>
+    </li>
+    <li>
+      <%= f.label :price %>
+      <div>
+      <%= f.text_field :price, :maxlenght => 100, :class => ['text', 'small'] %>
+      </div>
+      <label class="note">Precio en euros</label>
+    </li>
+    <li>
+      <%= f.label :max_height %>
+      <div>
+      <%= f.text_field :max_height, :maxlenght => 10, :class => ['text', 'small'] %>
+      </div>
+      <label class="note"></label>
+    </li>
+    <li>
+      <%= f.label :max_width %>
+      <div>
+      <%= f.text_field :max_width, :maxlenght => 10, :class => ['text', 'small'] %>
+      </div>
+      <label class="note"></label>
+    </li>
+    <li>
+      <label>Fichero original</label>
+      <p><%= @art.original %></p>
+    </li>
+    <li>
+      <%= f.label :image %>
+      <div>
+      <%= f.file_field :image %>
+      </div>
+      <label class="note">Im&aacute;gen final</label>
+    </li>
+    <li>
+      <%= f.label :accepted %>
+      <div>
+      <%= f.select :accepted, [['Si', true], ['No', false]] %>
+      </div>
+      <label class="note">Aceptar la obra - Es necesario subir el fichero correcto!</label>
+    </li>
+    <li>
+      <%= f.submit %>
+    </li>
+  </ul>
+
+<% end %>
+</div>
+<% end %>

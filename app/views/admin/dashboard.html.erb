@@ -1,0 +1,14 @@
+<% content_for :main do %>
+<div class="box round">
+<h1>Estadísticas</h1>
+<p>Total de usuarios: <%= @users_count %></p>
+<p>Usuarios creados hoy: <%= @users_today %></p>
+<p>Total de obras: <%= @art_count %></p>
+<p>Obras añadidas: <%= @art_today %></p>
+</div>
+<% end %>
+
+<% content_for :sidebar do %>
+<h1>Admin#dashboard</h1>
+<p>Find me in app/views/admin/dashboard.html.erb</p>
+<% end %>

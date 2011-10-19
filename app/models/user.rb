@@ -18,6 +18,7 @@ class User
   field :about,         :type => String
   field :auth_token,    :type => String, :presence => true
   field :locale,        :type => String
+  field :admin,         :type => Boolean, :default => false
   
   index :email, unique: true
   index :auth_token, unique:true

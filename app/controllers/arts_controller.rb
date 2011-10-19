@@ -64,6 +64,7 @@ class ArtsController < ApplicationController
     @art.status = params[:art][:status]
     @art.tags = params[:art][:tags]
     @art.user = current_user
+    @art.original = params[:art][:original] if params[:art][:original].nil? == false
     if @art.save!
       flash[:success] = "#{@art.name} added correctly."
       redirect_to arts_path
@@ -92,6 +93,7 @@ class ArtsController < ApplicationController
     @art.category_id = params[:art][:category_id]
     @art.status = params[:art][:status]
     @art.tags = params[:art][:tags]
+    @art.original = params[:art][:original] if params[:art][:original].nil? == false
     if @art.save!
       Resque.enqueue(FindSimilarArt, @art.id.to_s)
       flash[:success] = "#{@art.name} edited correctly."

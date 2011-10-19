@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       referrer = request.env['HTTP_REFERER']
     end
     if current_user
-      if @art.user != current_user
+      if @user != current_user
         Resque.enqueue(VisitNew, referrer, @user.class.to_s, @user.id.to_s, session[:session_id], current_user.id.to_s)
       end
     else

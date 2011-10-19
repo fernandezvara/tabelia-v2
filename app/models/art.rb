@@ -11,23 +11,23 @@ class Art
   belongs_to :category
   
   has_many :artcomments
-  has_many :statistics
   
   field :name,           :type => String,   :presence => true
-  field :image,          :type => String
+  #field :image,          :type => String
   field :price,          :type => Integer,  :presence => true
   field :max_height,     :type => Integer
   field :max_width,      :type => Integer
   field :description,    :type => String
   field :status,         :type => Integer
-  field :accepted,       :type => Boolean
-  field :original,       :type => String
+  field :accepted,       :type => Boolean,  :default => false
+  #field :original,       :type => String
   
   slug :name
   
-  mount_uploader :image,    ImageUploader
+  mount_uploader :image,       ImageUploader
+  mount_uploader :original,    OriginalUploader
   
-  def other_art_of_user(limit)
+  def other_art_of_user(limit = 0)
     if limit == 0
       Art.where(:user_id => self.user.id.to_s).excludes(:id => self.id.to_s)
     else
@@ -38,10 +38,12 @@ class Art
   private
   
   def create_tags
-    Tagging.delete_all_tags_of_object_as_where_creator(self, 'arttag', self.user)
-    tags_array = tags.split(',')
-    tags_array.each do |tag|
-      Tagging.new_tag_for(self, tag, 'arttag', self.user)
+    if tags.nil? == false
+      Tagging.delete_all_tags_of_object_as_where_creator(self, 'arttag', self.user)
+      tags_array = tags.split(',')
+      tags_array.each do |tag|
+        Tagging.new_tag_for(self, tag, 'arttag', self.user)
+      end
     end
   end
 end

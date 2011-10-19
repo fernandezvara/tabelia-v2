@@ -1,0 +1,49 @@
+<% content_for :main do %>
+<div class="box round">
+<h2>Usuario: <%= @user.name %></h2>
+<br />
+<%= form_for @user, :url => admin_user_update_path(@user) do |f| %>
+  <ul>
+    <li>
+      <%= f.label :name %>
+      <div>
+      <%= f.text_field :name, :maxlenght => 50, :class => ['text', 'medium'] %>
+      </div>
+      <label class="note">Nombre visible del usuario</label>
+    </li>
+    <li>
+      <%= f.label :email %>
+      <div>
+      <%= f.text_field :email, :maxlenght => 100, :class => ['text', 'medium'] %>
+      </div>
+      <label class="note">Correo del usuario</label>
+    </li>
+    <li>
+      <%= f.label :locale %>
+      <div>
+      <%= f.text_field :locale, :maxlenght => 10, :class => ['text', 'small'] %>
+      </div>
+      <label class="note">Locale del usuario</label>
+    </li>
+    <li>
+      <%= f.label :avatar %>
+      <div>
+      <%= f.text_field :avatar, :maxlenght => 100, :class => ['text', 'medium'] %>
+      </div>
+      <label class="note">Avatar del usuario(si ha subido alguno)</label>
+    </li>
+    <li>
+      <%= f.label :admin %>
+      <div>
+      <%= f.select :admin, [['Si', true], ['No', false]] %>
+      </div>
+      <label class="note">Usar con cuidado</label>
+    </li>
+    <li>
+      <%= f.submit %>
+    </li>
+  </ul>
+
+<% end %>
+</div>
+<% end %>

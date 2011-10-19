@@ -10,8 +10,8 @@ gem 'rails', '3.1.0'
 # Database
 gem 'mongoid'
 gem 'bson_ext'
-gem 'mongoid_slug'
 gem 'trackoid'
+gem 'mongoid_slug'
 gem 'redis'
 
 # Crypt

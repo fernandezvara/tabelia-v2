@@ -1,5 +1,7 @@
 Tabelia::Application.routes.draw do
 
+
+
   get "messages/notifications"
 
   get "messages/new"
@@ -26,6 +28,14 @@ Tabelia::Application.routes.draw do
   
   get 'logout' => "sessions#destroy", :as => 'logout'
   get 'login'  => "sessions#new",     :as => "login"
+  
+  match "admin",                      :controller => 'admin',    :action => 'dashboard',        :as => 'admin'
+  match "admin/users",                :controller => 'admin',    :action => 'users_index',      :as => 'admin_users_index'
+  match "admin/user/:username",       :controller => 'admin',    :action => 'user_edit',        :as => 'admin_user_edit'
+  match "admin/user/update/:id",      :controller => 'admin',    :action => 'user_update',      :as => 'admin_user_update'
+  match "admin/arts",                 :controller => 'admin',    :action => 'arts_index',       :as => 'admin_arts_index'
+  match "admin/art/:slug",            :controller => 'admin',    :action => 'art_edit',         :as => 'admin_art_edit'
+  match "admin/art/update/:id",       :controller => 'admin',    :action => 'art_update',       :as => 'admin_art_update'
   
   # messaging routes
   match "messages",                   :controller => 'messages', :action => 'inbox',            :as => 'inbox'

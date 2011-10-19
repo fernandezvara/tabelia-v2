@@ -42,6 +42,43 @@ class Notificator
       receiver = art.user
     end
     
+    # adding to statistics (Stat...)
+    case _what
+    when 'cou'
+      if Stat.count(:conditions => {:st_type => receiver.class.to_s, :st_id => receiver.id.to_s}) == 0
+        stat = Stat.create(:st_type => receiver.class.to_s, :st_id => receiver.id.to_s)
+      else
+        stat = Stat.where(:st_type => receiver.class.to_s, :st_id => receiver.id.to_s).first
+      end
+      stat.comments.inc
+      stat.save!
+    when 'coa'
+      if Stat.count(:conditions => {:st_type => art.class.to_s, :st_id => art.id.to_s}) == 0
+        stat = Stat.create(:st_type => art.class.to_s, :st_id => art.id.to_s)
+      else
+        stat = Stat.where(:st_type => art.class.to_s, :st_id => art.id.to_s).first
+      end
+      stat.comments.inc
+      stat.save!
+    when 'ufu'
+      if Stat.count(:conditions => {:st_type => receiver.class.to_s, :st_id => receiver.id.to_s}) == 0
+        stat = Stat.create(:st_type => receiver.class.to_s, :st_id => receiver.id.to_s)
+      else
+        stat = Stat.where(:st_type => receiver.class.to_s, :st_id => receiver.id.to_s).first
+      end
+      stat.follows.inc
+      stat.save!
+    when 'ula'
+      if Stat.count(:conditions => {:st_type => art.class.to_s, :st_id => art.id.to_s}) == 0
+        stat = Stat.create(:st_type => art.class.to_s, :st_id => art.id.to_s)
+      else
+        stat = Stat.where(:st_type => art.class.to_s, :st_id => art.id.to_s).first
+      end
+      puts stat.likes.today
+      stat.likes.inc
+      puts stat.likes.today
+    end
+    
     # socket
     case _what
     when 'cou'

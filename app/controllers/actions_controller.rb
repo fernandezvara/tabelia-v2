@@ -27,9 +27,10 @@ class ActionsController < ApplicationController
     begin
       @remote_user = User.where(:username => params[:username]).first
       @result = GraphClient.remove('Follow', current_user, @remote_user)
+      Resque.enqueue(DeleteCounters, 'unfollow', @remote_user.class.to_s, @remote_user.id.to_s)
     rescue
       ## log that someone are making something bad :)
-      #@result = "someone..."
+      @result = "someone..."
     end
   end
 
@@ -58,9 +59,10 @@ class ActionsController < ApplicationController
     begin
       @art = Art.where(:slug => params[:slug]).first
       @result = GraphClient.remove('Like', current_user, @art)
+      Resque.enqueue(DeleteCounters, 'unlike', @art.class.to_s, @art.id.to_s)
     rescue
       ## log that someone are making something bad :)
-      #@result = "someone..."
+      @result = "someone..."
     end
   end
 
