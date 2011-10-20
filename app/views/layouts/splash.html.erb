@@ -1,0 +1,28 @@
+<%= render :partial => '/partials/common/htmlhead' %>
+<body class="page-home">
+  <%= render :partial => '/partials/common/header' %>
+  <div id="page" style ="top:50px">
+    
+    <div id="content">
+      <section class="width4 stroke" id='main'>
+        <section class="column width4" id="main-title">
+          <%= yield :title %>
+        </section>        
+        <section class="column width3 first" id="main-left">
+          <%= yield :left %>
+          <br />
+        </section>
+        <section class="column width1" id="main-right">
+          <%= yield :right %>
+          <br />
+        </section>
+      </section>
+    </div><!-- content -->
+    <hr class="full">
+    <%= render :partial => '/partials/common/footer' %>
+  </div>
+  <%= debug(params) if Rails.env.development? %>
+  <%= debug(session) if Rails.env.development? %>
+  <%= debug(request.env) if Rails.env.development? %>
+</body>
+</html>

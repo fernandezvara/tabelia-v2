@@ -1,9 +1,10 @@
 class PagesController < ApplicationController
   def index
     if current_user
-      render :layout => 'main'
+      @last = Art.order_by(:created_at, :desc).limit(10)
+      render :layout => 'splash'
     else
-      render 'notloggedin', :layout => 'main'
+      render 'notloggedin', :layout => 'splash'
     end
   end
 

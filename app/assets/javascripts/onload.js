@@ -41,6 +41,25 @@ $(document).ready(function(){
 	function() {
 		$(this).find("div.actions").hide();
 	}); */
+	
+	$('img.cap').captify({
+		speedOver: 'fast',
+		speedOut: 'normal',
+		hideDelay: 500,	
+		// 'fade', 'slide', 'always-on'
+		animation: 'slide',		
+		// text/html to be placed at the beginning of every caption
+		prefix: '',		
+		// opacity of the caption on mouse over
+		opacity: '0.7',					
+		// the name of the CSS class to apply to the caption box
+		className: 'caption-bottom',	
+		// position of the caption (top or bottom)
+		position: 'bottom',
+		// caption span % of the image
+		spanWidth: '100%'
+	});
+
 });
 
 

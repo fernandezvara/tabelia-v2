@@ -7,7 +7,7 @@
       @art_colors.each do |color|
      %>
      
-     <div style="background-color:<%= color.color.rgb %>; width:<%= @width %>px; height:20px; float:left;"></div>
+     <div style="background-color:<%= color.color.rgb %>; width:<%= @width %>px; height:20px; float:left;" onclick="location.href='/color/<%= color.color.rgb.gsub("#", "") %>';" id="color"></div>
      <% end %>
      <% end %>
      </div>

@@ -101,4 +101,12 @@ class ArtsController < ApplicationController
       redirect_to art_profile_path(:slug => @art.slug)
     end
   end
+  
+  def likes
+    @art = Art.where(:slug => params[:slug]).first
+    @likes = GraphClient.get_criteria("Backward", "Like", @art)
+    respond_to do |format|
+      format.html { render :layout => 'main' }
+    end
+  end
 end

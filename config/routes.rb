@@ -2,6 +2,7 @@ Tabelia::Application.routes.draw do
 
 
 
+
   get "messages/notifications"
 
   get "messages/new"
@@ -56,8 +57,14 @@ Tabelia::Application.routes.draw do
   
   match "user/:username",             :controller => 'users',    :action => 'show',             :as => "user_profile"
   match "user/:username/art",         :controller => 'arts',     :action => 'user_art_show',    :as => "user_arts"
+  match "user/:username/followers",   :controller => 'users',    :action => 'followers',        :as => "user_followers"
+  match "user/:username/following",   :controller => 'users',    :action => 'following',        :as => "user_following"
   match "art/:slug",                  :controller => 'arts',     :action => 'show',             :as => "art_profile"
+  match "art/:slug/likes",            :controller => 'arts',     :action => 'likes',            :as => "art_likes"
   match "art/:slug/edit",             :controller => 'arts',     :action => 'edit',             :as => "edit_art"
+
+  match "color/:color",               :controller => 'color',    :action => 'index',            :as => "color_index"
+
   match "category/:slug",             :controller => 'category', :action => 'show',             :as => "category"
   match 'auth/:provider/callback',    :controller => 'sessions', :action => 'create_external',  :as => 'create_external'
 

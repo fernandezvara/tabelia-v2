@@ -8,6 +8,8 @@
  *= require boxes
  *= require messages
  *= require activities
+ *= require capify
+ *= require farbtastic
  *= require_self
 */
 
@@ -64,3 +66,5 @@ div#actions a            { top:10px; }
 
 span.search-bg           { background:#fafafa url(/assets/icons/search.png) no-repeat !important; background-position: 290px 4px !important; display:block; padding:2px 5px; margin-top:15px; }
 input#search             { background-color:transparent; border: 0px; color:#7d7d7d; width:278px; margin-right:20px; line-height:18px;}
+
+div#color                { cursor:pointer;}

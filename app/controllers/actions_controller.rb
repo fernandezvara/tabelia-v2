@@ -7,6 +7,7 @@ class ActionsController < ApplicationController
       @remote_user = User.where(:username => params[:username]).first
       if current_user != @remote_user
         @result = GraphClient.new('Follow', current_user, @remote_user)
+        puts "RESULT! --------------------------- #{@result}"
         data = Hash.new
         data['who'] = current_user.id.to_s
         data['when'] = Time.now

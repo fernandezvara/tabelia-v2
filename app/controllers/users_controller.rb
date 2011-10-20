@@ -40,4 +40,22 @@ class UsersController < ApplicationController
   def update
   end
 
+  def followers
+    @user = User.where(:username => params[:username]).first
+    @followers = GraphClient.get("Backward", "Follow", @user)
+    respond_to do |format|
+      format.html { render :layout => 'main' }
+      format.js
+    end
+  end
+  
+  def following
+    @user = User.where(:username => params[:username]).first
+    @following = GraphClient.get("Forward", "Follow", @user)
+    respond_to do |format|
+      format.html { render :layout => 'main' }
+      format.js
+    end
+  end
+
 end

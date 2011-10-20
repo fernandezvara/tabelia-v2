@@ -1,0 +1,5 @@
+$("section#main-title").fadeOut();
+$("section#main-title").html('<%= escape_javascript(render :partial => "partials/color/index/title") %>').fadeIn();
+$("section#main-left").fadeOut();
+$("section#main-left").html('<%= escape_javascript(render :partial => "partials/color/index/left") %>').fadeIn();
+document.title = "<%= escape_javascript(title) %>";

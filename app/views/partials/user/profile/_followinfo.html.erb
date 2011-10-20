@@ -1,2 +1,2 @@
-<p><%= pluralize(GraphClient.get_count('Backward', 'Follow', user), 'follower') %></p>
-<p>follows <%= pluralize(GraphClient.get_count('Forward', 'Follow', user), 'user') %></p>
+<p><%= link_to "#{pluralize(GraphClient.get_count('Backward', 'Follow', user), 'follower')}", user_followers_path(:username => user.username), :remote => true %></p>
+<p><%= link_to "follows #{pluralize(GraphClient.get_count('Forward', 'Follow', user), 'user')}", user_following_path(:username => user.username), :remote => true %></p>

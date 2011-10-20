@@ -23,6 +23,26 @@ class GraphClient
     end
   end
   
+  # returns the objects related
+  def self.get_criteria(direction, relation, obj)
+    data = Net::HTTP.get(URI.parse("http://localhost:9000/get/#{direction}/#{relation}/#{obj.class.to_s}/#{obj.id.to_s}"))
+    
+    #begin
+      array = ActiveSupport::JSON.decode(data)
+      if array.count == 0
+        return []
+      else
+        ids = Array.new
+        array.each do |relation|
+          ids << relation['di']
+        end
+        return array[0]['do'].constantize.find(ids)
+      end
+    #rescue
+    #  return []
+    #end
+  end
+  
   def self.get_count(direction, relation, obj)
     data = Net::HTTP.get(URI.parse("http://localhost:9000/get_count/#{direction}/#{relation}/#{obj.class.to_s}/#{obj.id.to_s}"))
     #begin

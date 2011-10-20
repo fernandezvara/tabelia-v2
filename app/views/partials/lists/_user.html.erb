@@ -5,7 +5,7 @@
     </div>      
     <div class="data right">
       <p><%= link_to user.name, user_profile_path(:username => user.username), :remote => true %></p>
-      <p>has <%= GraphClient.get_count('Backward', 'Follow', user)%> followers</p>
+      <p><%= link_to "has #{GraphClient.get_count('Backward', 'Follow', user)} followers", user_followers_path(:username => user.username), :remote => true %></p>
     </div>
   </div>
   <div class="art align-right">

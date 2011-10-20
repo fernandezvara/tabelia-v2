@@ -1,0 +1,5 @@
+<ul id="listing">
+  <% @followers.each do |user| %>
+    <%= render :partial => 'partials/lists/user', :locals => { :user => user } %>
+  <% end %>
+</ul>

@@ -1,0 +1,31 @@
+.caption-top, .caption-bottom {
+	color: #ffffff;	
+	padding: 1.2em;	
+	font-weight: bold;
+	font-size: 13px;	
+	font-family: cabin, arial;	
+	cursor: default;
+	background: #000;
+	text-shadow: 1px 1px 0 #202020;
+}
+.caption-top {
+}
+.caption-bottom {
+	text-decoration:none;
+}
+.caption a, .caption a {
+	border: 0 none;
+
+	background: #000000;
+	padding: 0.3em;
+}
+.caption a:hover, .caption a:hover {
+	background: #202020;
+}
+.caption-wrapper {
+	float: left;
+}
+br.c { clear: both; }
+.masonry a:hover {
+	text-decoration:none;
+}

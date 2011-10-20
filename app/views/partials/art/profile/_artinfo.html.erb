@@ -1,4 +1,4 @@
-<div class="box purple">
+<div class="box orange">
   <div class="content">
       <p>Category: <%= link_to @art.category.en, category_path(:slug => @art.category.slug) %></p>
       <p id="liked_by"><%= render :partial => 'partials/art/profile/liked_by' %></p>
@@ -11,8 +11,9 @@
     <div class="userinfo right">
       <p><%= link_to @art.user.name, user_profile_path(:username => @art.user.username), :remote => true %></p>
       <br />
-      <p><%= pluralize(GraphClient.get_count('Backward', 'Follow', @art.user), 'follower') %></p>
-      <p>follows <%= pluralize(GraphClient.get_count('Forward', 'Follow', @art.user), 'user') %></p>
+      
+      <p><%= link_to "#{pluralize(GraphClient.get_count('Backward', 'Follow', @art.user), 'follower')}", user_followers_path(:username => @art.user.username), :remote => true %></p>
+      <p><%= link_to "follows #{pluralize(GraphClient.get_count('Forward', 'Follow', @art.user), 'user')}", user_following_path(:username => @art.user.username), :remote => true %></p>
     </div>
   </div>
 </div>

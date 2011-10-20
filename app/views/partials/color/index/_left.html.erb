@@ -1,0 +1,16 @@
+<div class="content center" id="art_show" style="padding:2px 1px 40px 2px; text-align:center;">
+<% @arts.each do |art| %>
+    <div class="bimg" style="text-align:center;">
+      <%= link_to image_tag(art.image.url(:splash).to_s, :class=> 'cap', :alt => art.name), art_profile_path(:slug => art.slug) %>
+    </div>
+<% end %>
+</div>
+<script type="text/javascript" charset="utf-8">
+var $container = $('#art_show');
+$container.imagesLoaded( function(){
+  $container.masonry({
+    itemSelector : '.bimg',
+    isAnimated: true
+  });
+});
+</script>

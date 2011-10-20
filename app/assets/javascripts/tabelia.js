@@ -4,5 +4,8 @@
 //= require facebox
 //= require flashbar
 //= require autogrow
+//= require masonry
+//= require capify
+//= require farbtastic
 
 //= require onload

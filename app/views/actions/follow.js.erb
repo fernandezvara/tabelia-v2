@@ -3,5 +3,5 @@
 	$("div#follow_info").html("<%= escape_javascript(render :partial => 'partials/user/profile/followinfo', :locals => { :user => @remote_user}) %>")
 	flashBar("You begin following <%= @remote_user.name %>,", "notice", {});
 <% else %>
-	alert("Error inesperado.");
+	alert("<%= @result %>");
 <% end %> 
