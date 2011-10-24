@@ -68,3 +68,5 @@ span.search-bg           { background:#fafafa url(/assets/icons/search.png) no-r
 input#search             { background-color:transparent; border: 0px; color:#7d7d7d; width:278px; margin-right:20px; line-height:18px;}
 
 div#color                { cursor:pointer;}
+.special-left            { width:660px;}
+.special-right           { width:330px; overflow:hidden;}

@@ -7,12 +7,12 @@
             <% if controller_name = 'users' %>
               <span><%= @user.name %></span>
             <% else %>
-              <%= link_to @user.name, user_profile_path(:username => @user.username), :remote => true %>
+              <%= link_to @user.name, user_profile_path(:username => @user.username)  %>
             <% end %>
-              <%= t('activity.comment_on_profile.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username), :remote => true %><%= t('activity.comment_on_profile.main_action2') %></p>
+              <%= t('activity.comment_on_profile.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username)  %><%= t('activity.comment_on_profile.main_action2') %></p>
               <p class="timeago" time="<%= activity.when.to_i %>"><%= time_ago_in_words(activity.when)%> ago</p>
           <div class="actor left">
-            <%= link_to image_tag(@to.avatar.url(:mini).to_s, :alt => @to.name), user_profile_path(:username => @to.username), :remote => true %>
+            <%= link_to image_tag(@to.avatar.url(:mini).to_s, :alt => @to.name), user_profile_path(:username => @to.username)  %>
           </div>
           <div class="data right">
             <p><%= @comment.text %></p>
@@ -25,12 +25,12 @@
             <% if controller_name = 'users' %>
               <span><%= @user.name %></span>
             <% else %>
-              <%= link_to @user.name, user_profile_path(:username => @user.username), :remote => true %>
+              <%= link_to @user.name, user_profile_path(:username => @user.username)  %>
             <% end %>
-            <%= t('activity.comment_on_art.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username), :remote => true %><%= t('activity.comment_on_art.main_action2') %><%= link_to @art.name, art_profile_path(:slug => @art.slug), :remote => true %></p>
+            <%= t('activity.comment_on_art.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username)  %><%= t('activity.comment_on_art.main_action2') %><%= link_to @art.name, art_profile_path(:slug => @art.slug)  %></p>
             <p class="timeago" time="<%= activity.when.to_i %>"><%= time_ago_in_words(activity.when)%> ago</p>
           <div class="actor left">
-            <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug), :remote => true %>
+            <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug)  %>
           </div>
           <div class="data right">
             <p><%= @comment.text %></p>
@@ -41,12 +41,12 @@
             <% if controller_name = 'users' %>
               <span><%= @user.name %></span>
             <% else %>
-              <%= link_to @user.name, user_profile_path(:username => @user.username), :remote => true %>
+              <%= link_to @user.name, user_profile_path(:username => @user.username)  %>
             <% end %>
-            <%= t('activity.user_publish_art.main_action') %><%= link_to @art.name, art_profile_path(:slug => @art.slug), :remote => true %></p>
+            <%= t('activity.user_publish_art.main_action') %><%= link_to @art.name, art_profile_path(:slug => @art.slug)  %></p>
             <p class="timeago" time="<%= activity.when.to_i %>"><%= time_ago_in_words(activity.when)%> ago</p>
           <div class="actor left">
-            <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug), :remote => true %>
+            <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug)  %>
           </div>
           <div class="data right">
             <p><%= simple_format(truncate(@art.description, :length => 100, :omission => ' ...')) %></p>
@@ -57,12 +57,12 @@
             <% if controller_name = 'users' %>
               <span><%= @user.name %></span>
             <% else %>
-              <%= link_to @user.name, user_profile_path(:username => @user.username), :remote => true %>
+              <%= link_to @user.name, user_profile_path(:username => @user.username) %>
             <% end %>
-            <%= t('activity.user_follows_user.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username), :remote => true %></p>
+            <%= t('activity.user_follows_user.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username) %></p>
             <p class="timeago" time="<%= activity.when.to_i %>"><%= time_ago_in_words(activity.when)%> ago</p>
           <div class="actor left">
-            <%= link_to image_tag(@to.avatar.url(:mini).to_s, :alt => @to.name), user_profile_path(:username => @to.username), :remote => true %>
+            <%= link_to image_tag(@to.avatar.url(:mini).to_s, :alt => @to.name), user_profile_path(:username => @to.username) %>
           </div>
           <div class="data right">
             <p>has <%= GraphClient.get_count("Backward", "Follow", @to) %> followers</p>
@@ -74,12 +74,12 @@
             <% if controller_name = 'users' %>
               <span><%= @user.name %></span>
             <% else %>
-              <%= link_to @user.name, user_profile_path(:username => @user.username), :remote => true %>
+              <%= link_to @user.name, user_profile_path(:username => @user.username) %>
             <% end %>
-            <%= t('activity.user_likes_art.main_action') %><%= link_to @art.user.name, user_profile_path(:username => @art.user.username), :remote => true %><%= t('activity.user_likes_art.main_action2') %><%= link_to @art.name, art_profile_path(:slug => @art.slug), :remote => true %></p>
+            <%= t('activity.user_likes_art.main_action') %><%= link_to @art.user.name, user_profile_path(:username => @art.user.username)  %><%= t('activity.user_likes_art.main_action2') %><%= link_to @art.name, art_profile_path(:slug => @art.slug)  %></p>
             <p class="timeago" time="<%= activity.when.to_i %>"><%= time_ago_in_words(activity.when)%> ago</p>
           <div class="actor left">
-            <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug), :remote => true %>
+            <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug)  %>
           </div>
           <div class="data right">
             <p><%= GraphClient.get_count("Backward", "Like", @art) %> likes it</p>

@@ -1,5 +1,10 @@
 <% content_for :title do %>
-<div class="content center" id="last_show" style="margin:10px 5px; text-align:center;">
+
+<% end %>
+
+
+<% content_for :left do %>
+<div class="content center" id="last_show" style="margin-bottom:10px;">
 <% @last.each do |last| %>
     <div class="bimg" style="text-align:center;">
       <%= link_to image_tag(last.image.url(:splash).to_s, :class=> 'cap', :alt => last.name), art_profile_path(:slug => last.slug) %>
@@ -10,49 +15,17 @@
 var $container = $('#last_show');
 $container.imagesLoaded( function(){
   $container.masonry({
-    itemSelector : '.bimg',
-    isAnimated: true
+    itemSelector : 'div.bimg',
+    gutterWidth: 0,
+    isAnimated: true,
+    columnWidth: 165
   });
 });
 </script>
 <% end %>
 
-
-<% content_for :left do %>
-<div class="unitx3 left">
-  <%= render :partial => 'partials/pages/index/activity' %>
-</div>
-<div class="unitx3 right">
-  <div class="box blue">
-    <div class="title">texto del título2</div>
-    <div class="content">
-      <p>Un párrafo</p>
-      <p>Probemos con <a href="#">un enlace</a></p>
-      <p>otro parrafo</p>
-      <p><a href="#" class="tag">un tag</a><a href="#" class="tag">otro tag</a><a href="#" class="tag">y otro tag</a></p>
-    </div>
-  </div>
-</div>
-<% end %>
-
 <% content_for :right do %>
-<div class="box orange">
-  <div class="title">texto del título</div>
-  <div class="content">
-    <p>Un párrafo</p>
-    <p>Probemos con <a href="#">un enlace</a></p>
-    <p>otro parrafo</p>
-    <p class="tags"><a href="#" class="tag">un tag</a><a href="#" class="tag">otro tag</a><a href="#" class="tag">y otro tag</a></p>
-        <p>otro parrafo</p>
-      </div>
-</div>
-<div class="box green">
-  <div class="title">texto del título2</div>
-  <div class="content">
-    <p>Un párrafo</p>
-    <p>Probemos con <a href="#">un enlace</a></p>
-    <p>otro parrafo</p>
-    <p><a href="#" class="tag">un tag</a><a href="#" class="tag">otro tag</a><a href="#" class="tag">y otro tag</a></p>
-    </div>
+<div class="special-right left">
+  <%= render :partial => 'partials/pages/index/activity' %>
 </div>
 <% end %>

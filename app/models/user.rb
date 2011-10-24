@@ -1,6 +1,7 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Sunspot::Mongoid
   
   attr_accessible :email, :password, :password_confirmation, :avatar, :name, :about, :locale
   
@@ -8,6 +9,8 @@ class User
   
   before_create :generate_username, :generate_token
   before_save :encrypt_password
+  after_save     :resque_solr_update
+  before_destroy :resque_solr_remove
   
   field :email,         :type => String, :presence => true
   field :password_hash, :type => String, :presence => true
@@ -40,6 +43,11 @@ class User
   references_many :comments_authored, :class_name => 'Comment', :foreign_key => 'author_id'
   
   embeds_many :useractivities
+  
+  searchable do
+    text :name, :boost => 3
+    text :username
+  end
   
   def unreaded_conversations
     Userconversation.where(:user_id => self.id.to_s, :readed => false, :hide => false).count
@@ -96,6 +104,16 @@ class User
     else
       generate_username(text, counter)
     end
+  end
+  
+  protected
+  
+  def resque_solr_update
+    Resque.enqueue(SolrUpdate, "User", id)
+  end
+
+  def resque_solr_remove
+    Resque.enqueue(SolrRemove, "User", id)
   end
   
 end

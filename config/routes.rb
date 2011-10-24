@@ -3,6 +3,8 @@ Tabelia::Application.routes.draw do
 
 
 
+  get "search/index"
+
   get "messages/notifications"
 
   get "messages/new"

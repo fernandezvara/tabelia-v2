@@ -14,6 +14,11 @@ gem 'trackoid'
 gem 'mongoid_slug'
 gem 'redis'
 
+# search
+gem 'sunspot'
+gem 'sunspot_rails'
+gem 'sunspot_mongoid'
+
 # Crypt
 gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'omniauth'

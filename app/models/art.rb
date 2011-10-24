@@ -2,6 +2,7 @@ class Art
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
+  include Sunspot::Mongoid
   
   attr_accessor :tags
   
@@ -12,7 +13,6 @@ class Art
   
   has_many :artcomments
   has_many :color_relations
-  
   
   field :name,           :type => String,   :presence => true
   #field :image,          :type => String
@@ -28,6 +28,13 @@ class Art
   
   mount_uploader :image,       ImageUploader
   mount_uploader :original,    OriginalUploader
+  
+  after_save     :resque_solr_update
+  before_destroy :resque_solr_remove
+  
+  searchable :auto_index => false, :auto_remove => false do
+    text :name
+  end
   
   def other_art_of_user(limit = 0)
     if limit == 0
@@ -47,5 +54,15 @@ class Art
         Tagging.new_tag_for(self, tag, 'arttag', self.user)
       end
     end
+  end
+  
+  protected
+    
+  def resque_solr_update
+    Resque.enqueue(SolrUpdate, "Art", id)
+  end
+
+  def resque_solr_remove
+    Resque.enqueue(SolrRemove, "Art", id)
   end
 end

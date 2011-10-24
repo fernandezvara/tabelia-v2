@@ -28,8 +28,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :splash do
-    process :resize_to_fit => [245,900]
-    process :watermark_cart
+    #process :resize_to_fit => [245,900]
+    #process :watermark_cart
+    process :resize_boxed
+    
   end
 
   version :thumb do
@@ -42,6 +44,26 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def extension_white_list
     %w(jpg jpeg)
+  end
+  
+  def resize_boxed
+    manipulate! do |img|
+      puts img.columns
+      puts img.rows
+      if img.columns > img.rows
+        if img.columns % img.rows < 100
+          img = img.resize_to_fill(165, 165)
+        else
+          img = img.resize_to_fill(330, 165)
+        end
+      else
+        if img.rows % img.columns < 100 or img.rows == img.columns
+          img = img.resize_to_fill(165, 165)
+        else
+          img = img.resize_to_fill(165, 330)
+        end
+      end
+    end
   end
   
   def title_it

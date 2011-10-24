@@ -51,11 +51,11 @@ $(document).ready(function(){
 		// text/html to be placed at the beginning of every caption
 		prefix: '',		
 		// opacity of the caption on mouse over
-		opacity: '0.7',					
+		opacity: '0.5',					
 		// the name of the CSS class to apply to the caption box
 		className: 'caption-bottom',	
 		// position of the caption (top or bottom)
-		position: 'bottom',
+		position: 'top',
 		// caption span % of the image
 		spanWidth: '100%'
 	});
