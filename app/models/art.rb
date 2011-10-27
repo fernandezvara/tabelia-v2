@@ -22,6 +22,7 @@ class Art
   field :description,    :type => String
   field :status,         :type => Integer
   field :accepted,       :type => Boolean,  :default => false
+  field :show_search,    :type => Boolean,  :default => false
   #field :original,       :type => String
   
   slug :name
@@ -33,7 +34,13 @@ class Art
   before_destroy :resque_solr_remove
   
   searchable :auto_index => false, :auto_remove => false do
-    text :name
+    text :name, :stored => true
+    boolean :show_search
+    string :category_slug
+  end
+  
+  def category_slug
+    self.category.slug
   end
   
   def other_art_of_user(limit = 0)

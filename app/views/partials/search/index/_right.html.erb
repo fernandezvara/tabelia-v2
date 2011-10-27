@@ -1,0 +1,74 @@
+<div class="box green">
+  <div class="title">
+    SEARCH OPTIONS
+  </div>
+  <div class="content">
+    <label>Show</label>
+    <select id="main_filter">
+      <option value="" selected="selected">Art & User</option>
+      <option value="user">Users</option>
+      <option value="art">Arts</option>
+    </select>
+  </div>
+  
+  <div id="user_search" style="display:none">
+    <div class="title">FILTERS</div>
+    <div class="content">
+      <br />
+      User filters!
+    </div>
+  </div>
+  <div id="art_search" style="display:none">
+    <div class="title">FILTERS</div>
+    <div class="content">
+      <p>Categories:</p><br />
+      <%= select_tag "category", options_from_collection_for_select(@categories, "slug", "en"), :prompt => "All categories" %>
+    </div>
+    <div class="title">SEARCH BY COLOR</div>
+    <div class="content">
+      <form><input type="text" id="color" name="color" value="#ffffff" style="width:210px;" /></form>
+      <div id="colorpicker" style="height:200px;"></div>
+      <div style="text-align: center; overflow:hidden;">
+        <a href="#" class="abutton" id="colorsearch">Search</a>
+      </div>
+    </div>
+  </div>
+
+  
+  <script type="text/javascript">
+    $(document).ready(function(){ 
+      $('#colorpicker').farbtastic('#color');
+      $("a#colorsearch").live("click", function(e) {
+        e.preventDefault();
+        var color = $("input#color").val().replace("#", "");
+        location.replace('/color/' + color);
+        $.ajax({
+             url: '/color/' + color
+         });
+      });
+      $('select#main_filter').change(function() {
+    		$.ajax({
+          url: '/search',
+          data: {
+            'utf8'  : '%E2%9C%93',
+            'search': '<%= params[:search] if params[:search].present? %>',
+            'type'  : $('select#main_filter').val()
+          },
+          dataType: 'script'
+        });
+    	});
+    	$('select#category').change(function() {
+    		$.ajax({
+          url: '/search',
+          data: {
+            'utf8'     : '%E2%9C%93',
+            'search'   : '<%= params[:search] if params[:search].present? %>',
+            'type'     : $('select#main_filter').val(),
+            'category' : $('select#category').val()
+          },
+          dataType: 'script'
+        });
+    	});
+    });
+  </script>
+</div>

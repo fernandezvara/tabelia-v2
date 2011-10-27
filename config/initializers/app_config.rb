@@ -1,4 +1,5 @@
-
+# SUNSPOT - DID YOU MEAN???
+require "#{Rails.root}/extras/sunspot_did_you_mean"
 
 # MAIL CONFIGURATION
 ActionMailer::Base.smtp_settings = {

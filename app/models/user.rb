@@ -12,20 +12,21 @@ class User
   after_save     :resque_solr_update
   before_destroy :resque_solr_remove
   
-  field :email,         :type => String, :presence => true
-  field :password_hash, :type => String, :presence => true
-  field :password_salt, :type => String, :presence => true
+  field :email,         :type => String,   :presence => true
+  field :password_hash, :type => String,   :presence => true
+  field :password_salt, :type => String,   :presence => true
   field :avatar,        :type => String
-  field :name,          :type => String, :presence => true
-  field :username,      :type => String, :presence => true
+  field :name,          :type => String,   :presence => true
+  field :username,      :type => String,   :presence => true
   field :about,         :type => String
-  field :auth_token,    :type => String, :presence => true
+  field :auth_token,    :type => String,   :presence => true
   field :locale,        :type => String
-  field :admin,         :type => Boolean, :default => false
+  field :admin,         :type => Boolean,  :default => false
+  field :show_search,   :type => Boolean,  :default => true
   
-  index :email, unique: true
+  index :email,      unique: true
   index :auth_token, unique:true
-  index :username, unique:true
+  index :username,   unique:true
   
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
                                   #    /^([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})$/i
@@ -45,8 +46,13 @@ class User
   embeds_many :useractivities
   
   searchable do
-    text :name, :boost => 3
+    text :name, :boost => 3, :stored => true
     text :username
+    integer :arts_count do
+      self.arts.count
+    end
+    time :created_at
+    boolean :show_search
   end
   
   def unreaded_conversations

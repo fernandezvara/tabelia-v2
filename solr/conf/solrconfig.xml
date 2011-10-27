@@ -436,12 +436,17 @@
     <!-- default values for query parameters -->
     <lst name="defaults">
       <str name="echoParams">explicit</str>
+      <str name="spellcheck.collate">true</str>
+      <str name="spellcheck">true</str>
       <!--
        <int name="rows">10</int>
        <str name="fl">*</str>
        <str name="version">2.1</str>
         -->
     </lst>
+    <arr name="last-components">
+      <str>spellcheck</str>
+    </arr>
   </requestHandler>
   <!-- Please refer to http://wiki.apache.org/solr/SolrReplication for details on configuring replication -->
   <!-- remove the <lst name="master"> section if this is just a slave -->
@@ -494,8 +499,17 @@
           found -->
       <str name="f.name.hl.alternateField">name</str>
       <str name="f.text.hl.fragmenter">regex</str>
+      <str name="spellcheck.dictionary">default</str>
+      <str name="spellcheck.onlyMorePopular">true</str>
+      <str name="spellcheck.extendedResults">false</str>
+      <str name="spellcheck.count">3</str>
+      <str name="spellcheck.collate">true</str>
+      <str name="spellcheck">true</str>
       <!-- defined below -->
     </lst>
+    <arr name="last-components">
+      <str>spellcheck</str>
+    </arr>
   </requestHandler>
   <!-- Note how you can register the same handler multiple times with
        different names (and different init parameters)
@@ -589,8 +603,9 @@
     <str name="queryAnalyzerFieldType">textSpell</str>
     <lst name="spellchecker">
       <str name="name">default</str>
-      <str name="field">name</str>
+      <str name="field">name_texts</str>
       <str name="spellcheckIndexDir">./spellchecker</str>
+      <str name="buildOnCommit">true</str>
     </lst>
     <!-- a spellchecker that uses a different distance measure
     <lst name="spellchecker">

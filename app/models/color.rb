@@ -11,6 +11,7 @@ class Color
   
   def self.near_colors(color, radius)
     # Color must not have the hash!!!!!!!
+    color = color.gsub("#", "")
     arr_color = color.split("")
     red_hex = arr_color[0..1].join.to_i(16)
     green_hex = arr_color[2..3].join.to_i(16)
@@ -24,10 +25,7 @@ class Color
     max_blue = blue_hex + radius    
     
     colors = Color.any_in(:red => (min_red..max_red).to_a).any_in(:green => (min_green..max_green).to_a).any_in(:blue => (min_blue..max_blue).to_a)
-    
-    puts "COLORS: "
-    puts colors.inspect
-    
+        
     ids = Array.new
     colors.each do |color|
       ids << color.id.to_s

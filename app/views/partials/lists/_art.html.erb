@@ -4,7 +4,7 @@
       <%= link_to image_tag(art.image.url(:thumb).to_s, :alt => art.name), art_profile_path(:slug => art.slug), :remote => true %>
     </div>      
     <div class="artdata right">
-      <p><%= link_to art.name, art_profile_path(:slug => art.slug), :remote => true %></p>
+      <p><%= link_to art.name, art_profile_path(:slug => art.slug), :remote => true %> by <%= link_to art.user.name, user_profile_path(:username => art.user.username), :remote => true %></p>
       <p class="s12"><%= truncate(art.description, :length => 150, :omission => ' ...') if art.description %></p>
     </div>
   </div>

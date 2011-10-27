@@ -18,7 +18,6 @@ hashPopularityPoints =        Hash.new
 today = Date.new(Time.now.year, Time.now.month, Time.now.day)
 
 Art.all.each do |art|
-  
   hashArtDaysSincePublication[art.id.to_s] = (today - Date.new(art.created_at.year,art.created_at.month,art.created_at.day)).to_i
   if hashArtDaysSincePublication[art.id.to_s] > 0
     hashArtSells[art.id.to_s] = 0.to_f / hashArtDaysSincePublication[art.id.to_s].to_f

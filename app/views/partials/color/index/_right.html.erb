@@ -1,13 +1,12 @@
-<form><input type="text" id="color" name="color" value="#<%= params[:color] %>" /></form>
+<form><input type="text" id="color" name="color" value="#<%= params[:color] if params[:color].present? %>" /></form>
 <div id="colorpicker" style="height:200px;"></div>
 <div style="text-align: center; overflow:hidden;">
-  <a href="#" class="abutton" id="colorsearch">Search</a>
+  <a href="" class="abutton" id="colorsearch" data-remote="true">Search</a>
 </div>
 <script type="text/javascript">
   $(document).ready(function() {
     $('#colorpicker').farbtastic('#color');
     $("a#colorsearch").live("click", function(e) {
-      e.preventDefault();
       var color = $("input#color").val().replace("#", "");
       $.ajax({
            url: '/color/' + color,

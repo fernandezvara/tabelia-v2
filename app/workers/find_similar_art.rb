@@ -31,5 +31,28 @@ class FindSimilarArt
         puts "Not Added: #{art.name} --> #{related.name}"
       end 
     end
+    
+    # Add every art with similar colors
+    related_arts_by_color = Array.new
+    colors = ColorRelation.colors_of(art)
+    colors.each do |color|
+      relations = Color.near_colors(color.color.rgb, 8)
+      relations.each do |relation|
+        temp_art = relation.art
+        if related_arts.include?(temp_art) == false
+          related_arts_by_color = related_arts_by_color | [temp_art]
+        end
+      end
+    end
+    
+    related_arts_by_color.each do |related|
+      if art != related
+        ArtSimilar.create!(:art_id => art_id, :similar_id => related.id.to_s, :why => 2)
+        puts "Added by color: #{art.name} --> #{related.name}"
+      else
+        puts "Not Added: #{art.name} --> #{related.name}"
+      end 
+    end
+    
   end
 end

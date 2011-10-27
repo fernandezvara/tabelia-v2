@@ -2,7 +2,9 @@
   <div class="header-login">
     <div class="align-left logo"><%= link_to image_tag("logo.png"), root_path %></div>
     <div class="align-left search">
-      <span class="search-bg"><input type="text" name="search" id="search" /></span>
+      <%= form_tag search_path, :method => :get, :id => 'searchf' do %>
+      <span class="search-bg"><input type="text" name="search" id="search" value="<%= params[:search] if params[:search].present? %>" /></span>
+      <% end %>
     </div>
       
     <div class="in align-right">

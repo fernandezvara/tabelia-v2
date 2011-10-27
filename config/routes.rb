@@ -1,10 +1,4 @@
 Tabelia::Application.routes.draw do
-
-
-
-
-  get "search/index"
-
   get "messages/notifications"
 
   get "messages/new"
@@ -66,6 +60,8 @@ Tabelia::Application.routes.draw do
   match "art/:slug/edit",             :controller => 'arts',     :action => 'edit',             :as => "edit_art"
 
   match "color/:color",               :controller => 'color',    :action => 'index',            :as => "color_index"
+
+  match "search",                     :controller => 'search',   :action => 'index',            :as => "search"
 
   match "category/:slug",             :controller => 'category', :action => 'show',             :as => "category"
   match 'auth/:provider/callback',    :controller => 'sessions', :action => 'create_external',  :as => 'create_external'
