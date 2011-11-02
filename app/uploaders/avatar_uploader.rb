@@ -2,37 +2,44 @@
 
 class AvatarUploader < CarrierWave::Uploader::Base
 
-  
   include CarrierWave::RMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    # "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "#{mounted_as}/#{model.id}"
   end
   
   def default_url
     "/assets/fallback/avatar_" + [version_name, "default.jpg"].compact.join('_')
   end
 
-  process :resize_to_fill => [150, 150] 
+  def filename
+    "#{model.username}.jpg" if original_filename
+  end
 
+  process :resize_to_fill => [150, 150] 
+  process :quality => 70
+  
   # Create different versions of your uploaded files:
   
   version :thumb do
      process :resize_to_fill => [75, 75]
+     process :quality => 70
   end
   
   version :mini do
      process :resize_to_fill => [30, 30]
+     process :quality => 70
   end
 
   def extension_white_list
-    %w(jpg jpeg gif png)
+    %w(jpg jpeg)
   end
 
 

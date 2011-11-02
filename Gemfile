@@ -9,7 +9,7 @@ gem 'rails', '3.1.0'
 
 # Database
 gem 'mongoid'
-gem 'bson_ext'
+gem 'bson_ext', '1.3.1'
 gem 'trackoid'
 gem 'mongoid_slug'
 gem 'redis'
@@ -30,11 +30,15 @@ gem 'kaminari'
 #Images
 gem 'rmagick'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'fog'   # S3 storage
 
 # Background jobs
 gem 'resque'
 
 gem 'juggernaut'
+gem 'therubyracer'
+
+
 
 group :development do
   gem 'faker'
@@ -49,6 +53,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+gem 'thin'
 
 # Use unicorn as the web server
 # gem 'unicorn'

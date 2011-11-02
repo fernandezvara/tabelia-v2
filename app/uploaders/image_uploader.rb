@@ -3,10 +3,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
 
-  storage :file
+  storage :fog
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    # "#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "#{mounted_as}/#{model.id}"
   end
 
   def default_url
@@ -15,23 +16,26 @@ class ImageUploader < CarrierWave::Uploader::Base
 
 
   process :resize_to_fit => [730, 730]
+  process :quality => 70
 
   version :normal do 
     process :resize_to_fit => [730, 730]
+    process :quality => 70
     process :watermark_normal
     process :title_it
   end
   
   version :cart do
     process :resize_to_fit => [300,300]
+    process :quality => 70
     process :watermark_cart
   end
 
   version :splash do
     #process :resize_to_fit => [245,900]
     #process :watermark_cart
+    process :quality => 70
     process :resize_boxed
-    
   end
 
   version :thumb do
@@ -40,6 +44,10 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   version :mini do
     process :resize_to_fill => [30, 30]
+  end
+
+  def filename
+    "#{model.slug}.jpg" if original_filename
   end
 
   def extension_white_list

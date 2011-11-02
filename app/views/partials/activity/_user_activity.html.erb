@@ -4,7 +4,7 @@
           <% @to = User.find(activity.to) %>
           <% @comment  = @to.comments_received.find(activity.comment)%>
           <p>
-            <% if controller_name = 'users' %>
+            <% if controller_name == 'users' %>
               <span><%= @user.name %></span>
             <% else %>
               <%= link_to @user.name, user_profile_path(:username => @user.username)  %>
@@ -22,7 +22,7 @@
           <% @to = @art.user %>
           <% @comment  = @art.artcomments.find(activity.comment) %>
           <p>
-            <% if controller_name = 'users' %>
+            <% if controller_name == 'users' %>
               <span><%= @user.name %></span>
             <% else %>
               <%= link_to @user.name, user_profile_path(:username => @user.username)  %>
@@ -38,7 +38,7 @@
         <% when 'upa' %>
           <% @art = Art.find(activity.art) %>
           <p>
-            <% if controller_name = 'users' %>
+            <% if controller_name == 'users' %>
               <span><%= @user.name %></span>
             <% else %>
               <%= link_to @user.name, user_profile_path(:username => @user.username)  %>
@@ -54,7 +54,7 @@
         <% when 'ufu' %>
           <% @to = User.find(activity.to) %>
           <p>
-            <% if controller_name = 'users' %>
+            <% if controller_name == 'users' %>
               <span><%= @user.name %></span>
             <% else %>
               <%= link_to @user.name, user_profile_path(:username => @user.username) %>
@@ -71,7 +71,7 @@
         <% when 'ula' %>
           <% @art = Art.find(activity.art) %>
           <p>
-            <% if controller_name = 'users' %>
+            <% if controller_name == 'users' %>
               <span><%= @user.name %></span>
             <% else %>
               <%= link_to @user.name, user_profile_path(:username => @user.username) %>

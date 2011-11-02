@@ -188,6 +188,6 @@ class Notificator
       NotifierMailer.user_likes_art(originator, receiver, art).deliver
     end
     
-    puts "#{Time.now.to_f - start}"
+    puts "#{Time.now.to_f - start} seg - notificator"
   end
 end

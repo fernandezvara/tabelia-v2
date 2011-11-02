@@ -4,7 +4,7 @@ class OriginalUploader < CarrierWave::Uploader::Base
   storage :file
 
   def store_dir
-    "/original/#{model.id}"
+    "/opt/private/original/#{model.id}"
   end
 
   def extension_white_list
