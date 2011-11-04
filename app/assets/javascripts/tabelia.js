@@ -7,6 +7,6 @@
 //= require masonry
 //= require capify
 //= require farbtastic
-
+//= require slider
 
 //= require onload

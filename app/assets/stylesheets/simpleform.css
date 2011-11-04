@@ -30,6 +30,10 @@
 	border-radius:3px;
 } 
 
+.simple_form div.field_with_errors input[type=text], .simple_form div.field_with_errors select {
+	background-color:#ffc9c9;
+}
+
 .simple_form div.input textarea {
 	height: 150px;
 } 
@@ -64,6 +68,10 @@
 	color: #aaa;
 	display: block;
 	font-style: italic;
+}
+
+.simple_form .boolean .hint {
+	margin-left:0px;
 }
 
 .simple_form p.button {
@@ -115,4 +123,10 @@ textarea {
 	height: 220px;
 	margin:0;
 	padding:5px;
+}
+
+div#errors, div#errors ul {
+	font-size:11px;
+	line-height:13px;
+	color:#c20000;
 }

@@ -1,0 +1,85 @@
+<div class="column unitx5 left first">
+  <div class="column unitx5 full">
+    <h2><%= @art.name %></h2>
+  </div>
+  <hr>
+  <%= form_for @item, :url => cart_create_path do |f| %>
+  <div class="column unitx3 center first">
+    <%= f.hidden_field :width, :value => @min_width %>
+    <%= f.hidden_field :height, :value => @min_height %>
+    <%= f.hidden_field :art_id, :value => @art.id.to_s %>
+    <%= f.hidden_field :cart_id, :value => @current_cart.id.to_s %>
+    <%= image_tag @art.image.url(:cart).to_s, :alt => @art.name, :style => 'margin: 10px auto' %>
+    <p style="text-align:center">Dimensions: <span id="width"><%= @min_width %></span>cm x <span id="mheight"><%= @min_height %></span>cm</p>
+  </div>
+  <div class="column unitx2 right" style="margin-left:0px">
+    
+    <p class="cart_title">MEDIA</p>
+    <div class="input string" style="margin-top:5px">
+      <% medias =  { 'Lienzo' => 1, 'Papel texturado' => 2} %>
+      <%= f.select :media_id, options_for_select(medias, '1'), {}, :style => 'width:150px' %>
+    </div>
+    <p class="cart_title">FRAME</p>
+    <div class="input string" style="margin-top:5px">
+      <% frames =  { 'No' => 0, 'Si' => 1} %>
+      <%= f.select :frame, options_for_select(frames, '0'), {}, :style => 'width:150px;' %>
+    </div>
+    <br />
+    <p class="cart_title">COST</p>
+    <div style="float:left; width: 150px; color:#aaa;">Artist</div><div id="artist_price" style="text-align:right; color:#aaa;"><%= number_to_currency(@artist_price, :unit => '€')%></div>
+    <div style="float:left; width: 150px; color:#aaa;">Reproduction</div><div id="tabelia_price" style="text-align:right;  color:#aaa;"><%= number_to_currency(@tabelia_price, :unit => '€') %></div>
+    <div style="float:left; width: 150px; font-weight:bold;">Total</div><div id="total_price" style="text-align:right; font-weight:bold"><%= number_to_currency(@total, :unit => '€') %></div>    
+    <br />
+    <br />
+    <%= f.submit %>
+    
+    <% end %>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+    var correction = <%= @correction %>;
+    
+    function update_price() {
+    		$.ajax({
+          url: '/cart/price',
+          data: {
+            'art_id'   : '<%= @art.slug %>',
+            'height'   : $('input#item_height').val(),
+            'width'    : $('input#item_width').val(),
+            'media_id' : $('select#item_media_id').val(),
+            'frame'    : $('select#item_frame').val()
+          },
+          dataType: 'script'
+        });
+    }
+    $("#item_width").slider({ 
+      from: <%= @min_width %>, 
+      to: <%= @art.max_width %>, 
+      step: 0.5, 
+      round: 2, 
+      onstatechange: function(value) { 
+        $("span#width").text(parseFloat(value).toFixed(2));
+        var width = parseFloat(value / correction);
+        $("input#item_height").val(width.toFixed(2));
+        $("span#mheight").text(width.toFixed(2));
+        },
+      callback: function() {
+        update_price();
+        },
+      dimension: '&nbsp;cm' });
+    
+    $('select#item_media_id').change(function(){
+      if ($(this).val() == '2') {
+        $('select#item_frame').val('0');
+        $('select#item_frame').attr('disabled', 'disabled');
+      } 
+      else
+      {
+        $('select#item_frame').removeAttr('disabled');
+      }
+      update_price();
+    })
+    $('select#item_frame').change(function(){
+      update_price();
+    })
+  </script>
+</div>

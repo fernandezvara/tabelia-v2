@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'rake', '0.8.7'
 gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
@@ -12,6 +13,7 @@ gem 'mongoid'
 gem 'bson_ext', '1.3.1'
 gem 'trackoid'
 gem 'mongoid_slug'
+gem 'mongoid_i18n', :require => 'mongoid/i18n'
 gem 'redis'
 
 # search
@@ -21,7 +23,7 @@ gem 'sunspot_mongoid'
 
 # Crypt
 gem 'bcrypt-ruby', :require => "bcrypt"
-gem 'omniauth'
+gem 'omniauth', '0.3.2'
 
 #Pretty Forms
 gem 'simple_form'
@@ -38,7 +40,8 @@ gem 'resque'
 gem 'juggernaut'
 gem 'therubyracer'
 
-
+# Country task
+gem 'hpricot'
 
 group :development do
   gem 'faker'

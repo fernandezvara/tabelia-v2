@@ -1,20 +1,11 @@
 Tabelia::Application.routes.draw do
   get "messages/notifications"
-
   get "messages/new"
-
   get "messages/create"
-
-
-
   get "actions/follow"
-
   get "actions/unfollow"
-
   get "actions/like"
-
   get "actions/unlike"
-
   get "category/show"
   get "arts/show"
   get "arts/new"
@@ -25,6 +16,7 @@ Tabelia::Application.routes.draw do
   
   get 'logout' => "sessions#destroy", :as => 'logout'
   get 'login'  => "sessions#new",     :as => "login"
+  get 'signup' => "users#new",        :as => 'signup'
   
   match "admin",                      :controller => 'admin',    :action => 'dashboard',        :as => 'admin'
   match "admin/users",                :controller => 'admin',    :action => 'users_index',      :as => 'admin_users_index'
@@ -72,6 +64,16 @@ Tabelia::Application.routes.draw do
   match 'art/comment/:slug',           :controller => 'comments', :action => 'create_art',        :as => 'comment_art'
   match 'art/comments/:slug/:last',    :controller => 'comments', :action => 'view_art',          :as => 'view_more_art_comments'
   
+  #cart
+  match 'cart',                        :controller => 'cart',      :action => 'index',            :as => 'cart'
+  match 'art/:slug/add_to_cart',       :controller => 'arts',      :action => 'add_to_cart',      :as => 'add_to_cart'
+  match 'cart/add',                    :controller => 'cart',      :action => 'create',           :as => 'cart_create'
+  match 'cart/price',                  :controller => 'cart',      :action => 'price',            :as => 'cart_price'  
+  
+  # addresses
+  match 'address/:type/:address',      :controller => 'addresses', :action => 'address',          :as => 'addresses_address'
+  
+  resources :addresses, :only => [:new, :create, :edit, :update, :destroy]
   resources :arts, :only => [:index, :new, :create, :update]
   resources :sessions
   resources :users do

@@ -1,0 +1,5 @@
+<% if @address_type == 'delivery' %>
+	$("div#delivery_address").html("<%= escape_javascript( render :partial => 'partials/addresses/address', :locals => { :address => @delivery_address})%>");
+<% else %>
+	$("div#invoice_address").html("<%= escape_javascript( render :partial => 'partials/addresses/address', :locals => { :address => @invoice_address})%>");
+<% end %>

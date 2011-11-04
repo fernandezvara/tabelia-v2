@@ -1,0 +1,32 @@
+table {
+	text-align: left;
+	border-collapse: collapse;
+	border-top: 1px solid #c4c4c4;
+	font-size: 12px;
+}
+
+table thead {
+	color: #666;
+	border-bottom: 1px solid #c4c4c4;
+}
+
+table th {
+	font-weight: normal;
+	padding: 5px 8px;
+	color: #666;
+	background: #e5e5e5;
+}
+
+table td {
+	padding: 2px 8px;
+	/* border-top: 1px solid #eee; */
+}
+
+table tr {
+	border-top: none;
+	background: #f9f9f9;
+}
+
+table .odd {
+	background: #fff; 
+}

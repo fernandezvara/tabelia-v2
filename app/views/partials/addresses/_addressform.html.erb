@@ -1,0 +1,26 @@
+<%= simple_form_for @address, :remote => true do |f|%>
+  <% if @address.errors.any? %>
+    <div id="errors">
+    <%= pluralize(@address.errors.count, "error") %>:
+    <ul>
+    <% @address.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    <ul>
+    </div>
+  <% end %>
+  <%= f.input :address_name, :hint => 'Write something you will remember easily. Ex: home ' %>
+  <%= f.input :fullname, :hint => 'Full name of who will receive the order' %>
+  <%= f.input :address_line1, :hint => 'First line of the address. If it\'s a company, write the company name instead.' %>
+  <%= f.input :address_line2, :hint => 'Second line of the address. Address if a company.' %>
+  <%= f.input :city %> 
+  <%= f.input :county %>  
+  <%= f.input :postalcode %>
+  <div class="input optional <%= "field_with_errors" if @address.errors.keys.include?(:country_id) %>">
+    <label class="optional" for="address_country_id">Country</label>
+    <%= collection_select('address', 'country_id', Country.allowed_to_send.order_by([:name, :asc]), :id, :name, :prompt => true) %>
+    <span class="hint">Choose your country</span>
+  </div>
+  <%#= f.association :country, :collection => Country.allowed_to_send.order_by([:name, :asc]), :prompt => "Choose your Country" %>
+  <%= f.submit %>
+<% end %>

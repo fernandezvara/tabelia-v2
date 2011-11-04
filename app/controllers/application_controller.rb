@@ -1,9 +1,30 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  helper_method :current_user
+  helper_method :current_user, :current_cart
   
   before_filter :last_page_to_session, :load_categories
+  
+  def current_cart
+    if cookies[:cart_id]
+      begin
+        @current_cart ||= Cart.find(cookies[:cart_id])
+      rescue
+        current_cart = Cart.new
+        current_cart.save
+        logger.debug '****** nueva Cart ID: ' + current_cart.id.to_s
+        cookies.permanent[:cart_id] = current_cart.id.to_s
+        @current_cart = current_cart
+      end
+    else
+      current_cart = Cart.new
+      current_cart.save
+      logger.debug '****** nueva Cart ID: ' + current_cart.id.to_s
+      cookies.permanent[:cart_id] = current_cart.id.to_s
+      @current_cart = current_cart
+    end
+    @current_cart
+  end
   
   def last_page_to_session
     # writes what was the last page the user visited. To return where you was before log in.

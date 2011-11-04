@@ -10,6 +10,8 @@
  *= require activities
  *= require capify
  *= require farbtastic
+ *= require slider
+ *= require table
  *= require_self
 */
 
@@ -41,7 +43,8 @@ p.s10                   { font-size:10px; }
 p.s11                   { font-size:11px; }
 p.s12                   { font-size:12px; }
 p.s14                   { font-size:14px; }
-p.s16                   { font-size:16px; }
+p.s16                   { font-size:16px; line-height:20px; }
+p.s18                   { font-size:18px; line-height:20px; }
 
 /* ul#listing               { list-style: none; margin-left:0; border: 1px solid #c20000;} */
 ul#listing               { list-style: none; margin-left:0; }
@@ -56,6 +59,14 @@ ul#listing div.artlist   { padding: 10px 0 10px 10px; width: 600px; height:75px;
 ul#listing div.artdata   { padding: 0; width: 515px; height:75px; overflow:hidden;}
 ul#listing div.likes     { padding: 10px 10px 10px 0; width: 100px; height:75px;}
 
+ul#cart                  { list-style: none; margin-left:0; }
+ul#cart li               { border-bottom: 1px solid #ddd; overflow:hidden;} /* border-right: 1px solid #ddd; */
+ul#cart li.even          { background-color: #f1f1f1;}
+ul#cart li:first-child   { border-top:1px solid #ddd;}
+
+ul#cart div.item_shot    { width:300px; padding:10px;}
+ul#cart div.item_info    { padding:10px; width:395px;}
+
 div.image_thumb          { height: 95px; width: 85px; overflow:hidden; display:inline;}
 div.image_thumb a        { line-height: 0px;}
 div.image_thumb img      { padding:10px 10px 10px 0;line-height: 0px;}
@@ -64,6 +75,7 @@ div.userinfo             { width: 125px; padding-top: 5px;}
 div#like_status a,
 div#follow_status a,
 div#message a,
+div#add_to_cart a,
 div#actions a            { top:10px; }
 
 span.search-bg           { background:#fafafa url(/assets/icons/search.png) no-repeat !important; background-position: 290px 4px !important; display:block; padding:2px 5px; margin-top:15px; }
@@ -74,6 +86,8 @@ div#color                { cursor:pointer;}
 .special-right           { width:330px; overflow:hidden;}
 
 .ml10                    { margin-left:10px;}
+
+.cart_title              { font-size:14px; font-weight:bold; color:#464646; margin-bottom:5px;}
 
 /* Searches */
 

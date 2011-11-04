@@ -1,0 +1,3 @@
+$("div#artist_price").text('<%= escape_javascript(number_to_currency(@artist_price, :unit => '€')) %>');
+$("div#tabelia_price").text('<%= escape_javascript(number_to_currency(@tabelia_price, :unit => '€')) %>');
+$("div#total_price").text('<%= escape_javascript(number_to_currency(@total, :unit => '€')) %>');

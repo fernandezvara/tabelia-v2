@@ -1,0 +1,54 @@
+<% if @current_user %>
+  <% if @addresses.count == 0 %>
+  <div class="box orange">
+    <div class="title">ADDRESS</div>
+    <div class="content">
+      <p>There are not address filled on your account.</p>
+      <p>To continue, please <%= link_to 'add a new address', new_address_path, :rel => 'modal' %></p>
+    </div>
+  </div>
+  <% else %>
+  <div class="box orange">
+    <div class="title">DELIVERY ADDRESS</div>
+    <div class="content">
+      <%= collection_select("order", "address_delivery_id", @addresses, :id, :address_name, {:selected => session[:delivery_address] }, :style => 'width:150px') %>
+      <% if @delivery_address %>
+      <div id="delivery_address">
+        <%= render :partial => 'partials/addresses/address', :locals => { :address => @delivery_address } %>
+      </div>
+      <% end %>
+      <% if @invoice_address %>
+      </div>
+      <div class="title">INVOICE ADDRESS</div>
+      <div class="content">
+      <%= collection_select("order", "address_invoice_id", @addresses, :id, :address_name, {:selected => session[:invoice_address]}, :style => 'width:150px') %>
+      <div id="invoice_address">
+        <%= render :partial => 'partials/addresses/address', :locals => { :address => @invoice_address } %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $("select#order_address_delivery_id").live("change", function() {
+      $.ajax({
+        url: '/address/delivery/' + $("select#order_address_delivery_id").val(),
+        dataType: 'script'
+      });
+    });
+    $("select#order_address_invoice_id").live("change", function() {
+      $.ajax({
+        url: '/address/invoice/' + $("select#order_address_invoice_id").val(),
+        dataType: 'script'
+      });
+    });
+  </script>
+  <% end %>
+<% else %>
+<div class="box orange">
+  <div class="title">ADDRESS</div>
+  <div class="content">
+    <p>You need to <%= link_to 'log in', login_path, :rel => 'modal' %> for continue with the purcharse.</p>
+    <p>If you don't have an account, <%= link_to 'register here', signup_path, :rel => 'modal' %></p>
+  </div>
+</div>
+<% end %>

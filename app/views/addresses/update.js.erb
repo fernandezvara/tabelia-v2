@@ -1,0 +1,6 @@
+<% if @errors == false %>
+	flashBar("Dirección editada correctamente.", "success", {});
+	$.facebox.close(); 
+<% else %>
+	$("div#address").html("<%= escape_javascript(render :partial => 'partials/addresses/addressform')%>");
+<% end %>

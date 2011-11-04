@@ -1,0 +1,6 @@
+<%= pluralize(@current_cart.items.count, 'item') %>
+<ul id="cart">
+<% @items.each do |item| %>
+  <%= render :partial => 'partials/cart/index/item', :locals => { :item => item } %>
+<% end %>
+</ul>

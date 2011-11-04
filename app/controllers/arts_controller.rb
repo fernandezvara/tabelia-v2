@@ -109,4 +109,16 @@ class ArtsController < ApplicationController
       format.html { render :layout => 'main' }
     end
   end
+  
+  def add_to_cart
+    @art = Art.where(:slug => params[:slug]).first
+    @cart = current_cart
+    @item = Item.new
+    @min_width = @art.min_width
+    @min_height = @art.min_height
+    @correction = @art.dimension_correction
+    @artist_price = @art.price.to_f
+    @tabelia_price = @art.get_price(@min_height, @min_width, 1, 0).to_f
+    @total = @artist_price + @tabelia_price
+  end
 end

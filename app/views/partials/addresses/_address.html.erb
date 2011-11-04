@@ -1,0 +1,8 @@
+<p><%= address.fullname %></p>
+<p><%= address.address_line1 %></p>
+<p><%= address.address_line2 if address.address_line2.nil? == false %></p>
+<p><%= address.city %></p>
+<p><%= address.county if address.county.nil? == false %></p>
+<p><%= address.postalcode %></p>
+<p><%= address.country.name %></p>
+<p><%= link_to 'Edit address', edit_address_path(address), :rel => 'modal'%> · <%= link_to "New Address", new_address_path, :rel => 'modal' %></p>
