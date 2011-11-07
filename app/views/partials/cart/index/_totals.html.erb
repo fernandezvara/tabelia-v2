@@ -1,0 +1,8 @@
+<div class="box orange">
+  <div class="title">ORDER DETAILS</div>
+  <div class="content">
+    <p><%= number_to_currency(@total_payment_users, :unit => '€') %></p>
+    <p><%= number_to_currency(@total_payment_tabelia, :unit => '€') %></p>
+    <p><%= number_to_currency(@total_payment, :unit => '€') %></p>
+  </div>
+</div>

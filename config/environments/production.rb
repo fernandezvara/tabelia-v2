@@ -57,4 +57,14 @@ Tabelia::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+        :login => "a.fernandez_api1.retocontinuo.com",
+        :password => "F6QHH3PU8XDKHU2R",
+        :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31Aq82t6M6hez5dohH0F8uEfMzRFPH"
+      }
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end

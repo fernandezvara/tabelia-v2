@@ -125,8 +125,6 @@ class Art
       price = price + frame_cost
     end
     
-    
-    
     # returning price
     price
   end

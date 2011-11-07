@@ -40,6 +40,9 @@ gem 'resque'
 gem 'juggernaut'
 gem 'therubyracer'
 
+# Active Merchant
+gem 'activemerchant', :require => 'active_merchant'
+
 # Country task
 gem 'hpricot'
 

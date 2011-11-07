@@ -1,0 +1,18 @@
+<% content_for :title do %>
+  
+<% end %>
+
+<% content_for :left do %>
+  <p>Payment is accepted. Please confirm your purcharse.</p>
+  
+  <%= form_for @order do |f| %>
+    <%= f.submit 'Confirm your order' %>
+  <% end %>
+
+  <br /><br /><br />
+  <%= @details.inspect %>
+<% end %>
+
+<% content_for :right do %>
+  
+<% end %>

@@ -37,3 +37,21 @@
   </div>
   <%= f.submit  %>
 <% end %>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("input#art_price").keydown(function(event) { 
+    if ( event.keyCode == 46 || event.keyCode == 8  || event.keyCode == 9 || event.keyCode == 37  || event.keyCode == 39 ) { 
+    } else { 
+      if (event.keyCode < 95) { 
+        if (event.keyCode < 48 || event.keyCode > 57 ) { 
+          event.preventDefault();	
+        } 
+      } else { 
+        if (event.keyCode < 96 || event.keyCode > 105 ) { 
+          event.preventDefault();	
+        } 
+      } 
+    } 
+  });
+});
+</script>

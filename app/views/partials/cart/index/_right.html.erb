@@ -1,3 +1,9 @@
 <div id="addresses">
-  <%= render 'partials/addresses/addressesorder' %>
+  <%= render :partial => 'partials/addresses/addressesorder' %>
+</div>
+<div id="cart_totals">
+  <%= render :partial => 'partials/cart/index/totals' %>
+</div>
+<div id="checkout">
+  <%= link_to 'Checkout!', cart_checkout_path, :class => 'abutton' %>
 </div>

@@ -27,4 +27,14 @@ Tabelia::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+        :login => "a.fern_1320663000_biz_api1.retocontinuo.com",
+        :password => "1320663030",
+        :signature => "ApO-tASkDf1PB5fLhBpBkWeFZYLhAnEdJ.EyzU0bhJtqvpyN.dtHCG9C"
+      }
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end

@@ -68,11 +68,14 @@ Tabelia::Application.routes.draw do
   match 'cart',                        :controller => 'cart',      :action => 'index',            :as => 'cart'
   match 'art/:slug/add_to_cart',       :controller => 'arts',      :action => 'add_to_cart',      :as => 'add_to_cart'
   match 'cart/add',                    :controller => 'cart',      :action => 'create',           :as => 'cart_create'
-  match 'cart/price',                  :controller => 'cart',      :action => 'price',            :as => 'cart_price'  
+  match 'cart/price',                  :controller => 'cart',      :action => 'price',            :as => 'cart_price'
+  match 'cart/checkout',               :controller => 'cart',      :action => 'checkout',         :as => 'cart_checkout'
   
   # addresses
   match 'address/:type/:address',      :controller => 'addresses', :action => 'address',          :as => 'addresses_address'
   
+  
+  resources :order   #, :only => [:new, :create]
   resources :addresses, :only => [:new, :create, :edit, :update, :destroy]
   resources :arts, :only => [:index, :new, :create, :update]
   resources :sessions
