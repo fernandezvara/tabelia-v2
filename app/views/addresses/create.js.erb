@@ -1,5 +1,8 @@
 <% if @errors == false %>
 	$("div#addresses").html("<%= escape_javascript(render :partial => 'partials/addresses/addressesorder')%>");
+	<% if @items.count > 0 %>
+	$("div#checkout").html("<%= escape_javascript(render :partial => 'partials/cart/index/checkout') %>");
+	<% end %>
 	flashBar("Dirección añadida correctamente.", "success", {});
 	$.facebox.close(); 
 <% else %>

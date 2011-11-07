@@ -24,7 +24,7 @@
             </ul>
           </li>
       <% end %>
-    <li><a href="#">Carrito <% if current_cart.items.count > 0 %>
+    <li><a href="/cart">Carrito <% if current_cart.items.count > 0 %>
       (<%= current_cart.items.count %>)
       <% end %></a></li>
     </ul>

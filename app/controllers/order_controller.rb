@@ -17,16 +17,18 @@ class OrderController < ApplicationController
     @current_cart = current_cart
     @items = @current_cart.items
     
-    @total_payment_users = 0
-    @total_payment_tabelia = 0
-    @total_payment = 0
+    @total_payment_users = 0.0
+    @total_payment_tabelia = 0.0
+    @total_payment_taxes = 0.0
+    @subtotal_payment = 0.0
+    @total_payment = 0.0
     
     @items.each do |item|
       pay_user = item.art.price.round(2)
       pay_tabelia = item.art.get_price(item.height, item.width, item.media_id, item.frame).round(2)
       @total_payment_users = (@total_payment_users + pay_user).round(2)
       @total_payment_tabelia = (@total_payment_tabelia + pay_tabelia).round(2)      
-      @total_payment = (@total_payment + pay_user + pay_tabelia).round(2)
+      @subtotal_payment = (@subtotal_payment + pay_user + pay_tabelia).round(2)
       new_order_item = OrderItem.new
       new_order_item.order = @order
       new_order_item.height = item.height
@@ -41,7 +43,9 @@ class OrderController < ApplicationController
     
     @order.order_users_amount = @total_payment_users * 100
     @order.order_tabelia_amount = @total_payment_tabelia * 100
-    @order.order_total_amount = @total_payment * 100
+    @order.order_subtotal_amount = @subtotal_payment * 100
+    @order.order_tax_amount = (@total_payment_tabelia * 100 * 0.18).round
+    @order.order_total_amount = @order.order_subtotal_amount + @order.order_tax_amount
     
     @order.save
     

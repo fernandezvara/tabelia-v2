@@ -11,6 +11,10 @@
   <% end %>
   <%= f.input :address_name, :hint => 'Write something you will remember easily. Ex: home ' %>
   <%= f.input :fullname, :hint => 'Full name of who will receive the order' %>
+  <%= f.input :is_company, :as => 'radio' %>
+  <div id="company" style="display:<%= @address.is_company == true ? 'block' : 'none' %>">
+    <%= f.input :company %>
+  </div>
   <%= f.input :address_line1, :hint => 'First line of the address. If it\'s a company, write the company name instead.' %>
   <%= f.input :address_line2, :hint => 'Second line of the address. Address if a company.' %>
   <%= f.input :city %> 
@@ -21,6 +25,18 @@
     <%= collection_select('address', 'country_id', Country.allowed_to_send.order_by([:name, :asc]), :id, :name, :prompt => true) %>
     <span class="hint">Choose your country</span>
   </div>
-  <%#= f.association :country, :collection => Country.allowed_to_send.order_by([:name, :asc]), :prompt => "Choose your Country" %>
   <%= f.submit %>
 <% end %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("input:radio").change(function() {
+      if($("input#address_is_company_true:checked").val() == 'true') {
+        $("div#company").slideDown();
+      }
+      else
+      {
+        $("div#company").slideUp();
+      }
+    });
+  });
+</script>

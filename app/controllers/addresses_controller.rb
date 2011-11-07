@@ -37,9 +37,23 @@ class AddressesController < ApplicationController
   end
 
   def update
+    @current_user = current_user
+    @addresses = current_user.addresses
     @address = Address.find(params[:id])
     if @address.update_attributes(params[:address])
       @errors = false
+      if session[:delivery_address].nil? == true and @addresses.count > 0
+        @delivery_address = @current_user.addresses.first
+        session[:delivery_address] = @delivery_address.id.to_s
+      else
+        @delivery_address = Address.find(session[:delivery_address])
+      end
+      if session[:invoice_address].nil? == true and @addresses.count > 0
+        @invoice_address = @current_user.addresses.first
+        session[:invoice_address] = @invoice_address.id.to_s
+      else
+        @invoice_address = Address.find(session[:invoice_address])
+      end
     else
       @errors = true
     end

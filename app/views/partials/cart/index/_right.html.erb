@@ -5,5 +5,7 @@
   <%= render :partial => 'partials/cart/index/totals' %>
 </div>
 <div id="checkout">
-  <%= link_to 'Checkout!', cart_checkout_path, :class => 'abutton' %>
+  <% if @items.count > 0 %>
+  <%= render :partial => 'partials/cart/index/checkout' %>
+  <% end %>
 </div>
