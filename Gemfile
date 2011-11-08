@@ -43,6 +43,9 @@ gem 'therubyracer'
 # Active Merchant
 gem 'activemerchant', :require => 'active_merchant'
 
+# PDFs
+gem 'prawn'
+
 # Country task
 gem 'hpricot'
 

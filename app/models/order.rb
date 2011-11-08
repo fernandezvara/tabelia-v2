@@ -23,6 +23,8 @@ class Order
   
   slug :order_number
   
+  belongs_to :user
+  
   has_many :order_items
   
   has_many :transactions

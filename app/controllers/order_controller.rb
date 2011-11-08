@@ -1,7 +1,7 @@
 class OrderController < ApplicationController
   def new
     @order = Order.new
-    
+    @order.user = current_user
     @details = EXPRESS_GATEWAY.details_for(params[:token])
     
     @order.token = @details.token

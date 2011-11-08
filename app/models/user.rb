@@ -42,6 +42,8 @@ class User
   
   has_many :addresses
   
+  has_many :orders
+  
   references_many :comments_received, :class_name => 'Comment', :foreign_key => 'receiver_id'
   references_many :comments_authored, :class_name => 'Comment', :foreign_key => 'author_id'
   

@@ -1,4 +1,6 @@
 Tabelia::Application.routes.draw do
+  get "invoice/show"
+
   get "messages/notifications"
   get "messages/new"
   get "messages/create"
