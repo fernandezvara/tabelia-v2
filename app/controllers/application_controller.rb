@@ -5,6 +5,16 @@ class ApplicationController < ActionController::Base
   
   before_filter :last_page_to_session, :load_categories
   
+  def rescue_from_routing_error
+    rescue_from ActionController::RoutingError do
+      show_404
+    end
+  end
+  
+  def show_404
+    redirect_to not_found_url
+  end
+  
   def current_cart
     if cookies[:cart_id]
       begin

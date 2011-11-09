@@ -6,33 +6,85 @@ class InvoicePdf < Prawn::Document
     @order = order
     @view = view
     invoice_top
-    #order_number
+    invoice_addresses
     invoice_items
     invoice_totals      
-    # total_price
-    
   end
   
   def invoice_top
     table(top_rows, :column_widths => [260,260]) do
-      column(1).align = :center
+      column(0..1).borders = []
+      row(0).background_color = "c20000"
+      column(1).text_color = "ffffff"
+      column(1).align = :right
+      column(1).size = 14
+      column(1).font_style = :bold
+      column(1).valign = :center
+      column(1).padding = [0,30,0,30]
     end
   end
   
   def top_rows
     image = open("#{Rails.root}/app/assets/images/logo.png")
-    puts image.inspect
     [[{:image => image}, order_number]]
-    #[[image, order_number]]
   end
   
   def order_number
     "Factura #{@order.slug}" #, :size => 24, :style => :bold
   end
   
+  def invoice_addresses
+    move_down 30
+    table(addresses_rows, :column_widths => [220,80,220], :width => 520) do
+      row(0).borders = []
+      column(1).borders = []
+      row(0).background_color = "ffffff"
+      #row(0).padding = 5
+    end
+  end
+  
+  def addresses_rows
+    [
+      ["Shipping Address", "", "Invoice Address"], 
+      [shipping_address, "", invoice_address]
+    ]
+  end
+  
+  def shipping_address
+    shipping_address_array = shipping_address_table
+    make_table(shipping_address_array, :width => 220, :cell_style => { :borders => [] }) do
+      column(0).align = :left
+      column(0).padding = [2, 5, 2, 5]
+      row(0).font_style = :bold
+      row(1..shipping_address_array.count).size = 8
+    end
+  end
+  
+  def shipping_address_table
+    [
+      ["Name"],
+      ["Street"],
+      ["City"]
+    ]
+  end
+  
+  def invoice_address
+    invoice_address_array = invoice_address_table
+    make_table(invoice_address_array, :width => 220, :cell_style => { :borders => [] }) do
+      column(0).align = :left
+      column(0).padding = [2, 5, 2, 5]
+      row(0).font_style = :bold
+      row(1..invoice_address_array.count).size = 8
+    end
+  end
+  
+  def invoice_address_table
+    [['1'], ['2'], ['3']]
+  end
+  
   def invoice_items
     move_down 30
-    table(table_rows, :column_widths => [420,100]) do
+    table(table_rows, :column_widths => [420,100], :cell_style => { :borders => [:top, :bottom, :left, :right], :border_width => 0.3 }) do
       column(1).align = :right
       row(0).font_style = :bold
       row(0).align = :center

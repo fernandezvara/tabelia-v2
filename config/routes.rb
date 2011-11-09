@@ -76,6 +76,7 @@ Tabelia::Application.routes.draw do
   # addresses
   match 'address/:type/:address',      :controller => 'addresses', :action => 'address',          :as => 'addresses_address'
   
+  match 'page_not_found',              :controller => 'pages',     :action => 'not_found',        :as => 'not_found'
   
   resources :order   #, :only => [:new, :create]
   resources :addresses, :only => [:new, :create, :edit, :update, :destroy]
@@ -85,6 +86,8 @@ Tabelia::Application.routes.draw do
     get 'page/:page', :action => :index, :on => :collection
   end
   root :to => 'pages#index'
+
+  match '*a', :to => 'pages#not_found'
 
 
 
