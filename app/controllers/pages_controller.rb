@@ -4,7 +4,7 @@ class PagesController < ApplicationController
       @last = Art.order_by(:created_at, :desc).limit(10)
       render :layout => 'splash'
     else
-      render 'notloggedin', :layout => 'splash'
+      render 'notloggedin', :layout => 'first_page'
     end
   end
 

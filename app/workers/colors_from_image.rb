@@ -7,7 +7,8 @@ class ColorsFromImage
     colors = 64
     art = Art.find(art_id)
     
-    img = Magick::Image.read("#{Rails.root}/public#{art.image}").first
+    #img = Magick::Image.read("#{Rails.root}/public#{art.image}").first
+    img = Magick::Image.read(art.original.versions[:scaled].to_s).first
     img = img.quantize(colors)
 
     hist = img.color_histogram

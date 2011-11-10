@@ -7,7 +7,7 @@ class User
   
   attr_accessor :password
   
-  before_create :generate_username, :generate_token
+  before_create :generate_username, :generate_token, :generate_confirmation_tokens
   before_save :encrypt_password
   after_save     :resque_solr_update
   before_destroy :resque_solr_remove
@@ -23,10 +23,15 @@ class User
   field :locale,        :type => String
   field :admin,         :type => Boolean,  :default => false
   field :show_search,   :type => Boolean,  :default => true
+  field :conf1,         :type => String
+  field :conf2,         :type => String
+  field :confirmed,     :type => Boolean,  :default => false
   
   index :email,      unique: true
   index :auth_token, unique:true
   index :username,   unique:true
+  index :conf1 # confirmation token 1
+  index :conf2 # confirmation token 2
   
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
                                   #    /^([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})$/i
@@ -88,6 +93,11 @@ class User
   	  self.password_salt = BCrypt::Engine.generate_salt
   	  self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
   	end
+  end
+  
+  def generate_confirmation_tokens
+    self.conf1 = SecureRandom.urlsafe_base64
+    self.conf2 = SecureRandom.urlsafe_base64
   end
   
   def generate_token

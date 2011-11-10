@@ -2,6 +2,9 @@ class OrderController < ApplicationController
   def new
     @order = Order.new
     @order.user = current_user
+    @order.delivery_address_id = session[:delivery_address]
+    @order.invoice_address_id = session[:invoice_address]
+    
     @details = EXPRESS_GATEWAY.details_for(params[:token])
     
     @order.token = @details.token
@@ -12,6 +15,7 @@ class OrderController < ApplicationController
     
     @order.order_number = "#{Time.now.year} "
     @order.ip_address = request.remote_ip
+
     @order.save
     
     @current_cart = current_cart

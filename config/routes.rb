@@ -18,7 +18,7 @@ Tabelia::Application.routes.draw do
   
   get 'logout' => "sessions#destroy", :as => 'logout'
   get 'login'  => "sessions#new",     :as => "login"
-  get 'signup' => "users#new",        :as => 'signup'
+
   
   match "admin",                      :controller => 'admin',    :action => 'dashboard',        :as => 'admin'
   match "admin/users",                :controller => 'admin',    :action => 'users_index',      :as => 'admin_users_index'
@@ -78,11 +78,17 @@ Tabelia::Application.routes.draw do
   
   match 'page_not_found',              :controller => 'pages',     :action => 'not_found',        :as => 'not_found'
   
+  # User creation
+   # OLD: get 'signup' => "users#new",        :as => 'signup'
+  match 'signup',                      :controller => 'users',  :action => 'signup',        :as => 'signup'
+  match 'signup/tabelia',              :controller => 'users',  :action => 'new',           :as => 'new_user'
+  match 'signup/:provider',            :controller => 'users',  :action => 'new_provider',  :as => 'new_user_provider'
+  
   resources :order   #, :only => [:new, :create]
   resources :addresses, :only => [:new, :create, :edit, :update, :destroy]
   resources :arts, :only => [:index, :new, :create, :update]
   resources :sessions
-  resources :users do
+  resources :users, :only => [:index, :create, :edit, :update] do
     get 'page/:page', :action => :index, :on => :collection
   end
   root :to => 'pages#index'

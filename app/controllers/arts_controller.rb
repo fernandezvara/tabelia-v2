@@ -122,7 +122,7 @@ class ArtsController < ApplicationController
     @min_width = @art.min_width
     @min_height = @art.min_height
     @correction = @art.dimension_correction
-    @artist_price = (@art.price / 100).to_f.round(2)
+    @artist_price = (@art.price).to_f.round(2)
     @tabelia_price = @art.get_price(@min_height, @min_width, 1, 0).to_f
     @total = @artist_price + @tabelia_price
   end

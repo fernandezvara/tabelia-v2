@@ -92,3 +92,7 @@ div#color                { cursor:pointer;}
 /* Searches */
 
 span.search-bg { cursor:pointer;}
+
+/* First Page Footer */
+footer.first_page { margin-bottom:0px; bottom: 0px; position:fixed; height:36px; background-color:#fff; border-top: 3px solid #c20000;}
+footer.first_page div.footer_width { width:990px; margin: 0 auto; }

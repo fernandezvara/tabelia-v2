@@ -38,6 +38,8 @@ class InvoicePdf < Prawn::Document
     table(addresses_rows, :column_widths => [220,80,220], :width => 520) do
       row(0).borders = []
       column(1).borders = []
+      row(0).size = 12
+      row(0).font_style = :bold
       row(0).background_color = "ffffff"
       #row(0).padding = 5
     end
@@ -56,16 +58,25 @@ class InvoicePdf < Prawn::Document
       column(0).align = :left
       column(0).padding = [2, 5, 2, 5]
       row(0).font_style = :bold
-      row(1..shipping_address_array.count).size = 8
+      row(0).size = 11
+      row(1..shipping_address_array.count).size = 10
     end
   end
   
   def shipping_address_table
-    [
-      ["Name"],
-      ["Street"],
-      ["City"]
-    ]
+    @address = @order.delivery_address
+    address_to_return = Array.new
+    
+    address_to_return << [@address.fullname]
+    address_to_return << [@address.company] if @address.is_company?
+    address_to_return << [@address.address_line1]
+    address_to_return << [@address.address_line2] if @address.address_line2
+    address_to_return << [@address.city] if @address.city
+    address_to_return << [@address.county] if @address.county
+    address_to_return << [@address.postalcode] if @address.postalcode
+    address_to_return << [@address.country.name.upcase]
+    
+    address_to_return
   end
   
   def invoice_address
@@ -74,12 +85,25 @@ class InvoicePdf < Prawn::Document
       column(0).align = :left
       column(0).padding = [2, 5, 2, 5]
       row(0).font_style = :bold
-      row(1..invoice_address_array.count).size = 8
+      row(0).size = 11
+      row(1..invoice_address_array.count).size = 10
     end
   end
   
   def invoice_address_table
-    [['1'], ['2'], ['3']]
+    @address = @order.invoice_address
+    address_to_return = Array.new
+    
+    address_to_return << [@address.fullname]
+    address_to_return << [@address.company] if @address.is_company?
+    address_to_return << [@address.address_line1]
+    address_to_return << [@address.address_line2] if @address.address_line2
+    address_to_return << [@address.city] if @address.city
+    address_to_return << [@address.county] if @address.county
+    address_to_return << [@address.postalcode] if @address.postalcode
+    address_to_return << [@address.country.name.upcase]
+    
+    address_to_return
   end
   
   def invoice_items
@@ -133,6 +157,7 @@ class InvoicePdf < Prawn::Document
       column(0).font_style = :bold
       column(0..1).align= :right
       column(0..1).borders = []
+      column(0..1).size = 10
       self.header = false
     end
   end

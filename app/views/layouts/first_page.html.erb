@@ -1,0 +1,25 @@
+<%= render :partial => '/partials/common/htmlhead' %>
+<body class="page-home">
+  <%= render :partial => '/partials/common/header' %>
+  <div id="page" style ="top:50px">
+    
+    <div id="content">
+      <section class="width4 stroke" id='main'>
+        <section class="column width4" id="main-title">
+          <%= yield :title %>
+        </section>        
+        <section class="column special-left first" id="main-left">
+          <%= yield :left %>
+          <br />
+        </section>
+        <section class="special-right" id="main-right">
+          <%= yield :right %>
+          <br />
+        </section>
+      </section>
+    </div><!-- content -->
+  </div>
+    <%= render :partial => '/partials/common/first_footer' %>
+
+</body>
+</html>

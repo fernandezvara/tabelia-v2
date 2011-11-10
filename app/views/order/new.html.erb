@@ -6,7 +6,7 @@
   <p>Payment is accepted. Please confirm your purcharse.</p>
   
   <%= form_for @order do |f| %>
-    <%= f.submit 'Confirm your order' %>
+    <%= f.submit 'Confirm your order', :disable_with => "Please wait..." %>
   <% end %>
 
   <br /><br /><br />

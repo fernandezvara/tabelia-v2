@@ -21,6 +21,9 @@ class Order
   
   field :status,                  :type => Integer
   
+  field :delivery_address_id,     :type => String
+  field :invoice_address_id,      :type => String
+  
   slug :order_number
   
   belongs_to :user
@@ -28,6 +31,14 @@ class Order
   has_many :order_items
   
   has_many :transactions
+  
+  def delivery_address
+    Address.where(:user_id => user_id.to_s).find(delivery_address_id)
+  end
+  
+  def invoice_address
+    Address.where(:user_id => user_id.to_s).find(invoice_address_id)
+  end
   
   def purchase
     response = process_purchase
