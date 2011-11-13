@@ -59,7 +59,6 @@ $(document).ready(function(){
 		// caption span % of the image
 		spanWidth: '100%'
 	});
-
 	
 });
 

@@ -1,3 +1,7 @@
+<div id="add_to_cart">
+  <%= link_to "Buy now (from " + number_to_currency(@art.price + @art.get_price(@art.min_height, @art.min_width, 1, 0), :unit => '€') + ")", add_to_cart_path(:slug => @art.slug), :class => ['abutton', 'big', 'yellow'], :rel => 'modal' %>
+</div>
+
 <%= render :partial => 'partials/art/profile/artinfo' %>
 <%= render :partial => 'partials/art/profile/moreartfromuser' %>
 <% if @similar_art.count > 0 %>

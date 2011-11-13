@@ -1,5 +1,10 @@
 <% content_for :left do %>
+  <h2>Sign up</h2>
+  <div id="signup">
   <p>Creación de nueva cuenta.....</p>
   <p> Pulsa si quieres un proveedor de validación, facebook, twitter, google</p>
-  
+  </div>
+  <%= link_to image_tag('social/twitter_64.png',  :alt => "Twitter",  :class => "effect"), '/auth/twitter' %>
+  <%= link_to image_tag('social/facebook_64.png', :alt => "Facebook", :class => "effect"), '/auth/facebook' %>
+  <%= link_to image_tag('social/google_64.png',   :alt => "Google",   :class => "effect"), '/auth/google_oauth2' %>
 <% end %>

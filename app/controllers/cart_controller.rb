@@ -46,10 +46,7 @@ class CartController < ApplicationController
         @invoice_address = Address.find(session[:invoice_address])
       end
     end   
-    
-    
-    puts @invoice_address.country_id
-    puts @invoice_address.is_company
+
     if @invoice_address
       @total_payment_taxes = Taxes.calculate(@invoice_address.country_id.upcase, @invoice_address.is_company, @total_payment_tabelia).round(2)
       @total_payment = (@subtotal_payment + @total_payment_taxes).round(2)

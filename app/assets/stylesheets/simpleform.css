@@ -8,7 +8,7 @@
 	float: left;
 	width: 100px;
 	text-align: right;
-	margin: 0px 10px 4px 10px;
+	margin: 4px 10px 4px 10px;
 }
 
 .simple_form div.input {
@@ -19,12 +19,9 @@
 	font: 12px/16px Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	width:335px;
 	margin: 0 10px 0 0;
-	padding: 5px;
-	background: #F8F8F5;
-	border-left: 1px solid #D1CEC6;
-	border-top: 1px solid #D1CEC6;
-	border-right: 1px solid #EDEDE8;
-	border-bottom: 1px solid #EDEDE8;
+	padding: 6px 5px;
+	background: #fcfcfc;
+	border: 1px solid #ddd;
 	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
@@ -130,3 +127,11 @@ div#errors, div#errors ul {
 	line-height:13px;
 	color:#c20000;
 }
+
+form.login input#email, form.login input#password { width:264px; margin:0; }
+
+form.big div.input label, form.big div.input input[type=text], form.big div.input input[type=password], form.big div.input textarea, form.big div.input select { 
+	font: 15px/20px Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	}
+	
+	

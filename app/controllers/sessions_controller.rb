@@ -64,6 +64,7 @@ class SessionsController < ApplicationController
     cookies.delete(:auth_token)
     session[:invoice_address] = nil if session[:invoice_address]
     session[:delivery_address] = nil if session[:delivery_address]
+    session[:locale] = nil if session[:locale]
     redirect_to root_url, :notice => "Logged out!"
   end
 

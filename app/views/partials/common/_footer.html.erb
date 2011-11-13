@@ -1,3 +1,13 @@
-    <footer class="full">
-    	<p>Copyright &copy; 2011. All Rights Reserved</p>
+    <footer class="width4">
+      <div class="column width1 first">
+        <p><%= t('language.you_are_using')%> <%= t('language.language_name') %> <%= link_to t('language.change_link'), change_locale_path, :rel => 'modal' %></p>
+      </div>
+      <div class="column width3">
+    	<p class="align-right">
+    	  <%= link_to("Directory", users_path) %> · 
+    	  <%= link_to("Condiciones generales", page_terms_path) %> · 
+    	  <%= link_to("Trabajo", page_jobs_path) %> · 
+    	  
+    	  Copyright &copy; 2011. All Rights Reserved</p>
+    	</div>
     </footer>

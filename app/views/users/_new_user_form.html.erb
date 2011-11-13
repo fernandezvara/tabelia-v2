@@ -1,4 +1,19 @@
-<%= form_for @user do |f| %>
+<%= simple_form_for @user do |f| %>
+  
+  <%= f.input :name %>
+  <%= f.input :username %>
+  <%= f.input :email %>
+  
+  <div class="input optional <%= "field_with_errors" if @user.errors.keys.include?(:country_id) %>">
+    <label class="optional" for="address_country_id">Country</label>
+    <%= collection_select('user', 'country_id', Country.allowed_to_user.order_by([:name, :asc]), :id, :name, :prompt => true) %>
+    <span class="hint">Choose your country</span>
+  </div>
+  
+  <% if @user.from_provider == false %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+  <% end %>
   
   <%= f.submit %>
   

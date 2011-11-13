@@ -1,32 +1,66 @@
 input[type=submit], input[type=button], a.abutton, .pagination a {
-	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	box-shadow:inset 0px 1px 0px 0px #ffffff;
-	/* background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
-	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% ); 
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
-
-	background: #ededed url('/assets/icons/search1.png') no-repeat 0 0; */
-
-	background-color:#ededed;
+	-moz-box-shadow:inset 0px 1px 0px 0px #e20000;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #e20000;
+	box-shadow:inset 0px 1px 0px 0px #f20000;
+	background-color:#e20000;
 	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
-	border:1px solid #dcdcdc;
+	border:1px solid #c20000;
 	display:inline-block;
-	color:#777777 !important;
+	color:#ffffff !important;
 	font-size: 12px;
+	font-weight:bold;
 	text-decoration:none;
-	text-shadow:1px 1px 0px #ffffff;
+	text-shadow:1px 1px 0px #b92800;
 	position:relative;
-	top: -3px;
+	width:auto;
+	cursor:hand;
+	margin-bottom:1px;
+}
+
+input[type=submit].big, input[type=button].big, a.abutton.big {
+	font-size: 16px;
+	padding: 8px 10px;
+}
+
+input[type=submit].green, input[type=button].green, a.abutton.green {
+	background-color: #8db783;
+	-moz-box-shadow:inset 0px 1px 0px 0px #DCECD8;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #DCECD8;
+	box-shadow:inset 0px 1px 0px 0px #DCECD8;
+	border:1px solid #617F5A;
+	color:#fff !important;
+	text-shadow:1px 1px 0px #74966c;
+}
+
+input[type=submit].green:hover, input[type=button].green:hover, a.green:hover, .pagination a.green:hover {
+	background-color:#74966c !important;
+	text-shadow:1px 1px 0px #617F5A;
+	text-decoration:none;
+	cursor: hand;
+}
+
+input[type=submit].yellow, input[type=button].yellow, a.abutton.yellow {
+	background-color: #e9ce1c;
+	-moz-box-shadow:inset 0px 1px 0px 0px #e0b020;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #e0b020;
+	box-shadow:inset 0px 1px 0px 0px #e0b020;
+	border:1px solid #ad9916;
+	color:#fff !important;
+	text-shadow:1px 1px 0px #c4ae19;
+}
+
+input[type=submit].yellow:hover, input[type=button].yellow:hover, a.yellow:hover, .pagination a.yellow:hover {
+	background-color:#e0b020 !important;
+	text-shadow:1px 1px 0px #ad9916;
+	text-decoration:none;
+	cursor: hand;
 }
 
 input[type=submit]:hover, input[type=button]:hover, a.abutton:hover, .pagination a:hover {
-	/* background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
-	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed'); */
-	background-color:#dfdfdf;
+	background-color:#f20000;
+	text-decoration:none;
 	cursor: hand;
 }
 
@@ -70,28 +104,21 @@ a.abutton {
 	text-decoration:none;
 	text-shadow:1px 1px 0px #ffffff;
 	position:relative;
-	top: -3px;	
 }
 
 .pagination span.current {
-	/* background:-webkit-gradient( linear, left top, left bottom, color-stop(0, #ff7878), color-stop(1, #bf3939) );
-	background:-moz-linear-gradient( center top, #ff7878 0%, #bf3939 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7878', endColorstr='#bf3939'); */
-	-moz-box-shadow:inset 0px 1px 0px 0px #ff0000;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #ff0000;
-	box-shadow:inset 0px 1px 0px 0px #ff0000;
-	background-color:#d40000;
+	background-color:#ff0000;
 	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
 	border:1px solid #c20000;
 	display:inline-block;
-	color:#fff;
-	padding:2px 12px;
+	color:#a20000;
+	padding:2px 16px;
 	text-decoration:none;
-	text-shadow:1px 1px 0px #ff0000;
+	text-shadow:1px 1px 0px #f20000;
 	position:relative;
-	top: -3px;
+	cursor:pointer;
 }
 
 a.follow {
@@ -151,17 +178,17 @@ a.delete:hover {
 
 a.like {
 	padding:2px 12px 2px 24px;
-	background: #ededed url('/assets/icons/heartgrey.png') no-repeat 6px 5px;
+	background: #d20000 url('/assets/icons/heartgrey.png') no-repeat 6px 5px;
 }
 
 a.like:hover {
 	padding:2px 12px 2px 24px;
-	background: #ededed url('/assets/icons/heartred.png') no-repeat 6px 5px;
+	background: #f20000 url('/assets/icons/heartred.png') no-repeat 6px 5px;
 }
 
 a.unlike {
 	padding:2px 12px 2px 24px;
-	background: #ededed url('/assets/icons/heartred2.png') no-repeat 6px 5px;
+	background: #d20000 url('/assets/icons/heartred2.png') no-repeat 6px 5px;
 }
 
 a.unlike:hover {

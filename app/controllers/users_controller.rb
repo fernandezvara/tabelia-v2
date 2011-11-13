@@ -36,23 +36,53 @@ class UsersController < ApplicationController
 
   def signup
     @title = t("users.signup.title")
-    render :layout => 'main'
+    render :layout => 'first_page'
   end
 
   def new
     @user = User.new
     @title = t("users.new.title")
-    render :layout => 'main'
+    render :layout => 'first_page'
   end
 
   def new_provider
-    @user = User.new
     # @user.first_name = auth........ Debemos rellenar los datos
     # Hay que cambiar los usuarios, deben tener un first_name y last_name y un self.name que los concatene, permitirá organizar
     # por nombre, apellidos, etc, habrá que cambiar también las reglas de sunspot
     # además debe asignar un user-name que no exista ya
-    @title = t("users.new.title")
-    render :layout => 'main'
+    
+    
+    @auth = request.env['omniauth.auth']
+    remote_user = Authorization.where(:provider => @auth["provider"], :uid => @auth["uid"]).first
+
+    if remote_user.nil? == true
+      # no existe el usuario...
+      
+      puts ' ---- AUTH ---- ' 
+      puts @auth.inspect.to_yaml
+      
+      @user = User.new
+      @user.get_data_from_provider(@auth)
+      puts '**** USER.INSPECT ****'
+      puts @user.inspect
+      @user.save!
+      @authorization = Authorization.create!(:provider => @auth["provider"], :uid => @auth["uid"], :user => @user)
+      
+      cookies.permanent[:auth_token] = @user.auth_token
+      
+      @title = t("users.new.title")
+      render :layout => 'first_page'
+    else
+      cookies.permanent[:auth_token] = remote_user.user.auth_token
+      notice = "Logged in!"
+      redirect_to_or_default(root_url, :notice => notice)
+    end
+
+  end
+
+  def failure
+    @auth = request.env['omniauth.auth']
+    render :layout => 'first_page'
   end
 
   def create
@@ -69,8 +99,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+    @title = t("users.new.title")
+    render :layout => 'main'
+    
+  end
+
 
   def update
+    @user = User.find(params[:id])
+
+    if @user.update_attributes(params[:user])
+      redirect_to :root
+    else
+      render :action => 'edit', :layout => 'main'
+    end
   end
 
   def followers

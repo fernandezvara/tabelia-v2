@@ -69,14 +69,10 @@ table											{ font: inherit; width: 100%; }
 article, aside, header, hgroup,
 nav, figure, section, footer					{ display: block;}
 
-/* Debug */
-.debug											{ outline: solid gold 1px; }
-.debug-background								{ background: rgba(255, 215, 0, 0.2) !important; }
-
 body								{ font-size: 75%; line-height: 1.5; /*12/18*/ }
 
 h1, h2, h3, h4, h5      			{ position: relative; color: #464646;}
-h1, h2								{ line-height: 28px; margin-bottom: 15px; }
+h1, h2								{ line-height: 28px; margin-bottom: 25px; }
 h1, h2, h3, h4						{ margin-top: 18px; }
 h3, h4, h5      					{ line-height: 18px; }
 h1									{ font-size: 28px; top: 10px; }
@@ -89,7 +85,8 @@ h2:first-child,
 h3:first-child,
 h4:first-child						{ margin-top: 0; margin-left:10px;}
 
-p, pre, address						{ font-size: 13px; line-height: 18px; position: relative; top: 5px; display:block; }
+p									{ font-size: 13px; line-height: 18px; position: relative; top: 5px; display:block; }
+pre { top: 200px;}
 small								{ font-size: 11px; }
 abbr, code, kbd,
 samp, small, var					{ line-height: 15px; }
@@ -105,51 +102,9 @@ caption								{ font-size: 13px; line-height: 18px; position: relative; }
 hr									{ position: relative; height: 4px; margin: 0 0 10px 0; }
 
 
-
-/******************** Forms ********************/
-label.width1, label.width2,
-label.width3, label.width4		{ margin-left: 18px; float: left; }
-
-label.unitx1, label.unitx2,
-label.unitx3, label.unitx4,
-label.unitx5, label.unitx6,
-label.unitx7, label.unitx8		{ margin-left: 18px; float: left; }
-label.first						{ margin-left: 0; }
-
-label.width4, label.unitx8		{ width: 990px; overflow: hidden; }
-
-label.width1 input[type="text"], label.width1 input[type="password"], label.width1 input[type="select"], label.width1 input[type="search"]	{ width: 228px; }
-label.width2 input[type="text"], label.width2 input[type="password"], label.width2 input[type="select"], label.width2 input[type="search"]	{ width: 480px; }
-label.width3 input[type="text"], label.width3 input[type="password"], label.width3 input[type="select"], label.width3 input[type="search"]	{ width: 732px; }
-label.width4 input[type="text"], label.width4 input[type="password"], label.width4 input[type="select"], label.width4 input[type="search"]	{ width: 984px; }
-
-label.width1 select				{ width: 234px; }
-label.width2 select				{ width: 486px; }
-label.width3 select				{ width: 738px; }
-label.width4 select				{ width: 990px; }
-
-label.unitx1 input[type="text"], label.unitx1 input[type="password"], label.unitx1 input[type="select"], label.unitx1 input[type="search"]	{ width: 102px; }
-label.unitx2 input[type="text"], label.unitx2 input[type="password"], label.unitx2 input[type="select"], label.unitx2 input[type="search"]	{ width: 228px; }
-label.unitx3 input[type="text"], label.unitx3 input[type="password"], label.unitx3 input[type="select"], label.unitx3 input[type="search"]	{ width: 354px; }
-label.unitx4 input[type="text"], label.unitx4 input[type="password"], label.unitx4 input[type="select"], label.unitx4 input[type="search"]	{ width: 480px; }
-label.unitx5 input[type="text"], label.unitx5 input[type="password"], label.unitx5 input[type="select"], label.unitx5 input[type="search"]	{ width: 606px; }
-label.unitx6 input[type="text"], label.unitx6 input[type="password"], label.unitx6 input[type="select"], label.unitx6 input[type="search"]	{ width: 732px; }
-label.unitx7 input[type="text"], label.unitx7 input[type="password"], label.unitx7 input[type="select"], label.unitx7 input[type="search"]	{ width: 858px; }
-label.unitx8 input[type="text"], label.unitx8 input[type="password"], label.unitx8 input[type="select"], label.unitx8 input[type="search"]	{ width: 984px; }
-
-label.unitx1 select				{ width: 108px; }
-label.unitx2 select				{ width: 234px; }
-label.unitx3 select				{ width: 360px; }
-label.unitx4 select				{ width: 486px; }
-label.unitx5 select				{ width: 612px; }
-label.unitx6 select				{ width: 738px; }
-label.unitx7 select				{ width: 864px; }
-label.unitx8 select				{ width: 990px; }
-
-
 /******************** Grid ********************/
 #page				{ width: 990px; position: relative; } /* 82.5em */
-#page:after			{ content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+/* #page:after			{ content: "."; display: block; height: 0; clear: both; visibility: hidden; } */ 
 
 /* Base column markup */
 .column				{ margin-left: 18px; display: block; float: left; } /* 1.5em */

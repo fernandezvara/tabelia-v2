@@ -1,0 +1,16 @@
+<div style="width:350px">
+<p><span class="title"><%= t('language.change.title')%></span></p>
+<br />
+<p><%= t('language.change.text') %></p>
+<br />
+<ul>
+  <% @languages.each do |key, value| %>
+    <% if I18n.locale == key %>
+      <li><%= value %></li>
+    <% else %>
+      <li><%= link_to value, set_locale_path(:language => key.to_s)%></li>
+    <% end %>
+  <% end %>
+</ul>
+<br />
+</div>

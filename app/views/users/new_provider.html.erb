@@ -1,3 +1,7 @@
+<% content_for :title do %>
+  <h2>Nueva cuenta</h2>
+<% end %>
+
 <% content_for :left do %>
   <p>Creación de nueva cuenta..... Usando un proveedor</p>
   <p> Aquí debe ir el formulario </p>
@@ -5,4 +9,6 @@
   <div id="new_user_form">
     <%= render :partial => 'users/new_user_form' %>
   </div>
+  
+  <p><%= @auth.inspect %></p>
 <% end %>

@@ -1,4 +1,6 @@
 Tabelia::Application.routes.draw do
+  get "locale/set"
+
   get "invoice/show"
 
   get "messages/notifications"
@@ -58,7 +60,7 @@ Tabelia::Application.routes.draw do
   match "search",                     :controller => 'search',   :action => 'index',            :as => "search"
 
   match "category/:slug",             :controller => 'category', :action => 'show',             :as => "category"
-  match 'auth/:provider/callback',    :controller => 'sessions', :action => 'create_external',  :as => 'create_external'
+
 
   match 'user/comment/:username',     :controller => 'comments', :action => 'create',           :as => 'comment_user'
   match 'view/comments/:username/:last',    :controller => 'comments', :action => 'view',          :as => 'view_more_comments'
@@ -82,7 +84,18 @@ Tabelia::Application.routes.draw do
    # OLD: get 'signup' => "users#new",        :as => 'signup'
   match 'signup',                      :controller => 'users',  :action => 'signup',        :as => 'signup'
   match 'signup/tabelia',              :controller => 'users',  :action => 'new',           :as => 'new_user'
-  match 'signup/:provider',            :controller => 'users',  :action => 'new_provider',  :as => 'new_user_provider'
+  match 'auth/:provider/callback',     :controller => 'users',  :action => 'new_provider',  :as => 'new_user_provider'
+  match 'auth/failure',                :controller => 'users',  :action => 'failure'
+  #match 'signup/:provider',            :controller => 'users',  :action => 'new_provider',  :as => 'new_user_provider'
+  
+  #match 'auth/:provider/callback',    :controller => 'sessions', :action => 'create_external',  :as => 'create_external'
+  
+  match 'terms',                       :controller => 'pages',   :action => 'terms',        :as => 'page_terms'
+  match 'privacy',                     :controller => 'pages',   :action => 'privacy',      :as => 'page_privacy'
+  match 'jobs',                        :controller => 'pages',   :action => 'jobs',         :as => 'page_jobs'
+  
+  match 'language',                    :controller => 'locale',  :action => 'change',       :as => 'change_locale'
+  match 'locale/:language',            :controller => 'locale',  :action => 'set',          :as => 'set_locale'        
   
   resources :order   #, :only => [:new, :create]
   resources :addresses, :only => [:new, :create, :edit, :update, :destroy]
@@ -93,7 +106,7 @@ Tabelia::Application.routes.draw do
   end
   root :to => 'pages#index'
 
-  match '*a', :to => 'pages#not_found'
+  #match '*a', :to => 'pages#not_found'
 
 
 

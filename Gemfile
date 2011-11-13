@@ -23,7 +23,13 @@ gem 'sunspot_mongoid'
 
 # Crypt
 gem 'bcrypt-ruby', :require => "bcrypt"
-gem 'omniauth', '0.3.2'
+# gem 'omniauth' , '0.3.2'
+
+gem "omniauth", ">= 1.0.0"
+gem 'omniauth-twitter'
+gem 'omniauth-facebook', '~> 1.0.0.rc1'
+gem 'omniauth-google-oauth2'
+
 
 #Pretty Forms
 gem 'simple_form'

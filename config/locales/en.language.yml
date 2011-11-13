@@ -1,0 +1,8 @@
+en:
+    language:
+        language_name: 'English'
+        you_are_using: 'Language: '
+        change_link: 'change/cambiar'
+        change:
+            title: 'CHANGE YOUR LANGUAGE'
+            text: 'We are working for add more languages, actually you can select just these two:'

@@ -1,0 +1,8 @@
+es:
+    language:
+        language_name: 'Castellano'
+        you_are_using: 'Lenguaje: '
+        change_link: 'change/cambiar'
+        change:
+            title: 'SELECCIONA UN IDIOMA'
+            text: 'Estamos trabajando para añadir más lenguajes. De momento puedes seleccionar uno de estos dos:'

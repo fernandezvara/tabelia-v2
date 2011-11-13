@@ -1,25 +1,39 @@
 <%= render :partial => '/partials/common/htmlhead' %>
 <body class="page-home">
   <%= render :partial => '/partials/common/header' %>
+  
   <div id="page" style ="top:50px">
-    
-    <div id="content">
-      <section class="width4 stroke" id='main'>
-        <section class="column width4" id="main-title">
-          <%= yield :title %>
-        </section>        
-        <section class="column special-left first" id="main-left">
-          <%= yield :left %>
-          <br />
+    <div id="container">
+      <div id="content">
+        <section class="width4 stroke" id='main'>
+          <section class="column width4" id="main-title">
+            <%= yield :title %>
+          </section>        
+          <section class="column special-left first" id="main-left">
+            <%= yield :left %>
+            <br />
+          </section>
+          <section class="special-right" id="main-right">
+            <%= yield :right %>
+            <br />
+          </section>
         </section>
-        <section class="special-right" id="main-right">
-          <%= yield :right %>
-          <br />
-        </section>
-      </section>
-    </div><!-- content -->
+      </div><!-- content -->
+    </div>
   </div>
     <%= render :partial => '/partials/common/first_footer' %>
+  
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var w_height=$(window).height();
+        $("div#content").css("min-height", w_height - 110);
+      });
+      $(window).resize(function() {
+        var w_height=$(window).height();
+        $("div#content").css("min-height", w_height - 110);
+      })
+    </script>
 
 </body>
 </html>

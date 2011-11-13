@@ -1,7 +1,7 @@
 #topmenu { 	padding: 0;margin: 0;float: right;  user-select: none; -moz-user-select: none;-khtml-user-select: none;}
 #topmenu .homemenu a, #topmenu .homemenu span { color:#fff; font-size:12px; }
 #topmenu .homemenu ul li a, #topmenu .homemenu ul li span { text-decoration:none; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;	}
-#topmenu .homemenu ul li:hover>a { background: #d40000; }
+#topmenu .homemenu ul li:hover>a { background: #d20000; }
 #topmenu .homemenu ul ul { }
 #topmenu .homemenu ul ul li:first-child { border-top: 1px solid #b30000; }
 #topmenu .homemenu ul ul li:last-child { border-bottom:	2px solid #c20000;}

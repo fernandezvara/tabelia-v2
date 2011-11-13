@@ -13,6 +13,6 @@
   
   <% end %>
 </div>
-<div class="column unitx2" id="add_to_cart">
-  <%= link_to "Buy now (from " + number_to_currency(@art.price + @art.get_price(@art.min_height, @art.min_width, 1, 0), :unit => '€') + ")", add_to_cart_path(:slug => @art.slug), :class => 'abutton', :rel => 'modal' %>
+<div class="column unitx2">
+
 </div>

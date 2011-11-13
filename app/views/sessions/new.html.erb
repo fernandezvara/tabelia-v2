@@ -2,7 +2,7 @@
   <p><span class="title"><%= t("sessions.new.title") %></span> <%#= link_to 'create a new account', sign_up_path(:go => params[:go]), :rel => 'modal' %></p>
   <br />
   <div id="error_in_form"></div>
-  <%= form_tag sessions_path, :class => 'simple_form', :remote => true do %>
+  <%= form_tag sessions_path, :class => ['simple_form', 'login'], :remote => true do %>
     <div class="input">
   	<%= label_tag :email %>
   	<%= text_field_tag :email, params[:email] %>
@@ -20,5 +20,17 @@
 
   <%= link_to image_tag('social/twitter_64.png',  :alt => "Twitter",  :class => "effect"), '/auth/twitter' %>
   <%= link_to image_tag('social/facebook_64.png', :alt => "Facebook", :class => "effect"), '/auth/facebook' %>
-  <%= link_to image_tag('social/google_64.png',   :alt => "Google",   :class => "effect"), '/auth/google' %>
+  <%= link_to image_tag('social/google_64.png',   :alt => "Google",   :class => "effect"), '/auth/google_oauth2' %>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("img.effect").hover(
+      function(){
+        	$(this).fadeTo("fast", 0.8);
+      },
+      function() {
+        	$(this).fadeTo("fast", 1);
+      });
+  });
+</script>

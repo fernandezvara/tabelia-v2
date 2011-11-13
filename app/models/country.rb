@@ -17,6 +17,6 @@ class Country
   }
   
   scope :allowed_to_send , where(:accept_send => true)
-
+  scope :allowed_to_user , where(:accept_user => true)
   
 end
