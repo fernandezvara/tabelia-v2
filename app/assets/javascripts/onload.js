@@ -24,7 +24,7 @@ $(document).ready(function(){
 		}
 	});
 	$(window).bind("popstate", function() {
-		$.getScript(location.href);
+		//$.getScript(location.href);
 		$("html, body").animate({ scrollTop: 0 }, "slow");
 	});
 	$("li.message").live({

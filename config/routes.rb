@@ -1,4 +1,24 @@
 Tabelia::Application.routes.draw do
+  get "profile/basic"
+
+  get "profile/about"
+
+  get "profile/avatar"
+
+  get "profile/privacy"
+
+  get "profile/services"
+
+  get "profile/basic_update"
+
+  get "profile/about_update"
+
+  get "profile/avatar_update"
+
+  get "profile/privacy_update"
+
+  get "profile/services_update"
+
   get "locale/set"
 
   get "invoice/show"
@@ -97,16 +117,18 @@ Tabelia::Application.routes.draw do
   match 'language',                    :controller => 'locale',  :action => 'change',       :as => 'change_locale'
   match 'locale/:language',            :controller => 'locale',  :action => 'set',          :as => 'set_locale'        
   
+  #match 'user/:username/edit',         :controller => 'users',   :action => 'edit',         :as => 'edit_user'
+  
   resources :order   #, :only => [:new, :create]
-  resources :addresses, :only => [:new, :create, :edit, :update, :destroy]
+  resources :addresses, :only => [:new, :create, :update, :destroy]
   resources :arts, :only => [:index, :new, :create, :update]
   resources :sessions
-  resources :users, :only => [:index, :create, :edit, :update] do
+  resources :users, :only => [:index, :edit, :create, :update] do
     get 'page/:page', :action => :index, :on => :collection
   end
   root :to => 'pages#index'
 
-  #match '*a', :to => 'pages#not_found'
+  match '*a', :to => 'pages#not_found'
 
 
 

@@ -1,0 +1,7 @@
+ul#profile { padding:8px 10px; margin:0; list-style: none; width:718px; background-color:#c20000; line-height:18px; font-size:12px; overflow:hidden;}
+ul#profile li { position:relative; float:left; }
+ul#profile li a:link, ul#profile li a:visited { padding:4px 10px; margin:0 4px; background-color: #d20000; color:#fff; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;}
+ul#profile li a:hover { background-color:#e20000; text-decoration:none; }
+ul#profile li a.active { background-color:#fff; color:#c20000; }
+
+div#profile_form { margin:10px; padding:10px; width:698px; overflow:hidden;}

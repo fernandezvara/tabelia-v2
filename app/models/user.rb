@@ -3,7 +3,7 @@ class User
   include Mongoid::Timestamps
   include Sunspot::Mongoid
   
-  attr_accessible :email, :password, :password_confirmation, :avatar, :name, :about, :locale, :country_id
+  attr_accessible :email, :password, :password_confirmation, :avatar, :name, :about, :language, :country_id, :username
   
   attr_accessor :password
   
@@ -20,13 +20,15 @@ class User
   field :username,      :type => String,   :presence => true
   field :about,         :type => String
   field :auth_token,    :type => String,   :presence => true
-  field :locale,        :type => String
+  field :language,        :type => String
   field :admin,         :type => Boolean,  :default => false
   field :show_search,   :type => Boolean,  :default => true
   field :conf1,         :type => String
   field :conf2,         :type => String
   field :confirmed,     :type => Boolean,  :default => false
   field :from_provider, :type => Boolean,  :default => false
+  
+  field :gender,        :type => Boolean,  :default => true
   
   field :twitter_url,   :type => String
   field :facebook_url,  :type => String
@@ -40,15 +42,18 @@ class User
   index :conf1 # confirmation token 1
   index :conf2 # confirmation token 2
   
+  key :username
+  
   validates_presence_of :name
   validates_presence_of :username
   validates_presence_of :email, :on => :update  
   validates_presence_of :country_id, :on => :update
-
+  validates_uniqueness_of :email, :on => :update
+  validates_uniqueness_of :username
 
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :on => :update
                                   #    /^([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})$/i
-  validates_confirmation_of :password
+  validates_confirmation_of :password, :on => :create
   validates_presence_of :password, :on => :create
   
   # Avatar

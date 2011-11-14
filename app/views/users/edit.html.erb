@@ -1,10 +1,49 @@
+<% content_for :title do %>
+  <h2><%= t("users.edit.title") %>
+<% end %>
+
 <% content_for :left do %>
-  <p>Creación de nueva cuenta..... Usando un proveedor</p>
-  <p> Aquí debe ir el formulario </p>
-  
-  <div id="new_user_form">
-    <%= render :partial => 'users/new_user_form' %>
+
+<ul id="profile">
+  <li><a href="/users/antoniofernandezvara-gmail-com/edit" class="active">Información básica</a></li>
+  <li><a href="#">Sobre mi</a></li>
+  <li><a href="#">Avatar</a></li>
+  <li><a href="#">Privacidad</a></li>
+  <li><a href="#">Servicios vinculados</a></li>
+</ul>
+
+  <div id="profile_form">
+    <p>Edición de usuario</p>
+    <p> Aquí debe ir el formulario </p>
+    <br />
+    <div id="new_user_form">
+      <%= render :partial => 'users/new_user_form' %>
+    </div>
   </div>
   
-  <p><%= @auth.inspect %></p>
+  <script type="text/javascript">
+    $(window).ready(function(){
+      $("input.tip").tipsy();
+    });
+  
+    $("ul#profile li a").click(function(e) {
+      if($(this).hasClass("active") == false) {
+        e.preventDefault();
+        $("ul#profile li").each(function(){
+         $(this).children().removeClass("active"); 
+        });
+
+        $(this).addClass("active");
+        $.ajax({ url: $(this).attr('href'),
+        dataType: 'script'
+        });
+        //$("div#profile_form").load("http://localhost:3000/");
+      }
+      else
+      {
+        e.preventDefault();
+      }
+      
+    });
+  </script>
 <% end %>

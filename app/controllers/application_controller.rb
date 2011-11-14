@@ -7,13 +7,21 @@ class ApplicationController < ActionController::Base
   
   def set_locale
     logger.debug "DEBUG: languages: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
-    if controller_name != 'locale' and action_name != 'set'
+     if action_name != 'set'
+      if current_user
+        if current_user.language != session[:locale]
+          u = current_user
+          u.language = session[:locale]
+          u.save!
+        end
+      end
+
       if session[:locale].nil?
         logger.debug "DEBUG: no hay locale en session"
         if @current_user
           logger.debug "DEBUG: usando lenguage del usuario: #{current_user.locale}"
-          session[:locale] = current_user.locale
-          I18n.locale = current_user.locale.to_sym
+          session[:locale] = current_user.language
+          I18n.locale = current_user.language.to_sym
         else
           temp_locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/[a-z]{2}/).first
           logger.debug "DEBUG: lenguage leido: #{temp_locale}"
@@ -28,6 +36,7 @@ class ApplicationController < ActionController::Base
           end
         end
       else
+        logger.debug "************DEBUG:usando locale en session: #{session[:locale]}"
         I18n.locale = session[:locale].to_sym
       end
     end 
@@ -85,7 +94,7 @@ class ApplicationController < ActionController::Base
   private
   
   def current_user
-    @current_user ||= User.where(:auth_token => cookies[:auth_token]).first if cookies[:auth_token]
+      @current_user ||= User.where(:auth_token => cookies[:auth_token]).first if cookies[:auth_token]
   end
   
   def load_categories

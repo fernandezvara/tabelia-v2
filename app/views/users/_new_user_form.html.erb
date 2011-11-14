@@ -1,8 +1,27 @@
+<% if @user.errors.any? %>
+  <div id="errors">
+  <%= pluralize(@user.errors.count, "error") %>:
+  <ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  <ul>
+  </div>
+<% end %>
+
+
 <%= simple_form_for @user do |f| %>
   
-  <%= f.input :name %>
-  <%= f.input :username %>
+  <%= f.input :name, :hint => 'Enter your name' %>
+  <%= f.input :username, :hint => "Tu dirección en tabelia es: " %>
+  <span class="hint" id="user_url">http://www.tabelia.com/user/<%= @user.username %></span>
   <%= f.input :email %>
+  <div class="input optional">
+    <label class="optional" for="gender">Sexo:</label>
+    <div style="margin-left:120px">
+      <%= f.collection_radio :gender, [[true, 'Mujer'] ,[false, 'Hombre']], :first, :last %>
+    </div>
+  </div>
   
   <div class="input optional <%= "field_with_errors" if @user.errors.keys.include?(:country_id) %>">
     <label class="optional" for="address_country_id">Country</label>
@@ -18,3 +37,18 @@
   <%= f.submit %>
   
 <% end %>
+
+<script type="text/javascript">
+  $("input#user_username").keyup(function(){
+    if ($(this).val().length > 3) {
+      var username = $(this).val();
+      $("span#user_url").text('http://www.tabelia.com/user/' + username);
+      $("input[type=submit]").removeAttr("disabled");
+    }
+    else
+    {
+      $("span#user_url").html('El nombre de usuario debe tener más de 3 letras');
+      $("input[type=submit]").attr("disabled", "disabled");
+    }
+  });
+</script>

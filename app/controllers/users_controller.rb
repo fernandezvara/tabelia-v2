@@ -58,22 +58,18 @@ class UsersController < ApplicationController
     if remote_user.nil? == true
       # no existe el usuario...
       
-      puts ' ---- AUTH ---- ' 
-      puts @auth.inspect.to_yaml
-      
       @user = User.new
       @user.get_data_from_provider(@auth)
-      puts '**** USER.INSPECT ****'
-      puts @user.inspect
+      @user.language = I18n.locale.to_s
       @user.save!
       @authorization = Authorization.create!(:provider => @auth["provider"], :uid => @auth["uid"], :user => @user)
       
       cookies.permanent[:auth_token] = @user.auth_token
-      
-      @title = t("users.new.title")
-      render :layout => 'first_page'
+
+      redirect_to(edit_user_url(:id => @user.id))
     else
       cookies.permanent[:auth_token] = remote_user.user.auth_token
+      session[:locale] = remote_user.user.language
       notice = "Logged in!"
       redirect_to_or_default(root_url, :notice => notice)
     end
@@ -85,12 +81,6 @@ class UsersController < ApplicationController
     render :layout => 'first_page'
   end
 
-  def create
-    # deberá crear el usuario, además debe crear la tarea Resque para que envíe el correo de confirmación.
-    # se llamará a este create usando data-remote, de forma que si hay un error de validación debe reescribir el formulario,
-    # que estará englobado en <div id="new_user_form"> ... </div>
-  end
-
   def username_exists
     # devuelve si el nombre de usuario ya existe.
     @response = User.username_exists?(params[:username])
@@ -100,20 +90,17 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
-    @title = t("users.new.title")
+    @user = current_user
+    @title = t("users.edit.title")
     render :layout => 'main'
-    
   end
 
-
   def update
-    @user = User.find(params[:id])
-
+    @user = current_user
     if @user.update_attributes(params[:user])
       redirect_to :root
     else
-      render :action => 'edit', :layout => 'main'
+      render :action => :edit, :layout => 'main'
     end
   end
 

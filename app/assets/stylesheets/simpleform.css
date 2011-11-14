@@ -75,20 +75,6 @@
 	text-align: right;
 }
 
-input[disabled] {
-	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	box-shadow:inset 0px 1px 0px 0px #ffffff;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f3f3f3), color-stop(1, #f0f0f0) );
-	background:-moz-linear-gradient( center top, #f3f3f3 5%, #f0f0f0 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f3f3f3', endColorstr='#f0f0f0');
-	background-color:#f0f3f0;
-	border:1px solid #dcdcdc;
-	color:#ddd;
-	text-shadow:1px 1px 0px #ffffff;
-}
-
-
 div#error_in_form {
 	width:80%;
 	margin: 0 auto 10px auto;
@@ -126,6 +112,7 @@ div#errors, div#errors ul {
 	font-size:11px;
 	line-height:13px;
 	color:#c20000;
+	margin:10px;
 }
 
 form.login input#email, form.login input#password { width:264px; margin:0; }
@@ -133,5 +120,3 @@ form.login input#email, form.login input#password { width:264px; margin:0; }
 form.big div.input label, form.big div.input input[type=text], form.big div.input input[type=password], form.big div.input textarea, form.big div.input select { 
 	font: 15px/20px Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	}
-	
-	

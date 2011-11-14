@@ -51,6 +51,17 @@ input[type=submit].yellow, input[type=button].yellow, a.abutton.yellow {
 	text-shadow:1px 1px 0px #c4ae19;
 }
 
+input[disabled], input[disabled]:hover {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:#eee;
+	color:#ddd;
+	text-shadow:1px 1px 0px #ffffff;
+	border:1px solid #ddd;
+}
+
+
 input[type=submit].yellow:hover, input[type=button].yellow:hover, a.yellow:hover, .pagination a.yellow:hover {
 	background-color:#e0b020 !important;
 	text-shadow:1px 1px 0px #ad9916;

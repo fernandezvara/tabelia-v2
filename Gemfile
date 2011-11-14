@@ -9,12 +9,14 @@ gem 'rails', '3.1.0'
 #gem 'sqlite3'
 
 # Database
-gem 'mongoid'
-gem 'bson_ext', '1.3.1'
+gem 'mongoid', '2.2.3'
+gem 'bson_ext', '1.4.0'
 gem 'trackoid'
 gem 'mongoid_slug'
 gem 'mongoid_i18n', :require => 'mongoid/i18n'
 gem 'redis'
+gem 'redis-store'
+
 
 # search
 gem 'sunspot'
@@ -54,6 +56,9 @@ gem 'prawn', '1.0.0.rc1'
 
 # Country task
 gem 'hpricot'
+
+
+
 
 group :development do
   gem 'faker'

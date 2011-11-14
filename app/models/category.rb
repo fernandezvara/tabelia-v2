@@ -1,11 +1,10 @@
 class Category
   include Mongoid::Document
-  include Mongoid::Slug
+  include Mongoid::I18n
   
-  field :en, :type => String
-  field :es, :type => String
-  
-  slug :en
-  
+  localized_field :name,    :type => String
+
+  field :slug
+
   has_many :arts
 end

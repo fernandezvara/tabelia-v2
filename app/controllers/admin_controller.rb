@@ -57,8 +57,12 @@ class AdminController < ApplicationController
   private
   
   def user_admin?
-    if current_user.is_admin? == false
-      redirect_to :root
+    if current_user.nil? == true 
+      redirect_to :not_found
+    else
+      if current_user.is_admin? == false
+        redirect_to :not_found
+      end
     end
   end
 

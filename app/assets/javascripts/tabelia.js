@@ -8,5 +8,6 @@
 //= require capify
 //= require farbtastic
 //= require slider
+//= require tipsy
 
 //= require onload

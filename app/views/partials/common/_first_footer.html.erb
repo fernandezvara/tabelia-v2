@@ -1,5 +1,15 @@
 <footer class="full first_page">
   <div class="footer_width">
-	  <p>Copyright &copy; 2011. All Rights Reserved</p>
+	  <div class="column width1 first">
+      <p><%= t('language.you_are_using') %> <%= t('language.language_name') %> <%= link_to t('language.change_link'), change_locale_path, :rel => 'modal' %></p>
+    </div>
+    <div class="column width3 no-gutter right">
+  	<p class="align-right">
+  	  <%= link_to("Directory", users_path) %> · 
+  	  <%= link_to("Condiciones generales", page_terms_path) %> · 
+  	  <%= link_to("Trabajo", page_jobs_path) %> · 
+  	  
+  	  Copyright &copy; 2011. All Rights Reserved</p>
+  	</div>
 	</div>
 </footer>
