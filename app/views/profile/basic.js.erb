@@ -1,0 +1,4 @@
+$("div#profile_form").html("<%= escape_javascript(render :partial => 'profile/basic_form') %>");
+<% flash.each do |key, msg| %>
+flashBar("<%= msg %>", "<%= key %>", {});
+<% end %>

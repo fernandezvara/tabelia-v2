@@ -12,7 +12,8 @@
 }
 
 .simple_form div.input {
-	margin-bottom: 10px;
+	margin-bottom: 20px;
+	overflow:none;
 }
 
 .simple_form div.input input[type=text], .simple_form div.input input[type=password], .simple_form div.input textarea, .simple_form div.input select {
@@ -120,3 +121,5 @@ form.login input#email, form.login input#password { width:264px; margin:0; }
 form.big div.input label, form.big div.input input[type=text], form.big div.input input[type=password], form.big div.input textarea, form.big div.input select { 
 	font: 15px/20px Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	}
+
+div#user_url { clear:left; margin-left:120px; font-size:14px; color:#c20000; background-color:#fafafa; border: 1px solid #f0f0f0; display:block; text-align: center; padding:10px; width:330px;margin-bottom:10px; cursor:default;}

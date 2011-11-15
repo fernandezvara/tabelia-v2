@@ -20,56 +20,33 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{model.username}.jpg" if original_filename
+    # "avatar.jpg" if original_filename
+    "#{random_token}.jpg" if original_filename.present?
+  end
+
+  def random_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, ActiveSupport::SecureRandom.hex(2))
   end
 
   process :resize_to_fill => [150, 150] 
-  process :quality => 70
+  process :convert => 'jpg'
+  process :quality => 75
   
   # Create different versions of your uploaded files:
   
   version :thumb do
      process :resize_to_fill => [75, 75]
-     process :quality => 70
+     process :quality => 75
   end
   
   version :mini do
      process :resize_to_fill => [30, 30]
-     process :quality => 70
+     process :quality => 75
   end
 
   def extension_white_list
-    %w(jpg jpeg)
+    %w(jpg jpeg png)
   end
-
-
-  # Provide a default URL as a default if there hasn't been a file uploaded:
-  # def default_url
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  # end
-
-  # Process files as they are uploaded:
-  # process :scale => [200, 300]
-  #
-  # def scale(width, height)
-  #   # do something
-  # end
-
-  # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :scale => [50, 50]
-  # end
-
-  # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
-
-  # Override the filename of the uploaded files:
-  # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
 
 end

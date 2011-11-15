@@ -4,7 +4,16 @@
     <% if @user.about.nil? == true %>
       El usuario no ha escrito nada sobre él
     <% else %>
-      <%= @user.about %>
+      <%= Redcarpet.new(@user.about, :filter_html, :hard_wrap, :autolink, :no_intraemphasis).to_html.html_safe %>
     <% end %>
   </div>
+  <% if @inspirations.count > 0 %>
+    <div class="title">INSPIRATIONS</div>
+    <div class="content">
+      <p><% @inspirations.each do |tag| %>
+        <%= link_to tag, "#", :class => 'tag' %>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
 </div>

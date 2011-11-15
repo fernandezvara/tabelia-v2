@@ -17,6 +17,8 @@ gem 'mongoid_i18n', :require => 'mongoid/i18n'
 gem 'redis'
 gem 'redis-store'
 
+# Markdown
+gem 'redcarpet'
 
 # search
 gem 'sunspot'

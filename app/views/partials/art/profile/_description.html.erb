@@ -1,13 +1,15 @@
 <div class="box green">
   <div class="title">DESCRIPTION</div>
   <div class="content">
-    <p><%= simple_format(@art.description) if @art.description %></p>
+    <%= Redcarpet.new(@art.description, :filter_html, :hard_wrap, :autolink, :no_intraemphasis).to_html.html_safe if @art.description %>
   </div>
-  <div class="title">TAGS</div>
-  <div class="content">
-    <p><% @tags.each do |tag| %>
-      <%= link_to tag, "#", :class => 'tag' %>
-      <% end %>
-    </p>
-  </div>
+  <% if @tags.count > 0 %>
+    <div class="title">TAGS</div>
+    <div class="content">
+      <p><% @tags.each do |tag| %>
+        <%= link_to tag, "#", :class => 'tag' %>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
 </div>

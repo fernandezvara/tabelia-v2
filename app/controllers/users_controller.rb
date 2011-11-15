@@ -8,6 +8,11 @@ class UsersController < ApplicationController
     else
       @comment = Comment.new
       @comments = @user.comments_received.order_by(:created_at, :desc).limit(10)
+      inspirations = Tagging.of_object_as_where_creator(@user, 'insp', @user)
+      @inspirations = Array.new
+      inspirations.each do |tag|
+        @inspirations << tag.tag.text
+      end
       @title = @user.name.to_s
       if request.env['HTTP_REFERER'].nil? == true
         referrer = "-"
@@ -66,7 +71,7 @@ class UsersController < ApplicationController
       
       cookies.permanent[:auth_token] = @user.auth_token
 
-      redirect_to(edit_user_url(:id => @user.id))
+      redirect_to(profile_basic_path)
     else
       cookies.permanent[:auth_token] = remote_user.user.auth_token
       session[:locale] = remote_user.user.language

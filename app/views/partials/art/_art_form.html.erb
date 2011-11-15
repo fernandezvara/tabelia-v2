@@ -22,7 +22,7 @@
   </div>
   <div class="input select optional">
     <%= f.label :category, :class => ['select', 'optional'] %>
-    <%= f.select :category_id, options_from_collection_for_select(Category.all, 'id', 'en', @art.category_id) %>
+    <%= f.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name', @art.category_id) %>
     <span class="hint">Select the category this art belongs.</span>
   </div>
   <div class="input string optional">

@@ -1,2 +1,15 @@
-<h1>Profile#avatar</h1>
-<p>Find me in app/views/profile/avatar.html.erb</p>
+<% content_for :title do %>
+  <%= render :partial => 'profile/title' %>
+<% end %>
+
+<% content_for :left do %>
+
+  <%= render :partial => 'profile/links' %>
+
+  <div id="profile_form">
+      <%= render :partial => 'profile/avatar_form' %>
+    </div>
+  </div>
+  
+  <%= render :partial => 'profile/javascript' %>
+<% end %>

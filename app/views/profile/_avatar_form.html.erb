@@ -1,0 +1,21 @@
+<% if @user.errors.any? %>
+  <div id="errors">
+  <%= pluralize(@user.errors.count, "error") %>:
+  <ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  <ul>
+  </div>
+<% end %>
+
+  <div style="margin: 10px 0px 10px 120px; overflow:none;">
+    <%= image_tag(@user.avatar.url.to_s, :alt => @user.name) %>
+  </div>
+<%= simple_form_for @user, :url => profile_avatar_path, :multipart => true, :remote => true do |f| %>
+  
+  <%= f.input :avatar, :as => 'file', :input_html => { :title => t("simple_form.titles.avatar") } %>
+
+  <%= f.submit %>
+  
+<% end %>

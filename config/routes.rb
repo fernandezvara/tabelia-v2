@@ -117,6 +117,13 @@ Tabelia::Application.routes.draw do
   match 'language',                    :controller => 'locale',  :action => 'change',       :as => 'change_locale'
   match 'locale/:language',            :controller => 'locale',  :action => 'set',          :as => 'set_locale'        
   
+  match 'profile/basic',               :controller => 'profile', :action => 'basic',        :as => 'profile_basic'
+  match 'profile/about',               :controller => 'profile', :action => 'about',        :as => 'profile_about'
+  match 'profile/avatar',              :controller => 'profile', :action => 'avatar',       :as => 'profile_avatar'
+  match 'profile/privacy',             :controller => 'profile', :action => 'privacy',      :as => 'profile_privacy'
+  match 'profile/services',            :controller => 'profile', :action => 'services',     :as => 'profile_services'
+
+  
   #match 'user/:username/edit',         :controller => 'users',   :action => 'edit',         :as => 'edit_user'
   
   resources :order   #, :only => [:new, :create]

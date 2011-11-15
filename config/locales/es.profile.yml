@@ -1,0 +1,26 @@
+es:
+    simple_form:
+        labels:
+            name: 'Nombre completo'
+            username: 'Usuario'
+            email: "Correo Electrónico"
+            gender: "Sexo"
+            country: "País"
+            about: 'Sobre mí'
+            inspirations: "Inspirado por"
+            avatar: 'Imágen de tu perfil'
+        titles: 
+            name: "Escribe el nombre que quieras que otros vean"
+            username: "Escribe el nombre de usuario que deseas"
+            email: "Escribe tu dirección de correo. Recuerda que si cambias de dirección recibirás un correo electrónico para confirmar el cambio."
+            country: "Selecciona tu país"
+            user_url: "Esta es tu ruta de acceso a tu perfil. Es el acceso rápido a tu perfil de usuario."
+            about: "Lo que escribas aquí saldrá en tu perfil. Escribe sobre tu obra, tu currículum, etc"
+            inspirations: "Cosas que te inspiran. Debes separar cada uno usando una coma (,)."
+            avatar: "Sube la imágen que desees mostrar en tu perfil."
+    helpers:
+          submit:
+            user:
+              create: "Crear usuario"
+              update: "Guardar cambios"
+        

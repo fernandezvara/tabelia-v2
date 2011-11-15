@@ -1,0 +1,23 @@
+<script type="text/javascript">
+  $(window).ready(function(){
+    $("input, select, div#user_url, textarea").tipsy({
+      live: true,
+      trigger: 'hover',
+      gravity: 'w'
+    });
+  });
+
+  $("ul#profile li a").live("click", function(e) {
+    if($(this).hasClass("active") == false) {
+      $("ul#profile li").each(function(){
+       $(this).children().removeClass("active"); 
+      });
+
+      $(this).addClass("active");
+    }
+    else
+    {
+      e.preventDefault();
+    }
+  });
+</script>

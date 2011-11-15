@@ -18,7 +18,7 @@
       <li><%= link_to current_user.name, user_profile_path(current_user.username) %>
         <ul class="sub-menu">
           <li><%= link_to 'my art', arts_path %></li>
-          <li><a href="#">settings</a></li>
+          <li><%= link_to 'my settings', profile_basic_path %></li>
           <li><a href="#">my orders</a></li>
           <li><%= link_to 'sign out', logout_path %></li>
         </ul>

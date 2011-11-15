@@ -3,9 +3,11 @@ class User
   include Mongoid::Timestamps
   include Sunspot::Mongoid
   
-  attr_accessible :email, :password, :password_confirmation, :avatar, :name, :about, :language, :country_id, :username
+  attr_accessible :email, :password, :password_confirmation, :avatar, :name, :about, :language, :country_id, :username, :gender, :inspirations
   
-  attr_accessor :password
+  attr_accessor :password, :inspirations
+  
+  after_save :create_inspirations
   
   before_create :generate_username, :generate_token, :generate_confirmation_tokens
   before_save :encrypt_password
@@ -15,24 +17,24 @@ class User
   field :email,         :type => String
   field :password_hash, :type => String,   :presence => true
   field :password_salt, :type => String,   :presence => true
-  field :avatar,        :type => String
+  #field :avatar,        :type => String
   field :name,          :type => String,   :presence => true
   field :username,      :type => String,   :presence => true
   field :about,         :type => String
   field :auth_token,    :type => String,   :presence => true
-  field :language,        :type => String
+  field :language,      :type => String
   field :admin,         :type => Boolean,  :default => false
   field :show_search,   :type => Boolean,  :default => true
   field :conf1,         :type => String
   field :conf2,         :type => String
   field :confirmed,     :type => Boolean,  :default => false
   field :from_provider, :type => Boolean,  :default => false
-  
+
   field :gender,        :type => Boolean,  :default => true
   
   field :twitter_url,   :type => String
   field :facebook_url,  :type => String
-  field :website_url,   :tyep => String
+  field :website_url,   :type => String
   
   belongs_to :country
   
@@ -41,8 +43,6 @@ class User
   index :username,   unique: true
   index :conf1 # confirmation token 1
   index :conf2 # confirmation token 2
-  
-  key :username
   
   validates_presence_of :name
   validates_presence_of :username
@@ -176,6 +176,16 @@ class User
       self.username = temp_username
     else
       generate_username(text, counter)
+    end
+  end
+
+  def create_inspirations
+    if inspirations.nil? == false
+      Tagging.delete_all_tags_of_object_as_where_creator(self, 'insp', self)
+      tags_array = inspirations.split(',')
+      tags_array.each do |tag|
+        Tagging.new_tag_for(self, tag, 'insp', self)
+      end
     end
   end
   
