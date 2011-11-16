@@ -41,6 +41,26 @@
 <% end %>
 
 <script type="text/javascript">
+  $(document).ready(function() {
+    $("input#user_username").keydown(function(event) { 
+      if ( event.keyCode == 46 || event.keyCode == 8  || event.keyCode == 9 || event.keyCode == 37  || event.keyCode == 39 ) { 
+      } else { 
+        if (event.keyCode < 95) { 
+          if (event.keyCode < 48 || event.keyCode > 90 ) { 
+            event.preventDefault();	
+          } 
+        } else { 
+          if (event.keyCode < 96 || event.keyCode > 105) { 
+            if (event.keyCode != 189) {
+              event.preventDefault();	
+            }
+          } 
+        } 
+      } 
+    });
+  });
+
+
   $("input#user_username").keyup(function(){
     if ($(this).val().length > 3) {
       var username = $(this).val();

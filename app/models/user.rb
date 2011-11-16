@@ -7,24 +7,22 @@ class User
   
   attr_accessor :password, :inspirations
   
-  after_save :create_inspirations
-  
   before_create :generate_username, :generate_token, :generate_confirmation_tokens
+  after_create :generate_privacy
+  
   before_save :encrypt_password
-  after_save     :resque_solr_update
+  after_save     :resque_solr_update, :create_inspirations
   before_destroy :resque_solr_remove
   
   field :email,         :type => String
   field :password_hash, :type => String,   :presence => true
   field :password_salt, :type => String,   :presence => true
-  #field :avatar,        :type => String
   field :name,          :type => String,   :presence => true
   field :username,      :type => String,   :presence => true
   field :about,         :type => String
   field :auth_token,    :type => String,   :presence => true
   field :language,      :type => String
   field :admin,         :type => Boolean,  :default => false
-  field :show_search,   :type => Boolean,  :default => true
   field :conf1,         :type => String
   field :conf2,         :type => String
   field :confirmed,     :type => Boolean,  :default => false
@@ -51,6 +49,7 @@ class User
   validates_uniqueness_of :email, :on => :update
   validates_uniqueness_of :username
 
+  validates_format_of :username, :with => /^[a-zA-Z0-9-]+$/i
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :on => :update
                                   #    /^([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})$/i
   validates_confirmation_of :password, :on => :create
@@ -72,14 +71,19 @@ class User
   
   embeds_many :useractivities
   
+  embeds_one :privacy
+  
   searchable do
     text :name, :boost => 3, :stored => true
+    string :name
     text :username
     integer :arts_count do
       self.arts.count
     end
     time :created_at
-    boolean :show_search
+    integer :show_search do
+      self.privacy.sos
+    end
   end
   
   def get_data_from_provider(auth)
@@ -101,7 +105,7 @@ class User
     if auth["info"]["urls"]
       self.website_url = auth["info"]["urls"]["Website"] if auth["info"]["urls"]["Website"]
       case auth["provider"]
-      when "twitter1"
+      when "twitter"
         self.twitter_url = auth["info"]["urls"]["Twitter"] if auth["info"]["urls"]["Twitter"]
       when "facebook"
         self.facebook_url = auth["info"]["urls"]["Facebook"] if auth["info"]["urls"]["Facebook"]
@@ -109,11 +113,9 @@ class User
     end
         
     # fake password
-    random_password = ActiveSupport::SecureRandom.hex(10)
+    random_password = SecureRandom.urlsafe_base64 #ActiveSupport::SecureRandom.hex(10)
     self.password = random_password
-    self.password_confirmation = self.password
-    
-    puts self.inspect
+    self.password_confirmation = random_password
   end
   
   
@@ -177,6 +179,12 @@ class User
     else
       generate_username(text, counter)
     end
+  end
+  
+  def generate_privacy
+    privacy = Privacy.new
+    self.privacy = privacy
+    privacy.save
   end
 
   def create_inspirations

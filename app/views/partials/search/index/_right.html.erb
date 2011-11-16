@@ -22,7 +22,7 @@
     <div class="title">FILTERS</div>
     <div class="content">
       <p>Categories:</p><br />
-      <%= select_tag "category", options_from_collection_for_select(@categories, "slug", "en"), :prompt => "All categories" %>
+      <%= select_tag "category", options_from_collection_for_select(@categories, "slug", "name"), :prompt => "All categories" %>
     </div>
     <div class="title">SEARCH BY COLOR</div>
     <div class="content">

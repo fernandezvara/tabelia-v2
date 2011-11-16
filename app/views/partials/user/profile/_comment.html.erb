@@ -1,3 +1,4 @@
+<% begin %>
 <li>
   <div class="actor">
     <%= link_to image_tag(comment.author.avatar.url(:mini).to_s, :alt => comment.author.name), user_profile_path(:username => comment.author.username), :remote => true  %>
@@ -14,3 +15,5 @@
     <p class="s11 align-right"><span class="time_ago" info="<%= comment.created_at.to_i %>"><%= time_ago_in_words(comment.created_at) %> ago.</span></p>
   </div>
 </li>
+<% rescue 
+end%>

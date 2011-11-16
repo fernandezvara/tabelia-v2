@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class UsersController < ApplicationController
   
   def show
@@ -34,8 +35,21 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.order_by(:name, :asc).page(params[:page]).per(30)
+    #@users = User.order_by(:name, :asc).page(params[:page]).per(30)
     @title = t("users.index.title")
+    
+    if current_user
+      show_search_level = 1
+    else
+      show_search_level = 2
+    end
+    
+    @search = User.search do
+      #with(:show_search).greater_than(show_search_level)
+      order_by(:name)
+      paginate(:per_page => 30, :page => params[:page])
+    end
+    @users = @search.results
     render :layout => 'main'
   end
 
@@ -51,34 +65,77 @@ class UsersController < ApplicationController
   end
 
   def new_provider
-    # @user.first_name = auth........ Debemos rellenar los datos
-    # Hay que cambiar los usuarios, deben tener un first_name y last_name y un self.name que los concatene, permitirá organizar
-    # por nombre, apellidos, etc, habrá que cambiar también las reglas de sunspot
-    # además debe asignar un user-name que no exista ya
-    
-    
     @auth = request.env['omniauth.auth']
     remote_user = Authorization.where(:provider => @auth["provider"], :uid => @auth["uid"]).first
 
-    if remote_user.nil? == true
-      # no existe el usuario...
-      
-      @user = User.new
-      @user.get_data_from_provider(@auth)
-      @user.language = I18n.locale.to_s
-      @user.save!
-      @authorization = Authorization.create!(:provider => @auth["provider"], :uid => @auth["uid"], :user => @user)
-      
-      cookies.permanent[:auth_token] = @user.auth_token
-
-      redirect_to(profile_basic_path)
+    if current_user
+      # Si el usuario está validado
+      if remote_user.nil? == true
+        # añadimos una autorizacion al usuario actual
+        @authorization = Authorization.create!(:provider => @auth["provider"], :uid => @auth["uid"], :user => current_user)
+        if @auth['credentials'] and @auth[:provider] == 'facebook'
+          @authorization.fb_token = @auth['credentials']['token'] if @auth['credentials']['token']
+          @authorization.fb_secret = @auth['credentials']['secret'] if @auth['credentials']['secret']
+          @authorization.save if @authorization.changed?
+        end
+        if @auth['credentials'] and @auth[:provider] == 'twitter'
+          @authorization.tw_token = @auth['credentials']['token'] if @auth['credentials']['token']
+          @authorization.tw_secret = @auth['credentials']['secret'] if @auth['credentials']['secret']
+          @authorization.save if @authorization.changed?
+        end 
+        flash[:success] = "Servicio añadido a tu cuenta. Ahora puedes iniciar sesión en tabelia con ese usuario"
+        redirect_to_or_default(profile_privacy_url)
+      else
+        if remote_user.user == current_user
+          # ya estabas validado.... 
+          flash[:error] = "Ya estás validado en tabelia."
+          redirect_to_or_default(root_url)
+        else
+          # debes salir antes de volver a iniciar sesión
+          flash[:error] = "El servicio que intentas vincular a tu cuenta pertenece a otro usuario."
+          redirect_to_or_default(root_url)
+        end
+      end
     else
-      cookies.permanent[:auth_token] = remote_user.user.auth_token
-      session[:locale] = remote_user.user.language
-      notice = "Logged in!"
-      redirect_to_or_default(root_url, :notice => notice)
-    end
+      if remote_user.nil? == true
+        @user = User.new
+        @user.get_data_from_provider(@auth)
+        @user.language = I18n.locale.to_s
+        @user.save :validate => false
 
+        @authorization = Authorization.create!(:provider => @auth["provider"], :uid => @auth["uid"], :user => @user)
+                
+        if @auth['credentials'] and @auth[:provider] == 'facebook'
+          @authorization.fb_token = @auth['credentials']['token'] if @auth['credentials']['token']
+          @authorization.fb_secret = @auth['credentials']['secret'] if @auth['credentials']['secret']
+          @authorization.save if @authorization.changed?
+        end
+        if @auth['credentials'] and @auth[:provider] == 'twitter'
+          @authorization.tw_token = @auth['credentials']['token'] if @auth['credentials']['token']
+          @authorization.tw_secret = @auth['credentials']['secret'] if @auth['credentials']['secret']
+          @authorization.save if @authorization.changed?
+        end
+
+        cookies.permanent[:auth_token] = @user.auth_token
+        redirect_to(profile_basic_path)
+      else
+        # validamos usuario
+        if @auth['credentials'] and @auth[:provider] == 'facebook'
+          remote_user.fb_token = @auth['credentials']['token'] if @auth['credentials']['token']
+          remote_user.fb_secret = @auth['credentials']['secret'] if @auth['credentials']['secret']
+          remote_user.save :validate => false if remote_user.changed?
+        end
+        if @auth['credentials'] and @auth[:provider] == 'twitter'
+          remote_user.tw_token = (@auth['credentials']['token'] rescue nil)
+          remote_user.tw_secret = (@auth['credentials']['secret'] rescue nil)
+          remote_user.save :validate => false if remote_user.changed?
+        end
+        cookies.permanent[:auth_token] = remote_user.user.auth_token
+        session[:locale] = remote_user.user.language
+        notice = "Logged in!"
+        redirect_to_or_default(root_url, :notice => notice)
+      end
+    end
   end
 
   def failure

@@ -58,24 +58,29 @@ class ProfileController < ApplicationController
   end
 
   def privacy
+    @privacy = current_user.privacy
+    if params[:privacy]
+      if @privacy.update_attributes(params[:privacy])
+        current_user.save
+        flash.now[:success] = 'Cambios guardados correctamente'
+      else
+        flash.now[:error] = 'Hay errores en el formulario'
+      end
+    end
+    @title = t("profile.edit.title")
+    respond_to do |format|
+      format.html {render :layout => 'main'}
+      format.js
+    end
   end
 
   def services
-  end
-
-  def basic_update
-  end
-
-  def about_update
-  end
-
-  def avatar_update
-  end
-
-  def privacy_update
-  end
-
-  def services_update
+    @current_user = current_user
+    @title = t("profile.edit.title")
+    respond_to do |format|
+      format.html {render :layout => 'main'}
+      format.js
+    end
   end
 
 end

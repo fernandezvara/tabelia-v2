@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Notificator
   
   @queue = :notifications
@@ -166,6 +167,54 @@ class Notificator
       member.save
     end
     
+    # publish on facebook & twitter
+    # obtenemos las autorizaciones del usuario, después por cada una realizamos las acciones, si es twitter, si es facebook...
+    auths_of_originator = originator.authorizations
+    auths_of_originator.each do |auth|
+      case auth.provider
+      when 'twitter'
+        if auth.tw_token.nil? == false and auth.tw_secret.nil? == false
+          #configuramos el cliente Twitter
+          # la configuración necesita de dos modelos de validaciones:
+          # consumer_key y consumer_secret validan la aplicacion 'tabelia'
+          # oauth_token y oauth_token_secret validan al usuario que lo envía
+          # configuramos al usuario originador:
+          Twitter.configure do |config|
+            config.consumer_key = 'ZKnXYTs819Coqc6RuPC6Ag'
+            config.consumer_secret= 'zGvOKVnJ6euDGguqL87aaK79SpU9xb71me8TRuzbM'
+            config.oauth_token = auth.tw_token
+            config.oauth_token_secret = auth.tw_secret
+          end
+          # en función del tipo de notificación es necesario escribir un texto u otro
+          # lenguaje de envío...
+
+          # mensaje ...
+          case _what
+          when 'upa'
+            # TODO
+          when 'ufu'
+            case originator.language
+            when 'es'
+              #text = "Me he hecho seguidor de '#{receiver.name}'  Rails.application.user_profile_url(:username => receiver.username)} #tabelia #art"
+              text = "Me he hecho seguidor de #{receiver.name} http://www.tabelia.com/user/#{receiver.username} #tabelia"
+            when 'en'
+              #text = "I began following to '#{receiver.name}' Rails.application.user_profile_url(:username => receiver.username)} #tabelia #art"
+              text = "Me he hecho seguidor de #{receiver.name} http://www.tabelia.com/user/#{receiver.username} #tabelia"
+            end
+          end
+          # enviamos el mensaje, crucemos los dedos....
+          begin
+            Twitter.update(text)
+          rescue
+            puts 'no se ha podido enviar el mensaje a twitter....'
+          end
+        end # if auth.tw_token.nil? == false and auth.tw_secret.nil? == false
+      when 'facebook'
+        # TODO: publish to facebook
+      when 'google_oauth2'
+        #nothing to do....
+      end
+    end
     
     # mail - last since it's the most time consuming task
     case _what

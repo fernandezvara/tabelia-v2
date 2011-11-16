@@ -9,6 +9,36 @@ es:
             about: 'Sobre mí'
             inspirations: "Inspirado por"
             avatar: 'Imágen de tu perfil'
+            profile_privacy: 'PRIVACIDAD DE PERFIL'
+            sos: 'Visibilidad'
+            sos0: 'Perfil privado'
+            sos1: 'Sólo los usuarios registrados'
+            sos2: 'Todos. Perfil público'
+            comments: 'COMENTARIOS'
+            acp: 'Perfil'
+            acp0: 'No deseo recibir comentarios'
+            acp1: 'Sólo mis seguidores pueden comentar'
+            acp2: 'Todos pueden comentar mi perfil'
+            aca: 'Cuadros'
+            aca0: 'No deseo recibir comentarios'
+            aca1: 'Sólo a los usuarios que les gusta o me siguen pueden comentar'
+            aca2: 'Todos pueden comentar mis obras'
+            notifications: 'NOTIFICACIONES'
+            mom: 'Mensaje'
+            momt: 'Si, recibir un correo al recibir un mensaje en tabelia'
+            momf: 'No deseo recibir este tipo de notificación'
+            mcp: 'Comentario perfil'
+            mcpt: 'Si, recibir un correo por comentarios en mi perfil'
+            mcpf: 'No deseo recibir este tipo de notificación'
+            mca: 'Comentario obra'
+            mcat: 'Si, recibir un correo por comentarios en mis obras'
+            mcaf: 'No deseo recibir este tipo de notificación'
+            mof: 'Seguidor'
+            moft: 'Si, recibir un correo cuando alguien me siga'
+            moff: 'No deseo recibir este tipo de notificación'
+            mol: 'Me gusta'
+            molt: 'Si, recibir un correo cuando a alguien le guste una obra'
+            molf: 'No deseo recibir este tipo de notificación'
         titles: 
             name: "Escribe el nombre que quieras que otros vean"
             username: "Escribe el nombre de usuario que deseas"
@@ -18,9 +48,25 @@ es:
             about: "Lo que escribas aquí saldrá en tu perfil. Escribe sobre tu obra, tu currículum, etc"
             inspirations: "Cosas que te inspiran. Debes separar cada uno usando una coma (,)."
             avatar: "Sube la imágen que desees mostrar en tu perfil."
+            sos: "Selecciona si deseas que tu perfil y obras de arte aparezcan en las búsquedas. Los usuarios que no tienen obras de arte por defecto no aparecen en las búsquedas ni en el directorio de usuarios. Si seleccionas la opción de todos permitiras que los usuarios no registrados puedan buscar tu perfil y obras."
+            acp: "Selecciona quien puede escribir comentarios en tu perfil. Puedes elegir que únicamente puedan escribir mensajes los usuarios que siguen tu perfil y tú, o que cualquiera que tenga una cuenta en tabelia lo haga. Los usuarios no registrados no pueden escribir mensajes."
+            aca: "Selecciona quien puede escribir comentarios en tus obras de arte. Puedes permitir que únicamente aquellos que te sigan o les guste tu obra puedan escribir mensajes. Los usuarios no registrados no pueden escribir mensajes."
+            mom: "Selecciona si deseas recibir al correo electrónico una notificación cuando alguien te escriba un mensaje a tu perfil"
+            mcp: "Selecciona si deseas recibir una notificación cuando alguien comente tu perfil"
+            mca: "Selecciona si deseas recibir una notificación cuando alguien comente en tus obras"
+            mof: "Selecciona si deseas recibir una notificación cuando alguien se haga seguidor tuyo"
+            mol: "Selecciona si deseas recibir una notificación cuando alguien diga que le gusta una obra tuya"
+        hints:
+            username: 'Sólo letras, números y guiones (-) están permitidos'
     helpers:
-          submit:
+        submit:
             user:
-              create: "Crear usuario"
-              update: "Guardar cambios"
+                create: "Crear usuario"
+                update: "Guardar cambios"
+            privacy:
+                create: "Crear"
+                update: "Guardar cambios"
+    intro:
+        services: "Estos son los servicios externos a tabelia que puedes usar para realizar la validación de tu usuario. \r\nEs la forma más fácil de acceder, ya que no tienes que recordar otro usuario y contraseña más para acceder.\r\nPuedes usar uno o varios para tu cuenta, si deseas añadir uno nuevo pulsa el botón de \'Vincular\'."
+                
         

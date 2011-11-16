@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rake', '0.8.7'
-gem 'rails', '3.1.0'
+#gem 'rake', '0.8.7'
+gem 'rails', '3.1.1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -20,24 +20,26 @@ gem 'redis-store'
 # Markdown
 gem 'redcarpet'
 
+# Pagination
+gem 'kaminari'
+
 # search
-gem 'sunspot'
-gem 'sunspot_rails'
+gem 'sunspot', "~> 1.3.0.rc6"
+gem "sunspot_rails", "~> 1.3.0.rc6"
 gem 'sunspot_mongoid'
 
 # Crypt
 gem 'bcrypt-ruby', :require => "bcrypt"
-# gem 'omniauth' , '0.3.2'
 
+# Omniauth - Twitter - Facebook
 gem "omniauth", ">= 1.0.0"
 gem 'omniauth-twitter'
 gem 'omniauth-facebook', '~> 1.0.0.rc1'
 gem 'omniauth-google-oauth2'
-
+gem "twitter", "~> 2.0.0.rc.3"
 
 #Pretty Forms
 gem 'simple_form'
-gem 'kaminari'
 
 #Images
 gem 'rmagick'
@@ -62,8 +64,10 @@ gem 'hpricot'
 
 
 
+
 group :development do
   gem 'faker'
+  gem 'sunspot_solr'
 end
 
 # Gems used only for assets and not required

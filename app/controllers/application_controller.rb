@@ -1,9 +1,19 @@
+#encoding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
   helper_method :current_user, :current_cart
   
-  before_filter :last_page_to_session, :load_categories, :set_locale
+  before_filter :last_page_to_session, :load_categories, :set_locale, :redirect_to_profile_edit
+  
+  def redirect_to_profile_edit
+    if current_user and action_name != 'basic'
+      if current_user.email.nil? == true
+        flash[:error] = 'Por favor, rellena la información básica de tu perfil'
+        redirect_to(profile_basic_path)
+      end
+    end
+  end
   
   def set_locale
     logger.debug "DEBUG: languages: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
@@ -12,13 +22,13 @@ class ApplicationController < ActionController::Base
         if current_user.language != session[:locale]
           u = current_user
           u.language = session[:locale]
-          u.save!
+          u.save
         end
       end
 
       if session[:locale].nil?
         logger.debug "DEBUG: no hay locale en session"
-        if @current_user
+        if current_user
           logger.debug "DEBUG: usando lenguage del usuario: #{current_user.locale}"
           session[:locale] = current_user.language
           I18n.locale = current_user.language.to_sym

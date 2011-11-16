@@ -4,7 +4,7 @@
   <table width="100%" border="0">
     <tr>
       <td style="padding:20px;width:105px">
-        <%= link_to image_tag('http://192.168.1.73:3000' + @originator.avatar.url(:thumb).to_s, :alt => @originator.name), user_profile_url(:username => @originator.username) %>
+        <%= link_to image_tag(@originator.avatar.url(:thumb).to_s, :alt => @originator.name), user_profile_url(:username => @originator.username) %>
       </td>
       <td style="padding:20px; width: 473px; border:1px solid #ddd; background-color: #f0f0f0; color:#7d7d7d; font-size:12px; line-height:18px;">
         <%= @comment.text %>
@@ -17,5 +17,5 @@
 
 <% content_for :footer do %>
   <p><%= t('mail.legal.this_message_was_sended_to', :receiver_email => @receiver.email) %></p>
-  <p><%= t('mail.legal.you_can_change_your_prefs') %><%= link_to t('mail.legal.prefs_page'), user_profile_url(:username => @receiver.username), :style => 'color:#c20000; text-decoration:none' %>.</p>
+  <p><%= t('mail.legal.you_can_change_your_prefs') %><%= link_to t('mail.legal.prefs_page'), profile_privacy_url, :style => 'color:#c20000; text-decoration:none' %>.</p>
 <% end %>

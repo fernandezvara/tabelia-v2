@@ -2,13 +2,13 @@
   <table width="100%" border="0">
     <tr>
       <td style="padding:20px;width:105px">
-        <%= link_to image_tag('http://192.168.1.73:3000' + @originator.avatar.url(:thumb).to_s, :alt => @originator.name), user_profile_url(:username => @originator.username) %>
+        <%= link_to image_tag(@originator.avatar.url(:thumb).to_s, :alt => @originator.name), user_profile_url(:username => @originator.username) %>
       </td>
       <td style="padding:20px; width: 473px; border:1px solid #ddd; background-color: #f0f0f0; color:#7d7d7d; font-size:12px; line-height:18px;">
         <table width="100%" border="0">
           <tr>
             <td style ="width: 75px; border:0">
-              <%= link_to image_tag('http://192.168.1.73:3000' + @art.image.url(:thumb).to_s, :alt => @art.name), art_profile_url(:slug => @art.slug) %>
+              <%= link_to image_tag(@art.image.url(:thumb).to_s, :alt => @art.name), art_profile_url(:slug => @art.slug) %>
             </td>
             <td>
               <p><%= t('mail.common.hi', :receiver_name => @receiver.name) %></p>

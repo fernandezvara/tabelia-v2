@@ -1,0 +1,60 @@
+<% if @privacy.errors.any? %>
+  <div id="errors">
+  <%= pluralize(@privacy.errors.count, "error") %>:
+  <ul>
+  <% @privacy.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  <ul>
+  </div>
+<% end %>
+
+<%= simple_form_for @privacy, :url => profile_privacy_path, :remote => true do |f| %>
+  <p class="division"><%= t('simple_form.labels.profile_privacy')%></p>
+  <div class="input optional <%= "field_with_errors" if @privacy.errors.keys.include?(:sos) %>">
+    <label class="optional" for="privacy_sos"><%= t("simple_form.labels.sos") %></label>
+    <%= collection_select('privacy', 'sos', [[0, t('simple_form.labels.sos0')] ,[1, t('simple_form.labels.sos1')], [2, t('simple_form.labels.sos0')]], :first, :last, :prompt => false) %>
+  </div>
+  <p class="division"><%= t('simple_form.labels.comments')%></p>
+  <div class="input optional <%= "field_with_errors" if @privacy.errors.keys.include?(:acp) %>">
+    <label class="optional" for="privacy_acp"><%= t("simple_form.labels.acp") %></label>
+    <%= collection_select('privacy', 'acp', [[0, t('simple_form.labels.acp0')] ,[1, t('simple_form.labels.acp1')], [2, t('simple_form.labels.acp2')]], :first, :last, :prompt => false) %>
+  </div>
+  <div class="input optional <%= "field_with_errors" if @privacy.errors.keys.include?(:aca) %>">
+    <label class="optional" for="privacy_aca"><%= t("simple_form.labels.aca") %></label>
+    <%= collection_select('privacy', 'aca', [[0, t('simple_form.labels.aca0')] ,[1, t('simple_form.labels.aca1')], [2, t('simple_form.labels.aca2')]], :first, :last, :prompt => false) %>
+  </div>
+  <p class="division"><%= t('simple_form.labels.notifications')%></p>
+  <div class="input optional <%= "field_with_errors" if @privacy.errors.keys.include?(:mom) %>">
+    <label class="optional" for="privacy_mom"><%= t("simple_form.labels.mom") %></label>
+    <%= collection_select('privacy', 'mom', [[false, t('simple_form.labels.momf')] ,[true, t('simple_form.labels.momt')]], :first, :last, :prompt => false) %>
+  </div>
+  <div class="input optional <%= "field_with_errors" if @privacy.errors.keys.include?(:mcp) %>">
+    <label class="optional" for="privacy_mcp"><%= t("simple_form.labels.mcp") %></label>
+    <%= collection_select('privacy', 'mcp', [[false, t('simple_form.labels.mcpf')] ,[true, t('simple_form.labels.mcpt')]], :first, :last, :prompt => false) %>
+  </div>
+  <div class="input optional <%= "field_with_errors" if @privacy.errors.keys.include?(:mca) %>">
+    <label class="optional" for="privacy_mca"><%= t("simple_form.labels.mca") %></label>
+    <%= collection_select('privacy', 'mca', [[false, t('simple_form.labels.mcaf')] ,[true, t('simple_form.labels.mcat')]], :first, :last, :prompt => false) %>
+  </div>
+  <div class="input optional <%= "field_with_errors" if @privacy.errors.keys.include?(:mof) %>">
+    <label class="optional" for="privacy_mof"><%= t("simple_form.labels.mof") %></label>
+    <%= collection_select('privacy', 'mof', [[false, t('simple_form.labels.moff')] ,[true, t('simple_form.labels.moft')]], :first, :last, :prompt => false) %>
+  </div>
+  <div class="input optional <%= "field_with_errors" if @privacy.errors.keys.include?(:mol) %>">
+    <label class="optional" for="privacy_mol"><%= t("simple_form.labels.mol") %></label>
+    <%= collection_select('privacy', 'mol', [[false, t('simple_form.labels.molf')] ,[true, t('simple_form.labels.molt')]], :first, :last, :prompt => false) %>
+    <script type="text/javascript">
+      $("select#privacy_sos").attr("title", "<%= t('simple_form.titles.sos') %>");
+      $("select#privacy_acp").attr("title", "<%= t('simple_form.titles.acp') %>");
+      $("select#privacy_aca").attr("title", "<%= t('simple_form.titles.aca') %>");   
+      $("select#privacy_mom").attr("title", "<%= t('simple_form.titles.mom') %>");
+      $("select#privacy_mcp").attr("title", "<%= t('simple_form.titles.mcp') %>");
+      $("select#privacy_mca").attr("title", "<%= t('simple_form.titles.mca') %>");
+      $("select#privacy_mof").attr("title", "<%= t('simple_form.titles.mof') %>");
+      $("select#privacy_mol").attr("title", "<%= t('simple_form.titles.mol') %>");
+    </script>
+  </div>
+  <%= f.submit %>
+  
+<% end %>

@@ -22,7 +22,7 @@ class Art
   field :description,    :type => String
   field :status,         :type => Integer
   field :accepted,       :type => Boolean,  :default => false
-  field :show_search,    :type => Boolean,  :default => false
+  #field :show_search,    :type => Boolean,  :default => false
   
   slug :name
   
@@ -34,7 +34,9 @@ class Art
   
   searchable :auto_index => false, :auto_remove => false do
     text :name, :stored => true
-    boolean :show_search
+    integer :show_search do 
+      self.user.privacy.sos
+    end
     string :category_slug
   end
   

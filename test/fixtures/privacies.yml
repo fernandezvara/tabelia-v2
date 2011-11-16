@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  sos: false
+  acp: false
+  aca: false
+  mom: false
+  moc: false
+  mof: false
+  mol: false
+
+two:
+  sos: false
+  acp: false
+  aca: false
+  mom: false
+  moc: false
+  mof: false
+  mol: false

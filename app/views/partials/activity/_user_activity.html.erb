@@ -1,4 +1,5 @@
       <li>
+        <% begin %>
         <% case activity.what %>
         <% when 'cou' %>
           <% @to = User.find(activity.to) %>
@@ -85,4 +86,6 @@
             <p><%= GraphClient.get_count("Backward", "Like", @art) %> likes it</p>
           </div>
         <% end %>
+        <% rescue
+        end %>
       </li>

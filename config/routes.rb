@@ -127,7 +127,7 @@ Tabelia::Application.routes.draw do
   #match 'user/:username/edit',         :controller => 'users',   :action => 'edit',         :as => 'edit_user'
   
   resources :order   #, :only => [:new, :create]
-  resources :addresses, :only => [:new, :create, :update, :destroy]
+  resources :addresses, :only => [:new, :create, :edit, :update, :destroy]
   resources :arts, :only => [:index, :new, :create, :update]
   resources :sessions
   resources :users, :only => [:index, :edit, :create, :update] do

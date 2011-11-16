@@ -19,7 +19,7 @@
 .simple_form div.input input[type=text], .simple_form div.input input[type=password], .simple_form div.input textarea, .simple_form div.input select {
 	font: 12px/16px Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	width:335px;
-	margin: 0 10px 0 0;
+	margin: 4px 10px 0 0;
 	padding: 6px 5px;
 	background: #fcfcfc;
 	border: 1px solid #ddd;

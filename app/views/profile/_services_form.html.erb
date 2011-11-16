@@ -1,0 +1,47 @@
+<%= simple_format(t('intro.services')) %>
+<br />
+<ul id="listing">
+  <li>
+    <div style="width: 80px; float:left; text-align:center;">
+      <%= link_to image_tag('social/twitter_64.png',  :alt => "Twitter",  :class => "effect"), '/auth/twitter' %>
+      <span>Twitter</span>
+    </div>
+    <div style="float:left; width:400px">
+      <% if @current_user.authorizations.where(:provider => 'twitter').count == 1 %>
+        <p>Estás vinculado</p>
+      <% else %>
+        <p>No estás vinculado. <%= link_to 'Vincular', '/auth/twitter' %></p>
+      <% end %>
+    </div>
+  </li>
+  <li class="odd">
+    <div style="width: 80px; float:left; text-align:center;">
+      <%= link_to image_tag('social/facebook_64.png', :alt => "Facebook", :class => "effect"), '/auth/facebook' %>
+      <span>Facebook</span>
+    </div>
+    <div style="float:left; width:400px">
+      <% if @current_user.authorizations.where(:provider => 'facebook').count == 1 %>
+        <p>Estás vinculado</p>
+      <% else %>
+        <p>No estás vinculado <%= link_to 'Vincular', '/auth/facebook' %></p>
+      <% end %>
+    </div>
+  </li>
+  <li>
+    <div style="width: 80px; float:left; text-align:center;">
+      <%= link_to image_tag('social/google_64.png',   :alt => "Google",   :class => "effect"), '/auth/google_oauth2' %>
+      <span>Google</span>
+    </div>
+    <div style="float:left; width:400px">
+      <% if @current_user.authorizations.where(:provider => 'google_oauth2').count == 1 %>
+        <p>Estás vinculado</p>
+      <% else %>
+        <p>No estás vinculado <%= link_to 'Vincular', '/auth/google_oauth2' %></p>
+      <% end %>
+    </div>
+  </li>
+</ul>
+
+
+
+
