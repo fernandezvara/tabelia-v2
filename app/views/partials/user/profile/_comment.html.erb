@@ -6,10 +6,8 @@
   <div class="text s12">
       <% if comment.author == current_user %>
         <% link = link_to 'Tú', user_profile_path(:username => comment.author.username), :remote => true %>
-        <% puts link %>
       <% else %>
         <% link = link_to comment.author.name, user_profile_path(:username => comment.author.username), :remote => true %>
-         <% puts link %>
       <% end %>
       <%= simple_format("<strong>#{raw(link)}</strong>: " + comment.text) %>
     <p class="s11 align-right"><span class="time_ago" info="<%= comment.created_at.to_i %>"><%= time_ago_in_words(comment.created_at) %> ago.</span></p>

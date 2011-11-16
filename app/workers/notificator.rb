@@ -173,37 +173,60 @@ class Notificator
     auths_of_originator.each do |auth|
       case auth.provider
       when 'twitter'
+        # TODO: falta validar que el usuario permita hacerlo!!!!
         if auth.tw_token.nil? == false and auth.tw_secret.nil? == false
-          #configuramos el cliente Twitter
-          # la configuración necesita de dos modelos de validaciones:
-          # consumer_key y consumer_secret validan la aplicacion 'tabelia'
-          # oauth_token y oauth_token_secret validan al usuario que lo envía
-          # configuramos al usuario originador:
-          Twitter.configure do |config|
-            config.consumer_key = 'ZKnXYTs819Coqc6RuPC6Ag'
-            config.consumer_secret= 'zGvOKVnJ6euDGguqL87aaK79SpU9xb71me8TRuzbM'
-            config.oauth_token = auth.tw_token
-            config.oauth_token_secret = auth.tw_secret
-          end
-          # en función del tipo de notificación es necesario escribir un texto u otro
-          # lenguaje de envío...
-
-          # mensaje ...
-          case _what
-          when 'upa'
-            # TODO
-          when 'ufu'
-            case originator.language
-            when 'es'
-              #text = "Me he hecho seguidor de '#{receiver.name}'  Rails.application.user_profile_url(:username => receiver.username)} #tabelia #art"
-              text = "Me he hecho seguidor de #{receiver.name} http://www.tabelia.com/user/#{receiver.username} #tabelia"
-            when 'en'
-              #text = "I began following to '#{receiver.name}' Rails.application.user_profile_url(:username => receiver.username)} #tabelia #art"
-              text = "Me he hecho seguidor de #{receiver.name} http://www.tabelia.com/user/#{receiver.username} #tabelia"
-            end
-          end
-          # enviamos el mensaje, crucemos los dedos....
           begin
+            #configuramos el cliente Twitter
+            # la configuración necesita de dos modelos de validaciones:
+            # consumer_key y consumer_secret validan la aplicacion 'tabelia'
+            # oauth_token y oauth_token_secret validan al usuario que lo envía
+            # configuramos al usuario originador:
+            Twitter.configure do |config|
+              # TODO: must be an environment variable
+              config.consumer_key = 'ZKnXYTs819Coqc6RuPC6Ag'
+              config.consumer_secret= 'zGvOKVnJ6euDGguqL87aaK79SpU9xb71me8TRuzbM'
+              config.oauth_token = auth.tw_token
+              config.oauth_token_secret = auth.tw_secret
+            end
+            # en función del tipo de notificación es necesario escribir un texto u otro
+            # lenguaje de envío...
+
+            # mensaje ...
+            receiver_twitter = receiver.authorizations.where(:provider => 'twitter').first
+            case _what
+            when 'upa'
+              # TODO : Must publish on behalf of the user and tabelia itself, better to do it below all
+            when 'ufu'
+              case originator.language
+              when 'es'
+                if receiver_twitter.nil? == false and receiver_twitter.tw_username.nil? == false
+                  text = "Me he hecho seguidor de @#{receiver_twitter.tw_username} http://www.tabelia.com/user/#{receiver.username} #tabelia"                
+                else
+                  text = "Me he hecho seguidor de #{receiver.name} http://www.tabelia.com/user/#{receiver.username} #tabelia"
+                end
+              when 'en'
+                if receiver_twitter.nil? == false and receiver_twitter.tw_username.nil? == false
+                  text = "I began following @#{receiver_twitter.tw_username} http://www.tabelia.com/user/#{receiver.username} #tabelia"                
+                else
+                  text = "I began following #{receiver.name} http://www.tabelia.com/user/#{receiver.username} #tabelia"
+                end
+              end
+            when 'ula'
+              case originator.language
+              when 'es'
+                if receiver_twitter.nil? == false and receiver_twitter.tw_username.nil? == false
+                  text = "Me gusta '#{art.name}' de @#{receiver_twitter.tw_username} http://www.tabelia.com/art/#{art.slug} #tabelia"                
+                else
+                  text = "Me gusta '#{art.name}' de #{receiver.name} http://www.tabelia.com/art/#{art.slug} #tabelia"
+                end
+              when 'en'
+                if receiver_twitter.nil? == false and receiver_twitter.tw_username.nil? == false
+                  text = "I like '#{art.name}' by @#{receiver_twitter.tw_username} http://www.tabelia.com/art/#{art.slug} #tabelia"                
+                else
+                  text = "I like '#{art.name}' by #{receiver.name} http://www.tabelia.com/art/#{art.slug} #tabelia"
+                end
+              end
+            end
             Twitter.update(text)
           rescue
             puts 'no se ha podido enviar el mensaje a twitter....'

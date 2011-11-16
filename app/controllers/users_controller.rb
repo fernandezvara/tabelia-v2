@@ -73,6 +73,17 @@ class UsersController < ApplicationController
       if remote_user.nil? == true
         # añadimos una autorizacion al usuario actual
         @authorization = Authorization.create!(:provider => @auth["provider"], :uid => @auth["uid"], :user => current_user)
+        
+        # gets the username from twitter and facebook, useful for mentions on twitter and stuff like that
+        if @auth['info']['nickname']
+          case @auth['provider']
+          when 'twitter'
+            @authorization.tw_username = @auth['info']['nickname']
+          when 'facebook'
+            @authorization.fb_username = @auth['info']['nickname']
+          end
+          @authorization.save if @authorization.changed?
+        end
         if @auth['credentials'] and @auth[:provider] == 'facebook'
           @authorization.fb_token = @auth['credentials']['token'] if @auth['credentials']['token']
           @authorization.fb_secret = @auth['credentials']['secret'] if @auth['credentials']['secret']
@@ -101,10 +112,21 @@ class UsersController < ApplicationController
         @user = User.new
         @user.get_data_from_provider(@auth)
         @user.language = I18n.locale.to_s
-        @user.save :validate => false
+        @user.save # :validate => false
 
         @authorization = Authorization.create!(:provider => @auth["provider"], :uid => @auth["uid"], :user => @user)
-                
+        
+        # gets the username from twitter and facebook, useful for mentions on twitter and stuff like that
+        if @auth['info']['nickname']
+          case @auth['provider']
+          when 'twitter'
+            @authorization.tw_username = @auth['info']['nickname']
+          when 'facebook'
+            @authorization.fb_username = @auth['info']['nickname']
+          end
+          @authorization.save if @authorization.changed?
+        end
+        
         if @auth['credentials'] and @auth[:provider] == 'facebook'
           @authorization.fb_token = @auth['credentials']['token'] if @auth['credentials']['token']
           @authorization.fb_secret = @auth['credentials']['secret'] if @auth['credentials']['secret']
@@ -120,6 +142,16 @@ class UsersController < ApplicationController
         redirect_to(profile_basic_path)
       else
         # validamos usuario
+        # gets the username from twitter and facebook, useful for mentions on twitter and stuff like that
+        if @auth['info']['nickname']
+          case @auth['provider']
+          when 'twitter'
+            remote_user.tw_username = @auth['info']['nickname']
+          when 'facebook'
+            remote_user.fb_username = @auth['info']['nickname']
+          end
+          remote_user.save if remote_user.changed?
+        end
         if @auth['credentials'] and @auth[:provider] == 'facebook'
           remote_user.fb_token = @auth['credentials']['token'] if @auth['credentials']['token']
           remote_user.fb_secret = @auth['credentials']['secret'] if @auth['credentials']['secret']
@@ -128,7 +160,7 @@ class UsersController < ApplicationController
         if @auth['credentials'] and @auth[:provider] == 'twitter'
           remote_user.tw_token = (@auth['credentials']['token'] rescue nil)
           remote_user.tw_secret = (@auth['credentials']['secret'] rescue nil)
-          remote_user.save :validate => false if remote_user.changed?
+          remote_user.save if remote_user.changed?
         end
         cookies.permanent[:auth_token] = remote_user.user.auth_token
         session[:locale] = remote_user.user.language
@@ -144,6 +176,7 @@ class UsersController < ApplicationController
   end
 
   def username_exists
+    # TODO: Implement it!
     # devuelve si el nombre de usuario ya existe.
     @response = User.username_exists?(params[:username])
     respond_to do |format|
@@ -152,12 +185,14 @@ class UsersController < ApplicationController
   end
 
   def edit
+    # TODO: clean this
     @user = current_user
     @title = t("users.edit.title")
     render :layout => 'main'
   end
 
   def update
+    # TODO: clean this
     @user = current_user
     if @user.update_attributes(params[:user])
       redirect_to :root
