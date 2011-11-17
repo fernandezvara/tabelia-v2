@@ -4,11 +4,20 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user, :current_cart
   
-  before_filter :last_page_to_session, :load_categories, :set_locale, :redirect_to_profile_edit
+  before_filter :last_page_to_session, :load_categories, :set_locale, :redirect_to_profile_edit, :rel_canonical
+  
+  def rel_canonical
+    if Rails.env.development?
+      @canonical = 'http://localhost:3000' + request.fullpath
+    else
+      @canonical = 'http://www.tabelia.com' + request.fullpath
+    end
+    logger.debug '@canonical=' + @canonical
+  end
   
   def redirect_to_profile_edit
     if current_user and action_name != 'basic'
-      if current_user.email.nil? == true
+      if current_user.email.nil? == true or current_user.country_id.nil? == true
         flash[:error] = 'Por favor, rellena la información básica de tu perfil'
         redirect_to(profile_basic_path)
       end
