@@ -234,8 +234,22 @@ class Notificator
         end # if auth.tw_token.nil? == false and auth.tw_secret.nil? == false
       when 'facebook'
         # TODO: publish to facebook
+        if auth.fb_token.nil? == false
+          begin
+            fb_user = FbGraph::User.me(auth.fb_token.to_s)
+            case _what
+            when 'ufu'
+              fb_user.og_action!('tabelia:follow', :artist => "http://www.tabelia.com/user/#{receiver.username}")
+            when 'ula'
+              fb_user.og_action!('tabelia:like', :art => "http://www.tabelia.com/art/#{art.slug}", :artist => "http://www.tabelia.com/user/#{receiver.username}")
+            end
+          rescue
+            puts 'Error al publicar en Facebook'
+          end
+            
+        end # if auth.fb_token.nil? == false
       when 'google_oauth2'
-        #nothing to do....
+        #nothing to do.... for now :)
       end
     end
     

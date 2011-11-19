@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     end
     
     @search = User.search do
-      #with(:show_search).greater_than(show_search_level)
+      with(:show_search).greater_than(show_search_level)
       order_by(:name)
       paginate(:per_page => 30, :page => params[:page])
     end

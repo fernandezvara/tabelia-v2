@@ -1,5 +1,4 @@
 # encoding: utf-8
-
 class AvatarUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
@@ -21,7 +20,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   def filename
     # "avatar.jpg" if original_filename
-    "#{random_token}.jpg" if original_filename.present?
+    "#{random_token}.#{file.extension}" if original_filename.present?
   end
 
   def random_token

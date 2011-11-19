@@ -129,7 +129,7 @@ class User
   
   def is_admin?
     # returns true if admin
-    false unless self.admin == true
+    false unless admin == true
   end
   
   def self.authenticate(email, password)

@@ -4,9 +4,9 @@ class AdminController < ApplicationController
   
   def dashboard
     @users_count = User.count
-    @users_today = User.where(:created_at.gte => 1.day.ago).count
+    @users_today = User.where(:created_at.gte => 1.day.ago.utc).count
     @art_count = Art.count
-    @art_today = Art.where(:created_at.gte => 1.day.ago).count
+    @art_today = Art.where(:created_at.gte => 1.day.ago.utc).count
     render :layout => 'admin'
   end
 

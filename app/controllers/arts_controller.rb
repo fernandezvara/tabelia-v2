@@ -70,8 +70,20 @@ class ArtsController < ApplicationController
     @art.status = params[:art][:status]
     @art.tags = params[:art][:tags]
     @art.user = current_user
-    @art.original = params[:art][:original] if params[:art][:original].nil? == false
+    if params[:art][:original].nil? == false
+      # only trigger the resque queue if new image
+      @art.original = params[:art][:original]
+      @art.accepted = false
+      image_changed = true
+    else
+      image_changed = false
+    end
     if @art.save!
+      if image_changed == true
+        # avoid original = nil!
+        Resque.enqueue(ColorsFromImage, @art.id.to_s)
+      end
+      Resque.enqueue(FindSimilarArt, @art.id.to_s)
       flash[:success] = "#{@art.name} added correctly."
       redirect_to arts_path
     end
@@ -99,11 +111,22 @@ class ArtsController < ApplicationController
     @art.category_id = params[:art][:category_id]
     @art.status = params[:art][:status]
     @art.tags = params[:art][:tags]
-    @art.original = params[:art][:original] if params[:art][:original].nil? == false
+    if params[:art][:original].nil? == false
+      # only trigger the resque queue if new image
+      @art.original = params[:art][:original]
+      @art.accepted = false
+      image_changed = true
+    else
+      image_changed = false
+    end
     if @art.save!
+      if image_changed == true
+        # avoid original = nil!
+        Resque.enqueue(ColorsFromImage, @art.id.to_s)
+      end
       Resque.enqueue(FindSimilarArt, @art.id.to_s)
       flash[:success] = "#{@art.name} edited correctly."
-      redirect_to art_profile_path(:slug => @art.slug)
+      redirect_to arts_path
     end
   end
   

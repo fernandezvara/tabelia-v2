@@ -7,14 +7,27 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def store_dir
     # "#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-    "#{mounted_as}/#{model.id}"
+    if version_name
+      "#{mounted_as}/#{model.id}"
+    else
+      "#{mounted_as}_orig/#{model.id}"
+    end
   end
 
   def default_url
     "/assets/fallback/art_" + [version_name, "default.jpg"].compact.join('_')
   end
 
+  def filename
+    # "avatar.jpg" if original_filename
+    "#{random_token}.jpg" if original_filename.present?
+  end
 
+  def random_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, ActiveSupport::SecureRandom.hex(2))
+  end
+  
   process :resize_to_fit => [730, 730]
   process :quality => 70
 
@@ -26,14 +39,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
   
   version :cart do
-    process :resize_to_fit => [300,300]
+    process :resize_to_fit => [300, 300]
     process :quality => 70
     process :watermark_cart
   end
 
   version :splash do
-    #process :resize_to_fit => [245,900]
-    #process :watermark_cart
     process :quality => 70
     process :resize_boxed
   end
@@ -46,12 +57,8 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [30, 30]
   end
 
-  def filename
-    "#{model.slug}.jpg" if original_filename
-  end
-
   def extension_white_list
-    %w(jpg jpeg)
+    %w(jpg jpeg png tif tiff)
   end
   
   def resize_boxed
@@ -95,7 +102,7 @@ class ImageUploader < CarrierWave::Uploader::Base
       logo = Magick::Image.read(Rails.root + 'app/assets/images/wm/wm-normal.png').first
       center_cols = (img.columns/2) - (logo.columns/2)
       center_rows = (img.rows/2) - (logo.rows/2)
-      img = img.dissolve(logo, 0.33, 1, center_cols, center_rows)
+      img = img.dissolve(logo, 0.50, 1, center_cols, center_rows)
     end
   end
   
@@ -104,7 +111,7 @@ class ImageUploader < CarrierWave::Uploader::Base
       logo = Magick::Image.read(Rails.root + 'app/assets/images/wm/wm-cart.png').first
       center_cols = (img.columns/2) - (logo.columns/2)
       center_rows = (img.rows/2) - (logo.rows/2)
-      img = img.dissolve(logo, 0.33, 1, center_cols, center_rows)
+      img = img.dissolve(logo, 0.50, 1, center_cols, center_rows)
     end
   end
 end

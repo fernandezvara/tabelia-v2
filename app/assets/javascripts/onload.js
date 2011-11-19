@@ -8,8 +8,8 @@ $(document).ready(function(){
     autoArrows:  true,
     dropShadows: false
     });
-	$.facebox.settings.closeImage = '/assets/facebox/closelabel.png';
-	$.facebox.settings.loadingImage = '/assets/preload.gif';
+	$.facebox.settings.closeImage = 'http://assets.tabelia.com/assets/facebox/closelabel.png';
+	$.facebox.settings.loadingImage = 'http://assets.tabelia.com/assets/preload.gif';
 	$('a[rel*=modal]').live("mousedown", function() { 
 	    $(this).unbind('click'); //everytime you click unbind the past event handled.
 	    $(this).facebox();

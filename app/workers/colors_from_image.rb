@@ -7,6 +7,10 @@ class ColorsFromImage
     colors = 64
     art = Art.find(art_id)
     
+    # Creates the images files, and uploads them to S3 storage
+    art.image = File.open(art.original.versions[:scaled].to_s)
+    art.save!
+    
     #img = Magick::Image.read("#{Rails.root}/public#{art.image}").first
     img = Magick::Image.read(art.original.versions[:scaled].to_s).first
     img = img.quantize(colors)
