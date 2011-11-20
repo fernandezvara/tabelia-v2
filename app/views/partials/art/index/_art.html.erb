@@ -5,7 +5,35 @@
     </div>      
     <div class="artdata right">
       <p><%= link_to art.name, edit_art_path(:slug => art.slug) %></p>
-      <p class="s12">status!</p>
+      <% case art.status 
+      when true
+        case art.accepted
+        when true
+          %>
+          <p class="s12">La obra es visible y está publicada.</p>
+          <%
+        when false
+          case art.status_reason
+          when 0
+            %>
+            <p class="s12">Esperando a ser aprobado.</p>
+            <%
+          when 1
+            %>
+            <p class="s12">La obra no ha sido aceptada por baja calidad.</p>
+            <%
+          when 2
+            %>
+            <p class="s12">La obra no se ajusta a los contenidos aceptados.</p>
+            <%
+          end
+        end
+      when false
+        %>
+        <p class="s12">Has seleccionado no mostrar esta obra.</p>
+        <%
+      end
+        %>
     </div>
   </div>
   <div class="clear"></div>

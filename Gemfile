@@ -47,6 +47,9 @@ gem 'rmagick'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'fog'   # S3 storage
 
+# Mail from tabelia
+gem "aws-ses", "~> 0.4.4", :require => 'aws/ses'
+
 # Background jobs
 gem 'resque'
 

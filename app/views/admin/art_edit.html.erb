@@ -49,7 +49,14 @@
       <div>
       <%= f.select :accepted, [['Si', true], ['No', false]] %>
       </div>
-      <label class="note">Aceptar la obra - Es necesario subir el fichero correcto!</label>
+      <label class="note">Aceptar la obra - Es necesario asegurarse de que el fichero es correcto!</label>
+    </li>
+    <li>
+      <%= f.label :status_reason %>
+      <div>
+      <%= f.select :status_reason, [['No hay razon que mostar', 0], ['Mala calidad/Formato pequeño', 1], ['Contenido no apropiado', 2]] %>
+      </div>
+      <label class="note">Razón a mostrar en caso de no aceptar la obra.</label>
     </li>
     <li>
       <%= f.submit %>

@@ -44,9 +44,22 @@ class AdminController < ApplicationController
     @art.max_height = params[:art][:max_height]
     @art.max_width = params[:art][:max_width]
     @art.accepted = params[:art][:accepted]
+    @art.status_reason = params[:art][:status_reason]
+    if @art.accepted_changed? == true
+      accepted_changed = true
+    else
+      accepted_changed = false
+    end
     if @art.save
       Resque.enqueue(FindSimilarArt, @art.id.to_s)
-      Resque.enqueue(ColorsFromImage, @art.id.to_s)
+      if accepted_changed == true
+        data = Hash.new
+        data['who'] = @art.user.id.to_s
+        data['when'] = Time.now
+        data['what'] = "upa"
+        data['art'] = @art.id.to_s
+        Resque.enqueue(Notificator, data)
+      end
       flash[:success] = "Arte actualizado correctamente"
     else
       flash[:error] = "No se ha podido actualizar la obra"

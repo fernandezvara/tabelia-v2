@@ -80,6 +80,8 @@ class Notificator
       puts stat.likes.today
     end
     
+    begin
+    
     # socket
     case _what
     when 'cou'
@@ -91,6 +93,9 @@ class Notificator
       Juggernaut.publish(receiver.username, { user_follow_you: { originator: originator.name }})
     when 'ula'
       Juggernaut.publish(receiver.username, { user_likes_art: { originator: originator.name, art: art.name }})
+    end
+    
+    rescue
     end
     
     # notification
@@ -150,7 +155,7 @@ class Notificator
   
     # add this activity to all the members that must have it in their activity feed, others than originator
     
-    if members_to_notify.include?(originator) == false
+    if members_to_notify.include?(originator) == true
       members_to_notify.delete(originator)
     end
     if receiver
@@ -183,8 +188,8 @@ class Notificator
             # configuramos al usuario originador:
             Twitter.configure do |config|
               # TODO: must be an environment variable
-              config.consumer_key = 'ZKnXYTs819Coqc6RuPC6Ag'
-              config.consumer_secret= 'zGvOKVnJ6euDGguqL87aaK79SpU9xb71me8TRuzbM'
+              config.consumer_key = 'bqe8mTvQ0eBsLr3jHTkg'
+              config.consumer_secret= 'TBWeoQoVXWGshRNaRdu9VyzeX12BzQsHMZVaK5wLt4'
               config.oauth_token = auth.tw_token
               config.oauth_token_secret = auth.tw_secret
             end
@@ -192,10 +197,16 @@ class Notificator
             # lenguaje de envío...
 
             # mensaje ...
-            receiver_twitter = receiver.authorizations.where(:provider => 'twitter').first
+            receiver_twitter = receiver.authorizations.where(:provider => 'twitter').first rescue nil
             case _what
             when 'upa'
               # TODO : Must publish on behalf of the user and tabelia itself, better to do it below all
+              case originator.language
+               when 'es'
+                 text = "He publicado '#{art.name}' http://www.tabelia.com/art/#{art.slug} #tabelia"
+               when 'en'
+                 text = "I have published '#{art.name}' http://www.tabelia.com/art/#{art.slug} #tabelia"
+               end
             when 'ufu'
               case originator.language
               when 'es'
@@ -228,8 +239,8 @@ class Notificator
               end
             end
             Twitter.update(text)
-          rescue
-            puts 'no se ha podido enviar el mensaje a twitter....'
+          rescue   Exception => e
+            puts "Error enviando usuario twitter: #{e.message}"
           end
         end # if auth.tw_token.nil? == false and auth.tw_secret.nil? == false
       when 'facebook'
@@ -253,6 +264,25 @@ class Notificator
       end
     end
     
+    ##### tabelia stream on facebook and twitter
+    begin
+      case _what
+      when 'upa'
+        # twitter
+        Twitter.configure do |config|
+          # TODO: must be an environment variable
+          config.consumer_key = 'bqe8mTvQ0eBsLr3jHTkg'
+          config.consumer_secret= 'TBWeoQoVXWGshRNaRdu9VyzeX12BzQsHMZVaK5wLt4'
+          config.oauth_token = '417036554-6RJxZsjPskuSfbIvNRqpk2bQtc3Pzlm0Gqpybw8S'
+          config.oauth_token_secret = 'etbvn0bXhuIY3Psuj6Go3min1k51aGzJCeWQ8ZQ0I4'
+        end
+        text = "#{art.name} - #{originator.name} #tabelia http://www.tabelia.com/art/#{art.slug}"
+        Twitter.update(text)
+      end
+    rescue Exception => e
+      puts "Error twitter desde @tabelia_com: #{e.message}"
+    end
+    
     # mail - last since it's the most time consuming task
     case _what
     when 'cou'
@@ -266,6 +296,7 @@ class Notificator
       receivers.each do |receiver|
         NotifierMailer.user_publish_art(originator, receiver, art).deliver
       end
+      # NotifierMailer.your_art_has_been_published(originater, art).deliver
     when 'ufu'
       # Sends a mail to the receiver if he/she allows it, telling that the originator begins following him/her
       NotifierMailer.user_follows_user(originator, receiver).deliver

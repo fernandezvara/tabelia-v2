@@ -32,7 +32,7 @@
   </div>
   <div class="input text optional">
     <%= f.label :status, :class => ['text', 'optional'] %>
-    <%= f.select :status, [['Active', 1], ['Innactive', 0]] %>
+    <%= f.select :status, [['Active', true], ['Innactive', false]] %>
     <span class="hint">Do you want to show this art?</span>
   </div>
   <%= f.submit  %>

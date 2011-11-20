@@ -19,16 +19,16 @@
       <label class="note">Correo del usuario</label>
     </li>
     <li>
-      <%= f.label :locale %>
+      <%= f.label :language %>
       <div>
-      <%= f.text_field :locale, :maxlenght => 10, :class => ['text', 'small'] %>
+      <%= f.text_field :language, :maxlenght => 10, :class => ['text', 'small'] %>
       </div>
       <label class="note">Locale del usuario</label>
     </li>
     <li>
       <%= f.label :avatar %>
       <div>
-      <%= f.text_field :avatar, :maxlenght => 100, :class => ['text', 'medium'] %>
+      <%= @user.avatar.url.to_s %>
       </div>
       <label class="note">Avatar del usuario(si ha subido alguno)</label>
     </li>

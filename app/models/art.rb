@@ -15,14 +15,15 @@ class Art
   has_many :color_relations
   has_many :items
   
-  field :name,           :type => String,   :presence => true
-  field :price,          :type => Integer,  :presence => true
-  field :max_height,     :type => Float
-  field :max_width,      :type => Float
-  field :description,    :type => String
-  field :status,         :type => Integer
-  field :accepted,       :type => Boolean,  :default => false
-  #field :show_search,    :type => Boolean,  :default => false
+  field :name,              :type => String,   :presence => true
+  field :price,             :type => Integer,  :presence => true
+  field :max_height,        :type => Float
+  field :max_width,         :type => Float
+  field :description,       :type => String
+  field :status,            :type => Boolean,  :default => true
+  field :accepted,          :type => Boolean,  :default => false
+  field :status_reason,     :type => Integer,  :default => 0
+  #field :show_search,      :type => Boolean,  :default => false
   
   slug :name
   

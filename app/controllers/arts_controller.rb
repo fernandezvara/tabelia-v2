@@ -45,10 +45,14 @@ class ArtsController < ApplicationController
   end
 
   def index
-    @arts = current_user.arts.page(params[:page]).per(30)
-    @title = t("arts.index.title")
-    respond_to do |format|
-      format.html { render :layout => 'main' }
+    if current_user
+      @arts = current_user.arts.page(params[:page]).per(30)
+      @title = t("arts.index.title")
+      respond_to do |format|
+        format.html { render :layout => 'main' }
+      end
+    else
+      redirect_to :not_found
     end
   end
 
