@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
         logger.debug "DEBUG: no hay locale en session"
         if current_user
           logger.debug "DEBUG: usando lenguage del usuario: #{current_user.language}"
-          session[:locale] = current_user.language
+          session[:locale] = current_user.language || 'en'
           I18n.locale = current_user.language.to_sym rescue "en"
         else
           if request.env['HTTP_ACCEPT_LANGUAGE']

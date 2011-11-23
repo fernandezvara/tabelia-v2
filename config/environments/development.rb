@@ -11,7 +11,7 @@ Tabelia::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  config.action_controller.perform_caching = true
   
   config.action_mailer.delivery_method = :ses
 
@@ -26,6 +26,8 @@ Tabelia::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+  
+  config.cache_store = :redis_store
 
   # Expands the lines which load the assets
   config.assets.debug = true

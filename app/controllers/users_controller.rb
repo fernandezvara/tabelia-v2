@@ -8,11 +8,17 @@ class UsersController < ApplicationController
       show_404 
     else
       @comment = Comment.new
-      @comments = @user.comments_received.order_by(:created_at, :desc).limit(10)
-      inspirations = Tagging.of_object_as_where_creator(@user, 'insp', @user)
-      @inspirations = Array.new
-      inspirations.each do |tag|
-        @inspirations << tag.tag.text
+      # prevent hit the database if the comments has been cached before
+      if fragment_exist?("comments-user-#{@user.id.to_s}") == false
+        @comments = @user.comments_received.order_by(:created_at, :desc).limit(10)
+      end
+      # prevent hit the database if the user haven't changed his/her about info
+      if fragment_exist?("about-profile-#{@user.id.to_s}-#{session[:locale].to_s}") == false
+        inspirations = Tagging.of_object_as_where_creator(@user, 'insp', @user)
+        @inspirations = Array.new
+        inspirations.each do |tag|
+          @inspirations << tag.tag.text
+        end
       end
       @title = @user.name.to_s
       if request.env['HTTP_REFERER'].nil? == true
@@ -27,6 +33,27 @@ class UsersController < ApplicationController
       else
         Resque.enqueue(VisitNew, referrer, @user.class.to_s, @user.id.to_s, session[:session_id], "")
       end
+      # arts to display...
+      if @user == current_user
+        @arts = @user.arts
+      else
+        if current_user.nil? == true
+          user = @user.id.to_s
+          search = Art.search do
+             with(:show_search).greater_than(2)
+             with(:user_id, user)
+           end
+           @arts = search.results
+        else
+          user = @user.id.to_s
+          search = Art.search do
+             with(:show_search).greater_than(1)
+             with(:user_id, user)
+           end
+           @arts = search.results
+        end
+      end
+      
       respond_to do |format|
         format.html { render :layout => 'main' }
         format.js

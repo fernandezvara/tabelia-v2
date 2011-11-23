@@ -1,9 +1,42 @@
+<% if @art.status == false %>
+  <div class="box green">
+    <div class="content">You selected to do not show this art.</div>
+  </div>
+<% end %>
+
+<% if @art.accepted == false %>
+<div class="box green">
+  <div class="title">ART STATUS</div>
+  <div class="content">
+  <% case @art.status_reason 
+    when 0 %>
+    <%= 'Esperando a ser aprobado.'%>
+  <% when 1 %>
+    <%= 'La obra no ha sido aceptada por baja calidad.' %>
+  <% when 2 %>
+    <%= 'La obra no se ajusta a los contenidos aceptados.' %>
+  <% end %>    
+  </div>
+</div>
+<% end %>
+
+<% if @art.user == current_user %>
+<div class="box purple">
+  <div class="content">
+  <%= link_to 'Editar la información de la obra', edit_art_path(:slug => @art.slug), :class => 'abutton' %>
+  </div>
+</div>
+<% end %>
+
+
+<% if @art.status == true and @art.accepted == true %>
 <div id="add_to_cart">
   <%= link_to "Buy now (from " + number_to_currency(@art.price + @art.get_price(@art.min_height, @art.min_width, 1, 0), :unit => '€') + ")", add_to_cart_path(:slug => @art.slug), :class => ['abutton', 'big', 'yellow'], :rel => 'modal' %>
 </div>
+<% end %>
 
 <%= render :partial => 'partials/art/profile/artinfo' %>
-<%= render :partial => 'partials/art/profile/moreartfromuser' %>
+<%#= render :partial => 'partials/art/profile/moreartfromuser' %>
 <% if @similar_art.count > 0 %>
   <%= render :partial => 'partials/art/profile/similar_art' %>
 <% end %>

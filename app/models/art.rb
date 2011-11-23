@@ -35,8 +35,17 @@ class Art
   
   searchable :auto_index => false, :auto_remove => false do
     text :name, :stored => true
+    string :user_id do
+      self.user.id.to_s
+    end
     integer :show_search do 
-      self.user.privacy.sos
+      # show in search can be false if the user don't wants to show any art, this art independly or the art haven't
+      # be accepted.
+      if self.accepted == false or self.status == false
+        0   # show to none
+      else
+        self.user.privacy.sos
+      end
     end
     string :category_slug
   end

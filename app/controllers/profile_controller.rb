@@ -62,6 +62,10 @@ class ProfileController < ApplicationController
     if params[:privacy]
       if @privacy.update_attributes(params[:privacy])
         current_user.save
+        arts = current_user.arts.all
+        arts.each do |art|
+          art.save
+        end
         flash.now[:success] = 'Cambios guardados correctamente'
       else
         flash.now[:error] = 'Hay errores en el formulario'

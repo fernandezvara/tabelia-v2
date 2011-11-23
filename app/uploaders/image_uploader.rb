@@ -28,8 +28,9 @@ class ImageUploader < CarrierWave::Uploader::Base
     model.instance_variable_get(var) or model.instance_variable_set(var, ActiveSupport::SecureRandom.hex(2))
   end
   
-  process :resize_to_fit => [730, 730]
-  process :quality => 70
+  process :convert_to_jpg
+  #process :resize_to_fit => [730, 730]
+  #process :quality => 70
 
   version :normal do 
     process :resize_to_fit => [730, 730]
@@ -59,6 +60,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def extension_white_list
     %w(jpg jpeg png tif tiff)
+  end
+  
+  def convert_to_jpg
+    puts 'converting to jpg...'
+    manipulate!(:format => 'jpg')
   end
   
   def resize_boxed

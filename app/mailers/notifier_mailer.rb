@@ -6,9 +6,12 @@ class NotifierMailer < ActionMailer::Base
     @originator = originator
     @receiver = receiver
     @comment = comment
-    mail(:to => "#{@receiver.name} <#{@receiver.email}>", :subject => t('mail.comment_on_profile.subject', :originator_name => originator.name)) do |format|
-      format.text
-      format.html { render :layout => 'tabeliamail' }
+    puts "Mail to: #{@receiver.email} - Subject: #{t('mail.comment_on_profile.subject', :originator_name => originator.name)}'"
+    if @receiver.email.include?("change.me") == false and @receiver.email.include?("hotmail.com") == false
+      mail(:to => "#{@receiver.name} <#{@receiver.email}>", :subject => t('mail.comment_on_profile.subject', :originator_name => originator.name)) do |format|
+        format.text
+        format.html { render :layout => 'tabeliamail' }
+      end
     end
   end
   
@@ -18,9 +21,12 @@ class NotifierMailer < ActionMailer::Base
     @receiver = receiver
     @comment = comment
     @art = art
-    mail(:to => "#{@receiver.name} <#{@receiver.email}>", :subject => t('mail.comment_on_art.subject', :originator_name => originator.name, :art_name => art.name)) do |format|
-      format.text
-      format.html { render :layout => 'tabeliamail' }
+    puts "Mail to: #{@receiver.email} - Subject: '#{t('mail.comment_on_art.subject', :originator_name => originator.name, :art_name => art.name)}'"
+    if @receiver.email.include?("change.me") == false and @receiver.email.include?("hotmail.com") == false
+      mail(:to => "#{@receiver.name} <#{@receiver.email}>", :subject => t('mail.comment_on_art.subject', :originator_name => originator.name, :art_name => art.name)) do |format|
+        format.text
+        format.html { render :layout => 'tabeliamail' }
+      end
     end
   end
   
@@ -29,9 +35,12 @@ class NotifierMailer < ActionMailer::Base
     @receiver = receiver
     @originator = originator
     @art = art
-    mail(:to => "#{@receiver.name} <#{@receiver.email}>", :subject => t('mail.user_publish_art.subject', :originator_name => originator.name, :art_name => art.name)) do |format|
-      format.text
-      format.html { render :layout => 'tabeliamail' }
+    puts "Mail to: #{@receiver.email} - Subject: '#{t('mail.user_publish_art.subject', :originator_name => originator.name, :art_name => art.name)}'"
+    if @receiver.email.include?("change.me") == false and @receiver.email.include?("hotmail.com") == false
+      mail(:to => "#{@receiver.name} <#{@receiver.email}>", :subject => t('mail.user_publish_art.subject', :originator_name => originator.name, :art_name => art.name)) do |format|
+        format.text
+        format.html { render :layout => 'tabeliamail' }
+      end
     end
   end
   
@@ -39,9 +48,12 @@ class NotifierMailer < ActionMailer::Base
     I18n.locale = receiver.language
     @receiver = receiver
     @originator = originator
-    mail(:to => "#{@receiver.name} <#{@receiver.email}>", :subject => t('mail.user_follows_user.subject', :originator_name => originator.name)) do |format|
-      format.text
-      format.html { render :layout => 'tabeliamail' }
+    puts "Mail to: #{@receiver.email} - Subject: #{t('mail.user_follows_user.subject', :originator_name => originator.name)}"
+    if @receiver.email.include?("change.me") == false and @receiver.email.include?("hotmail.com") == false
+      mail(:to => "#{@receiver.name} <#{@receiver.email}>", :subject => t('mail.user_follows_user.subject', :originator_name => originator.name)) do |format|
+        format.text
+        format.html { render :layout => 'tabeliamail' }
+      end
     end
   end
   
@@ -50,9 +62,12 @@ class NotifierMailer < ActionMailer::Base
     @receiver = receiver
     @originator = originator
     @art = art
-    mail(:to => "#{@receiver.name} <#{@receiver.email}>", :subject => t('mail.user_likes_art.subject', :originator_name => originator.name, :art_name => art.name)) do |format|
-      format.text
-      format.html { render :layout => 'tabeliamail' }
+    puts "Mail to: #{@receiver.email} - Subject: '#{t('mail.user_likes_art.subject', :originator_name => originator.name, :art_name => art.name)}'"
+    if @receiver.email.include?("change.me") == false and @receiver.email.include?("hotmail.com") == false
+      mail(:to => "#{@receiver.name} <#{@receiver.email}>", :subject => t('mail.user_likes_art.subject', :originator_name => originator.name, :art_name => art.name)) do |format|
+        format.text
+        format.html { render :layout => 'tabeliamail' }
+      end
     end
   end
 end

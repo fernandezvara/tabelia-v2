@@ -4,28 +4,16 @@
 
 
 <% content_for :left do %>
-<div class="content center" id="last_show" style="margin-bottom:10px;">
-<% @last.each do |last| %>
-    <div class="bimg" style="text-align:center;">
-      <%= link_to image_tag(last.image.url(:splash).to_s, :class=> 'cap', :alt => last.name), art_profile_path(:slug => last.slug) %>
-    </div>
+<div class="content center" style="height:332px; overflow:hidden;">
+<div  id="last_show" style="margin-bottom:10px; height: 332px; overflow:hidden;"></div>
+  <%= render :partial => 'pages/javascript' %>
 <% end %>
 </div>
-<script type="text/javascript" charset="utf-8">
-var $container = $('#last_show');
-$container.imagesLoaded( function(){
-  $container.masonry({
-    itemSelector : 'div.bimg',
-    gutterWidth: 0,
-    isAnimated: true,
-    columnWidth: 165
-  });
-});
-</script>
-<% end %>
 
 <% content_for :right do %>
 <div class="special-right left">
+  <% cache("activity-index-#{current_user.id.to_s}-#{session[:locale].to_s}") do %>
   <%= render :partial => 'partials/pages/index/activity' %>
+  <% end %>
 </div>
 <% end %>

@@ -8,6 +8,8 @@ class CommentsController < ApplicationController
         @comment.receiver = @user
         @comment.text = params[:text]
         @comment.save!
+        # delete caches
+        expire_fragment("comments-user-#{@user.id.to_s}") if fragment_exist?("comments-user-#{@user.id.to_s}") == true
         
         data = Hash.new
         data['data'] = Hash.new
@@ -51,7 +53,8 @@ class CommentsController < ApplicationController
         @comment.art = @art
         @comment.text = params[:text]
         @comment.save!
-        
+        #delete art comment cache
+        expire_fragment("comments-art-#{@art.id.to_s}") if fragment_exist?("comments-art-#{@art.id.to_s}") == true
         data = Hash.new
         data['who'] = current_user.id.to_s
         data['when'] = Time.now

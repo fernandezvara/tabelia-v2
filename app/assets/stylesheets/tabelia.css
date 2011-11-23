@@ -97,6 +97,8 @@ div#color                { cursor:pointer;}
 
 .cart_title              { font-size:14px; font-weight:bold; color:#464646; margin-bottom:5px;}
 
+div.bimg {font-size:13px; line-height:13px; min-height:165px;}
+
 /* Searches */
 
 span.search-bg { cursor:pointer;}

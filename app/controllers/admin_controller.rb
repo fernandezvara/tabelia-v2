@@ -52,7 +52,12 @@ class AdminController < ApplicationController
     end
     if @art.save
       Resque.enqueue(FindSimilarArt, @art.id.to_s)
-      if accepted_changed == true
+      if accepted_changed == true and @art.accepted == true
+        # change the privacy options for show the art to the public
+        user = @art.user
+        user.privacy.sos = 2
+        user.save
+        # generates the upa event 'user-published-art'
         data = Hash.new
         data['who'] = @art.user.id.to_s
         data['when'] = Time.now

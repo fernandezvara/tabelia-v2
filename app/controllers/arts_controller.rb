@@ -5,32 +5,58 @@ class ArtsController < ApplicationController
     if @art.nil? == true
       show_404 
     else
-      @comments = @art.artcomments
-      if request.env['HTTP_REFERER'].nil? == true
-        referrer = "-"
-      else
-        referrer = request.env['HTTP_REFERER']
-      end
-      if current_user
-        if @art.user != current_user
-          Resque.enqueue(VisitNew, referrer, @art.class.to_s, @art.id.to_s, session[:session_id], current_user.id.to_s)
+      # verify if art has been published
+      if @art.accepted == true and @art.status == true
+        @comments = @art.artcomments
+        if request.env['HTTP_REFERER'].nil? == true
+          referrer = "-"
+        else
+          referrer = request.env['HTTP_REFERER']
         end
+        if current_user
+          if @art.user != current_user
+            Resque.enqueue(VisitNew, referrer, @art.class.to_s, @art.id.to_s, session[:session_id], current_user.id.to_s)
+          end
+        else
+          Resque.enqueue(VisitNew, referrer, @art.class.to_s, @art.id.to_s, session[:session_id], "")
+        end
+        arttags = Tagging.of_object_as_where_creator(@art, 'arttag', @art.user)
+        @tags = Array.new
+        arttags.each do |tag|
+          @tags << tag.tag.text
+        end
+        similar_arts = ArtSimilar.where(:art_id => @art.id.to_s)
+        @similar_art = Array.new
+        similar_arts.each do |similar|
+          @similar_art << Art.find(similar.similar_id)
+        end
+        @art_colors = ColorRelation.colors_of(@art)
+        @title = t("users.index.title")
+        render :layout => 'main'
       else
-        Resque.enqueue(VisitNew, referrer, @art.class.to_s, @art.id.to_s, session[:session_id], "")
+        # if the art has not been published by the artist or is not accepted, we only show the art to the artist
+        if @art.user == current_user
+          @comments = @art.artcomments
+          arttags = Tagging.of_object_as_where_creator(@art, 'arttag', @art.user)
+          @tags = Array.new
+          arttags.each do |tag|
+            @tags << tag.tag.text
+          end
+          similar_arts = ArtSimilar.where(:art_id => @art.id.to_s)
+          @similar_art = Array.new
+          similar_arts.each do |similar|
+            @similar_art << Art.find(similar.similar_id)
+          end
+          @art_colors = ColorRelation.colors_of(@art)
+          @title = t("users.index.title")
+          render :layout => 'main'
+        else
+          # art not belongs to the user
+          show_404
+        end
+        
+        
       end
-      arttags = Tagging.of_object_as_where_creator(@art, 'arttag', @art.user)
-      @tags = Array.new
-      arttags.each do |tag|
-        @tags << tag.tag.text
-      end
-      similar_arts = ArtSimilar.where(:art_id => @art.id.to_s)
-      @similar_art = Array.new
-      similar_arts.each do |similar|
-        @similar_art << Art.find(similar.similar_id)
-      end
-      @art_colors = ColorRelation.colors_of(@art)
-      @title = t("users.index.title")
-      render :layout => 'main'
     end
   end
 

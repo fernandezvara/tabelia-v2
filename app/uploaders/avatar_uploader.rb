@@ -31,9 +31,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   process :resize_to_fill => [150, 150] 
   process :convert => 'jpg'
   process :quality => 75
-  
-  # Create different versions of your uploaded files:
-  
+    
   version :thumb do
      process :resize_to_fill => [75, 75]
      process :quality => 75

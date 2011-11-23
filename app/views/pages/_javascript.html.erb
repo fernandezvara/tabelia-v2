@@ -1,0 +1,54 @@
+<script type="text/javascript" charset="utf-8">
+var $container = $('#last_show');
+var arts = new Array();
+var i = 0;
+<% cache("#{@cache}", :expires_in => 1.hour) do %>
+  <% @arts = @search.results %>
+  <% i = 0 %>
+  <% @arts.each do |art| %>
+    arts[<%= i %>] = '<%= escape_javascript(link_to image_tag(art.image.url(:splash).to_s, :alt => art.name, :title => art.name), art_profile_path(:slug => art.slug)) %>';
+    <% i = i + 1 -%>
+  <% end %>
+<% end %>
+
+function addImage() {
+  var newDiv = document.createElement('div')
+  $(newDiv).addClass("bimg").html(arts[i]);
+  $container.prepend(newDiv);
+
+  console.log(i);
+  i++;
+  if(i == arts.length) {
+    i = 0;
+  }
+}  
+
+$(document).ready(function(){
+
+  $("#last_show img").tipsy({
+    live: true,
+    trigger: 'hover',
+    gravity: 'w'
+  });
+
+  $container.masonry({
+    itemSelector : 'div.bimg',
+    gutterWidth: 0,
+    isAnimated: true,
+    columnWidth: 165
+  });
+  for(a =0; a<= 2; a++){
+    addImage();
+    console.log('llamada');
+  }
+  setTimeout(function() {
+   $container.masonry('reload'); 
+   console.log('done');
+  }, 500);
+  setInterval(function(){
+    addImage();
+    $container.masonry('reload');
+    }, 10000);
+});
+
+</script>

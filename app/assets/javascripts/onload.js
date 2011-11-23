@@ -35,13 +35,6 @@ $(document).ready(function(){
 			$(this).find("div.actions").hide();
 		}
 	});
-	/*$("li.message").live("hover", function(){
-		$(this).find("div.actions").show();
-	},
-	function() {
-		$(this).find("div.actions").hide();
-	}); */
-	
 	$('img.cap').captify({
 		speedOver: 'fast',
 		speedOut: 'normal',

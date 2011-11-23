@@ -3,6 +3,8 @@ class Notificator
   
   @queue = :notifications
   
+  
+  
   # activity types:
   #
   # cou | Comment on User
@@ -14,6 +16,8 @@ class Notificator
   def self.perform(data)
     
     start = Time.now.to_f
+    
+    action_controller = ActionController::Base.new
     
     _what    = data['what']
     _who     = data['who']
@@ -154,7 +158,6 @@ class Notificator
     end
   
     # add this activity to all the members that must have it in their activity feed, others than originator
-    
     if members_to_notify.include?(originator) == true
       members_to_notify.delete(originator)
     end
@@ -170,7 +173,27 @@ class Notificator
       member.useractivities << useractivity
       useractivity.save
       member.save
+      # FRAGMENT CACHING EXPIRATIONS..... for index of notified ppl
+      if action_controller.fragment_exist?("activity-index-#{member.id.to_s}-es") == true
+        puts "deleting cache... '#{"activity-index-#{member.id.to_s}-es"}'"
+        action_controller.expire_fragment("activity-index-#{member.id.to_s}-es")
+      end
+      if action_controller.fragment_exist?("activity-index-#{member.id.to_s}-en") == true
+        puts "deleting cache... '#{"activity-index-#{member.id.to_s}-en"}'"
+        action_controller.expire_fragment("activity-index-#{member.id.to_s}-en")
+      end
     end
+    
+    # FRAGMENT CACHING EXPIRATIONS..... for profile of originator
+    if action_controller.fragment_exist?("activity-profile-#{originator.id.to_s}-es") == true
+      puts "deleting cache... '#{"activity-profile-#{originator.id.to_s}-es"}'"
+      action_controller.expire_fragment("activity-profile-#{originator.id.to_s}-es")
+    end
+    if action_controller.fragment_exist?("activity-profile-#{originator.id.to_s}-en") == true
+      puts "deleting cache... '#{"activity-profile-#{originator.id.to_s}-en"}'"
+      action_controller.expire_fragment("activity-profile-#{originator.id.to_s}-en")
+    end
+    
     
     # publish on facebook & twitter
     # obtenemos las autorizaciones del usuario, después por cada una realizamos las acciones, si es twitter, si es facebook...
@@ -277,32 +300,49 @@ class Notificator
           config.oauth_token_secret = 'etbvn0bXhuIY3Psuj6Go3min1k51aGzJCeWQ8ZQ0I4'
         end
         text = "#{art.name} - #{originator.name} #tabelia http://www.tabelia.com/art/#{art.slug}"
-        Twitter.update(text)
+        begin
+          #image = File.open(art.original.versions[:scaled].to_s)
+          image = nil
+        rescue
+          image = nil
+        end
+        if image.nil?
+          Twitter.update(text)
+        else
+          options = Hash.new
+          options['media']['display_url'] = "http://localhost:3000/arts/#{art.slug}"
+          #options['status'] = text
+          Twitter.update_with_media(text, image, options)
+        end
       end
     rescue Exception => e
       puts "Error twitter desde @tabelia_com: #{e.message}"
     end
     
     # mail - last since it's the most time consuming task
-    case _what
-    when 'cou'
-      # Sends a mail to the receiver if he/she allows it, telling that the originator has commented his/her profile
-      NotifierMailer.comment_on_user(originator, receiver, comment).deliver
-    when 'coa'
-      # Sends a mail to the receiver if he/she allows it, telling that the originator has commented the art
-      NotifierMailer.comment_on_art(originator, receiver, comment, art).deliver
-    when 'upa'
-      # Sends a mail to each follower of originator
-      receivers.each do |receiver|
-        NotifierMailer.user_publish_art(originator, receiver, art).deliver
+    begin
+      case _what
+      when 'cou'
+        # Sends a mail to the receiver if he/she allows it, telling that the originator has commented his/her profile
+        #NotifierMailer.comment_on_user(originator, receiver, comment).deliver
+      when 'coa'
+        # Sends a mail to the receiver if he/she allows it, telling that the originator has commented the art
+        #NotifierMailer.comment_on_art(originator, receiver, comment, art).deliver
+      when 'upa'
+        # Sends a mail to each follower of originator
+        receivers.each do |receiver|
+          # NotifierMailer.user_publish_art(originator, receiver, art).deliver
+        end
+        # NotifierMailer.your_art_has_been_published(originater, art).deliver
+      when 'ufu'
+        # Sends a mail to the receiver if he/she allows it, telling that the originator begins following him/her
+        #NotifierMailer.user_follows_user(originator, receiver).deliver
+      when 'ula'
+        # Sends a mail to the receiver if he/she allows it, telling that the originator begins liking his/her art
+        #NotifierMailer.user_likes_art(originator, receiver, art).deliver
       end
-      # NotifierMailer.your_art_has_been_published(originater, art).deliver
-    when 'ufu'
-      # Sends a mail to the receiver if he/she allows it, telling that the originator begins following him/her
-      NotifierMailer.user_follows_user(originator, receiver).deliver
-    when 'ula'
-      # Sends a mail to the receiver if he/she allows it, telling that the originator begins liking his/her art
-      NotifierMailer.user_likes_art(originator, receiver, art).deliver
+    rescue Exception => e
+      puts e.message
     end
     
     puts "#{Time.now.to_f - start} seg - notificator"

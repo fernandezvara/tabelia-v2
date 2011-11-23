@@ -13,7 +13,7 @@
   <p class="division"><%= t('simple_form.labels.profile_privacy')%></p>
   <div class="input optional <%= "field_with_errors" if @privacy.errors.keys.include?(:sos) %>">
     <label class="optional" for="privacy_sos"><%= t("simple_form.labels.sos") %></label>
-    <%= collection_select('privacy', 'sos', [[0, t('simple_form.labels.sos0')] ,[1, t('simple_form.labels.sos1')], [2, t('simple_form.labels.sos0')]], :first, :last, :prompt => false) %>
+    <%= collection_select('privacy', 'sos', [[0, t('simple_form.labels.sos0')] ,[1, t('simple_form.labels.sos1')], [2, t('simple_form.labels.sos2')]], :first, :last, :prompt => false) %>
   </div>
   <p class="division"><%= t('simple_form.labels.comments')%></p>
   <div class="input optional <%= "field_with_errors" if @privacy.errors.keys.include?(:acp) %>">
