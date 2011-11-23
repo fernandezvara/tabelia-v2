@@ -1,0 +1,6 @@
+en:
+    sessions:
+        new:
+            title: "LOG IN"
+            use_one_of: "or use one of these services for log in..."
+            submit: "log in ..."

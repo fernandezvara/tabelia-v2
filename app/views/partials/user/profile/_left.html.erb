@@ -1,14 +1,14 @@
   <%= render :partial => 'partials/user/profile/myart' %>
 <div class="unitx3 left">
-  <% cache("about-profile-#{@user.id.to_s}-#{session[:locale].to_s}") do %>
+  <% cache("about-profile-#{@user.id.to_s}-#{I18n.locale.to_s}") do %>
   <%= render :partial => 'partials/user/profile/about' %>
   <% end %>
-  <% cache("activity-profile-#{@user.id.to_s}-#{session[:locale].to_s}") do %>
+  <% cache("activity-profile-#{@user.id.to_s}-#{I18n.locale.to_s}") do %>
   <%= render :partial => 'partials/user/profile/activity' %>
   <% end %>
 </div>
 <div class="unitx3 right">
-  <% cache("comments-user-#{@user.id.to_s}-#{session[:locale].to_s}") do %>
+  <% cache("comments-user-#{@user.id.to_s}-#{I18n.locale.to_s}") do %>
   <%= render :partial => 'partials/user/profile/comments' %>
   <% end %>
 </div>

@@ -66,16 +66,26 @@
             <%= link_to image_tag(@to.avatar.url(:mini).to_s, :alt => @to.name), user_profile_path(:username => @to.username) %>
           </div>
           <div class="data right">
-            <p>has <%= GraphClient.get_count("Backward", "Follow", @to) %> followers</p>
-            <p>follows <%= GraphClient.get_count("Forward", "Follow", @to) %> users</p>
+            <% followers = GraphClient.get_count('Backward', 'Follow', @to) %>
+            <% if followers == 1 %>
+              <p><%= "#{followers} #{t('common.follower')}" %></p>
+            <% else %>
+              <p><%= "#{followers} #{t('common.followers')}" %></p>
+            <% end %>
+            <% following = GraphClient.get_count('Forward', 'Follow', @to) %>
+            <% if following == 1 %>
+            <p><%= t('common.follows_to_user', :number => following) %></p>
+            <% else %>
+            <p><%= t('common.follows_to_users', :number => following) %></p>
+            <% end %>
           </div>
         <% when 'ula' %>
           <% @art = Art.find(activity.art) %>
           <p>
             <% if controller_name == 'users' %>
-              <span><%= @user.name %></span>
+              <%= t('activity.user_likes_art.pre') %><span><%= @user.name %></span>
             <% else %>
-              <%= link_to @user.name, user_profile_path(:username => @user.username) %>
+              <%= t('activity.user_likes_art.pre') %><%= link_to @user.name, user_profile_path(:username => @user.username) %>
             <% end %>
             <%= t('activity.user_likes_art.main_action') %><%= link_to @art.user.name, user_profile_path(:username => @art.user.username)  %><%= t('activity.user_likes_art.main_action2') %><%= link_to @art.name, art_profile_path(:slug => @art.slug)  %></p>
             <p class="timeago" time="<%= activity.when.to_i %>"><%= time_ago_in_words(activity.when)%> ago</p>
@@ -83,7 +93,13 @@
             <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug)  %>
           </div>
           <div class="data right">
-            <p><%= GraphClient.get_count("Backward", "Like", @art) %> likes it</p>
+            <p><% likes = GraphClient.get_count("Backward", "Like", @art) %> 
+              <% if likes == 1 %>
+              <%= t("common.liked_by_1user") %>
+              <% else %>
+              <%= t("common.liked_by_users", :number => likes) %>
+              <% end %>
+            </p>
           </div>
         <% end %>
         <% rescue

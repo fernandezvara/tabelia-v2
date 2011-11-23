@@ -1,0 +1,9 @@
+en:
+    users:
+        my_art: 'MY ART'
+        about_me: 'ABOUT ME'
+        about_me_empty: 'There is no information about this user'
+        inspirations: 'INSPIRATIONS'
+        activity: 'RECENT ACTIVITY'
+        comments: 'COMMENT'
+        user_info: 'USER INFORMATION'

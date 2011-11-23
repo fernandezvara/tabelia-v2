@@ -1,9 +1,27 @@
 en:
     common:
+        you: 'You'
+        send_message: 'Message'
+        like: 'Like'
+        you_like_it: 'I like it'
+        unlike: 'Unlike'
+        follow: 'Follow'
+        you_follow: 'I follow'
+        unfollow: 'Stop following'
         working: 'Working...'
-        please_fix_errors_on_form: 'Please fix error on the form'
-    sessions:
-        new:
-            title: "Login"
-            use_one_of: "or use one of these services to log in..."
-            submit: "Log in"
+        please_fix_errors_on_form: 'Please, fix the errors on the form.'
+        see_all_female: 'view all... '
+        see_all_male: 'view all...'
+        view_more: 'More...'
+        comments: 'COMMENTS'
+        time_ago: '%{time} ago'
+        write_a_comment: 'Write a comment'
+        no_comments_yet: 'There are no comments yet.'
+        follower: 'follower'
+        followers: 'followers'
+        follows_to_user: 'follows 1 user'
+        follows_to_users: 'follows %{number} users'
+        user: 'user'
+        users: 'users'
+        liked_by_1user: 'liked by 1 user'
+        liked_by_users: 'liked by %{number} users'

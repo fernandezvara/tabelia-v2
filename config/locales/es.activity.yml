@@ -21,4 +21,20 @@ es:
             main_action: " ha empezado a seguir tu trabajo."
         user_likes_art:
             subject: "A %{originator_name} le gusta '%{art_name}'"
-            main_action: " le gusta "
+            main_action: " le gusta "            
+    activity:
+        title: 'ACTIVIDAD RECIENTE'
+        comment_on_profile:
+            main_action: ' ha escrito un comentario en el perfil de '
+            main_action2: ""
+        comment_on_art:
+            main_action: ' ha comentado la obra de '
+            main_action2: " llamada "
+        user_publish_art:
+            main_action: ' ha publicado '
+        user_follows_user:
+            main_action: " ha comenzado a seguir a "
+        user_likes_art:
+            pre: "A "
+            main_action: " le gusta la obra de "
+            main_action2: " llamada "

@@ -1,0 +1,56 @@
+es:
+    arts:
+        status:
+            accepted: "Art is visible and it\'s published"
+            non_accepted_reason0: 'Waiting for be approved.'
+            non_accepted_reason1: 'Art is not accepted. Bad quality of the original file.'
+            non_accepted_reason2: 'Art is not accepted. Art do not follow allowed contents.'
+            status_false: 'You have selected to do not show this art.'
+        index:
+            title: 'My Arts'
+            add_new_button: 'Add a new art'
+        edit:
+            title: 'Edit: %{art_name}'
+        new:
+            title: 'New art'
+        profile:
+            category: 'Category: '
+            listed: 'Added %{time} ago'
+            similar_art: 'SIMILAR ART'
+            art_description: 'DESCRIPTION'
+            no_art_description: 'There are no description for this art'
+            tags: 'TAGS'
+            edit_art_information: 'Edit art information'
+            add_to_cart: 'Add to basket'
+            price_from: 'Price: from %{amount}'
+    mongoid:
+        models:
+            art: 'Art'
+        attributes:
+            art:
+                name: 'Name'
+                price: 'Price'
+                description: 'Description'
+                original: 'Original file'
+                category: 'Category'
+                tags: 'Tags'
+                status: 'Show?'
+        hints:
+            art:
+                name: 'Name of this art'
+                price: 'Write how much you want to get for each reproduction sold. Price must be writen in Euros.'
+                description: 'Information about this art.'
+                original: 'Upload the original file of this art. This is a time consuming task, please be patient'
+                category: 'Select the category where you want to show this art.'
+                tags: 'Write the words that can help to identify your art. Use the comma (,) as separator. You can add up to 20 tags for each art'
+                status: 'Do you want to show this art?'
+        options:
+            art:
+                status:
+                    active: 'Yes'
+                    inactive: 'No'
+    helpers:
+        submit:
+            art:
+                create: "Add art"
+                update: "Save changes"
