@@ -1,14 +1,14 @@
 <div class="box green">
-  <div class="title">SOBRE MI</div>
+  <div class="title"><%= t('users.about_me')%></div>
   <div class="content">
     <% if @user.about.nil? == true %>
-      El usuario no ha escrito nada sobre él
+      <%= t('users.about_me_empty') %>
     <% else %>
       <%= Redcarpet.new(@user.about, :filter_html, :hard_wrap, :autolink, :no_intraemphasis).to_html.html_safe %>
     <% end %>
   </div>
   <% if @inspirations.count > 0 %>
-    <div class="title">INSPIRATIONS</div>
+    <div class="title"><%= t('users.inspirations')%></div>
     <div class="content">
       <p><% @inspirations.each do |tag| %>
         <%= link_to tag, "#", :class => 'tag' %>

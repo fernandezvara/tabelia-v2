@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     else
       @comment = Comment.new
       # prevent hit the database if the comments has been cached before
-      if fragment_exist?("comments-user-#{@user.id.to_s}") == false
+      if fragment_exist?("comments-user-#{@user.id.to_s}-#{session[:locale].to_s}") == false
         @comments = @user.comments_received.order_by(:created_at, :desc).limit(10)
       end
       # prevent hit the database if the user haven't changed his/her about info
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
     
     @search = User.search do
       with(:show_search).greater_than(show_search_level)
-      order_by(:name)
+      order_by(:name, :asc)
       paginate(:per_page => 30, :page => params[:page])
     end
     @users = @search.results

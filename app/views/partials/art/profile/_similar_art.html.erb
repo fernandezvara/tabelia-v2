@@ -1,5 +1,5 @@
 <div class="box green">
-  <div class="title">SIMILAR ART<%= link_to 'see all...', user_arts_path(:username => @art.user.username)%></div>
+  <div class="title"><%= t('arts.profile.similar_art') %><%= link_to t('common.see_all_female'), user_arts_path(:username => @art.user.username)%></div>
   <div class="content">
     <% @similar_art.each do |art| %>
     <div class="image_thumb">

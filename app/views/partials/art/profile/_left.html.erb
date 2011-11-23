@@ -3,5 +3,7 @@
   <%= render :partial => 'partials/art/profile/description' %>
 </div>
 <div class="unitx3 right">
+  <% cache "comments-art-#{@art.id.to_s}-#{session[:locale].to_s}" do %>
   <%= render :partial => 'partials/art/profile/comments' %>
+  <% end %>
 </div>

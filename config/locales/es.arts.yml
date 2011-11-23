@@ -1,0 +1,56 @@
+es:
+    arts:
+        status:
+            accepted: 'La obra es visible y está publicada.'
+            non_accepted_reason0: 'Esperando a ser aprobado.'
+            non_accepted_reason1: 'La obra no ha sido aceptada por baja calidad.'
+            non_accepted_reason2: 'La obra no se ajusta a los contenidos aceptados.'
+            status_false: 'Has seleccionado no mostrar esta obra.'
+        index:
+            title: 'Mis obras'
+            add_new_button: 'Añadir una obra'
+        edit:
+            title: 'Editar: %{art_name}'
+        new:
+            title: 'Nueva obra'
+        profile:
+            category: 'Categoria: '
+            listed: 'Añadido hace %{time}'
+            similar_art: 'OBRAS SIMILARES'
+            art_description: 'DESCRIPCIÓN DE LA OBRA'
+            no_art_description: 'El usuario no ha escrito una descripción de esta obra'
+            tags: 'TAGS'
+            edit_art_information: 'Editar información de la obra'
+            add_to_cart: 'Añadir al carrito'
+            price_from: 'Precio: desde %{amount}'
+    mongoid:
+        models:
+            art: 'Arte'
+        attributes:
+            art:
+                name: 'Nombre'
+                price: 'Precio'
+                description: 'Descripción'
+                original: 'Fichero original'
+                category: 'Categoria'
+                tags: 'Tags'
+                status: '¿Mostrar?'
+        hints:
+            art:
+                name: 'Nombre de la obra'
+                price: 'Escribe el valor que tiene cada reproducción. Ten en cuenta que la cantidad es en euros.'
+                description: 'Escribe la información que desees mostrar sobre esta obra.'
+                original: 'Pulsa para seleccionar el fichero original de la obra. Cuando guardes los cambios la obra comenzará a copiarse a nuestros servidores. Este proceso puede tardar unos minutos, en función de la velocidad de tu conexión. Por favor sé paciente.'
+                category: 'Selecciona la categoria en la que desees sea mostrada tu obra.'
+                tags: 'Escribe las palabras que identifiquen a tu obra. Debes separarlas usando comas (,). Por ejemplo: Si has pintado un bodegón de una cesta de manzanas con acuarela, puedes usar las siguientes palabras (puedes escribir un máximo de 20 palabras): bodegón, cesta, manzanas, acuarela ...... '
+                status: 'Selecciona si quieres que tu obra sea publicada.'
+        options:
+            art:
+                status:
+                    active: 'Si'
+                    inactive: 'No'
+    helpers:
+        submit:
+            art:
+                create: "Añadir obra"
+                update: "Guardar cambios"

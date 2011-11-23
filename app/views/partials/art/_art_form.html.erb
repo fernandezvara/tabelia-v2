@@ -2,40 +2,39 @@
   <%= f.hidden_field :slug %>
   <div class="input string optional">
     <%= f.label :name, :class => ['string', 'optional'] %>
-    <%= f.text_field :name, :maxlenght => 50 %>
-    <span class="hint">name your art!</span>
+    <%= f.text_field :name, :maxlenght => 50, :title => t("mongoid.hints.art.name") %>
   </div>
   <div class="input string optional">
     <%= f.label :price, :class => ['string', 'optional'] %>
-    <%= f.text_field :price, :maxlenght => 8 %>
-    <span class="hint">please set the price in euros</span>
+    <%= f.text_field :price, :maxlenght => 8, :title => t("mongoid.hints.art.price") %>
   </div>
   <div class="input text optional">
-    <%= f.label :description, :class => ['text', 'optional'] %>
-    <%= f.text_area :description, :cols => 40, :rows => 10 %>
-    <span class="hint">describe it!</span>
+    <%= f.label :description, :class => ['text', 'optional']%>
+    <%= f.text_area :description, :cols => 40, :rows => 10, :title => t("mongoid.hints.art.description")  %>
   </div>
   <div class="input file optional">
     <%= f.label :original, :class => ['file', 'optional'] %>
-    <%= f.file_field :original %>
-    <span class="hint">Upload your original file. It must be approved before be shown on the site.</span>
+    <%= f.file_field :original, :title => t("mongoid.hints.art.original") %>
   </div>
   <div class="input select optional">
     <%= f.label :category, :class => ['select', 'optional'] %>
     <%= f.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name', @art.category_id) %>
-    <span class="hint">Select the category this art belongs.</span>
+    <script type="text/javascript">
+      $("select#art_category_id").attr("title", "<%=  t("mongoid.hints.art.category") %>");
+    </script>
   </div>
   <div class="input string optional">
     <%= f.label :tags, :class => ['text', 'optional'] %>
-    <%= f.text_field :tags, :maxlenght => 300, :value => @tags %>
-    <span class="hint">Separate each tag with commas(,)</span>
+    <%= f.text_field :tags, :maxlenght => 300, :value => @tags, :title => t("mongoid.hints.art.tags") %>
   </div>
   <div class="input text optional">
     <%= f.label :status, :class => ['text', 'optional'] %>
-    <%= f.select :status, [['Active', true], ['Innactive', false]] %>
-    <span class="hint">Do you want to show this art?</span>
+    <%= f.select :status, [[t('mongoid.options.art.status.active'), true], [t('mongoid.options.art.status.inactive'), false]] %>
+    <script type="text/javascript">
+      $("select#art_status").attr("title", "<%=  t("mongoid.hints.art.status") %>");
+    </script>
   </div>
-  <%= f.submit  %>
+  <%= f.submit :disable_with => t('common.working')  %>
 <% end %>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -53,5 +52,11 @@ $(document).ready(function() {
       } 
     } 
   });
+  $("input, select, textarea").tipsy({
+    live: true,
+    trigger: 'hover',
+    gravity: 'w'
+  });
+  
 });
 </script>

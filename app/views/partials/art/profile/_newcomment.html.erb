@@ -13,9 +13,10 @@
 </ul>
 <% end %>
 <script type="text/javascript">
-  $('textarea').expandingTextArea().val("Escribe un comentario");
+  var write_a_comment = "<%= t('common.write_a_comment') %>";
+  $('textarea').expandingTextArea().val(write_a_comment);
   $('textarea').focus(function() {
-    if ($(this).val() == 'Escribe un comentario') {
+    if ($(this).val() == write_a_comment) {
       $(this).val('');
     }
   });
@@ -24,7 +25,7 @@
       $("input.comment_submit").show();
     } else {
       $("input.comment_submit").hide();
-      $(this).val("Escribe un comentario");
+      $(this).val(write_a_comment);
     }
   });
   $('textarea').keyup(function(){

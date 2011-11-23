@@ -3,12 +3,8 @@
     <%= link_to image_tag(comment.user.avatar.url(:mini).to_s, :alt => comment.user.name) %>
   </div>
   <div class="text s12">
-      <% if comment.user == current_user %>
-        <% link = link_to 'Tú', user_profile_path(:username => comment.user.username) %>
-      <% else %>
-        <% link = link_to comment.user.name, user_profile_path(:username => comment.user.username) %>
-      <% end %>
+      <% link = link_to comment.user.name, user_profile_path(:username => comment.user.username) %>
       <%= simple_format("<strong>#{link}</strong>: " + comment.text) %>
-    <p class="s11 align-right"><span class="time_ago" info="<%= comment.created_at.to_i %>"><%= time_ago_in_words(comment.created_at) %> ago.</span></p>
+    <p class="s11 align-right"><span class="time_ago" info="<%= comment.created_at.to_i %>"><%= t('common.time_ago', :time =>  time_ago_in_words(comment.created_at)) %></span></p>
   </div>
 </li>

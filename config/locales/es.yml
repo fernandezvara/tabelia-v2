@@ -1,4 +1,30 @@
 es:
+    common:
+        you: 'Tú'
+        send_message: 'Mensaje'
+        like: 'Me gusta'
+        you_like_it: 'Te gusta'
+        unlike: 'No me gusta'
+        follow: 'Seguir'
+        you_follow: 'Eres seguidor'
+        unfollo: 'Dejar de seguir'
+        working: 'Trabajando...'
+        please_fix_errors_on_form: 'Por favor, corrige los errores.'
+        see_all_female: 'ver todas...'
+        see_all_male: 'ver todos....'
+        view_more: 'ver más'
+        comments: 'COMENTARIOS'
+        time_ago : 'hace %{time}'
+        write_a_comment: 'Escribe un comentario'
+        no_comments_yet: 'No hay comentarios aún.'
+        follower: 'seguidor'
+        followers: 'seguidores'
+        follows_to_user: 'sigue a 1 usuario'
+        follows_to_users: 'sigue a %{number} usuarios'
+        user: 'usuario'
+        users: 'usuarios'
+        liked_by_1user: 'le gusta a 1 usuario'
+        liked_by_users: 'le gusta a %{number} usuarios'
     sessions:
         new:
             title: "Inicio de sesión"

@@ -8,7 +8,7 @@
   <% end %>
 </div>
 <div class="unitx3 right">
-  <% cache("comments-user-#{@user.id.to_s}") do %>
+  <% cache("comments-user-#{@user.id.to_s}-#{session[:locale].to_s}") do %>
   <%= render :partial => 'partials/user/profile/comments' %>
   <% end %>
 </div>

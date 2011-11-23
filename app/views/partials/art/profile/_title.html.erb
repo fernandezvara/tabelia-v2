@@ -5,9 +5,9 @@
   <% if current_user %>
   <% if current_user != @art.user %>
     <% if GraphClient.connected?('Forward', 'Like', current_user, @art) == false %>
-      <%= link_to 'Like', action_like_path(:slug => @art.slug), :remote => true, :class => ['abutton', 'like'], :walk => 'no' %>
+      <%= link_to t('common.like'), action_like_path(:slug => @art.slug), :remote => true, :class => ['abutton', 'like'], :walk => 'no' %>
     <% else %>
-      <%= link_to 'You like it', action_unlike_path(:slug => @art.slug), :remote => true, :class => ['abutton', 'unlike'], :walk => 'no' %>
+      <%= link_to t('common.you_like_it'), action_unlike_path(:slug => @art.slug), :remote => true, :class => ['abutton', 'unlike'], :walk => 'no' %>
     <% end %>
   <% end %>
   

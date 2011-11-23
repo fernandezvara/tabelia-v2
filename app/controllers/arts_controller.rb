@@ -7,7 +7,9 @@ class ArtsController < ApplicationController
     else
       # verify if art has been published
       if @art.accepted == true and @art.status == true
-        @comments = @art.artcomments
+        if fragment_exist?("comments-art-#{@art.id.to_s}-#{session[:locale].to_s}") == false
+          @comments = @art.artcomments.order_by(:created_at, :desc).limit(10)
+        end
         if request.env['HTTP_REFERER'].nil? == true
           referrer = "-"
         else
@@ -108,7 +110,7 @@ class ArtsController < ApplicationController
     else
       image_changed = false
     end
-    if @art.save!
+    if @art.save == true
       if image_changed == true
         # avoid original = nil!
         Resque.enqueue(ColorsFromImage, @art.id.to_s)
@@ -116,6 +118,9 @@ class ArtsController < ApplicationController
       Resque.enqueue(FindSimilarArt, @art.id.to_s)
       flash[:success] = "#{@art.name} added correctly."
       redirect_to arts_path
+    else
+      flash[:error] = t('common.please_fix_errors_on_form')
+      render 'new', :layout => 'main'
     end
   end
 

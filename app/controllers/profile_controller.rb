@@ -62,6 +62,7 @@ class ProfileController < ApplicationController
     if params[:privacy]
       if @privacy.update_attributes(params[:privacy])
         current_user.save
+        # update arts, applies new privacy settings
         arts = current_user.arts.all
         arts.each do |art|
           art.save

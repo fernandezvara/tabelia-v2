@@ -1,1 +1,6 @@
-<%= link_to "liked by #{pluralize( GraphClient.get_count('Backward', 'Like', @art), 'user')}", art_likes_path(:slug => @art.slug) %>
+<% likes =  GraphClient.get_count('Backward', 'Like', @art)%>
+<% if likes == 1%>
+<%= link_to t('common.liked_by_1user'), art_likes_path(:slug => @art.slug) %>
+<% else %>
+<%= link_to t('common.liked_by_users', :number => likes), art_likes_path(:slug => @art.slug) %>
+<% end %>

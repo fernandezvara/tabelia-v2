@@ -1,4 +1,7 @@
 en:
+    common:
+        working: 'Working...'
+        please_fix_errors_on_form: 'Please fix error on the form'
     sessions:
         new:
             title: "Login"

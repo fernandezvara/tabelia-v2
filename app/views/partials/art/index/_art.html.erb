@@ -10,27 +10,27 @@
         case art.accepted
         when true
           %>
-          <p class="s12">La obra es visible y está publicada.</p>
+          <p class="s12"><%= t('arts.status.accepted') %></p>
           <%
         when false
           case art.status_reason
           when 0
             %>
-            <p class="s12">Esperando a ser aprobado.</p>
+            <p class="s12"><%= t('arts.status.non_accepted_reason0') %></p>
             <%
           when 1
             %>
-            <p class="s12">La obra no ha sido aceptada por baja calidad.</p>
+            <p class="s12"><%= t('arts.status.non_accepted_reason1') %></p>
             <%
           when 2
             %>
-            <p class="s12">La obra no se ajusta a los contenidos aceptados.</p>
+            <p class="s12"><%= t('arts.status.non_accepted_reason2') %></p>
             <%
           end
         end
       when false
         %>
-        <p class="s12">Has seleccionado no mostrar esta obra.</p>
+        <p class="s12"><%= t('arts.status.status_false') %></p>
         <%
       end
         %>

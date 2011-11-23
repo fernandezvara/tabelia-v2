@@ -27,6 +27,10 @@ class Art
   
   slug :name
   
+  validates_presence_of :name
+  validates_presence_of :price
+  validates_numericality_of :price, {:gt => 0}
+  
   mount_uploader :image,       ImageUploader
   mount_uploader :original,    OriginalUploader
   

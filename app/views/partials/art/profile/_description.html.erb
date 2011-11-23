@@ -1,10 +1,14 @@
 <div class="box green">
-  <div class="title">DESCRIPTION</div>
+  <div class="title"><%= t('arts.profile.art_description') %></div>
   <div class="content">
-    <%= Redcarpet.new(@art.description, :filter_html, :hard_wrap, :autolink, :no_intraemphasis).to_html.html_safe if @art.description %>
+    <% if @art.description %>
+    <%= Redcarpet.new(@art.description, :filter_html, :hard_wrap, :autolink, :no_intraemphasis).to_html.html_safe %>
+    <% else %>
+    <%= t('arts.profile.no_art_description') %>
+    <% end %>
   </div>
   <% if @tags.count > 0 %>
-    <div class="title">TAGS</div>
+    <div class="title"><%= t('arts.profile.tags')%></div>
     <div class="content">
       <p><% @tags.each do |tag| %>
         <%= link_to tag, "#", :class => 'tag' %>

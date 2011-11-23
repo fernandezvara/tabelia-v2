@@ -1,0 +1,12 @@
+es:
+    users:
+        my_art: 'MIS OBRAS'
+        about_me: 'SOBRE MI'
+        about_me_empty: 'El usuario no ha escrito nada'
+        inspirations: 'INSPIRACIÓN'
+        activity: 'ACTIVIDAD'
+        comments: 'COMENTARIOS'
+        user_info: 'INFORMACIÓN DEL USUARIO'
+        
+        
+            

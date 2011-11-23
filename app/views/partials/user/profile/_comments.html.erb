@@ -1,5 +1,5 @@
 <div class="box blue">
-  <div class="title">COMMENTS</div>
+  <div class="title"><%= t('users.comments')%></div>
   <div class="content">
     <%= render :partial => 'partials/user/profile/newcomment' %>
     <ul class="comments" count="<%= @user.comments_received.count %>">
@@ -10,7 +10,7 @@
     </ul>
     <% if @user.comments_received.count > 10 %>
           <p class="more">
-            <%= link_to "Ver más", view_more_comments_path(:username => @user.username, :last => @last_comment.created_at.to_i), :class=> 'abutton', :remote => true, :walk => 'no' %>
+            <%= link_to t('common.view_more'), view_more_comments_path(:username => @user.username, :last => @last_comment.created_at.to_i), :class=> 'abutton', :remote => true, :walk => 'no' %>
           </p>
     <% end %>
   </div>
