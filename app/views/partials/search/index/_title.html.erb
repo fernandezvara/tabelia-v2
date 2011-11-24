@@ -1,3 +1,7 @@
 <div class="unitx5 left">
-  <h2><%= pluralize(@items.count, 'resultado') %> for '<%= @keywords %>'</h2>
+  <% if @items.count == 1 %>
+    <h2><%= t('search.1result', :keywords => @keywords) %></h2>
+  <% else %>
+    <h2><%= t('search.nresults', :number => @items.count, :keywords => @keywords) %></h2>
+  <% end %>
 </div>

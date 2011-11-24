@@ -15,6 +15,6 @@
   <%= f.input :about, :as => 'text', :input_html => { :title => t("simple_form.titles.about") } %>
   <%= f.input :inspirations, :input_html => { :value => @inspirations, :title => t("simple_form.titles.inspirations") } %>
   
-  <%= f.submit %>
+  <%= submit_tag t('helpers.submit.user.update'),   :disable_with => t('common.working') %>
   
 <% end %>

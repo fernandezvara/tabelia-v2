@@ -15,6 +15,7 @@ class SearchController < ApplicationController
           fulltext params[:search]
           spellcheck
           with(:show_search).greater_than(show_search_level)
+          paginate(:per_page => 30, :page => params[:page])
         end
       when 'art'
         @search = Art.search do
@@ -24,6 +25,7 @@ class SearchController < ApplicationController
           spellcheck
           with(:show_search).greater_than(show_search_level)
           with(:category_slug, params[:category]) if params[:category].present?
+          paginate(:per_page => 30, :page => params[:page])
         end
       else
         @search = Sunspot.search(User, Art) do
@@ -32,6 +34,7 @@ class SearchController < ApplicationController
           end
           spellcheck
           with(:show_search).greater_than(show_search_level)
+          paginate(:per_page => 30, :page => params[:page])
         end
       end
     else    
@@ -41,8 +44,11 @@ class SearchController < ApplicationController
         end
         spellcheck
         with(:show_search).greater_than(show_search_level)
+        paginate(:per_page => 30, :page => params[:page])
       end
     end
+    
+    @title = t('search.search')
     
     @items = @search.results
     respond_to do |format|

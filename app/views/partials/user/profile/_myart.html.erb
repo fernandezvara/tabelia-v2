@@ -1,10 +1,10 @@
 <% if @arts.count > 0 %>
 <div class="box purple">
-  <div class="title"><%= t('users.my_art') %><%= link_to t('common.see_all_female'), user_arts_path(:username => @user.username), :remote => true if @user.arts.count > 6 %></div>
+  <div class="title"><%= t('users_profile.my_art') %><%= link_to t('common.see_all_female'), user_arts_path(:username => @user.username) if @user.arts.count > 6 %></div>
   <div class="content">
     <% @arts.each do |art| %>
       <div class="image_thumb">
-        <%= link_to image_tag(art.image.url(:thumb).to_s, :alt => art.name), art_profile_path(:slug => art.slug), :remote => true %>
+        <%= link_to image_tag(art.image.url(:thumb).to_s, :alt => art.name), art_profile_path(:slug => art.slug) %>
       </div>
     <% end %>
   </div>

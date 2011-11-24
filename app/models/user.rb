@@ -75,7 +75,9 @@ class User
   
   searchable do
     text :name, :boost => 3, :stored => true
-    string :name
+    string :name do
+      name.downcase
+    end
     text :username
     integer :arts_count do
       self.arts.count

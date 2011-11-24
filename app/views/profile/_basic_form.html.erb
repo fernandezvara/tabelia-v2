@@ -36,7 +36,7 @@
     <%= f.input :password_confirmation %>
   <% end %>
   
-  <%= f.submit %>
+  <%= submit_tag t('helpers.submit.user.update'),   :disable_with => t('common.working') %>
   
 <% end %>
 

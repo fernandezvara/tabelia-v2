@@ -1,5 +1,7 @@
 es:
     arts:
+        singular: 'obra'
+        plural: 'obras'
         status:
             accepted: 'La obra es visible y está publicada.'
             non_accepted_reason0: 'Esperando a ser aprobado.'
@@ -21,7 +23,7 @@ es:
             no_art_description: 'El usuario no ha escrito una descripción de esta obra'
             tags: 'TAGS'
             edit_art_information: 'Editar información de la obra'
-            add_to_cart: 'Añadir al carrito'
+            add_to_cart: 'Añadir a la cesta'
             price_from: 'Precio: desde %{amount}'
     mongoid:
         models:

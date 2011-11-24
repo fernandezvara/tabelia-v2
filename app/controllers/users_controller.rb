@@ -70,11 +70,16 @@ class UsersController < ApplicationController
     else
       show_search_level = 2
     end
+    if params[:page]
+      @page = params[:page]
+    else
+      @page = 1
+    end
     
     @search = User.search do
       with(:show_search).greater_than(show_search_level)
       order_by(:name, :asc)
-      paginate(:per_page => 30, :page => params[:page])
+      paginate(:per_page => 30, :page => @page)
     end
     @users = @search.results
     render :layout => 'main'
@@ -230,19 +235,29 @@ class UsersController < ApplicationController
 
   def followers
     @user = User.where(:username => params[:username]).first
-    @followers = GraphClient.get("Backward", "Follow", @user)
-    respond_to do |format|
-      format.html { render :layout => 'main' }
-      format.js
+    if @user.nil? == true
+      show_404
+    else
+      @followers = GraphClient.get("Backward", "Follow", @user)
+      @title = t('common.followers') + " · " + @user.name
+      respond_to do |format|
+        format.html { render :layout => 'main' }
+        format.js
+      end
     end
   end
   
   def following
     @user = User.where(:username => params[:username]).first
-    @following = GraphClient.get("Forward", "Follow", @user)
-    respond_to do |format|
-      format.html { render :layout => 'main' }
-      format.js
+    if @user.nil? == true
+      show_404
+    else
+      @following = GraphClient.get("Forward", "Follow", @user)
+      @title = t('common.follow_to') + " · " + @user.name
+      respond_to do |format|
+        format.html { render :layout => 'main' }
+        format.js
+      end
     end
   end
 

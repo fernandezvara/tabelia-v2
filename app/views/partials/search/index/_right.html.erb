@@ -1,35 +1,33 @@
 <div class="box green">
   <div class="title">
-    SEARCH OPTIONS
+    <%= t('search.search_options')%>
   </div>
   <div class="content">
-    <label>Show</label>
+    <label><%= t('search.show')%></label>
     <select id="main_filter">
-      <option value="" selected="selected">Art & User</option>
-      <option value="user">Users</option>
-      <option value="art">Arts</option>
+      <option value="" selected="selected"><%= t('search.art_n_user')%></option>
+      <option value="user"><%= t('search.users')%></option>
+      <option value="art"><%= t('search.arts')%></option>
     </select>
   </div>
   
   <div id="user_search" style="display:none">
-    <div class="title">FILTERS</div>
+    <div class="title"><%= t('search.filters')%></div>
     <div class="content">
-      <br />
-      User filters!
     </div>
   </div>
   <div id="art_search" style="display:none">
-    <div class="title">FILTERS</div>
+    <div class="title"><%= t('search.filters')%></div>
     <div class="content">
-      <p>Categories:</p><br />
-      <%= select_tag "category", options_from_collection_for_select(@categories, "slug", "name"), :prompt => "All categories" %>
+      <p><%= t('search.categories')%></p><br />
+      <%= select_tag "category", options_from_collection_for_select(@categories, "slug", "name"), :prompt => t('search.categories_prompt') %>
     </div>
-    <div class="title">SEARCH BY COLOR</div>
+    <div class="title"><%= t('search.search_by_color')%></div>
     <div class="content">
       <form><input type="text" id="color" name="color" value="#ffffff" style="width:210px;" /></form>
       <div id="colorpicker" style="height:200px;"></div>
       <div style="text-align: center; overflow:hidden;">
-        <a href="#" class="abutton" id="colorsearch">Search</a>
+        <a href="#" class="abutton" id="colorsearch"><%= t('search.search')%></a>
       </div>
     </div>
   </div>

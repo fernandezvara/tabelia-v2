@@ -1,13 +1,13 @@
 <% followers = GraphClient.get_count('Backward', 'Follow', @user) %>
 <% if followers == 1 %>
-  <p><%= link_to "#{followers} #{t('common.follower')}", user_followers_path(:username => @user.username), :remote => true %></p>
+  <p><%= link_to "#{followers} #{t('common.follower')}", user_followers_path(:username => @user.username) %></p>
 <% else %>
-  <p><%= link_to "#{followers} #{t('common.followers')}", user_followers_path(:username => @user.username), :remote => true %></p>
+  <p><%= link_to "#{followers} #{t('common.followers')}", user_followers_path(:username => @user.username) %></p>
 <% end %>
 <% following = GraphClient.get_count('Forward', 'Follow', @user) %>
 <% if following == 1 %>
-<p><%= link_to t('common.follows_to_user', :number => following), user_following_path(:username => @user.username), :remote => true %></p>
+<p><%= link_to t('common.follows_to_user', :number => following), user_following_path(:username => @user.username) %></p>
 <% else %>
-<p><%= link_to t('common.follows_to_users', :number => following), user_following_path(:username => @user.username), :remote => true %></p>
+<p><%= link_to t('common.follows_to_users', :number => following), user_following_path(:username => @user.username) %></p>
 <% end %>
 

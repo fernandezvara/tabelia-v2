@@ -1,5 +1,5 @@
 es:
-    users:
+    users_profile:
         my_art: 'MIS OBRAS'
         about_me: 'SOBRE MI'
         about_me_empty: 'El usuario no ha escrito nada'
@@ -7,6 +7,12 @@ es:
         activity: 'ACTIVIDAD'
         comments: 'COMENTARIOS'
         user_info: 'INFORMACIÓN DEL USUARIO'
+    users:
+        edit:
+            title: 'Preferencias de usuario'
+        index:
+            title: 'Directorio de usuarios'
+                
         
         
             

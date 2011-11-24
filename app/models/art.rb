@@ -39,6 +39,9 @@ class Art
   
   searchable :auto_index => false, :auto_remove => false do
     text :name, :stored => true
+    string :name do
+      name.downcase
+    end
     string :user_id do
       self.user.id.to_s
     end

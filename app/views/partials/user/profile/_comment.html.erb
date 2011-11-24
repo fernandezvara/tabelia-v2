@@ -1,10 +1,10 @@
 <% begin %>
 <li>
   <div class="actor">
-    <%= link_to image_tag(comment.author.avatar.url(:mini).to_s, :alt => comment.author.name), user_profile_path(:username => comment.author.username), :remote => true  %>
+    <%= link_to image_tag(comment.author.avatar.url(:mini).to_s, :alt => comment.author.name), user_profile_path(:username => comment.author.username)  %>
   </div>
   <div class="text s12">
-      <% link = link_to comment.author.name, user_profile_path(:username => comment.author.username), :remote => true %>
+      <% link = link_to comment.author.name, user_profile_path(:username => comment.author.username) %>
       <%= simple_format("<strong>#{raw(link)}</strong>: " + comment.text) %>
     <p class="s11 align-right"><span class="time_ago" info="<%= comment.created_at.to_i %>"><%= t('common.time_ago', :time => time_ago_in_words(comment.created_at)) %></span></p>
   </div>

@@ -1,18 +1,7 @@
 <% content_for :left do %>
-  <h2>Category : <%= @category.en %></h2>
-  <div class="paginate">
-    <%= paginate @arts, :inner_window => 1 %>
-  </div>
-  <ul id="listing">
-    <% @arts.each do |art| %>
-      <%= render :partial => 'partials/lists/art', :locals => { :art => art } %>
-    <% end %>
-  </ul>
-  <div class="paginate">
-    <%= paginate @arts, :inner_window => 1 %>
-  </div>
+  <%= render :partial => 'partials/category/left' %>
 <% end %>
 
 <% content_for :right do %>
-  
+  <%= render :partial => 'partials/category/right' %>
 <% end %>

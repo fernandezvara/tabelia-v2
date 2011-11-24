@@ -55,6 +55,6 @@
       $("select#privacy_mol").attr("title", "<%= t('simple_form.titles.mol') %>");
     </script>
   </div>
-  <%= f.submit %>
+  <%= submit_tag t('helpers.submit.user.update'),   :disable_with => t('common.working') %>
   
 <% end %>

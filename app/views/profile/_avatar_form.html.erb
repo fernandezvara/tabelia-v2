@@ -16,6 +16,6 @@
   
   <%= f.input :avatar, :as => 'file', :input_html => { :title => t("simple_form.titles.avatar") } %>
 
-  <%= f.submit %>
+  <%= submit_tag t('helpers.submit.user.update'),   :disable_with => t('common.working') %>
   
 <% end %>

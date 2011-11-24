@@ -1,0 +1,83 @@
+en:
+    simple_form:
+        labels:
+            name: 'Full Name'
+            username: 'Username'
+            email: "E-mail"
+            gender: "Gender"
+            country: "Country"
+            about: 'About me'
+            inspirations: "Inspired by"
+            avatar: 'Profile Image'
+            profile_privacy: 'PROFILE PRIVACY'
+            sos: 'Visibility'
+            sos0: 'Private profile'
+            sos1: 'Only registered users'
+            sos2: 'All. Public Profile'
+            comments: 'COMMENTS'
+            acp: 'Profile'
+            acp0: "I don't want to get comments"
+            acp1: 'My followers can comment my profile'
+            acp2: 'All registered users can comment'
+            aca: 'Arts'
+            aca0: "I don't want to get comments"
+            aca1: 'My followers can comment my arts'
+            aca2: 'All registered users can comment'
+            notifications: 'NOTIFICATIONS'
+            mom: 'Message'
+            momt: 'Yes, I want to receive an email when I receive a message on tabelia'
+            momf: "No, I don't want to receive emails with someone sends me a message"
+            mcp: 'Profile comments'
+            mcpt: 'Yes, I want to receive an email when someone comment my profile'
+            mcpf: "No, I don't want to receive emails when someone comment my profile"
+            mca: 'Art comments'
+            mcat: 'Yes, I want to receive an email with someone comment on my art'
+            mcaf: "No, I don't want to receive emails when someone commen my art"
+            mof: 'Followers'
+            moft: 'Yes, I want to receive an email when someone begins following me'
+            moff: "No, I don't want to receive emails when someone follows me"
+            mol: 'Likes'
+            molt: 'Yes, I want to receive an email when someone likes one of my arts'
+            molf: "No, I don't want to receive emails when someone likes my art"
+        titles: 
+            name: "Write the name others will see"
+            username: "Write the username you want to have"
+            email: "Write your email address. Remember: If you change your e-mail address you will receive an email on the new account for confirm the change"
+            country: "Select your country"
+            user_url: "This is your page."
+            about: "Write what you think is interesting about you. Write about your art, your studies, etc"
+            inspirations: "Write things that inspire you. It will help you to find other users similar to you. Write each term separed with commas (,)."
+            avatar: "Upload the image you want to show on your profile"
+            sos: "Select if you want to allow that your profile and arts can be find on searchs and lists (directory, categories, etc). You can select to only appear for registered users or make it public (so your profiles will be public - public profiles are searchable on web searchers like google)."
+            acp: "Select who can comment your profile. Select if you only want that users that follow you can comment or any user with a tabelia account. Unregistered users cannot write comments."
+            aca: "Select who can comment your arts. Select if you only want that users that follow you or like your art can comment. Unregistered users cannot write comments."
+            mom: "Select if you want to receive an email when someone sends you a message in tabelia"
+            mcp: "Select if you want to receive an email when someone comment your profile"
+            mca: "Select if you want to receive an email when someone comment your arts"
+            mof: "Select if you want to receive an email when someone follows you"
+            mol: "Select if you want to receive an email when someone like your art"
+        hints:
+            username: 'Only letters, numbers and hyphens (-) are allowed'
+    helpers:
+        submit:
+            user:
+                create: "Create user"
+                update: "Save changes"
+            privacy:
+                create: "Create"
+                update: "Save changes"
+    intro:
+        basic: ""
+        about_me: ""
+        avatar: ""
+        privacy: ""
+        services: "These are the external services you can link to your account. \r\nLinking your account allows you to Es la forma más fácil de acceder, ya que no tienes que recordar otro usuario y contraseña más para acceder.\r\nPuedes usar uno o varios para tu cuenta, si deseas añadir uno nuevo pulsa el botón de 'Vincular'."
+    submenu:
+        basic: "Basic Information"
+        about_me: "About me"
+        avatar: "Avatar"
+        privacy: "Privacy"
+        services: "External Services"
+    profile:
+        edit:
+            title: 'User preferences'      

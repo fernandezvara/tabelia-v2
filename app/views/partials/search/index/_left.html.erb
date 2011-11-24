@@ -1,16 +1,18 @@
 <% if @items.count == 0 %>
   <div class="ml10">
   <% if @search.collation %>
-    <p class="s16">Did you mean: <%= link_to @search.collation, search_path(:utf8 => '✓', :search => @search.collation) %>?</p>
+    <p class="s16"><%= t('search.did_you_mean') %> <%= link_to @search.collation, search_path(:utf8 => '✓', :search => @search.collation) %>?</p>
   <% else %>
-    <p class="s16">Can not find anything with '<%= @keywords %>', try again</p>
+    <p class="s16"><%= t('search.cannot_find', :keywords => @keywords) %></p>
   <% end %>
   </div>
   
   
 <% else %>
+
+
 <div class="paginate">
-  <%#= paginate @items, :inner_window => 1 %>
+  <%= paginate @items, :inner_window => 1 %>
 </div>
 <ul id="listing">
   <% @items.each do |item| %>
@@ -23,6 +25,6 @@
   <% end %>
 </ul>
 <div class="paginate">
-  <%#= paginate @items, :inner_window => 1 %>
+  <%= paginate @items, :inner_window => 1 %>
 </div>
 <% end %>

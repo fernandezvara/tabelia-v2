@@ -50,6 +50,7 @@ p.s12                   { font-size:12px; }
 p.s14                   { font-size:14px; }
 p.s16                   { font-size:16px; line-height:20px; }
 p.s18                   { font-size:18px; line-height:20px; }
+p.s28					{ font-size:28px; line-height:45px; }
 
 p.division              { font-size:14px; padding-left: 10px; font-weight:bold;margin-bottom:15px; display:block; border-bottom:1px solid #f0f0f0;}
 /* ul#listing               { list-style: none; margin-left:0; border: 1px solid #c20000;} */
@@ -58,13 +59,17 @@ ul#listing li            { border-bottom: 1px solid #f7f7f7;  height:95px;} /* b
 ul#listing li.even        { height:95px; background-color: #fdfdfd;}
 ul#listing li:first-child { border-top:1px solid #f7f7f7;}
 ul#listing div.user      { padding: 10px 0 10px 10px; width: 363px; height:75px; }
-ul#listing div.art       { padding: 10px 10px 10px 0; width: 330px; height:75px;}
+ul#listing div.art       { padding: 10px 10px 10px 0; width: 340px; height:75px;}
+ul#listing div.art .n    { width: 73px; height:73px; border: 1px solid #f0f0f0; background:#fafafa; float:right;}
+ul#listing div.art .a    { width: 265px; height:75px; text-align:right; float:right;}
 ul#listing div.avatar    { padding: 0; width: 75px; height:75px; overflow:hidden;}
 ul#listing div.data      { padding: 0; width: 275px; height:75px; overflow:hidden;}
 ul#listing div.artlist   { padding: 10px 0 10px 10px; width: 600px; height:75px; }
 ul#listing div.artdata   { padding: 0; width: 515px; height:75px; overflow:hidden;}
-ul#listing div.likes     { padding: 10px 10px 10px 0; width: 100px; height:75px;}
+ul#listing div.likes     { padding: 10px; width: 100px; height:75px;}
+ul#listing div.likes .n  { text-align:center; height:73px; vertical-align:middle; border: 1px solid #f0f0f0; background:#fafafa;}
 
+	
 ul#cart                  { list-style: none; margin-left:0; }
 ul#cart li               { border-bottom: 1px solid #ddd; overflow:hidden;} /* border-right: 1px solid #ddd; */
 ul#cart li.even          { background-color: #f1f1f1;}

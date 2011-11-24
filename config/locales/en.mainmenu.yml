@@ -1,0 +1,12 @@
+en:
+    mainmenu:
+        home: 'Home'
+        messages: 'messages'
+        categories: 'Categories'
+        login: 'Log in'
+        signup: 'Sign up'
+        myart: 'my art'
+        mysettings: 'my account / privacy'
+        myorders: 'my orders'
+        signout: 'sign out'
+        cart: 'Cart'

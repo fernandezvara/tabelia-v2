@@ -47,7 +47,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   version :splash do
     process :quality => 70
-    process :resize_boxed
+    process :resize_to_fill => [165, 165]
   end
 
   version :thumb do
@@ -68,6 +68,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
   
   def resize_boxed
+    # not used, but useful for other time
     manipulate! do |img|
       puts img.columns
       puts img.rows

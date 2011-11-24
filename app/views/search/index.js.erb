@@ -9,12 +9,12 @@ else
 end
 case type
 when 'user' %>
-$("div#user_search").slideDown();
+//$("div#user_search").slideDown();
 $("div#art_search").slideUp();
 <% when 'art' %>
 $("div#art_search").slideDown();
-$("div#user_search").slideUp();
+//$("div#user_search").slideUp();
 <% else %>
 $("div#art_search").slideUp();
-$("div#user_search").slideUp();
+//$("div#user_search").slideUp();
 <% end %>

@@ -1,4 +1,6 @@
 class ProfileController < ApplicationController
+  before_filter :current_user?
+  
   def basic
     @user = current_user
     if params[:user]
@@ -85,6 +87,15 @@ class ProfileController < ApplicationController
     respond_to do |format|
       format.html {render :layout => 'main'}
       format.js
+    end
+  end
+
+  private
+  
+  def current_user?
+    if current_user.nil? == true
+      flash[:notice] = t('common.you_must_logon_first')
+      redirect_to :root
     end
   end
 

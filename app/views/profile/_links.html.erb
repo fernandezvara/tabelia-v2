@@ -1,27 +1,27 @@
 <ul id="profile">
   <% if controller_name == "profile" and action_name == "basic" %>
-  <li><%= link_to 'Información básica', profile_basic_path, :class => 'active', :remote => true %></li>
+  <li><%= link_to t('submenu.basic'), profile_basic_path, :class => 'active', :remote => true %></li>
   <% else %>
-  <li><%= link_to 'Información básica', profile_basic_path, :remote => true %></li>
+  <li><%= link_to t('submenu.basic'), profile_basic_path, :remote => true %></li>
   <% end %>
   <% if controller_name == "profile" and action_name == "about" %>
-  <li><%= link_to 'Sobre mi', profile_about_path, :class => 'active', :remote => true %></li>
+  <li><%= link_to t('submenu.about_me'), profile_about_path, :class => 'active', :remote => true %></li>
   <% else %>
-  <li><%= link_to 'Sobre mi', profile_about_path, :remote => true %></li>
+  <li><%= link_to t('submenu.about_me'), profile_about_path, :remote => true %></li>
   <% end %>
   <% if controller_name == "profile" and action_name == "avatar" %>
-  <li><%= link_to 'Avatar', profile_avatar_path, :class => 'active', :remote => true %></li>
+  <li><%= link_to t('submenu.avatar'), profile_avatar_path, :class => 'active', :remote => true %></li>
   <% else %>
-  <li><%= link_to 'Avatar', profile_avatar_path, :remote => true %></li>
+  <li><%= link_to t('submenu.avatar'), profile_avatar_path, :remote => true %></li>
   <% end %>
   <% if controller_name == "profile" and action_name == "privacy" %>
-  <li><%= link_to 'Privacidad', profile_privacy_path, :class => 'active', :remote => true %></li>
+  <li><%= link_to t('submenu.privacy'), profile_privacy_path, :class => 'active', :remote => true %></li>
   <% else %>
-  <li><%= link_to 'Privacidad', profile_privacy_path, :remote => true %></li>
+  <li><%= link_to t('submenu.privacy'), profile_privacy_path, :remote => true %></li>
   <% end %>
   <% if controller_name == "profile" and action_name == "services" %>
-  <li><%= link_to 'Servicios vinculados', profile_services_path, :class => 'active', :remote => true %></li>
+  <li><%= link_to t('submenu.services'), profile_services_path, :class => 'active', :remote => true %></li>
   <% else %>
-  <li><%= link_to 'Servicios vinculados', profile_services_path, :remote => true %></li>
+  <li><%= link_to t('submenu.services'), profile_services_path, :remote => true %></li>
   <% end %>
 </ul>

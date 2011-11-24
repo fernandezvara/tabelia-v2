@@ -1,0 +1,12 @@
+es:
+    mainmenu:
+        home: 'Inicio'
+        messages: 'mensajes'
+        categories: 'Categorias'
+        login: 'Iniciar sesión'
+        signup: 'Crear cuenta'
+        myart: 'mis obras'
+        mysettings: 'mi cuenta / privacidad'
+        myorders: 'mis pedidos'
+        signout: 'cerrar sesión'
+        cart: 'Cesta'

@@ -1,14 +1,16 @@
 <% content_for :left do %>
-<h2>Users</h2>
-<div class="paginate">
-  <%= paginate @users, :inner_window => 1 %>
-</div>
-<ul id="listing">
-  <% @users.each do |user| %>
-    <%= render :partial => 'partials/lists/user', :locals => { :user => user } %>
+  <h2><%= t('users.index.title') %></h2>
+  <% cache "users-directory-#{@page}-#{I18n.locale.to_s}", :expires_in => 2.hours do %>
+    <div class="paginate">
+      <%= paginate @users, :inner_window => 1 %>
+    </div>
+    <ul id="listing">
+      <% @users.each do |user| %>
+        <%= render :partial => 'partials/lists/user', :locals => { :user => user } %>
+      <% end %>
+    </ul>
+    <div class="paginate">
+      <%= paginate @users, :inner_window => 1 %>
+    </div>
   <% end %>
-</ul>
-<div class="paginate">
-  <%= paginate @users, :inner_window => 1 %>
-</div>
 <% end %>

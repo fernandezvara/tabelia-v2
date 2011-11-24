@@ -12,7 +12,7 @@ last_message = item.conversation.last_message
     <%= image_tag(@other_user.avatar.url(:mini).to_s, :alt => @other_user.name) %>
   </div>
   <div class="data">
-    <p><strong><%= link_to item.conversation.subject  , message_view_path(:slug => item.conversation.slug.to_s), :remote => true %></strong></p>
+    <p><strong><%= link_to item.conversation.subject  , message_view_path(:slug => item.conversation.slug.to_s) %></strong></p>
     <% if last_message.sender == current_user %>
       <p>Último mensaje enviado por <strong>tí</strong> hace <%= time_ago_in_words(last_message.created_at) %>.</p>
     <% else %>
@@ -20,7 +20,7 @@ last_message = item.conversation.last_message
     <% end %>
   </div>
   <div class="actions">
-    <%= link_to 'Ver', message_view_path(:slug => item.conversation.slug.to_s), :remote => true, :class=> 'abutton' %>
+    <%= link_to 'Ver', message_view_path(:slug => item.conversation.slug.to_s), :class=> 'abutton' %>
     <%= link_to 'Borrar', delete_message_path(:slug => item.conversation.slug.to_s), :remote => true, :class => ['abutton', 'delete'], :walk => 'no' %>
   </div>
 </li>

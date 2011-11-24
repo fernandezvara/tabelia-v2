@@ -1,5 +1,7 @@
-es:
+en:
     arts:
+        singular: 'art'
+        plural: 'arts'
         status:
             accepted: "Art is visible and it\'s published"
             non_accepted_reason0: 'Waiting for be approved.'

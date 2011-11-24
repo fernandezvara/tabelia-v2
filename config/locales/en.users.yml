@@ -1,9 +1,14 @@
 en:
-    users:
+    users_profile:
         my_art: 'MY ART'
         about_me: 'ABOUT ME'
         about_me_empty: 'There is no information about this user'
         inspirations: 'INSPIRATIONS'
         activity: 'RECENT ACTIVITY'
-        comments: 'COMMENT'
+        comments: 'COMMENTS'
         user_info: 'USER INFORMATION'
+    users:
+        edit:
+            title: 'My account'
+        index:
+            title: 'Users Directory'

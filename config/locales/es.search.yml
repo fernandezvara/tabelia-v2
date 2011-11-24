@@ -1,0 +1,17 @@
+es:
+    search:
+        title: 'Buscar'
+        did_you_mean: '¿Querías decir '
+        cannot_find: "No hemos encontrado nada con las palabras '%{keywords}', elige otro término de búsqueda."
+        1result: "Se ha encontrado 1 resultado para '%{keywords}'."
+        nresults: "Se han encontrado %{number} resultados para '%{keywords}'."
+        search_options: 'OPCIONES DE BÚSQUEDA'
+        show: 'Ver'
+        art_n_user: 'Obras y Usuarios'
+        arts: 'Obras'
+        users: 'Usuarios'
+        filters: 'FILTROS'
+        categories: 'Categorias:'
+        categories_prompt: 'Todas las categorias'
+        search_by_color: 'BÚSQUEDA POR COLOR'
+        search: 'Buscar'

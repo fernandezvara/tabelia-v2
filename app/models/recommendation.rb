@@ -9,4 +9,6 @@ class Recommendation
   field :why,          type: Integer
   field :seen,         type: Boolean, default: false
   
+  index :user_id
+  
 end

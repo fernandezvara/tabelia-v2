@@ -33,7 +33,7 @@ class ArtsController < ApplicationController
           @similar_art << Art.find(similar.similar_id)
         end
         @art_colors = ColorRelation.colors_of(@art)
-        @title = t("users.index.title")
+        @title = @art.name
         render :layout => 'main'
       else
         # if the art has not been published by the artist or is not accepted, we only show the art to the artist
@@ -56,8 +56,6 @@ class ArtsController < ApplicationController
           # art not belongs to the user
           show_404
         end
-        
-        
       end
     end
   end

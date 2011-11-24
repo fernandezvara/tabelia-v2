@@ -67,6 +67,19 @@ es:
                 create: "Crear"
                 update: "Guardar cambios"
     intro:
-        services: "Estos son los servicios externos a tabelia que puedes usar para realizar la validación de tu usuario. \r\nEs la forma más fácil de acceder, ya que no tienes que recordar otro usuario y contraseña más para acceder.\r\nPuedes usar uno o varios para tu cuenta, si deseas añadir uno nuevo pulsa el botón de \'Vincular\'."
-                
+        basic: ""
+        about_me: ""
+        avatar: ""
+        privacy: ""
+        services: "Estos son los servicios externos a tabelia que puedes usar para realizar la validación de tu usuario. \r\nEs la forma más fácil de acceder, ya que no tienes que recordar otro usuario y contraseña más para acceder.\r\nPuedes usar uno o varios para tu cuenta, si deseas añadir uno nuevo pulsa el botón de 'Vincular'."
+    submenu:
+        basic: "Información básica"
+        about_me: "Sobre mi"
+        avatar: "Avatar"
+        privacy: "Privacidad"
+        services: "Servicios externos"
+    profile:
+        edit:
+            title: 'Configuración'
+         
         
