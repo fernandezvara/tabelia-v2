@@ -1,0 +1,21 @@
+<br /><br />
+<div class="box orange">
+  <div class="title"><%= t('common.help_title') %></div>
+  <div class="content">
+    <% case I18n.locale.to_s %>
+    <% when 'es' %>
+    <p class="justify">Esta es la información que aportas a tu perfil de usuario.</p>
+    <br />
+    <p class="justify">Será visible según tus preferencias de privacidad.</p>
+    <br />
+    <p class="justify">El mínimo de información que debes aportar es un nombre (puede ser el real o como otros te conozcan), dirección de correo electrónico y nombre de usuario (que es único).</p>
+    <br />
+    <p class="justify">Para que tus cuadros sean aprobados es imprescindible que rellenes toda la información de facturación. <span class="b">Estos datos son confidenciales y no aparecerán en ninguna parte de tu perfil.</span></p>
+    <br />
+    <% when 'en' %>
+    
+    
+    
+    <% end %>
+  </div>
+</div>

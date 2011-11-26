@@ -6,8 +6,10 @@ es:
             email: "Correo Electrónico"
             gender: "Sexo"
             country: "País"
+            password: 'Contraseña'
+            password_confirmation: 'Confirmación Contraseña'
             about: 'Sobre mí'
-            inspirations: "Inspirado por"
+            inspirations: "Me inspira"
             avatar: 'Imágen de tu perfil'
             profile_privacy: 'PRIVACIDAD DE PERFIL'
             sos: 'Visibilidad'
@@ -58,6 +60,7 @@ es:
             mol: "Selecciona si deseas recibir una notificación cuando alguien diga que le gusta una obra tuya"
         hints:
             username: 'Sólo letras, números y guiones (-) están permitidos'
+            gender: 'El sexo no se publica en tu perfil'
     helpers:
         submit:
             user:
@@ -74,10 +77,10 @@ es:
         services: "Estos son los servicios externos a tabelia que puedes usar para realizar la validación de tu usuario. \r\nEs la forma más fácil de acceder, ya que no tienes que recordar otro usuario y contraseña más para acceder.\r\nPuedes usar uno o varios para tu cuenta, si deseas añadir uno nuevo pulsa el botón de 'Vincular'."
     submenu:
         basic: "Información básica"
-        about_me: "Sobre mi"
+        about_me: "Sobre mí"
         avatar: "Avatar"
         privacy: "Privacidad"
-        services: "Servicios externos"
+        services: "Enlaces con redes sociales"
     profile:
         edit:
             title: 'Configuración'

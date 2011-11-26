@@ -1,5 +1,7 @@
 es:
     common:
+        tabeliah1: 'tabelia. Tu galeria de arte virtual en red.'
+        tabeliah2: 'arte experiencia estética decoración disfruta talento creatividad habilidad exposición expresa muestra'
         you: 'Tú'
         send_message: 'Mensaje'
         like: 'Me gusta'
@@ -28,9 +30,14 @@ es:
         users: 'usuarios'
         liked_by_1user: 'le gusta a 1 usuario'
         liked_by_users: 'le gusta a %{number} usuarios'
-        category: 'Categoría:'
+        category: 'Estilo: '
         by: ' de '
         you_must_logon_first: 'Debes entrar con tu usuario antes de acceder a esa página'
+        help_title: 'AYUDA'
+        footer:
+            directory: 'Directorio de usuarios'
+            terms: 'Condiciones generales'
+            jobs: 'Trabajo'
     sessions:
         new:
             title: "Inicio de sesión"

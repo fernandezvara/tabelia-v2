@@ -6,6 +6,7 @@
     <li><%= msg %></li>
   <% end %>
   <ul>
+    <br />
   </div>
 <% end %>
 
@@ -21,6 +22,7 @@
     <div style="margin-left:120px">
       <%= f.collection_radio :gender, [[true, 'Mujer'] ,[false, 'Hombre']], :first, :last %>
     </div>
+    <span class="hint"><%= t("simple_form.hints.gender") %></span>
   </div>
   
   <div class="input optional <%= "field_with_errors" if @user.errors.keys.include?(:country_id) %>">

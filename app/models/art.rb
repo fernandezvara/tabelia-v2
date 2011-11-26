@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Art
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -10,6 +11,7 @@ class Art
   
   belongs_to :user
   belongs_to :category
+  belongs_to :genre
   
   has_many :artcomments
   has_many :color_relations
@@ -24,6 +26,25 @@ class Art
   field :accepted,          :type => Boolean,  :default => false
   field :status_reason,     :type => Integer,  :default => 0
   #field :show_search,      :type => Boolean,  :default => false
+  
+  field :m_oil,             :type => Boolean, :default => false             # Óleo
+  field :m_watercolor,      :type => Boolean, :default => false             # Acuarela
+  field :m_hot_wax,         :type => Boolean, :default => false             # Encaústica
+  field :m_pastel,          :type => Boolean, :default => false             # Pastel
+  field :m_gouache,         :type => Boolean, :default => false             # Gouache
+  field :m_tempera,         :type => Boolean, :default => false             # Témpera
+  field :m_ink,             :type => Boolean, :default => false             # Tinta
+  field :m_graphite,        :type => Boolean, :default => false             # Grafito
+  field :m_charcoal,        :type => Boolean, :default => false             # Carboncillo
+  field :m_sepia,           :type => Boolean, :default => false             # Sepia
+  field :m_sanguine,        :type => Boolean, :default => false             # Sanguina
+  field :m_crayon,          :type => Boolean, :default => false             # Ceras
+  field :m_acrylic,         :type => Boolean, :default => false             # Acrílico
+  field :m_aerography,      :type => Boolean, :default => false             # Aerografía
+  field :m_marker_pen,      :type => Boolean, :default => false             # Rotuladores
+  field :m_colored_pencil,  :type => Boolean, :default => false             # Lápices de colores
+  field :m_digital,         :type => Boolean, :default => false             # Pintura digital
+  field :m_mixed,           :type => Boolean, :default => false             # Técnicas mixtas
   
   slug :name
   
@@ -55,10 +76,34 @@ class Art
       end
     end
     string :category_slug
+    string :genre_slug
+    
+    boolean :m_oil
+    boolean :m_watercolor
+    boolean :m_hot_wax
+    boolean :m_pastel
+    boolean :m_gouache
+    boolean :m_tempera
+    boolean :m_ink
+    boolean :m_graphite
+    boolean :m_charcoal
+    boolean :m_sepia
+    boolean :m_sanguine
+    boolean :m_crayon
+    boolean :m_acrylic
+    boolean :m_aerography
+    boolean :m_marker_pen
+    boolean :m_colored_pencil
+    boolean :m_digital
+    boolean :m_mixed
   end
   
   def category_slug
     self.category.slug
+  end
+  
+  def genre_slug
+    self.genre.slug
   end
   
   def other_art_of_user(limit = 0)

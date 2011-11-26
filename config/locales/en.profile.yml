@@ -58,6 +58,7 @@ en:
             mol: "Select if you want to receive an email when someone like your art"
         hints:
             username: 'Only letters, numbers and hyphens (-) are allowed'
+            gender: "Your gender won't be published on your profile"
     helpers:
         submit:
             user:
@@ -77,7 +78,7 @@ en:
         about_me: "About me"
         avatar: "Avatar"
         privacy: "Privacy"
-        services: "External Services"
+        services: "Social Networks Links"
     profile:
         edit:
             title: 'User preferences'      

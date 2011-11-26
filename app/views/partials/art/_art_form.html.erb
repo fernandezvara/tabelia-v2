@@ -17,12 +17,58 @@
     <%= f.file_field :original, :title => t("mongoid.hints.art.original") %>
   </div>
   <div class="input select optional">
+    <%= f.label :genre_id, :class => ['select', 'optional'] %>
+    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, 'id', 'name', @art.genre_id) %>
+    <script type="text/javascript">
+      $("select#art_genre_id").attr("title", "<%=  t("mongoid.hints.art.genre") %>");
+    </script>
+  </div>
+  <div class="input select optional">
     <%= f.label :category, :class => ['select', 'optional'] %>
     <%= f.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name', @art.category_id) %>
     <script type="text/javascript">
       $("select#art_category_id").attr("title", "<%=  t("mongoid.hints.art.category") %>");
     </script>
   </div>
+  <table style="margin-left:120px; width: 360px;">
+    <tbody>
+      <tr>
+        <td><%= check_box_tag("media_oil", "true", false) %> Óleo</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <div class="input string optional">
     <%= f.label :tags, :class => ['text', 'optional'] %>
     <%= f.text_field :tags, :maxlenght => 300, :value => @tags, :title => t("mongoid.hints.art.tags") %>

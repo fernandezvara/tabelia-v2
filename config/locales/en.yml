@@ -1,5 +1,7 @@
 en:
     common:
+        tabeliah1: 'tabelia. Your virtual art gallery online.'
+        tabeliah2: 'art experience aesthetics decoration enjoy talent creativity skill exposure express show'
         you: 'You'
         send_message: 'Message'
         like: 'Like'
@@ -28,6 +30,11 @@ en:
         users: 'users'
         liked_by_1user: 'liked by 1 user'
         liked_by_users: 'liked by %{number} users'
-        category: 'Category:'
+        category: 'Style: '
         by: ' by '
         you_must_logon_first: 'You must log in before you can access that page'
+        help_title: 'HELP'
+        footer:
+            directory: 'User Directory'
+            terms: 'Terms and Conditions'
+            jobs: 'Jobs'

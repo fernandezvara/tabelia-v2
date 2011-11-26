@@ -1,8 +1,5 @@
 require File.expand_path("../config/environment", __FILE__)
 
-
-
-
 # Art popularity
 
 hashArtSells =                Hash.new
@@ -13,7 +10,6 @@ hashArtLikes =                Hash.new
 hashArtDaysSincePublication = Hash.new
 
 hashPopularityPoints =        Hash.new
-
 
 today = Date.new(Time.now.year, Time.now.month, Time.now.day)
 

@@ -9,6 +9,13 @@
         <% end %>
         </span></li>
       <% end %>
+      <li><%= link_to t('mainmenu.idioms'), "", :onclick => 'return false;' %>
+        <ul class="sub-menu">
+          <% @idioms.each do |idiom| %>
+            <li><%= link_to idiom.name, idiom_show_path(:slug => idiom.slug) %></li>
+          <% end %>
+        </ul>
+      </li>
       <li><%= link_to t('mainmenu.categories'), "", :onclick => 'return false;' %>
         <ul class="sub-menu">
           <% @categories.each do |category| %>

@@ -2,7 +2,8 @@ en:
     mainmenu:
         home: 'Home'
         messages: 'messages'
-        categories: 'Categories'
+        genres: 'Genres'
+        categories: 'Styles'
         login: 'Log in'
         signup: 'Sign up'
         myart: 'my art'

@@ -12,6 +12,7 @@ class CategoryController < ApplicationController
       @search = Art.search do
         with(:show_search).greater_than(show_search_level)
         with(:category_slug, params[:slug])
+        with(:genre_slug, params[:idiom_slug]) if params[:idiom_slug]
         order_by(:name, :asc)
         paginate(:per_page => 30, :page => params[:page])
       end
@@ -23,5 +24,4 @@ class CategoryController < ApplicationController
       end
     end
   end
-
 end

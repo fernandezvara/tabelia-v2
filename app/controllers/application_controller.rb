@@ -134,7 +134,8 @@ class ApplicationController < ActionController::Base
   end
   
   def load_categories
-    @categories ||= Category.all
+    @categories ||= Category.order_by(:name, :asc)
+    @idioms ||= Genre.order_by(:name, :asc)
   end
   
   def is_bot?

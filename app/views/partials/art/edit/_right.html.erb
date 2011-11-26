@@ -1,0 +1,22 @@
+<div class="box orange">
+  <div class="title"><%= t('common.help_title') %></div>
+  <div class="content">
+    <% case I18n.locale.to_s %>
+    <% when 'es' %>
+      <p class="justify s12">Este es el panel de creación/edición de tu cuadro.<p>
+        <br />
+      <p class="justify s12">Es imprescidible que cada cuadro tenga un nombre, un precio en euros (debe ser un número entero, ej/ 30) y que subas el fichero final con la obra.</p>
+      <br />
+      <p class="justify s12">Los ficheros que puedes subir son de tipo JPG o PNG con un tamaño máximo de 15Mb. Guarda los archivos con la máxima calidad posible.</p>
+      <br />
+      <p class="justify s12">Se paciente mientras el fichero sube a nuestros servidores, dependiendo de la velocidad de tu conexión este proceso puede demorarse unos minutos.</p>
+      <br />
+      <p class="justify s12"><span class="b">NOTA IMPORTANTE:</span></p>
+      <p class="justify s12">Si necesitas editar la información sobre tu cuadro (cambiar la descripción, etc), no es necesario que vuelvas a añadir el fichero. Si subes uno nuevo, la obra <span class="b">dejará de estar publicada y volverá a pasar por el proceso de aprobación</span>.</p>
+      <br /><br />
+      <p class="justify s12">Si necesitas más información sobre el proceso, consulta nuestra <a href="/pages/user_guide">guía de usuario</a>.</p>
+      <br/>
+    <% end %>
+  </div>
+</div>
+

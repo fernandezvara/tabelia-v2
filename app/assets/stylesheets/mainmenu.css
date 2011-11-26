@@ -7,7 +7,7 @@
 #topmenu .homemenu ul ul li:last-child { border-bottom:	2px solid #c20000;}
 #topmenu .homemenu ul ul li { background: #aa0000; border-bottom:1px solid #c20000;	}
 #topmenu .homemenu ul ul li:hover {	 }
-#topmenu .homemenu ul ul li a {	margin-left: 2px; color:#fff !important; font-size: 12px !important; text-transform: none !important;}
+#topmenu .homemenu ul ul li a {	margin-left: 2px; color:#fff !important; font-size: 12px !important; text-transform: none !important; padding:0px 10px 0px 10px;}
 #topmenu .homemenu ul ul li:hover>a {  background: #c20000; border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;}
 #topmenu .homemenu ul ul li.current-menu-item a { background: #181818 !important;  }
 .menu, .menu * { margin: 0; padding: 0; list-style:	none; }

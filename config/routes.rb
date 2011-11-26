@@ -65,7 +65,8 @@ Tabelia::Application.routes.draw do
   match "action/like/:slug",          :controller => 'actions',  :action => 'like',             :as => 'action_like'
   match "action/unlike/:slug",        :controller => 'actions',  :action => 'unlike',           :as => 'action_unlike'
   
-  match "category/:slug",             :controller => 'category', :action => 'show',             :as => 'category_show'
+  match "style/:slug",                :controller => 'category', :action => 'show',             :as => 'category_show'
+  match "idiom/:slug",                :controller => 'idioms',   :action => 'show',             :as => 'idiom_show'
   
   match "user/:username",             :controller => 'users',    :action => 'show',             :as => "user_profile"
   match "user/:username/art",         :controller => 'arts',     :action => 'user_art_show',    :as => "user_arts"
@@ -79,7 +80,7 @@ Tabelia::Application.routes.draw do
 
   match "search",                     :controller => 'search',   :action => 'index',            :as => "search"
 
-  match "category/:slug",             :controller => 'category', :action => 'show',             :as => "category"
+  match "style/:slug",                :controller => 'category', :action => 'show',             :as => "category"
 
 
   match 'user/comment/:username',     :controller => 'comments', :action => 'create',           :as => 'comment_user'

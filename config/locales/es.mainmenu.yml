@@ -2,7 +2,8 @@ es:
     mainmenu:
         home: 'Inicio'
         messages: 'mensajes'
-        categories: 'Categorias'
+        idioms: 'Temas'
+        categories: 'Estilos'
         login: 'Iniciar sesión'
         signup: 'Crear cuenta'
         myart: 'mis obras'

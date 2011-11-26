@@ -16,7 +16,8 @@ es:
         new:
             title: 'Nueva obra'
         profile:
-            category: 'Categoria: '
+            category: 'Estilo: '
+            idiom: 'Temática: '
             listed: 'Añadido hace %{time}'
             similar_art: 'OBRAS SIMILARES'
             art_description: 'DESCRIPCIÓN DE LA OBRA'
@@ -34,7 +35,7 @@ es:
                 price: 'Precio'
                 description: 'Descripción'
                 original: 'Fichero original'
-                category: 'Categoria'
+                category: 'Estilo'
                 tags: 'Tags'
                 status: '¿Mostrar?'
         hints:
@@ -43,7 +44,8 @@ es:
                 price: 'Escribe el valor que tiene cada reproducción. Ten en cuenta que la cantidad es en euros.'
                 description: 'Escribe la información que desees mostrar sobre esta obra.'
                 original: 'Pulsa para seleccionar el fichero original de la obra. Cuando guardes los cambios la obra comenzará a copiarse a nuestros servidores. Este proceso puede tardar unos minutos, en función de la velocidad de tu conexión. Por favor sé paciente.'
-                category: 'Selecciona la categoria en la que desees sea mostrada tu obra.'
+                genre: 'Selecciona la temática de tu obra.'
+                category: 'Selecciona el estilo de tu obra.'
                 tags: 'Escribe las palabras que identifiquen a tu obra. Debes separarlas usando comas (,). Por ejemplo: Si has pintado un bodegón de una cesta de manzanas con acuarela, puedes usar las siguientes palabras (puedes escribir un máximo de 20 palabras): bodegón, cesta, manzanas, acuarela ...... '
                 status: 'Selecciona si quieres que tu obra sea publicada.'
         options:

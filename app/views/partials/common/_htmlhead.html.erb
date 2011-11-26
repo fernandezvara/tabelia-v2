@@ -4,6 +4,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title><%= title %></title>
   <%= stylesheet_link_tag    "tabelia" %>
+  <% if controller_name == 'pages' and action_name == 'index' %>
+  <style type="text/css">
+    div.frontpage h2.logo { text-indent: -9999px; width:330px; height:200px; background: url(/assets/welcome/h2-<%= I18n.locale.to_s %>.png) no-repeat !important; margin-left:0px; margin-bottom:0px;}
+  </style>
+  <% end %>
   <%= javascript_include_tag "tabelia" %>
   <%= csrf_meta_tags %>
   <link href="http://assets.tabelia.com/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
@@ -15,11 +20,16 @@
   <% if controller_name == "arts" and action_name == "show" %>
   <meta property="og:type" content="tabelia:art" /> 
   <meta property="og:title" content="<%= @art.name %>"/>
-  <meta property="og:description" content="<%= @art.description.to_s %>" /> 
+  <meta property="og:description" content="<%= @art.description.to_s %>" />
+  
   <% if @art.image.to_s.nil? == true %>
   <meta property="og:image" content="http://assets.tabelia.com<%= @art.image.url(:thumb).to_s %>" />
   <% else %>
   <meta property="og:image" content="<%= @art.image.url(:thumb).to_s %>" />
+  <% end %>
+  <% cache("art-tags-#{@art.slug}", :expire_in => 1.day) do %>
+  <meta name="description" content="<%= @art.description %>" />
+  <meta name="keywords" content="<%= @tags.join(", ") %>">
   <% end %>
   <% else
   if controller_name == "users" and action_name == "show" %>
@@ -31,68 +41,15 @@
   <% else %>
   <meta property="og:image" content="<%= @user.avatar.url(:thumb).to_s %>" />
   <% end %>
+  <% cache("user-tags-#{@user.username}", :expire_in => 1.day) do %>
+  <meta name="description" content="<%= @user.about.to_s %>" />
+  <meta name="keywords" content="<%= @inspirations.join(", ") if @inspirations %>">
+  <% end %>
   <% else %>
   <meta property="og:title" content="<%= title %>"/>
   <% end %>
   <% end %>
   
-  <!--
-  
-  <meta property="og:type" content="movie"/>
-  <meta property="og:url" content="http://www.imdb.com/title/tt0117500/"/>
-  <meta property="og:image" content="http://ia.media-imdb.com/rock.jpg"/>
-  <meta property="og:site_name" content="IMDb"/>
-  <meta property="fb:admins" content="USER_ID"/>
-  <meta property="og:description"
-        content="A group of U.S. Marines, under command of
-                   a renegade general, take over Alcatraz and
-                   threaten San Francisco Bay with biological
-                   weapons."/>
-  -->
-  
-  <% if current_user %>
-    <script src="http://localhost:8080/application.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" charset="utf-8">
-      /* var jug = new Juggernaut({
-        secure: ('https:' == document.location.protocol),
-        host: document.location.hostname,
-        port: document.location.port || 80
-      }); 
-      */      
-      var jug = new Juggernaut({ host: 'localhost', port: 8080});
-
-      //jug.on("connect", function(){ flashBar("Connected", 'notice', {}) });
-      //jug.on("disconnect", function(){ flashBar("Disconnected", 'notice', {}) });
-      jug.on("reconnect", function(){ flashBar("Reconnecting", 'notice', {}) });
-
-      jug.subscribe("<%= current_user.username %>", function(data){
-        if (data.mc) {
-          console.log(data.mc);
-          if (data.mc == 'o') {
-            $('span.message_count').html("");
-          } else {
-            $('span.message_count').html('' + data.mc);
-          } 
-        }
-        if (data.msg) {
-          flashBar("Nuevo mensaje: '" + data.msg.subject + "' de " + data.msg.sender + "", "notice", {});
-        }
-        if (data.comment_profile){
-          flashBar("Nuevo comentario de " + data.comment_profile.posted_by, "notice", {});
-        }
-        if (data.comment_art){
-          flashBar("Nuevo comentario de " + data.comment_art.posted_by + " en tu obra '" + data.comment_art.art + "'", "notice", {});
-        }
-        if (data.user_follow_you){
-          flashBar(data.user_follow_you.originator + "ha empezado a seguir tu perfil", "notice", {});
-        }
-        if (data.user_likes_art){
-          flashBar("A " + data.user_likes_art.originator + "le gusta tu obra '" + data.user_likes_art + "'", "notice", {});
-        }
-        console.log(data);
-      });
-    </script>
-  <% end %>
   <link href='http://fonts.googleapis.com/css?family=Cabin&amp;v2' rel='stylesheet' type='text/css'>
   <% if flash.count > 0 %>
   <script type="text/javascript">

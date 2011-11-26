@@ -1,0 +1,22 @@
+<%= render :partial => '/partials/common/htmlhead' %>
+<body class="page-home">
+  <%= render :partial => '/partials/common/header' %>
+  <div id="page" style ="top:50px">
+    <div id="container">
+      <div id="content">
+        <section class="width4 stroke" id='main'>
+          <section class="column full first" id="main-title">
+            <%= yield :title %>
+          </section>        
+          <section class="column full first" id="main-left">
+            <%= yield :left %>
+            <br />
+          </section>
+        </section>
+      </div><!-- content -->
+      <hr class="full">
+      <%= render :partial => '/partials/common/footer' %>
+    </div>
+  </div>
+</body>
+</html>
