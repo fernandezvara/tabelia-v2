@@ -93,13 +93,31 @@ class ArtsController < ApplicationController
 
   def create
     @art = Art.new
-    @art.name = params[:art][:name]
-    @art.description = params[:art][:description]
-    @art.price = params[:art][:price]
-    @art.category_id = params[:art][:category_id]
-    @art.status = params[:art][:status]
-    @art.tags = params[:art][:tags]
-    @art.user = current_user
+    @art.name =             params[:art][:name]
+    @art.description =      params[:art][:description]
+    @art.price =            params[:art][:price]
+    @art.category_id =      params[:art][:category_id]
+    @art.status =           params[:art][:status]
+    @art.tags =             params[:art][:tags]
+    @art.user =             current_user
+    @art.m_oil =            params[:art][:m_oil]
+    @art.m_watercolor =     params[:art][:m_watercolor]
+    @art.m_hot_wax =        params[:art][:m_hot_wax]
+    @art.m_pastel =         params[:art][:m_pastel]
+    @art.m_gouache =        params[:art][:m_gouache]
+    @art.m_tempera =        params[:art][:m_tempera]
+    @art.m_ink =            params[:art][:m_ink]
+    @art.m_graphite =       params[:art][:m_graphite]
+    @art.m_charcoal =       params[:art][:m_charcoal]
+    @art.m_sepia =          params[:art][:m_sepia]
+    @art.m_sanguine =       params[:art][:m_sanguine]
+    @art.m_crayon =         params[:art][:m_crayon]
+    @art.m_acrylic =        params[:art][:m_acrylic]
+    @art.m_aerography =     params[:art][:m_aerography]
+    @art.m_marker_pen =     params[:art][:m_marker_pen]
+    @art.m_colored_pencil = params[:art][:m_colored_pencil]
+    @art.m_digital =        params[:art][:m_digital]
+    @art.m_mixed =          params[:art][:m_mixed]
     if params[:art][:original].nil? == false
       # only trigger the resque queue if new image
       @art.original = params[:art][:original]
@@ -138,12 +156,34 @@ class ArtsController < ApplicationController
 
   def update
     @art = Art.where(:slug => params[:art][:slug]).first
-    @art.name = params[:art][:name]
-    @art.description = params[:art][:description]
-    @art.price = params[:art][:price]
-    @art.category_id = params[:art][:category_id]
-    @art.status = params[:art][:status]
-    @art.tags = params[:art][:tags]
+    @art.name =             params[:art][:name]
+    @art.description =      params[:art][:description]
+    @art.price =            params[:art][:price]
+    @art.category_id =      params[:art][:category_id]
+    @art.status =           params[:art][:status]
+    @art.tags =             params[:art][:tags]
+    @art.m_oil =            params[:art][:m_oil]
+    @art.m_watercolor =     params[:art][:m_watercolor]
+    @art.m_hot_wax =        params[:art][:m_hot_wax]
+    @art.m_pastel =         params[:art][:m_pastel]
+    @art.m_gouache =        params[:art][:m_gouache]
+    @art.m_tempera =        params[:art][:m_tempera]
+    @art.m_ink =            params[:art][:m_ink]
+    @art.m_graphite =       params[:art][:m_graphite]
+    @art.m_charcoal =       params[:art][:m_charcoal]
+    @art.m_sepia =          params[:art][:m_sepia]
+    @art.m_sanguine =       params[:art][:m_sanguine]
+    @art.m_crayon =         params[:art][:m_crayon]
+    @art.m_acrylic =        params[:art][:m_acrylic]
+    @art.m_aerography =     params[:art][:m_aerography]
+    @art.m_marker_pen =     params[:art][:m_marker_pen]
+    @art.m_colored_pencil = params[:art][:m_colored_pencil]
+    @art.m_digital =        params[:art][:m_digital]
+    @art.m_mixed =          params[:art][:m_mixed]
+    
+    
+    
+    
     if params[:art][:original].nil? == false
       # only trigger the resque queue if new image
       @art.original = params[:art][:original]

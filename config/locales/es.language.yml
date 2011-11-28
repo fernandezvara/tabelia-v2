@@ -1,7 +1,7 @@
 es:
     language:
         language_name: 'Castellano'
-        you_are_using: 'Lenguaje: '
+        you_are_using: 'Idioma: '
         change_link: 'change/cambiar'
         change:
             title: 'SELECCIONA UN IDIOMA'

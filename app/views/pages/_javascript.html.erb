@@ -2,6 +2,7 @@
 var $container = $('#last_show');
 var arts = new Array();
 var i = 0;
+var div = 0;
 <% cache("#{@cache}", :expires_in => 1.hour) do %>
   <% @arts = @search.results %>
   <% i = 0 %>
@@ -13,11 +14,17 @@ var i = 0;
 
 function addImage() {
   var newDiv = document.createElement('div')
-  $(newDiv).addClass("bimg").html(arts[i]);
+  $(newDiv).addClass("bimg").attr('id', div).html(arts[i]);
   $container.prepend(newDiv);
 
+  var dd = div - 8;
+  if($("div#"+ dd).length) {
+    $("div#"+ dd).remove();
+  }
+  
   console.log(i);
   i++;
+  div++;
   if(i == arts.length) {
     i = 0;
   }
@@ -39,11 +46,9 @@ $(document).ready(function(){
   });
   for(a =0; a<= 2; a++){
     addImage();
-    console.log('llamada');
   }
   setTimeout(function() {
    $container.masonry('reload'); 
-   console.log('done');
   }, 500);
   setInterval(function(){
     addImage();

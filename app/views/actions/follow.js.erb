@@ -1,7 +1,7 @@
 <% if @result == "true" %>
-	$("div#follow_status").html("<%= escape_javascript(link_to(t('common.you_follow'), action_unfollow_path(:username => @remote_user.username), :remote => true, :class=> ['abutton', 'unfollow'], :walk => 'no')) %>");
-	$("div#follow_info").html("<%= escape_javascript(render :partial => 'partials/user/profile/followinfo', :locals => { :user => @remote_user}) %>")
-	flashBar("You begin following <%= @remote_user.name %>,", "notice", {});
+	$("div#follow_status").html("<%= escape_javascript(link_to(t('common.you_follow'), action_unfollow_path(:username => @user.username), :remote => true, :class=> ['abutton', 'unfollow'], :walk => 'no')) %>");
+	$("div#follow_info").html("<%= escape_javascript(render :partial => 'partials/user/profile/followinfo', :locals => { :user => @user}) %>")
+	flashBar("You begin following <%= @user.name %>,", "notice", {});
 <% else %>
 	alert("<%= @result %>");
 <% end %> 

@@ -1,4 +1,7 @@
 <h2><%= t('common.category') %> <%= @category.name %></h2>
+<% if @arts.count == 0 %>
+  <h3><%= t('search.there_are_no_entries') %></h3>
+<% else %>
 <div class="paginate">
   <%= paginate @arts, :inner_window => 1 %>
 </div>
@@ -10,3 +13,4 @@
 <div class="paginate">
   <%= paginate @arts, :inner_window => 1 %>
 </div>
+<% end %>

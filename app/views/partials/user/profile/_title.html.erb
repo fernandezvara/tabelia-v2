@@ -4,7 +4,7 @@
 <% if current_user %>
 <% if current_user != @user %>
 <div class="unitx1 align-right" id="message">
-      <%= link_to t('common.send_message'), new_message_path(:username => @user.username), :rel => 'modal', :class => ['abutton', 'message'], :style => 'margin-right:20px' %>
+      <%= link_to t('common.send_message'), new_message_path(:username => @user.username), :rel => 'modal', :class => ['abutton', 'message'], :style => 'margin-right:10px' %>
 </div>
 <div class="unitx1 left" id="follow_status">
     <% if GraphClient.connected?('Forward', 'Follow', current_user, @user) == false %>

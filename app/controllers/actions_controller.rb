@@ -4,16 +4,16 @@ class ActionsController < ApplicationController
   
   def follow
     begin
-      @remote_user = User.where(:username => params[:username]).first
-      if current_user != @remote_user
-        @result = GraphClient.new('Follow', current_user, @remote_user)
+      @user = User.where(:username => params[:username]).first
+      if current_user != @user
+        @result = GraphClient.new('Follow', current_user, @user)
         data = Hash.new
         data['who'] = current_user.id.to_s
         data['when'] = Time.now
         data['what'] = "ufu"
-        data['to'] = @remote_user.id.to_s
+        data['to'] = @user.id.to_s
         Resque.enqueue(Notificator, data)
-        Resque.enqueue(CreateRecommendations, current_user.id.to_s, 'follows_user', @remote_user.class.to_s, @remote_user.id.to_s)
+        Resque.enqueue(CreateRecommendations, current_user.id.to_s, 'follows_user', @user.class.to_s, @user.id.to_s)
       else
         @result = "Relation not valid."
       end
@@ -24,14 +24,15 @@ class ActionsController < ApplicationController
   end
 
   def unfollow
-    begin
-      @remote_user = User.where(:username => params[:username]).first
-      @result = GraphClient.remove('Follow', current_user, @remote_user)
-      Resque.enqueue(DeleteCounters, 'unfollow', @remote_user.class.to_s, @remote_user.id.to_s)
-    rescue
+    #begin
+      @user = User.where(:username => params[:username]).first
+      @result = GraphClient.remove('Follow', current_user, @user)
+      Resque.enqueue(DeleteCounters, 'unfollow', @remote_user.class.to_s, @user.id.to_s)
+      puts "@result =  #{@result}"
+    #rescue
       ## log that someone are making something bad :)
-      @result = "someone..."
-    end
+      #@result = "someone..."
+    #end
   end
 
   def like

@@ -2,6 +2,8 @@ es:
     arts:
         singular: 'obra'
         plural: 'obras'
+        tecnique: 'Técnica'
+        likes_of: 'Me gusta'
         status:
             accepted: 'La obra es visible y está publicada.'
             non_accepted_reason0: 'Esperando a ser aprobado.'
@@ -26,27 +28,48 @@ es:
             edit_art_information: 'Editar información de la obra'
             add_to_cart: 'Añadir a la cesta'
             price_from: 'Precio: desde %{amount}'
+        media:
+            oil: 'Óleo'
+            watercolor: 'Acuarela'
+            hot_wax: 'Encaústica'
+            pastel: 'Pastel'
+            gouache: 'Gouache'
+            tempera: 'Témpera'
+            ink: 'Tinta'
+            graphite: 'Grafito'
+            charcoal: 'Carboncillo'
+            sepia: 'Sepia'
+            sanguine: 'Sanguina'
+            crayon: 'Ceras'
+            acrylic: 'Acrílico'
+            aerography: 'Aerógrafo'
+            marker_pen: 'Rotulador'
+            colored_pencil: 'Lápices de colores'
+            digital: 'Pintura digital'
+            mixed: 'Técnica mixta'
     mongoid:
         models:
             art: 'Arte'
         attributes:
             art:
-                name: 'Nombre'
+                name: 'Título'
                 price: 'Precio'
                 description: 'Descripción'
+                genre: 'Tema'
                 original: 'Fichero original'
                 category: 'Estilo'
-                tags: 'Tags'
+                tags: 'Etiquetas'
                 status: '¿Mostrar?'
         hints:
             art:
                 name: 'Nombre de la obra'
                 price: 'Escribe el valor que tiene cada reproducción. Ten en cuenta que la cantidad es en euros.'
                 description: 'Escribe la información que desees mostrar sobre esta obra.'
-                original: 'Pulsa para seleccionar el fichero original de la obra. Cuando guardes los cambios la obra comenzará a copiarse a nuestros servidores. Este proceso puede tardar unos minutos, en función de la velocidad de tu conexión. Por favor sé paciente.'
+                original: 'Pulsa para seleccionar el fichero original de la obra. Cuando crees la obra o guardes los cambios la obra comenzará a copiarse a nuestros servidores. Este proceso puede tardar unos minutos, en función de la velocidad de tu conexión. Por favor sé paciente.'
                 genre: 'Selecciona la temática de tu obra.'
                 category: 'Selecciona el estilo de tu obra.'
-                tags: 'Escribe las palabras que identifiquen a tu obra. Debes separarlas usando comas (,). Por ejemplo: Si has pintado un bodegón de una cesta de manzanas con acuarela, puedes usar las siguientes palabras (puedes escribir un máximo de 20 palabras): bodegón, cesta, manzanas, acuarela ...... '
+                tecnique: 'En caso de haber usado más de dos técnicas selecciona las dos principales.'
+                tags: 'Escribe las palabras que identifiquen a tu obra. Debes separarlas usando comas (,). Por ejemplo: Si has pintado un bodegón de una cesta de manzanas con acuarela, puedes usar las siguientes palabras (puedes escribir un máximo de 20): bodegón, cesta, manzanas, acuarela ... '
                 status: 'Selecciona si quieres que tu obra sea publicada.'
         options:
             art:

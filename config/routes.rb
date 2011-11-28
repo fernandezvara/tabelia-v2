@@ -134,6 +134,8 @@ Tabelia::Application.routes.draw do
   resources :users, :only => [:index, :edit, :create, :update] do
     get 'page/:page', :action => :index, :on => :collection
   end
+  
+  match 'robots.(:format)' => 'robots#index'
   root :to => 'pages#index'
 
   match '*a', :to => 'pages#not_found'

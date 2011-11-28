@@ -17,7 +17,7 @@
     <%= f.file_field :original, :title => t("mongoid.hints.art.original") %>
   </div>
   <div class="input select optional">
-    <%= f.label :genre_id, :class => ['select', 'optional'] %>
+    <%= f.label :genre, :class => ['select', 'optional'] %>
     <%= f.select :genre_id, options_from_collection_for_select(Genre.all, 'id', 'name', @art.genre_id) %>
     <script type="text/javascript">
       $("select#art_genre_id").attr("title", "<%=  t("mongoid.hints.art.genre") %>");
@@ -30,45 +30,46 @@
       $("select#art_category_id").attr("title", "<%=  t("mongoid.hints.art.category") %>");
     </script>
   </div>
-  <table style="margin-left:120px; width: 360px;">
-    <tbody>
-      <tr>
-        <td><%= check_box_tag("media_oil", "true", false) %> Óleo</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="input select optional" id='tecnique'>
+    <label class="text optional" for="m"><%= t('arts.tecnique') %></label>
+    <table style="width: 360px;">
+      <tbody>
+        <tr>
+          <td><%= f.check_box :m_oil %> <%= t('arts.media.oil') %></td>
+          <td><%= f.check_box :m_watercolor %> <%= t('arts.media.watercolor') %></td>
+          <td><%= f.check_box :m_hot_wax %> <%= t('arts.media.hot_wax') %></td>
+        </tr>
+        <tr>
+          <td><%= f.check_box :m_pastel %> <%= t('arts.media.pastel') %></td>
+          <td><%= f.check_box :m_gouache %> <%= t('arts.media.gouache') %></td>
+          <td><%= f.check_box :m_tempera %> <%= t('arts.media.tempera') %></td>
+        </tr>
+        <tr>
+          <td><%= f.check_box :m_ink %> <%= t('arts.media.ink') %></td>
+          <td><%= f.check_box :m_graphite %> <%= t('arts.media.graphite') %></td>
+          <td><%= f.check_box :m_charcoal %> <%= t('arts.media.charcoal') %></td>
+        </tr>
+        <tr>
+          <td><%= f.check_box :m_sepia %> <%= t('arts.media.sepia') %></td>
+          <td><%= f.check_box :m_sanguine %> <%= t('arts.media.sanguine') %></td>
+          <td><%= f.check_box :m_crayon %> <%= t('arts.media.crayon') %></td>
+        </tr>
+        <tr>
+          <td><%= f.check_box :m_acrylic %> <%= t('arts.media.acrylic') %></td>
+          <td><%= f.check_box :m_aerography %> <%= t('arts.media.aerography') %></td>
+          <td><%= f.check_box :m_marker_pen %> <%= t('arts.media.marker_pen') %></td>
+        </tr>
+        <tr>
+          <td><%= f.check_box :m_colored_pencil %> <%= t('arts.media.colored_pencil') %></td>
+          <td><%= f.check_box :m_digital %> <%= t('arts.media.digital') %></td>
+          <td><%= f.check_box :m_mixed %> <%= t('arts.media.mixed') %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script type="text/javascript">
+    $("input:checkbox").attr("title", "<%=  t("mongoid.hints.art.tecnique") %>");
+  </script>
   <div class="input string optional">
     <%= f.label :tags, :class => ['text', 'optional'] %>
     <%= f.text_field :tags, :maxlenght => 300, :value => @tags, :title => t("mongoid.hints.art.tags") %>
@@ -98,10 +99,15 @@ $(document).ready(function() {
       } 
     } 
   });
-  $("input, select, textarea").tipsy({
+  $("input[type=text], input[type=file], select, textarea").tipsy({
     live: true,
     trigger: 'hover',
     gravity: 'w'
+  });
+  $("input:checkbox").tipsy({
+    live: true,
+    trigger: 'hover',
+    gravity: 's'
   });
   
 });

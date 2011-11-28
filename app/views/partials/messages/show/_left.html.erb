@@ -7,9 +7,9 @@
     </div>
     <div class="unitx5 right">
       <% if message.sender == current_user %>
-        <div class="unitx5" id="title"><strong>Tú</strong> · <%= time_ago_in_words(message.created_at) %> ago.</div>
+        <div class="unitx5" id="title"><strong>Tú</strong> · <%= t('common.time_ago', :time => time_ago_in_words(message.created_at)) %>.</div>
       <% else %>
-      <div class="unitx5" id="title"><strong><%= link_to message.sender.name, user_profile_path(:username => message.sender.username) %></strong> · <%= time_ago_in_words(message.created_at) %> ago.</div>
+      <div class="unitx5" id="title"><strong><%= link_to message.sender.name, user_profile_path(:username => message.sender.username) %></strong> · <%= t('common.time_ago', :time =>  time_ago_in_words(message.created_at)) %>.</div>
       <% end %>
       <div class="unitx5" id="data">
         <%= simple_format(message.text) %>
@@ -23,7 +23,7 @@
     <div class="unitx5 right" id="reply">
       <%= form_tag message_reply_path(:slug => @conversation.slug.to_s) do %>
         <%= text_area_tag :text, nil, :style => 'width:612px; line-height:18px;' %>
-        <%= submit_tag "Reply", :disabled => 'disabled', :class => 'replysubmit' %>
+        <%= submit_tag t('messages.reply'), :disabled => 'disabled', :class => 'replysubmit' %>
       <% end %>
     </div>
   </div>

@@ -2,6 +2,7 @@ en:
     arts:
         singular: 'art'
         plural: 'arts'
+        tecnique: 'Tecnique'
         status:
             accepted: "Art is visible and it\'s published"
             non_accepted_reason0: 'Waiting for be approved.'
@@ -26,12 +27,31 @@ en:
             edit_art_information: 'Edit art information'
             add_to_cart: 'Add to basket'
             price_from: 'Price: from %{amount}'
+        media:
+            oil: 'Oil'
+            watercolor: 'Watercolor'
+            hot_wax: 'Hot wax'
+            pastel: 'Pastel'
+            gouache: 'Gouache'
+            tempera: 'Tempera'
+            ink: 'Ink'
+            graphite: 'Graphite'
+            charcoal: 'Charcoal'
+            sepia: 'Sepia'
+            sanguine: 'Sanguine'
+            crayon: 'Crayon'
+            acrylic: 'Acrylic'
+            aerography: 'Aerography'
+            marker_pen: 'Marker Pen'
+            colored_pencil: 'Colored Pencil'
+            digital: 'Digital Painting'
+            mixed: 'Mixed Tecnique'
     mongoid:
         models:
             art: 'Art'
         attributes:
             art:
-                name: 'Name'
+                name: 'Title'
                 price: 'Price'
                 description: 'Description'
                 original: 'Original file'
@@ -45,6 +65,7 @@ en:
                 description: 'Information about this art.'
                 original: 'Upload the original file of this art. This is a time consuming task, please be patient'
                 category: 'Select the style of this art.'
+                tecnique: 'If you have used more than two tecniques for this art, please, select the two main ones.'
                 tags: 'Write the words that can help to identify your art. Use the comma (,) as separator. You can add up to 20 tags for each art'
                 status: 'Do you want to show this art?'
         options:

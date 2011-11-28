@@ -1,0 +1,66 @@
+<br /><br /><br />
+<div class="box green">
+  <div class="title"><%= t('search.filters') %></div>
+  <div class="content">
+    <p><%= t('search.categories')%></p><br />
+    <%= select_tag "style", options_from_collection_for_select(@categories, "slug", "name"), :prompt => t('search.categories_prompt') %>
+    <p><%= t('search.tecniques') %></p><br />
+    <% 
+    tecniques = { 
+      t('arts.media.oil') => 'oil',
+      t('arts.media.watercolor') => 'watercolor',
+      t('arts.media.hot_wax') => 'hot_wax',
+      t('arts.media.pastel') => 'pastel',
+      t('arts.media.gouache') => 'gouache',
+      t('arts.media.tempera') => 'tempera',
+      t('arts.media.ink') => 'ink',
+      t('arts.media.graphite') => 'graphite',
+      t('arts.media.charcoal') => 'charcoal',
+      t('arts.media.sepia') => 'sepia',
+      t('arts.media.sanguine') => 'sanguine',
+      t('arts.media.crayon') => 'crayon',
+      t('arts.media.acrylic') => 'acrylic',
+      t('arts.media.aerography') => 'aerography',
+      t('arts.media.marker_pen') => 'marker_pen',
+      t('arts.media.colored_pencil') => 'colored_pencil',
+      t('arts.media.digital') => 'digital',
+      t('arts.media.mixed') => 'mixed'
+    }
+    %>
+    <%= select_tag "tecnique", options_for_select(tecniques), :prompt => t('search.tecniques_prompt') %>
+    
+  </div>
+</div>
+
+
+
+
+<p><%= link_to  t('common.more_info_on_this_idiom'), @idiom.url, :target => '_new' %></p>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('select#style').change(function() {
+  	$.ajax({
+      url: '/idiom/<%= @idiom.slug %>',
+      data: {
+        'utf8'  : '%E2%9C%93',
+        'style': $("select#style").val(),
+        'tecnique': $("select#tecnique").val()
+      },
+      dataType: 'script'
+    });
+  });
+  $('select#tecnique').change(function() {
+  	$.ajax({
+      url: '/idiom/<%= @idiom.slug %>',
+      data: {
+        'utf8'  : '%E2%9C%93',
+        'style': $("select#style").val(),
+        'tecnique': $("select#tecnique").val()
+      },
+      dataType: 'script'
+    });
+  });
+});
+</script>
+

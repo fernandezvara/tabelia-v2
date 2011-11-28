@@ -31,7 +31,7 @@ footer p				{ margin: 0 10px; font-size:12px;}
 .header-login           { background-color: #c20000; color: #fff; height:50px; width:990px; margin: 0 auto; /* box-shadow: 0px 2px 7px #999; */ }
 .header-login .in       { padding: 10px 10px 10px 0px; line-height:30px; }
 .header-login .logo     { padding: 5px 15px; height: 50px; overflow:hidden; }
-.header-login h1        { text-indent: -9999px; margin:0; height:40px; width:125px; background: url(/assets/logo.png) no-repeat !important; top:0;}
+.header-login h1        { text-indent: -9999px; margin:0; height:40px; width:152px; background: url(/assets/logo.png) no-repeat !important; top:0;}
 .header-login .logo a   { font-size:13px; line-height:13px;} 
 header                  { background-color: #f7f7f7; height:50px; }
 

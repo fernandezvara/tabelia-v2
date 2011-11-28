@@ -1,0 +1,9 @@
+es:
+    messages:
+        title: 'Mensajes'
+        last_sent_message_by: 'Último mensaje enviado por '
+        by_you: 'tí'
+        you: 'Tú'
+        view: 'Ver'
+        delete: 'Borrar'
+        reply: 'Responder'
