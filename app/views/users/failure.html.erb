@@ -1,7 +1,9 @@
 <% content_for :left do %>
-  <p>Creación de nueva cuenta..... Usando un proveedor</p>
-  <p> Aquí debe ir el formulario </p>
-
-  
-  <p><%= @auth.inspect %></p>
+  <br /><br /><br /><br /><br /><br /><br />
+  <% if I18n.locale.to_s == 'en' %>
+  <p class="center s18">There was an error trying to validate you. Please try again.</p>
+  <% else %>
+  <p class="center s18">Ha ocurrido un error durante el proceso de validación. Por favor, inténtalo de nuevo.</p>
+  <% end %>
+  <br /><br /><br /><br /><br /><br /><br />
 <% end %>

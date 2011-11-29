@@ -1,43 +1,4 @@
 Tabelia::Application.routes.draw do
-  get "profile/basic"
-
-  get "profile/about"
-
-  get "profile/avatar"
-
-  get "profile/privacy"
-
-  get "profile/services"
-
-  get "profile/basic_update"
-
-  get "profile/about_update"
-
-  get "profile/avatar_update"
-
-  get "profile/privacy_update"
-
-  get "profile/services_update"
-
-  get "locale/set"
-
-  get "invoice/show"
-
-  get "messages/notifications"
-  get "messages/new"
-  get "messages/create"
-  get "actions/follow"
-  get "actions/unfollow"
-  get "actions/like"
-  get "actions/unlike"
-  get "category/show"
-  get "arts/show"
-  get "arts/new"
-  get "arts/create"
-  get "arts/edit"
-  get "arts/update"
-  get "pages/help"
-  
   get 'logout' => "sessions#destroy", :as => 'logout'
   get 'login'  => "sessions#new",     :as => "login"
 
@@ -68,6 +29,7 @@ Tabelia::Application.routes.draw do
   match "style/:slug",                :controller => 'category', :action => 'show',             :as => 'category_show'
   match "idiom/:slug",                :controller => 'idioms',   :action => 'show',             :as => 'idiom_show'
   
+  match "user/confirmation/:c1/:c2",  :controller => 'users',    :action => 'confirmation',     :as => 'user_confirmation'
   match "user/:username",             :controller => 'users',    :action => 'show',             :as => "user_profile"
   match "user/:username/art",         :controller => 'arts',     :action => 'user_art_show',    :as => "user_arts"
   match "user/:username/followers",   :controller => 'users',    :action => 'followers',        :as => "user_followers"
@@ -114,6 +76,7 @@ Tabelia::Application.routes.draw do
   match 'terms',                       :controller => 'pages',   :action => 'terms',        :as => 'page_terms'
   match 'privacy',                     :controller => 'pages',   :action => 'privacy',      :as => 'page_privacy'
   match 'jobs',                        :controller => 'pages',   :action => 'jobs',         :as => 'page_jobs'
+  match 'help',                        :controller => 'pages',   :action => 'help',         :as => 'page_help'
   
   match 'language',                    :controller => 'locale',  :action => 'change',       :as => 'change_locale'
   match 'locale/:language',            :controller => 'locale',  :action => 'set',          :as => 'set_locale'        
@@ -123,7 +86,7 @@ Tabelia::Application.routes.draw do
   match 'profile/avatar',              :controller => 'profile', :action => 'avatar',       :as => 'profile_avatar'
   match 'profile/privacy',             :controller => 'profile', :action => 'privacy',      :as => 'profile_privacy'
   match 'profile/services',            :controller => 'profile', :action => 'services',     :as => 'profile_services'
-
+  match 'profile/billing',             :controller => 'profile', :action => 'billing',      :as => 'profile_billing'
   
   #match 'user/:username/edit',         :controller => 'users',   :action => 'edit',         :as => 'edit_user'
   

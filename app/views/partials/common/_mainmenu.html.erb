@@ -24,8 +24,8 @@
         </ul>
       </li>
       <% if current_user.nil? %>
-      <li><%= link_to t('mainmenu.login'), '/login', :rel => 'modal' %></li>
-      <li><%= link_to t('mainmenu.signup'), '/signup', :rel => 'modal' %></li>
+      <li><%= link_to t('mainmenu.login'), '/login', :rel => 'modal nofollow' %></li>
+      <li><%= link_to t('mainmenu.signup'), '/signup', :rel => 'nofollow' %></li>
       <% else %>
       <li><%= link_to current_user.name, user_profile_path(current_user.username) %>
         <ul class="sub-menu">

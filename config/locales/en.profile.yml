@@ -1,10 +1,14 @@
 en:
     simple_form:
         labels:
-            name: 'Full Name'
+            name: 'Name'
             username: 'Username'
             email: "E-mail"
+            password: 'Password'
+            password_confirmation: 'Password Confirmation'
             gender: "Gender"
+            gender_female: 'Female'
+            gender_male: 'Male'
             country: "Country"
             about: 'About me'
             inspirations: "Inspired by"
@@ -42,6 +46,9 @@ en:
         titles: 
             name: "Write the name others will see"
             username: "Write the username you want to have"
+            password: 'Write your desired password. As general recommendation write a combination of letters, numbers and simbols to enforce the security of your account.'
+            password_confirmation: 'Rewrite your password.'
+            email_new_account: 'Write your email address. You will receive an email to this addres to finish the account creation.'
             email: "Write your email address. Remember: If you change your e-mail address you will receive an email on the new account for confirm the change"
             country: "Select your country"
             user_url: "This is your page."
@@ -57,7 +64,7 @@ en:
             mof: "Select if you want to receive an email when someone follows you"
             mol: "Select if you want to receive an email when someone like your art"
         hints:
-            username: 'Only letters, numbers and hyphens (-) are allowed'
+            username: 'Only letters, numbers, hyphens (-) and underscores (_) are allowed'
             gender: "Your gender won't be published on your profile"
     helpers:
         submit:

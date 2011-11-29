@@ -32,12 +32,33 @@ class PagesController < ApplicationController
   end
 
   def help
+    respond_to do |format|
+      format.html do
+        render :layout => 'main'
+      end
+    end
   end
 
   def notloggedin
   end
 
   def not_found
+    respond_to do |format|
+      format.html do
+        render :layout => 'main'
+      end
+    end
+  end
+
+  def terms
+    respond_to do |format|
+      format.html do
+        render :layout => 'main'
+      end
+    end
+  end
+  
+  def jobs
     respond_to do |format|
       format.html do
         render :layout => 'main'

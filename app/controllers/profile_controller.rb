@@ -6,7 +6,8 @@ class ProfileController < ApplicationController
     if params[:user]
       if @user.update_attributes(params[:user])
         if @user.email_changed?
-          # debe crear la tarea de envio de nueva confirmacion
+          # tarea de envio de nueva confirmacion
+          Resque.enqueue(SendConfirmation, @user.id.to_s)
         end
         flash.now[:success] = 'Cambios guardados correctamente'
       else

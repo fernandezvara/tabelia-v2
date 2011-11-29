@@ -1,0 +1,20 @@
+<% content_for :left do %>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <% if @already_confirmed == true %>
+    <p class="s24 center"><%= t('users.confirmation.you_have_already_confirmed') %></p>
+    <% else %>
+    <p class="s24 center"><%= t('users.confirmation.your_account_has_been_confirmed') %></p>
+    <% end %>
+    <br />
+    <p class="s18 center"><%= link_to t('users.confirmation.continue'), root_path, :class => 'center' %>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+<% end %>

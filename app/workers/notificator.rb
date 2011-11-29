@@ -84,23 +84,23 @@ class Notificator
       puts stat.likes.today
     end
     
-    begin
+    #begin
     
     # socket
-    case _what
-    when 'cou'
-      Juggernaut.publish(receiver.username, { comment_profile: { posted_by: originator.name }}) # t("#{receiver.locale}.socket.#{_what}"))
-    when 'coa'
-      Juggernaut.publish(receiver.username, { comment_art: { posted_by: originator, art: art.name }})
-    when 'upa'
-    when 'ufu'
-      Juggernaut.publish(receiver.username, { user_follow_you: { originator: originator.name }})
-    when 'ula'
-      Juggernaut.publish(receiver.username, { user_likes_art: { originator: originator.name, art: art.name }})
-    end
-    
-    rescue
-    end
+    #case _what
+    #when 'cou'
+    #  Juggernaut.publish(receiver.username, { comment_profile: { posted_by: originator.name }}) # t("#{receiver.locale}.socket.#{_what}"))
+    #when 'coa'
+    #  Juggernaut.publish(receiver.username, { comment_art: { posted_by: originator, art: art.name }})
+    #when 'upa'
+    #when 'ufu'
+    #  Juggernaut.publish(receiver.username, { user_follow_you: { originator: originator.name }})
+    #when 'ula'
+    #  Juggernaut.publish(receiver.username, { user_likes_art: { originator: originator.name, art: art.name }})
+    #end
+    #
+    #rescue
+    #end
     
     # notification
     #case _what

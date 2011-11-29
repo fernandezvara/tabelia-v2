@@ -1,10 +1,129 @@
 <% content_for :left do %>
-  <h2>Sign up</h2>
-  <div id="signup">
-  <p>Creación de nueva cuenta.....</p>
-  <p> Pulsa si quieres un proveedor de validación, facebook, twitter, google</p>
+  <h2><%= t('users.signup.title') %></h2>
+  <div class="ml20">
+  <% case I18n.locale.to_s %>
+  <% when 'es' %>
+  <p class="s16">Puedes registrarte en tabelia de dos formas:</p>
+  <br />
+  <p class="s16"> 1. Usando la cuenta de tu red social o servicio favorito:</p>
+  <p>Es la forma más rápida de registro y además te permitirá no tener que recordar más contraseñas. Pulsa sobre el proveedor preferido para comenzar. *
+  </p><br />
+  <% when 'en' %>
+  <p class="s16">You can register in tabelia using one of these two methods:</p>
+  <br />
+  <p class="s16"> 1. Using an account of your favorite social network or service:</p>
+  <p>This is the fastest way for make the registration. Also it will help you not needing to remember another user/password combination. Press over your prefered provider for begin. *
+  </p><br />
+  <% end %>
+  <div class="provider">
+    <%= link_to image_tag('social/twitter_64.png',  :alt => "Twitter",  :class => "effect"), '/auth/twitter' %>
+  </div> 
+  <div class="provider">
+  <%= link_to "Twitter", '/auth/twitter' %>
   </div>
-  <%= link_to image_tag('social/twitter_64.png',  :alt => "Twitter",  :class => "effect"), '/auth/twitter' %>
-  <%= link_to image_tag('social/facebook_64.png', :alt => "Facebook", :class => "effect"), '/auth/facebook' %>
-  <%= link_to image_tag('social/google_64.png',   :alt => "Google",   :class => "effect"), '/auth/google_oauth2' %>
+  <div class="provider">
+    <%= link_to image_tag('social/facebook_64.png', :alt => "Facebook", :class => "effect"), '/auth/facebook' %>
+  </div>  
+  <div class="provider">
+    <%= link_to "Facebook", '/auth/facebook' %>
+  </div>
+  <div class="provider">
+    <%= link_to image_tag('social/google_64.png',   :alt => "Google",   :class => "effect"), '/auth/google_oauth2' %>
+  </div>  
+  <div class="provider">
+    <%= link_to "Google /Gmail", '/auth/google_oauth2' %>
+  </div>
+  <div class="clearfix"></div>
+  <p><%= t('common.creating_account_you_agree') %> <%= link_to(t('common.footer.terms'), page_terms_path) %></p>
+  <br /><br/>
+  <% case I18n.locale.to_s %>
+  <% when 'es' %>
+  <p class="s16"> 2. Registrando una cuenta:</p>
+  <p>Completa el siguiente formulario de registro. *</p><br />
+  <% when 'en'%>
+  <p class="s16"> 2. Creating a new account:</p>
+  <p>Complete this registration form. *</p><br />
+  <% end %>
+
+  <% if @user.errors.any? %>
+    <div id="errors">
+    <%= pluralize(@user.errors.count, "error") %>:
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    <ul>
+    </div>
+  <% end %>
+
+  <%= simple_form_for @user do |f| %>
+  <%= f.input :name, :input_html => { :title => t("simple_form.titles.name") } %>
+  <%= f.input :username, :input_html => { :title => t("simple_form.titles.username") } %>
+  <div id="user_url" title="<%= t('simple_form.titles.user_url') %>">http://www.tabelia.com/user/<%= @user.username %></div>
+  <%= f.input :email, :input_html => { :title => t("simple_form.titles.email") } %>
+  <%= f.input :password, :type => 'password', :input_html => { :title => t("simple_form.titles.password") } %>
+    <%= f.input :password_confirmation, :type => 'password', :input_html => { :title => t("simple_form.titles.password_confirmation") } %>
+  <div class="input optional">
+    <label class="optional" for="gender"><%= t("simple_form.labels.gender") %></label>
+    <div style="margin-left:120px">
+      <%= f.collection_radio :gender, [[true, t("simple_form.labels.gender_female")] ,[false, t("simple_form.labels.gender_male")]], :first, :last %>
+    </div>
+    <span class="hint"><%= t("simple_form.hints.gender") %></span>
+  </div>
+  
+  <div class="input optional <%= "field_with_errors" if @user.errors.keys.include?(:country_id) %>">
+    <label class="optional" for="address_country_id"><%= t("simple_form.labels.country") %></label>
+    <%= collection_select('user', 'country_id', Country.allowed_to_user.order_by([:name, :asc]), :id, :name, :prompt => true) %>
+    <script type="text/javascript">
+      $("select#user_country_id").attr("title", "<%= t('simple_form.titles.country') %>");
+    </script>
+  </div>
+  
+  <%= submit_tag t('helpers.submit.user.create'),   :disable_with => t('common.working') %>
+  
+  <% end %>
+
+  <br />
+  <p><%= t('common.creating_account_you_agree') %> <%= link_to(t('common.footer.terms'), page_terms_path) %></p>
+  </div>
+  
+  <script type="text/javascript">
+    $(window).ready(function(){
+      $("input, select, div#user_url, textarea").tipsy({
+        live: true,
+        trigger: 'hover',
+        gravity: 'w'
+      });
+      
+      $("input#user_username").keydown(function(event) { 
+        if ( event.keyCode == 46 || event.keyCode == 8  || event.keyCode == 9 || event.keyCode == 37  || event.keyCode == 39 ) { 
+        } else { 
+          if (event.keyCode < 95) { 
+            if (event.keyCode < 48 || event.keyCode > 90 ) { 
+              event.preventDefault();	
+            } 
+          } else { 
+            if (event.keyCode < 96 || event.keyCode > 105) { 
+              if (event.keyCode != 189) {
+                event.preventDefault();	
+              }
+            } 
+          } 
+        } 
+      });
+    });
+    
+    $("input#user_username").keyup(function(){
+      if ($(this).val().length > 3) {
+        var username = $(this).val();
+        $("div#user_url").text("http://www.tabelia.com/user/" + username);
+        $("input[type=submit]").removeAttr("disabled");
+      }
+      else
+      {
+        $("div#user_url").html('El nombre de usuario debe tener más de 3 letras');
+        $("input[type=submit]").attr("disabled", "disabled");
+      }
+    });
+  </script>
 <% end %>

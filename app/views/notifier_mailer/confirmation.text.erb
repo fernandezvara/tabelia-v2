@@ -1,0 +1,10 @@
+<%= t('mail.common.hi', :receiver_name => @user.name) %>
+
+<%= t('mail.confirmation.thanks_for_create_your_account')%>
+
+<%= t('mail.confirmation.please_follow_this_link')%> <%= user_confirmation_url(:c1 => @user.conf1, :c2 => @user.conf2) %>
+
+---
+
+<%= t('mail.legal.this_message_was_sended_to', :receiver_email => @user.email) %>
+<%= t('mail.legal.you_can_change_your_prefs') %> <%= user_profile_url(:username => @user.username) %>

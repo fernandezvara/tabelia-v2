@@ -22,6 +22,11 @@ en:
         user_likes_art:
             subject: "%{originator_name} likes '%{art_name}'"
             main_action: " likes "
+        confirmation:
+            subject: "Confirm your tabelia account, %{user_name}"
+            thanks_for_create_your_account: 'Thanks for create an account on our site!'
+            please_follow_this_link: 'Please, follow this link '
+            to_confirm_your_account: 'to confirm your account creation.'
     activity:
         title: 'RECENT ACTIVITY'
         comment_on_profile:

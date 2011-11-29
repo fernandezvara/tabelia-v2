@@ -12,6 +12,12 @@ es:
             title: 'Preferencias de usuario'
         index:
             title: 'Directorio de usuarios'
+        signup:
+            title: 'Nuevo usuario'
+        confirmation:
+            you_have_already_confirmed: 'Ya habías confirmado esta cuenta anteriormente.'
+            your_account_has_been_confirmed: 'Tu cuenta ha sido confirmada correctamente.'
+            continue: 'Ir al inicio'
                 
         
         

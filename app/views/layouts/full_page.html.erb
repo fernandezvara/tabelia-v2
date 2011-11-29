@@ -2,6 +2,20 @@
 <body class="page-home">
   <%= render :partial => '/partials/common/header' %>
   <div id="page" style ="top:50px">
+    <% if current_user %>
+      <% if current_user.confirmed == false %>
+        <div class="full message_top">
+        <% case I18n.locale.to_s %>
+        <% when 'es' %>
+          <p class="center">Hemos enviado un mensaje a la cuenta de correo con la que has registrado tu perfil para confirmarla. Sigue las instrucciones que encontraras en él para realizar este paso. (Mira también en la carpeta de spam o correo no deseado por si ha entrado ahí por error).</p>
+          <p class="center">Puedes revisar y/o cambiar tu correo electrónico en la <%= link_to 'configuración de perfil', profile_basic_path %>.</p>
+        <% when 'en' %>
+          <p class="center">We have sent a message to the email account you filled on profile registration for confirm it. Follow the instructions on this message. (Also take a look over the spam folder, it can be there by error).</p>
+          <p class="center">You can review your information and email address on your <%= link_to 'profile configuration', profile_basic_path %>.</p>
+        <% end %>
+        </div>
+      <% end %>
+    <% end %>
     <div id="container">
       <div id="content">
         <section class="width4 stroke" id='main'>

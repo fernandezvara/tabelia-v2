@@ -7,7 +7,8 @@ class User
   
   attr_accessor :password, :inspirations
   
-  before_create :generate_username, :generate_token, :generate_confirmation_tokens
+  #:generate_username,
+  before_create  :generate_token, :generate_confirmation_tokens
   after_create :generate_privacy
   
   before_save :encrypt_password
@@ -39,21 +40,27 @@ class User
   index :email,      unique: true
   index :auth_token, unique: true
   index :username,   unique: true
+  index :password_hash
+  index :password_salt
   index :conf1 # confirmation token 1
   index :conf2 # confirmation token 2
   
   validates_presence_of :name
-  validates_presence_of :username
-  validates_presence_of :email, :on => :update  
-  validates_presence_of :country_id, :on => :update
-  validates_uniqueness_of :email, :on => :update
-  validates_uniqueness_of :username
 
-  validates_format_of :username, :with => /^[a-zA-Z0-9-]+$/i
+  #validates_presence_of :email, :on => :update 
+  #validates_presence_of :country_id, :on => :update 
+  validates_presence_of :email, :if => :provider_and_new?  
+  validates_presence_of :country_id, :if => :provider?
+  
+  validates_format_of :username, :with => /^[a-zA-Z0-9_-]+$/i
+  validates_presence_of :username
+  validates_uniqueness_of :username
+  
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :on => :update
                                   #    /^([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})$/i
-  validates_confirmation_of :password, :on => :create
+  validates_confirmation_of :password, :on => :create, :if => :provider?
   validates_presence_of :password, :on => :create
+  validates_uniqueness_of :email  #, :on => :update
   
   # Avatar
   mount_uploader :avatar, AvatarUploader
@@ -98,7 +105,7 @@ class User
       self.username = auth["info"]["nickname"]
     else
       if self.name
-        self.username = self.name.parameterize
+        self.username = generate_username(self.name)
       else
         self.username = ""
       end
@@ -199,6 +206,18 @@ class User
     end
   end
   
+  def provider?
+    !self.from_provider
+  end
+  
+  def provider_and_new?
+    if self.from_provider == false and self.new? == true
+      return true
+    else
+      return false
+    end
+  end
+  
   protected
   
   def resque_solr_update
@@ -208,5 +227,7 @@ class User
   def resque_solr_remove
     Resque.enqueue(SolrRemove, "User", id)
   end
+  
+
   
 end

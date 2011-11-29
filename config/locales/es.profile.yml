@@ -1,10 +1,12 @@
 es:
     simple_form:
         labels:
-            name: 'Nombre completo'
+            name: 'Nombre a mostrar'
             username: 'Usuario'
             email: "Correo Electrónico"
             gender: "Sexo"
+            gender_female: 'Mujer'
+            gender_male: 'Hombre'
             country: "País"
             password: 'Contraseña'
             password_confirmation: 'Confirmación Contraseña'
@@ -44,6 +46,9 @@ es:
         titles: 
             name: "Escribe el nombre que quieras que otros vean"
             username: "Escribe el nombre de usuario que deseas"
+            password: 'Escribe la contraseña que desees tener. Por seguridad, te recomendamos que uses letras, número y algún símbolo para que sea más segura.'
+            password_confirmation: 'Vuelve a escribir tu contraseña.'
+            email_new_account: 'Escribe tu dirección de correo electrónico. Recibirás un email para terminar la creación de tu usuario.'
             email: "Escribe tu dirección de correo. Recuerda que si cambias de dirección recibirás un correo electrónico para confirmar el cambio."
             country: "Selecciona tu país"
             user_url: "Esta es tu ruta de acceso a tu perfil. Es el acceso rápido a tu perfil de usuario."
@@ -59,7 +64,7 @@ es:
             mof: "Selecciona si deseas recibir una notificación cuando alguien se haga seguidor tuyo"
             mol: "Selecciona si deseas recibir una notificación cuando alguien diga que le gusta una obra tuya"
         hints:
-            username: 'Sólo letras, números y guiones (-) están permitidos'
+            username: 'Sólo letras, números, guiones (-) y guiones bajos (_) están permitidos'
             gender: 'El sexo no se publica en tu perfil'
     helpers:
         submit:

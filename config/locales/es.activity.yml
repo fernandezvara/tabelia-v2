@@ -21,7 +21,12 @@ es:
             main_action: " ha empezado a seguir tu trabajo."
         user_likes_art:
             subject: "A %{originator_name} le gusta '%{art_name}'"
-            main_action: " le gusta "            
+            main_action: " le gusta "
+        confirmation:
+            subject: "Confirma tu cuenta en tabelia, %{user_name}"
+            thanks_for_create_your_account: 'Gracias por crear tu cuenta.'
+            please_follow_this_link: 'Por favor, sigue este enlace '
+            to_confirm_your_account: 'para confirmar la creación de tu cuenta.'       
     activity:
         title: 'ACTIVIDAD RECIENTE'
         comment_on_profile:

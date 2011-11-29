@@ -1,0 +1,20 @@
+<% content_for :main do %>
+  <table width="100%" border="0">
+    <tr>
+      <td style="padding:20px;width:105px">
+        <%= link_to image_tag(@user.avatar.url(:thumb).to_s, :alt => @user.name), user_profile_url(:username => @user.username) %>
+      </td>
+      <td style="padding:20px; width: 473px; border:1px solid #ddd; background-color: #f0f0f0; color:#7d7d7d; font-size:12px; line-height:18px;">
+        <p><%= t('mail.common.hi', :receiver_name => @user.name) %></p>
+        <p><%= t('mail.confirmation.thanks_for_create_your_account')%></p>
+        <p><%= t('mail.confirmation.please_follow_this_link')%> <%= link_to t('mail.confirmation.to_confirm_your_account'), user_confirmation_url(:c1 => @user.conf1, :c2 => @user.conf2), :style => 'color:#c20000; text-decoration:none' %></p>
+      </td>
+    </tr>
+  </table>
+<% end %>
+
+
+<% content_for :footer do %>
+  <p><%= t('mail.legal.this_message_was_sended_to', :receiver_email => @user.email) %></p>
+  <p><%= t('mail.legal.you_can_change_your_prefs') %><%= link_to t('mail.legal.prefs_page'), user_profile_url(:username => @user.username), :style => 'color:#c20000; text-decoration:none' %>.</p>
+<% end %>

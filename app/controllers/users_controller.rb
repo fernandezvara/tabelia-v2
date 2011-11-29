@@ -9,11 +9,11 @@ class UsersController < ApplicationController
     else
       @comment = Comment.new
       # prevent hit the database if the comments has been cached before
-      if fragment_exist?("comments-user-#{@user.id.to_s}-#{session[:locale].to_s}") == false
+      if fragment_exist?("comments-user-#{@user.id.to_s}-#{I18n.locale.to_s}") == false
         @comments = @user.comments_received.order_by(:created_at, :desc).limit(10)
       end
       # prevent hit the database if the user haven't changed his/her about info
-      if fragment_exist?("about-profile-#{@user.id.to_s}-#{session[:locale].to_s}") == false
+      if fragment_exist?("about-profile-#{@user.id.to_s}-#{I18n.locale.to_s}") == false
         inspirations = Tagging.of_object_as_where_creator(@user, 'insp', @user)
         @inspirations = Array.new
         inspirations.each do |tag|
@@ -87,7 +87,8 @@ class UsersController < ApplicationController
 
   def signup
     @title = t("users.signup.title")
-    render :layout => 'first_page'
+    @user = User.new
+    render :layout => 'main'
   end
 
   def new
@@ -144,8 +145,8 @@ class UsersController < ApplicationController
         @user = User.new
         @user.get_data_from_provider(@auth)
         @user.language = I18n.locale.to_s
-        @user.save # :validate => false
-
+        @user.save! # :validate => false
+        Resque.enqueue(SendConfirmation, @user.id.to_s) if @user.email.nil? == false
         @authorization = Authorization.create!(:provider => @auth["provider"], :uid => @auth["uid"], :user => @user)
         
         # gets the username from twitter and facebook, useful for mentions on twitter and stuff like that
@@ -196,7 +197,7 @@ class UsersController < ApplicationController
         end
         cookies.permanent[:auth_token] = remote_user.user.auth_token
         session[:locale] = remote_user.user.language
-        notice = "Logged in!"
+        notice = t('common.logged_in')
         redirect_to_or_default(root_url, :notice => notice)
       end
     end
@@ -222,6 +223,29 @@ class UsersController < ApplicationController
     @title = t("users.edit.title")
     render :layout => 'main'
   end
+
+  def create
+    @user = User.new
+    
+    @user.name = params[:user][:name]
+    @user.email = params[:user][:email]
+    @user.username = params[:user][:username]
+    @user.password = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
+    @user.country_id = params[:user][:country_id]
+    @user.gender = params[:user][:gender]
+    @user.language = I18n.locale.to_s
+    if @user.save
+      cookies.permanent[:auth_token] = @user.auth_token
+      Resque.enqueue(SendConfirmation, @user.id.to_s)
+      redirect_to :root
+    else
+      @title = t("users.signup.title")
+      flash[:error] = t('common.please_fix_errors_on_form')
+      render :action => :signup, :layout => 'main'
+    end
+  end
+    
 
   def update
     # TODO: clean this
@@ -258,6 +282,28 @@ class UsersController < ApplicationController
         format.html { render :layout => 'main' }
         format.js
       end
+    end
+  end
+
+  def confirmation
+    if params[:c1] and params[:c2]
+      @user = User.where(:conf1 => params[:c1], :conf2 => params[:c2]).first
+      if @user.nil? == true
+        logger.error "Intento de confirmacion: #{params[:c1]}  #{params[:c2]} "
+        redirect_to :root
+      else
+        if @user.confirmed == true
+          @already_confirmed = true
+          render :layout => 'main'
+        else
+          @user.confirmed = true
+          @user.save
+          @already_confirmed = false
+          render :layout => 'main'
+        end
+      end
+    else
+      redirect_to :root
     end
   end
 

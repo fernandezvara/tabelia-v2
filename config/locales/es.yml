@@ -2,6 +2,7 @@ es:
     common:
         tabeliah1: 'tabelia. Tu galeria de arte virtual en red.'
         tabeliah2: 'arte experiencia estética decoración disfruta talento creatividad habilidad exposición expresa muestra'
+        logged_in: 'Inicio de sesión correcto'
         you: 'Tú'
         send_message: 'N. mensaje'
         like: 'Me gusta'
@@ -37,6 +38,7 @@ es:
         by: ' de '
         you_must_logon_first: 'Debes entrar con tu usuario antes de acceder a esa página'
         help_title: 'AYUDA'
+        creating_account_you_agree: '* La creación de cuenta implica la aceptación de las '
         footer:
             directory: 'Directorio de usuarios'
             terms: 'Condiciones generales'

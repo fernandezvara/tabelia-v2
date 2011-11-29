@@ -17,14 +17,14 @@
   <span class="hint" id="user_url">http://www.tabelia.com/user/<%= @user.username %></span>
   <%= f.input :email %>
   <div class="input optional">
-    <label class="optional" for="gender">Sexo:</label>
+    <label class="optional" for="gender"><%= t('simple_form.labels.gender') %></label>
     <div style="margin-left:120px">
-      <%= f.collection_radio :gender, [[true, 'Mujer'] ,[false, 'Hombre']], :first, :last %>
+      <%= f.collection_radio :gender, [[true, t('simple_form.labels.gender_female')] ,[false, t('simple_form.labels.gender_female')]], :first, :last %>
     </div>
   </div>
   
   <div class="input optional <%= "field_with_errors" if @user.errors.keys.include?(:country_id) %>">
-    <label class="optional" for="address_country_id">Country</label>
+    <label class="optional" for="address_country_id">t('simple_form.labels.country')</label>
     <%= collection_select('user', 'country_id', Country.allowed_to_user.order_by([:name, :asc]), :id, :name, :prompt => true) %>
     <span class="hint">Choose your country</span>
   </div>
