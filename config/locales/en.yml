@@ -39,6 +39,8 @@ en:
         you_must_logon_first: 'You must log in before you can access that page'
         help_title: 'HELP'
         creating_account_you_agree: '* Creating an account implies that you aggre with the '
+        how_tabelia_works: "How tabelia works?"
+        big_art: 'Painting is bigger than scanner'
         footer:
             directory: 'User Directory'
             terms: 'Terms and Conditions'

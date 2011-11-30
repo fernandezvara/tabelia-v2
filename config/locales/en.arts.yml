@@ -3,6 +3,7 @@ en:
         singular: 'art'
         plural: 'arts'
         tecnique: 'Tecnique'
+        status_title: 'PUBLISH STATUS'
         status:
             accepted: "Art is visible and it\'s published"
             non_accepted_reason0: 'Waiting for be approved.'

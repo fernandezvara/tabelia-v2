@@ -4,13 +4,31 @@ class ApplicationController < ActionController::Base
     
   helper_method :current_user, :current_cart
   
-  before_filter :last_page_to_session, :load_categories, :set_locale, :redirect_to_profile_edit, :rel_canonical
+  before_filter :last_page_to_session, :load_categories, :set_locale, :redirect_to_profile_edit, :rel_canonical, :confirmed?
   
   def rel_canonical
     if Rails.env.development?
       @canonical = 'http://localhost:3000' + request.fullpath
     else
       @canonical = 'http://www.tabelia.com' + request.fullpath
+    end
+  end
+  
+  def confirmed?
+    if current_user
+      if current_user.confirmed == false and current_user.email.nil? == false
+        if session[:last_confirmation].nil? == true 
+          session[:last_confirmation] = Time.now.to_i
+          @show_confirmation = true
+        else
+          if session[:last_confirmation] < (Time.now.to_i - 60)
+            session[:last_confirmation] = Time.now.to_i
+            @show_confirmation = true
+          else
+            @show_confirmation = false
+          end
+        end
+      end 
     end
   end
   
@@ -34,9 +52,7 @@ class ApplicationController < ActionController::Base
       if action_name != 'set'
         if current_user
           if current_user.language != session[:locale]
-            u = current_user
-            u.language = session[:locale]
-            u.save
+            session[:locale] = current_user.language if current_user.language.nil? == false
           end
         end
 

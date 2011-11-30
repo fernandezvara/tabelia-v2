@@ -77,6 +77,10 @@ Tabelia::Application.routes.draw do
   match 'privacy',                     :controller => 'pages',   :action => 'privacy',      :as => 'page_privacy'
   match 'jobs',                        :controller => 'pages',   :action => 'jobs',         :as => 'page_jobs'
   match 'help',                        :controller => 'pages',   :action => 'help',         :as => 'page_help'
+  match 'help/big_art',                :controller => 'pages',   :action => 'big_art',      :as => 'page_big_art'
+  match 'confirmation',                :controller => 'pages',   :action => 'confirmation', :as => 'page_confirmation'
+  
+  match 'send_confirmation',           :controller => 'users',   :action => 'resend_confirmation', :as => 'resend_conf'
   
   match 'language',                    :controller => 'locale',  :action => 'change',       :as => 'change_locale'
   match 'locale/:language',            :controller => 'locale',  :action => 'set',          :as => 'set_locale'        

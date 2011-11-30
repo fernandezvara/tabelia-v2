@@ -6,7 +6,7 @@
   <%= stylesheet_link_tag    "tabelia" %>
   <% if controller_name == 'pages' and action_name == 'index' %>
   <style type="text/css">
-    div.frontpage h2.logo { text-indent: -9999px; width:330px; height:200px; background: url(/assets/welcome/h2-<%= I18n.locale.to_s %>.png) no-repeat !important; margin-left:0px; margin-bottom:0px;}
+    div.frontpage h2.logo { text-indent: -9999px; width:330px; height:200px; background: url(http://assets.tabelia.com/assets/welcome/h2-<%= I18n.locale.to_s %>.png) no-repeat !important; margin-left:0px; margin-bottom:0px;}
   </style>
   <% end %>
   <%= javascript_include_tag "tabelia" %>
@@ -60,6 +60,16 @@
   });
   </script>
   <% end %>
+      
+  <% if @show_confirmation == true %>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        jQuery.facebox({ ajax: '/confirmation' });
+      });
+    </script>
+  <% end %>
+
+  
   <script type="text/javascript">
 
     var _gaq = _gaq || [];

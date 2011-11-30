@@ -307,4 +307,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def resend_confirmation
+    if current_user
+      if current_user.confirmed == false
+        Resque.enqueue(SendConfirmation, current_user.id.to_s)
+        @send = true
+      else
+        @send = false
+      end
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
 end

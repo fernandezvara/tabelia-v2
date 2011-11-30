@@ -47,7 +47,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   version :splash do
     process :quality => 70
-    process :resize_to_fill => [165, 165]
+    process :resize_to_fill => [164, 164]
   end
 
   version :thumb do

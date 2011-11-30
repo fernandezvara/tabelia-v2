@@ -34,7 +34,7 @@ gem 'bcrypt-ruby', :require => "bcrypt"
 # Omniauth - Twitter - Facebook
 gem "omniauth", ">= 1.0.0"
 gem 'omniauth-twitter'
-gem 'omniauth-facebook', '~> 1.0.0.rc1'
+gem 'omniauth-facebook', '1.0.0'
 gem 'omniauth-google-oauth2'
 gem "twitter", "2.0.0"
 gem "fb_graph", "2.2.2"

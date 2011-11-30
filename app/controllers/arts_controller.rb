@@ -100,6 +100,7 @@ class ArtsController < ApplicationController
     @art.status =           params[:art][:status]
     @art.tags =             params[:art][:tags]
     @art.user =             current_user
+    @art.genre_id =         params[:art][:genre_id]
     @art.m_oil =            params[:art][:m_oil]
     @art.m_watercolor =     params[:art][:m_watercolor]
     @art.m_hot_wax =        params[:art][:m_hot_wax]
@@ -131,6 +132,7 @@ class ArtsController < ApplicationController
         # avoid original = nil!
         Resque.enqueue(ColorsFromImage, @art.id.to_s)
       end
+      Resque.enqueue(AdminNotification, current_user.id.to_s, @art.id.to_s)
       Resque.enqueue(FindSimilarArt, @art.id.to_s)
       flash[:success] = "#{@art.name} added correctly."
       redirect_to arts_path
@@ -142,7 +144,7 @@ class ArtsController < ApplicationController
 
   def edit
     @art = Art.where(:slug => params[:slug]).first
-    @title = t("arts.edit.title")
+    @title = t("arts.edit.title", :art_name => @art.name)
     arttags = Tagging.of_object_as_where_creator(@art, 'arttag', current_user)
     tags = Array.new
     arttags.each do |tag|
@@ -160,6 +162,7 @@ class ArtsController < ApplicationController
     @art.description =      params[:art][:description]
     @art.price =            params[:art][:price]
     @art.category_id =      params[:art][:category_id]
+    @art.genre_id =         params[:art][:genre_id]
     @art.status =           params[:art][:status]
     @art.tags =             params[:art][:tags]
     @art.m_oil =            params[:art][:m_oil]
@@ -180,9 +183,6 @@ class ArtsController < ApplicationController
     @art.m_colored_pencil = params[:art][:m_colored_pencil]
     @art.m_digital =        params[:art][:m_digital]
     @art.m_mixed =          params[:art][:m_mixed]
-    
-    
-    
     
     if params[:art][:original].nil? == false
       # only trigger the resque queue if new image

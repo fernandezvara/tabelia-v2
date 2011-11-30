@@ -1,0 +1,22 @@
+en:
+    search:
+        title: 'Search'
+        did_you_mean: 'Did you mean '
+        cannot_find: "There are no items with the keywords '%{keywords}', select another words to search."
+        1result: "There is 1 result for '%{keywords}'."
+        nresults: "There are %{number} results for '%{keywords}'."
+        search_options: 'SEARCH OPTIONS'
+        show: 'View'
+        art_n_user: 'Arts and Users'
+        arts: 'Arts'
+        users: 'Users'
+        filters: 'FILTERS'
+        categories: 'Style::'
+        idioms: 'Idiom:'
+        categories_prompt: 'All styles'
+        idioms_prompt: 'All Idioms'
+        tecniques: 'Tecniques:'
+        tecniques_prompt: 'All tecniques'
+        search_by_color: 'SEARCH BY COLOR'
+        search: 'Search'
+        there_are_no_entries: 'There are no arts with those filters.'

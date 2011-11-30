@@ -1,6 +1,6 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :twitter, 'bqe8mTvQ0eBsLr3jHTkg', 'TBWeoQoVXWGshRNaRdu9VyzeX12BzQsHMZVaK5wLt4'
-  provider :facebook, '195975813810721', '85ed4e013ded299d48d76dd82834410f', { 
+  provider :facebook, '195975813810721', '6dd0f434bedf217c06d3205dd2bb1e59', { 
     :client_options => { 
       :ssl => { :ca_path => "/etc/ssl/certs" }
       },

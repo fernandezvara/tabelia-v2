@@ -4,7 +4,9 @@
       <p><%= t('arts.profile.category') %><%= link_to @art.category.name, category_path(:slug => @art.category.slug) %></p>
       <p id="liked_by"><%= render :partial => 'partials/art/profile/liked_by' %></p>
       <p><%= t('arts.profile.listed', :time => time_ago_in_words(@art.created_at)) %></p>
+      <% if @art.accepted == true %>
       <p><%= t('arts.profile.price_from', :amount => number_to_currency(@art.price + @art.get_price(@art.min_height, @art.min_width, 1, 0), :unit => '€'))%>
+      <% end %>
   </div>
   <div class="content">
     <div class="image_thumb">

@@ -140,7 +140,7 @@ GEM
     omniauth (1.0.0)
       hashie (~> 1.2)
       rack
-    omniauth-facebook (1.0.0.rc2)
+    omniauth-facebook (1.0.0)
       omniauth-oauth2 (~> 1.0.0)
     omniauth-google-oauth2 (0.1.4)
       omniauth (~> 1.0)
@@ -296,7 +296,7 @@ DEPENDENCIES
   mongoid_i18n
   mongoid_slug
   omniauth (>= 1.0.0)
-  omniauth-facebook (~> 1.0.0.rc1)
+  omniauth-facebook (= 1.0.0)
   omniauth-google-oauth2
   omniauth-twitter
   prawn (= 1.0.0.rc1)

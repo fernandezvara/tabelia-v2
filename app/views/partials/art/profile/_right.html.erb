@@ -6,7 +6,7 @@
 
 <% if @art.accepted == false %>
 <div class="box green">
-  <div class="title">ART STATUS</div>
+  <div class="title"><%= t('arts.status_title')%></div>
   <div class="content">
   <% case @art.status_reason 
     when 0 %>

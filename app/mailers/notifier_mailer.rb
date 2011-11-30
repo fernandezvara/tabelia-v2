@@ -1,15 +1,22 @@
 class NotifierMailer < ActionMailer::Base
   default from: "Tabelia <no-reply@tabelia.com>"
   
+  def admin_art_published(user, art)
+    @user = user
+    @art = art
+    mail(:to => "Admin <admin@tabelia.com>", :subject => 'Nueva obra publicada') do |format|
+      format.html { render :layout => 'tabeliamail' }
+    end
+  end
+  
   def confirmation(user)
-    I18n.with_locale(user.language.to_sym) do
+    I18n.locale = user.language do
       @user = user
       puts "Mail to: #{@user.email} - Subject: #{t('mail.confirmation.subject', :user_name => user.name)}'"
       mail(:to => "#{@user.name} <#{@user.email}>", :subject => t('mail.confirmation.subject', :user_name => user.name)) do |format|
         format.text
         format.html { render :layout => 'tabeliamail' }
       end
-    end
   end
   
   def comment_on_user(originator, receiver, comment)

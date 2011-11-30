@@ -4,6 +4,7 @@ es:
         plural: 'obras'
         tecnique: 'Técnica'
         likes_of: 'Me gusta'
+        status_title: 'ESTADO DE PUBLICACIÓN'
         status:
             accepted: 'La obra es visible y está publicada.'
             non_accepted_reason0: 'Esperando a ser aprobado.'
@@ -14,7 +15,7 @@ es:
             title: 'Mis obras'
             add_new_button: 'Añadir una obra'
         edit:
-            title: 'Editar: %{art_name}'
+            title: 'Editando: %{art_name}'
         new:
             title: 'Nueva obra'
         profile:

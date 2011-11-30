@@ -32,9 +32,19 @@ class PagesController < ApplicationController
   end
 
   def help
+    @title = t('common.how_tabelia_works')
     respond_to do |format|
       format.html do
-        render :layout => 'main'
+        render :layout => 'full_page'
+      end
+    end
+  end
+
+  def big_art
+    @title = t('common.big_art')
+    respond_to do |format|
+      format.html do
+        render :layout => 'full_page'
       end
     end
   end
@@ -45,7 +55,7 @@ class PagesController < ApplicationController
   def not_found
     respond_to do |format|
       format.html do
-        render :layout => 'main'
+        render :layout => 'main', :status => 404
       end
     end
   end
@@ -66,4 +76,11 @@ class PagesController < ApplicationController
     end
   end
 
+  def confirmation
+    respond_to do |format|
+      format.html do 
+        render :layout => 'application'
+      end
+    end
+  end
 end

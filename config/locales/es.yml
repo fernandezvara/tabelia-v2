@@ -39,10 +39,13 @@ es:
         you_must_logon_first: 'Debes entrar con tu usuario antes de acceder a esa página'
         help_title: 'AYUDA'
         creating_account_you_agree: '* La creación de cuenta implica la aceptación de las '
+        how_tabelia_works: '¿Cómo funciona tabelia?'
+        big_art: 'La obra es más grande que mi escáner'
         footer:
             directory: 'Directorio de usuarios'
             terms: 'Condiciones generales'
             jobs: 'Trabajo'
+            help: 'Ayuda'
     sessions:
         new:
             title: "Inicio de sesión"

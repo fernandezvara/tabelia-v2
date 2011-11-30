@@ -1,0 +1,139 @@
+<% content_for :title do %>
+  <h2><%= t('common.big_art') %></h2>
+<% end %>
+
+<% content_for :left do %>
+<% case I18n.locale.to_s %>
+<% when 'es' %>
+
+<div class="column full">
+  <br />
+  <p class="center s18">Vamos a ilustrar el proceso con un ejemplo.</p>
+  <p class="center s14">Hemos escaneado esta obra en seis partes, ya que no podíamos hacerlo de una sóla vez por su tamaño.</p>
+  <p class="center">Este proceso lo vamos a realizar con <a href="http://www.adobe.com/products/photoshop-elements.html" target="_new">Adobe Photoshop Elements</a>, pero es perfectamente reproducible en su versión completa. (Las imágenes están tomadas de la versión 7 en castellano, en futuras versiones puede haber pequeños cambios y mejoras)</p>
+  <br />
+  <img src="http://assets.tabelia.com/assets/help/join/images.jpg" alt="images" />
+   
+  <div class="column width2 first">
+    <img src="http://assets.tabelia.com/assets/help/join/step1.png" alt="step 1" />
+  </div>
+  <div class="column width2 no-gutter">
+    <br />
+    <p class="center s16">Primer paso</p>
+    <br />
+    <p class="center">Primero debemos decirle a Photoshop que queremos usar la técnica PhotoMerge. En PS Elements la podéis encontrar en Fichero > Nuevo > Panorama Photomerge, en PS Fichero > Automatización > Photomerge.</p>
+  </div>  
+  <div class="column width2 first">
+    <img src="http://assets.tabelia.com/assets/help/join/step2.png" alt="step 2" />
+  </div>
+  <div class="column width2 no-gutter">
+    <br />
+    <p class="center s16">Segundo paso</p>
+    <br />
+    <p class="center">Seleccionamos las imágenes que queremos fusionar, hemos resaltado el botón que nos permite hacer esta selección. Esta ventana es similar en ámbas versiones, aunque pueden existir pequeños cambios en función de la versión del mismo.</p>
+    <br />
+    <p class="center">Como paso rápido podemos seleccionar que PS haga de forma automática las uniones. Para ello debemos haber escaneado las imágenes con zonas comunes entre ficheros para que PS pueda identificar los pixeles comunes y así realizar la fusión.</p>
+    <br />
+    <p class="center">En cualquier caso siempre se puede seleccionar las opción de composición interactiva si queremos hacerlo nosotros mismos.</p>
+  </div>
+  <div class="column width2 first center">
+    <img src="http://assets.tabelia.com/assets/help/join/step3.png" alt="step 3" />
+  </div>
+  <div class="column width2 no-gutter">
+    <br />
+    <p class="center s16">Tercer paso</p>
+    <br />
+    <p class="center">Como podréis ver en la imágen PS coloca automáticamente las imágenes en función de sus puntos comunes y hace una preseleccion usando máscaras (la parte derecha de la capa es la máscara, sólo las zonas blancas se muestran y superponen).</p>
+    <br />
+    <p class="center">Podemos pintar en blanco o en negro sobre la máscara si queremos mostrar una capa u otra en caso de detectar suciedad o distorsiones en las uniones. Es recomendable pintar los bordes de la máscara con pinceles que difuminen los bordes.</p>
+  </div>
+  <div class="column width2 first">
+    <img src="http://assets.tabelia.com/assets/help/join/step4.png" alt="step 4" />
+  </div>
+  <div class="column width2 no-gutter">
+    <br /><br /><br />
+    <p class="center s16">Cuarto paso</p>
+    <br />
+    <p class="center">Nos aseguramos usando el zoom que las conexiones se han realizado correctamente.</p>
+    <p class="center">De no ser así debemos volver a usar las máscaras para solucionarlo.</p>
+  </div>
+  </div>
+  <div class="column width2 first">
+    <img src="http://assets.tabelia.com/assets/help/join/step5.jpg" alt="step 5" />
+  </div>
+  <div class="column width2 no-gutter">
+    <br /><br /><br /><br /><br />
+    <p class="center s16">Quinto paso</p>
+    <br />
+    <p class="center">Seleccionamos exactamente la imágen, la copiamos combinada (Ctrl-Mayús-C en windows / Command-Mayús-C en Mac) para asegurarnos que seleccionamos todas las capas a la vez, y lo pegamos en un nuevo fichero.</p>
+    <p class="center">Guarda el fichero con el nombre que prefieras y ya tienes tu imágen lista para publicar.</p>
+  </div>
+
+</div>
+<% when 'en' %>
+<div class="column full">
+  <br />
+  <p class="center s18">Vamos a ilustrar el proceso con un ejemplo.</p>
+  <p class="center s14">Hemos escaneado esta obra en seis partes, ya que no podíamos hacerlo de una sóla vez por su tamaño.</p>
+  <p class="center">Este proceso lo vamos a realizar con <a href="http://www.adobe.com/products/photoshop-elements.html" target="_new">Adobe Photoshop Elements</a>, pero es perfectamente reproducible en su versión completa. (Las imágenes están tomadas de la versión 7 en castellano, en futuras versiones puede haber pequeños cambios y mejoras)</p>
+  <br />
+  <img src="http://assets.tabelia.com/assets/help/join/images.jpg" alt="images" />
+   
+  <div class="column width2 first">
+    <img src="http://assets.tabelia.com/assets/help/join/step1.png" alt="step 1" />
+  </div>
+  <div class="column width2 no-gutter">
+    <br />
+    <p class="center s16">Primer paso</p>
+    <br />
+    <p class="center">Primero debemos decirle a Photoshop que queremos usar la técnica PhotoMerge. En PS Elements la podéis encontrar en Fichero > Nuevo > Panorama Photomerge, en PS Fichero > Automatización > Photomerge.</p>
+  </div>  
+  <div class="column width2 first">
+    <img src="http://assets.tabelia.com/assets/help/join/step2.png" alt="step 2" />
+  </div>
+  <div class="column width2 no-gutter">
+    <br />
+    <p class="center s16">Segundo paso</p>
+    <br />
+    <p class="center">Seleccionamos las imágenes que queremos fusionar, hemos resaltado el botón que nos permite hacer esta selección. Esta ventana es similar en ámbas versiones, aunque pueden existir pequeños cambios en función de la versión del mismo.</p>
+    <br />
+    <p class="center">Como paso rápido podemos seleccionar que PS haga de forma automática las uniones. Para ello debemos haber escaneado las imágenes con zonas comunes entre ficheros para que PS pueda identificar los pixeles comunes y así realizar la fusión.</p>
+    <br />
+    <p class="center">En cualquier caso siempre se puede seleccionar las opción de composición interactiva si queremos hacerlo nosotros mismos.</p>
+  </div>
+  <div class="column width2 first center">
+    <img src="http://assets.tabelia.com/assets/help/join/step3.png" alt="step 3" />
+  </div>
+  <div class="column width2 no-gutter">
+    <br />
+    <p class="center s16">Tercer paso</p>
+    <br />
+    <p class="center">Como podréis ver en la imágen PS coloca automáticamente las imágenes en función de sus puntos comunes y hace una preseleccion usando máscaras (la parte derecha de la capa es la máscara, sólo las zonas blancas se muestran y superponen).</p>
+    <br />
+    <p class="center">Podemos pintar en blanco o en negro sobre la máscara si queremos mostrar una capa u otra en caso de detectar suciedad o distorsiones en las uniones. Es recomendable pintar los bordes de la máscara con pinceles que difuminen los bordes.</p>
+  </div>
+  <div class="column width2 first">
+    <img src="http://assets.tabelia.com/assets/help/join/step4.png" alt="step 4" />
+  </div>
+  <div class="column width2 no-gutter">
+    <br /><br /><br />
+    <p class="center s16">Cuarto paso</p>
+    <br />
+    <p class="center">Nos aseguramos usando el zoom que las conexiones se han realizado correctamente.</p>
+    <p class="center">De no ser así debemos volver a usar las máscaras para solucionarlo.</p>
+  </div>
+  </div>
+  <div class="column width2 first">
+    <img src="http://assets.tabelia.com/assets/help/join/step5.jpg" alt="step 5" />
+  </div>
+  <div class="column width2 no-gutter">
+    <br /><br /><br /><br /><br />
+    <p class="center s16">Quinto paso</p>
+    <br />
+    <p class="center">Seleccionamos exactamente la imágen, la copiamos combinada (Ctrl-Mayús-C en windows / Command-Mayús-C en Mac) para asegurarnos que seleccionamos todas las capas a la vez, y lo pegamos en un nuevo fichero.</p>
+    <p class="center">Guarda el fichero con el nombre que prefieras y ya tienes tu imágen lista para publicar.</p>
+  </div>
+
+</div>
+<% end %>
+<% end %>
