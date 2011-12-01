@@ -12,6 +12,7 @@ class Art
   belongs_to :user
   belongs_to :category
   belongs_to :genre
+  belongs_to :subject
   
   has_many :artcomments
   has_many :color_relations
@@ -25,6 +26,7 @@ class Art
   field :status,            :type => Boolean,  :default => true
   field :accepted,          :type => Boolean,  :default => false
   field :status_reason,     :type => Integer,  :default => 0
+  field :photo,             :type => Boolean,  :default => false
   #field :show_search,      :type => Boolean,  :default => false
   
   field :m_oil,             :type => Boolean, :default => false             # Óleo
@@ -77,8 +79,12 @@ class Art
         self.user.privacy.sos
       end
     end
+    
+    boolean :photo
+    
     string :category_slug
     string :genre_slug
+    string :subject_slug 
     
     boolean :m_oil
     boolean :m_watercolor
@@ -101,11 +107,30 @@ class Art
   end
   
   def category_slug
-    self.category.slug
+    if self.photo == false
+     slug = self.category.slug
+    else
+     slug = ""
+    end
+    slug
   end
   
   def genre_slug
-    self.genre.slug
+    if self.photo == false
+      slug = self.genre.slug
+    else
+      slug = ""
+    end
+    slug
+  end
+  
+  def subject_slug
+    if self.photo == true
+      slug = self.subject.slug
+    else
+      slug = ""
+    end
+    slug
   end
   
   def other_art_of_user(limit = 0)

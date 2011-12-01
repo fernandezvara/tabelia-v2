@@ -33,6 +33,7 @@ es:
         liked_by_users: 'le gusta a %{number} usuarios'
         category: 'Estilo: '
         idiom: 'Tema: '
+        subject: 'Motivo: '
         more_info_on_this_idiom: 'Más información sobre este tema'
         more_info_on_this_style: 'Más información sobre este estilo'
         by: ' de '

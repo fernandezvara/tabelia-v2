@@ -73,7 +73,6 @@ class CartController < ApplicationController
     @subtotal_payment = 0.0
     @total_payment = 0.0
 
-    
     paypal_items = Array.new
     
     @items.each do |item|

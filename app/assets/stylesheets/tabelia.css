@@ -19,7 +19,7 @@
 
 /* BASICS */
 body                    { font-family: Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif; color:#7d7d7d; background-color:#f7f7f7;}
-#page					{ margin: 0 auto; background-color: #fff; padding:0; /* box-shadow: 0px 2px 7px #bbb; */}
+#page					{ margin: 0 auto; background-color: #fff; padding:0; top: 65px; }
 
 div.section             { padding-bottom: 0 !important; }
 div#main				{ min-height:100px; margin-bottom:39px; }
@@ -31,12 +31,16 @@ section#main            { min-height:100px; margin-bottom:39px; }
 footer                  { margin-bottom:0px; overflow:hidden; height:36px; font-size:12px;}
 footer p				{ margin: 0 10px; font-size:12px;}
 
-.header-login           { background-color: #c20000; color: #fff; height:50px; width:990px; margin: 0 auto; /* box-shadow: 0px 2px 7px #999; */ }
-.header-login .in       { padding: 10px 10px 10px 0px; line-height:30px; }
-.header-login .logo     { padding: 5px 15px; height: 50px; overflow:hidden; }
+.header-login           { background-color: #c20000; color: #fff; height:65px; width:990px; margin: 0 auto;}
+.header-login .in       { padding: 0px 10px 0px 0px; line-height:30px; }
+.header-login .logo     { padding: 10px 15px; height: 50px; overflow:hidden; }
 .header-login h1        { text-indent: -9999px; margin:0; height:40px; width:152px; background: url(/assets/logo.png) no-repeat !important; top:0;}
 .header-login .logo a   { font-size:13px; line-height:13px;} 
-header                  { background-color: #f7f7f7; height:50px; }
+.header-login .search a,
+.header-login .search a:hover,
+.header-login .search p { color:#fff; font-size:12px; line-height:12px;}
+
+header                  { background-color: #f7f7f7; height:65px; }
 
 
 .left-container         { padding-left: 5px; overflow:hidden; }

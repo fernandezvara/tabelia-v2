@@ -1,0 +1,40 @@
+<li class="<%= cycle('odd', 'even') %>">
+  <div class="artlist left">
+    <div class="avatar left">
+      <%= link_to image_tag(art.image.url(:thumb).to_s, :alt => art.name), edit_photo_path(:slug => art.slug) %>
+    </div>      
+    <div class="artdata right">
+      <p><%= link_to art.name, edit_photo_path(:slug => art.slug) %></p>
+      <% case art.status 
+      when true
+        case art.accepted
+        when true
+          %>
+          <p class="s12"><%= t('arts.status.accepted') %></p>
+          <%
+        when false
+          case art.status_reason
+          when 0
+            %>
+            <p class="s12"><%= t('arts.status.non_accepted_reason0') %></p>
+            <%
+          when 1
+            %>
+            <p class="s12"><%= t('arts.status.non_accepted_reason1') %></p>
+            <%
+          when 2
+            %>
+            <p class="s12"><%= t('arts.status.non_accepted_reason2') %></p>
+            <%
+          end
+        end
+      when false
+        %>
+        <p class="s12"><%= t('arts.status.status_false') %></p>
+        <%
+      end
+        %>
+    </div>
+  </div>
+  <div class="clear"></div>
+</li>

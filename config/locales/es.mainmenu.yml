@@ -2,7 +2,11 @@ es:
     mainmenu:
         home: 'Inicio'
         messages: 'mensajes'
-        idioms: 'Temas'
+        search_by_color: 'Búsqueda por color'
+        photos: 'Foto:'
+        subjects: 'Motivos'
+        paintings: 'Pinturas:'
+        genres: 'Temas'
         categories: 'Estilos'
         login: 'Iniciar sesión'
         signup: 'Crear cuenta'

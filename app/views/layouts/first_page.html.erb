@@ -1,7 +1,7 @@
 <%= render :partial => '/partials/common/htmlhead' %>
 <body class="page-home">
   <%= render :partial => '/partials/common/header' %>
-  <div id="page" style ="top:50px">
+  <div id="page">
     <% if current_user %>
       <% if current_user.confirmed == false %>
         <div class="full message_top">

@@ -15,6 +15,7 @@ class IdiomsController < ApplicationController
         style = nil
       end
       @search = Art.search do
+        with(:photo, false)
         with(:show_search).greater_than(show_search_level)
         with(:genre_slug, params[:slug])
         with(:category_slug, style) if style.nil? == false

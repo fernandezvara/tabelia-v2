@@ -2,6 +2,10 @@ en:
     mainmenu:
         home: 'Home'
         messages: 'messages'
+        search_by_color: 'Search by color'
+        photos: 'Photo:'
+        subjects: 'Subjects'
+        paintings: 'Painting:'
         genres: 'Genres'
         categories: 'Styles'
         login: 'Log in'

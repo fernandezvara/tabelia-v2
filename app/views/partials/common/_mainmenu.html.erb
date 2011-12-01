@@ -9,20 +9,6 @@
         <% end %>
         </span></li>
       <% end %>
-      <li><%= link_to t('mainmenu.idioms'), "", :onclick => 'return false;' %>
-        <ul class="sub-menu">
-          <% @idioms.each do |idiom| %>
-            <li><%= link_to idiom.name, idiom_show_path(:slug => idiom.slug) %></li>
-          <% end %>
-        </ul>
-      </li>
-      <li><%= link_to t('mainmenu.categories'), "", :onclick => 'return false;' %>
-        <ul class="sub-menu">
-          <% @categories.each do |category| %>
-            <li><%= link_to category.name, category_show_path(:slug => category.slug) %></li>
-          <% end %>
-        </ul>
-      </li>
       <% if current_user.nil? %>
       <li><%= link_to t('mainmenu.login'), '/login', :rel => 'modal nofollow' %></li>
       <li><%= link_to t('mainmenu.signup'), '/signup', :rel => 'nofollow' %></li>
@@ -36,6 +22,37 @@
         </ul>
       </li>
       <% end %>
+    </ul>
+    <div class="clear"></div>
+  </div>
+</div>
+<div style="clear:right"></div>
+<div id="topmenu">
+  <div class="homemenu">
+    <ul id="mainmenu" class="menu">
+      <li><a href="" onclick="return false;" class="no"><%= t('mainmenu.photos')%></a></li>
+      <li><%= link_to t('mainmenu.subjects'), "", :onclick => 'return false;' %>
+        <ul class="sub-menu">
+          <% @subjects.each do |subject| %>
+            <li><%= link_to subject.name, subject_path(:slug => subject.slug) %></li>
+          <% end %>
+        </ul>
+      </li>
+      <li><a href="" onclick="return false;" class="no"><%= t('mainmenu.paintings')%></a></li>
+      <li><%= link_to t('mainmenu.genres'), "", :onclick => 'return false;' %>
+        <ul class="sub-menu">
+          <% @idioms.each do |idiom| %>
+            <li><%= link_to idiom.name, idiom_show_path(:slug => idiom.slug) %></li>
+          <% end %>
+        </ul>
+      </li>
+      <li><%= link_to t('mainmenu.categories'), "", :onclick => 'return false;' %>
+        <ul class="sub-menu">
+          <% @categories.each do |category| %>
+            <li><%= link_to category.name, category_show_path(:slug => category.slug) %></li>
+          <% end %>
+        </ul>
+      </li>
       <li><a href="#"><%= t('mainmenu.cart') %> <% if current_cart.items.count > 0 %>
       (<%= current_cart.items.count %>)
       <% end %></a></li>

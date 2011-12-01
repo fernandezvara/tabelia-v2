@@ -1,6 +1,16 @@
+<% if controller_name == 'arts' %>
 <div class="unitx5 left">
   <h2><%= t('arts.index.title') %></h2>
 </div>
 <div class="unitx2 left">
   <%= link_to t('arts.index.add_new_button'), new_art_path, :class => 'abutton', :style => 'margin-top:15px' %>
 </div>
+<% end %>
+<% if controller_name == 'photos' %>
+<div class="unitx5 left">
+  <h2><%= t('photos.index.title') %></h2>
+</div>
+<div class="unitx2 left">
+  <%= link_to t('photos.index.add_new_button'), new_photo_path, :class => 'abutton', :style => 'margin-top:15px' %>
+</div>
+<% end %>

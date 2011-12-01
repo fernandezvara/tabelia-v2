@@ -48,6 +48,14 @@ es:
             colored_pencil: 'Lápices de colores'
             digital: 'Pintura digital'
             mixed: 'Técnica mixta'
+    photos:
+        index:
+            title: 'Mis fotos'
+            add_new_button: 'Añadir nueva foto'
+        new:
+            title: 'Nueva foto'
+        edit:
+            title: 'Editando: {art_name}'
     mongoid:
         models:
             art: 'Arte'
@@ -80,5 +88,5 @@ es:
     helpers:
         submit:
             art:
-                create: "Añadir obra"
+                create: "Añadir"
                 update: "Guardar cambios"

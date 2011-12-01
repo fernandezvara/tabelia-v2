@@ -199,3 +199,19 @@ I18n.with_locale(:es) do
   g.save
   
 end
+
+I18n.with_locale(:en) do 
+  Subject.create!(:name => 'Portrait', :slug => 'portrait')
+  Subject.create!(:name => 'Urban', :slug => 'urban')
+
+end
+
+I18n.with_locale(:es) do 
+  g = Subject.where(:slug => 'portrait').first
+  g.name = 'Retrato'
+  g.save
+  g = Subject.where(:slug => 'urban').first
+  g.name = 'Urbano'
+  g.save
+end
+

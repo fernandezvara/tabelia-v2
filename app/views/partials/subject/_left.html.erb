@@ -1,0 +1,17 @@
+<h2><%= t('common.subject') %> <%= @subject.name %></h2>
+<% if @arts.count == 0 %>
+  <h3><%= t('search.there_are_no_entries') %></h3>
+<% else %>
+  <div class="paginate">
+    <%= paginate @arts, :inner_window => 1 %>
+  </div>
+  <ul id="listing">
+    <% @arts.each do |art| %>
+      <%= render :partial => 'partials/lists/art', :locals => { :art => art } %>
+    <% end %>
+  </ul>
+
+  <div class="paginate">
+    <%= paginate @arts, :inner_window => 1 %>
+  </div>
+<% end %>

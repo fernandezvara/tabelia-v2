@@ -2,7 +2,6 @@ Tabelia::Application.routes.draw do
   get 'logout' => "sessions#destroy", :as => 'logout'
   get 'login'  => "sessions#new",     :as => "login"
 
-  
   match "admin",                      :controller => 'admin',    :action => 'dashboard',        :as => 'admin'
   match "admin/users",                :controller => 'admin',    :action => 'users_index',      :as => 'admin_users_index'
   match "admin/user/:username",       :controller => 'admin',    :action => 'user_edit',        :as => 'admin_user_edit'
@@ -32,18 +31,23 @@ Tabelia::Application.routes.draw do
   match "user/confirmation/:c1/:c2",  :controller => 'users',    :action => 'confirmation',     :as => 'user_confirmation'
   match "user/:username",             :controller => 'users',    :action => 'show',             :as => "user_profile"
   match "user/:username/art",         :controller => 'arts',     :action => 'user_art_show',    :as => "user_arts"
+  match "user/:username/photos",      :controller => 'photos',   :action => 'user_photos_show', :as => "user_photos"
   match "user/:username/followers",   :controller => 'users',    :action => 'followers',        :as => "user_followers"
   match "user/:username/following",   :controller => 'users',    :action => 'following',        :as => "user_following"
   match "art/:slug",                  :controller => 'arts',     :action => 'show',             :as => "art_profile"
   match "art/:slug/likes",            :controller => 'arts',     :action => 'likes',            :as => "art_likes"
   match "art/:slug/edit",             :controller => 'arts',     :action => 'edit',             :as => "edit_art"
 
-  match "color/:color",               :controller => 'color',    :action => 'index',            :as => "color_index"
+  match "photo/:slug",                :controller => 'photos',   :action => 'show',             :as => "photo_profile"
+  match "photo/:slug/likes",          :controller => 'photos',   :action => 'likes',            :as => "photo_likes"
+  match "photo/:slug/edit",           :controller => 'photos',   :action => 'edit',             :as => "edit_photo"
+
+  match "color/(:color)",             :controller => 'color',    :action => 'index',            :as => "color_index"
 
   match "search",                     :controller => 'search',   :action => 'index',            :as => "search"
 
   match "style/:slug",                :controller => 'category', :action => 'show',             :as => "category"
-
+  match "subject/:slug",              :controller => 'subject',  :action => 'show',             :as => "subject"
 
   match 'user/comment/:username',     :controller => 'comments', :action => 'create',           :as => 'comment_user'
   match 'view/comments/:username/:last',    :controller => 'comments', :action => 'view',          :as => 'view_more_comments'
@@ -96,7 +100,8 @@ Tabelia::Application.routes.draw do
   
   resources :order   #, :only => [:new, :create]
   resources :addresses, :only => [:new, :create, :edit, :update, :destroy]
-  resources :arts, :only => [:index, :new, :create, :update]
+  resources :arts,   :only => [:index, :new, :create, :update]
+  resources :photos, :only => [:index, :new, :create, :update]
   resources :sessions
   resources :users, :only => [:index, :edit, :create, :update] do
     get 'page/:page', :action => :index, :on => :collection

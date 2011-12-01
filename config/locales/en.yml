@@ -33,6 +33,7 @@ en:
         liked_by_users: 'liked by %{number} users'
         category: 'Style: '
         idiom: 'Idiom: '
+        subject: 'Subject: '
         more_info_on_this_style: 'More information about this style'
         more_info_on_this_idiom: 'More information about this idiom'
         by: ' by '

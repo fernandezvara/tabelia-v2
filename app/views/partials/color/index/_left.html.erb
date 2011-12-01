@@ -1,7 +1,7 @@
 <div class="content center" id="art_show" style="padding:2px 1px 40px 2px; text-align:center;">
 <% @arts.each do |art| %>
     <div class="bimg" style="text-align:center;">
-      <%= link_to image_tag(art.image.url(:splash).to_s, :class=> 'cap', :alt => art.name), art_profile_path(:slug => art.slug) %>
+      <%= link_to image_tag(art.image.url(:splash).to_s, :title=> art.name, :alt => art.name), art_profile_path(:slug => art.slug) %>
     </div>
 <% end %>
 </div>
@@ -11,6 +11,14 @@ $container.imagesLoaded( function(){
   $container.masonry({
     itemSelector : '.bimg',
     isAnimated: true
+  });
+});
+
+$(document).ready(function(){
+  $(".bimg img").tipsy({
+    live: true,
+    trigger: 'hover',
+    gravity: 'w'
   });
 });
 </script>

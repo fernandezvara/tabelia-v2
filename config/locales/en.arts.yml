@@ -47,6 +47,14 @@ en:
             colored_pencil: 'Colored Pencil'
             digital: 'Digital Painting'
             mixed: 'Mixed Tecnique'
+    photos:
+        index:
+            title: 'My Photos'
+            add_new_button: 'Add a new photo'
+        new:
+            title: 'New photo'
+        edit:
+            title: 'Edit: {art_name}'
     mongoid:
         models:
             art: 'Art'
@@ -77,5 +85,5 @@ en:
     helpers:
         submit:
             art:
-                create: "Add art"
+                create: "Add"
                 update: "Save changes"

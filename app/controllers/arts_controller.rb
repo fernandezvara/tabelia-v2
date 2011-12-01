@@ -1,13 +1,13 @@
 class ArtsController < ApplicationController
   def show
-    @art = Art.where(:slug => params[:slug]).first
+    @art = Art.where(:slug => params[:slug], :photo => false).first
 
     if @art.nil? == true
       show_404 
     else
       # verify if art has been published
       if @art.accepted == true and @art.status == true
-        if fragment_exist?("comments-art-#{@art.id.to_s}-#{session[:locale].to_s}") == false
+        if fragment_exist?("comments-art-#{@art.id.to_s}-#{I18n.locale.to_s}") == false
           @comments = @art.artcomments.order_by(:created_at, :desc).limit(10)
         end
         if request.env['HTTP_REFERER'].nil? == true
@@ -62,7 +62,7 @@ class ArtsController < ApplicationController
 
   def user_art_show
     @user = User.where(:username => params[:username]).first
-    @arts = @user.arts.page(params[:page]).per(30)
+    @arts = @user.arts.where(:photo => false, :accepted => true, :status => true).page(params[:page]).per(30)
     @title = t("users.index.title")
     respond_to do |format|
       format.html { render :layout => 'main' }
@@ -72,7 +72,7 @@ class ArtsController < ApplicationController
 
   def index
     if current_user
-      @arts = current_user.arts.page(params[:page]).per(30)
+      @arts = current_user.arts.where(:photo => false).page(params[:page]).per(30)
       @title = t("arts.index.title")
       respond_to do |format|
         format.html { render :layout => 'main' }
@@ -93,6 +93,7 @@ class ArtsController < ApplicationController
 
   def create
     @art = Art.new
+    @art.photo = false 
     @art.name =             params[:art][:name]
     @art.description =      params[:art][:description]
     @art.price =            params[:art][:price]
@@ -158,6 +159,7 @@ class ArtsController < ApplicationController
 
   def update
     @art = Art.where(:slug => params[:art][:slug]).first
+    @art.photo = false 
     @art.name =             params[:art][:name]
     @art.description =      params[:art][:description]
     @art.price =            params[:art][:price]

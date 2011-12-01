@@ -17,6 +17,7 @@ class NotifierMailer < ActionMailer::Base
         format.text
         format.html { render :layout => 'tabeliamail' }
       end
+    end
   end
   
   def comment_on_user(originator, receiver, comment)
