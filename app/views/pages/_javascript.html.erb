@@ -1,5 +1,5 @@
 <script type="text/javascript" charset="utf-8">
-var $container = $('#last_show');
+var $container = $('div#last_show');
 var arts = new Array();
 var i = 0;
 var div = 0;
@@ -29,6 +29,16 @@ function addImage() {
   }
 }  
 
+$(window).load(function(){
+  $('#slider').nivoSlider({
+    controlNav:false,
+    pauseTime:6000,
+    keyboadNav:false,
+    effect: 'fade',
+    directionNav: false
+  });
+});
+
 $(document).ready(function(){
 
   $("#last_show img").tipsy({
@@ -38,7 +48,7 @@ $(document).ready(function(){
   });
 
   $container.masonry({
-    itemSelector : 'div.bimg',
+    itemSelector : 'div#last_show div.bimg',
     gutterWidth: 1,
     isAnimated: true,
     columnWidth: 164
@@ -54,5 +64,6 @@ $(document).ready(function(){
     $container.masonry('reload');
     }, 10000);
 });
+
 
 </script>

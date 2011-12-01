@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require modernizr
+//= require nivo
 //= require mainmenu
 //= require facebox
 //= require flashbar
@@ -9,6 +10,7 @@
 //= require capify
 //= require farbtastic
 //= require slider
+
 //= require tipsy
 
 //= require onload

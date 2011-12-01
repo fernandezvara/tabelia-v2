@@ -41,6 +41,7 @@ es:
         creating_account_you_agree: '* La creación de cuenta implica la aceptación de las '
         how_tabelia_works: '¿Cómo funciona tabelia?'
         big_art: 'La obra es más grande que mi escáner'
+        confirmation_send: 'Se ha enviado la confirmación de nuevo.'
         footer:
             directory: 'Directorio de usuarios'
             terms: 'Condiciones generales'

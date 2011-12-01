@@ -6,15 +6,19 @@
     <p class="center" style="color:#000;font-weight:bold">Hemos enviado un mensaje a tu correo electrónico <br />(<%= current_user.email %>) <br />para confirmar la creación de cuenta.</p><br />
     <p class="center">Mira en tu Bandeja de Entrada y sigue las instrucciones que encontrarás en él. (Mira también en la carpeta de spam o correo no deseado por si ha entrado ahí por error).</p><br />
     <p class="center">Si necesitas cambiar tu correo electrónico ve a la <br /><%= link_to 'configuración de tu perfil', profile_basic_path %>.</p><br />
+    <div id="result">
     <p class="center" id="send">Si no encuentras el mensaje, <%= link_to('pulsa aquí para volverlo a enviar', resend_conf_path, :remote => true, :walk => 'no') %>.</p>
+    </div>
   <% when 'en' %>
     <p class="center" style="color:#000;font-weight:bold">We have sent a message to the email address <br />(<%= current_user.email %>) <br /> to confirm your account.</p><br />
     <p class="center">Look in your Inbox and follow the instructions on this message. (Also take a look over the spam folder, it can be there by error).</p><br />
     <p class="center">If you need to change your email address go to <%= link_to 'profile configuration', profile_basic_path %> page.</p><br />
+    <div id="result">
     <p class="center" id="send">If you can't find the message, <%= link_to('press here to send it again', resend_conf_path, :remote => true, :walk => 'no') %>.</p>
+    </div>
   <% end %>
-  <div id="result" style="display:none">
-  </div>
+  
+  
   </div>
 </div>
 <% end %>
