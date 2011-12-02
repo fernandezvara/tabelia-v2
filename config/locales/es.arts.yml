@@ -4,6 +4,7 @@ es:
         plural: 'obras'
         tecnique: 'Técnica'
         likes_of: 'Me gusta'
+        you_selected_do_not_show: "Has seleccionado no mostrar esta obra"
         status_title: 'ESTADO DE PUBLICACIÓN'
         status:
             accepted: 'La obra es visible y está publicada.'
@@ -21,6 +22,8 @@ es:
         profile:
             category: 'Estilo: '
             idiom: 'Temática: '
+            subject: 'Tema: '
+            tecnique: 'Técnica: '
             listed: 'Añadido hace %{time}'
             similar_art: 'OBRAS SIMILARES'
             art_description: 'DESCRIPCIÓN DE LA OBRA'
@@ -56,6 +59,8 @@ es:
             title: 'Nueva foto'
         edit:
             title: 'Editando: {art_name}'
+        you_selected_do_not_show: "Has seleccionado no mostrar esta photo"
+        edit_art_information: 'Editar esta foto'
     mongoid:
         models:
             art: 'Arte'
@@ -67,6 +72,8 @@ es:
                 genre: 'Tema'
                 original: 'Fichero original'
                 category: 'Estilo'
+                subject: 'Tema'
+                tecnique: 'Técnica'
                 tags: 'Etiquetas'
                 status: '¿Mostrar?'
         hints:
@@ -79,7 +86,12 @@ es:
                 category: 'Selecciona el estilo de tu obra.'
                 tecnique: 'En caso de haber usado más de dos técnicas selecciona las dos principales.'
                 tags: 'Escribe las palabras que identifiquen a tu obra. Debes separarlas usando comas (,). Por ejemplo: Si has pintado un bodegón de una cesta de manzanas con acuarela, puedes usar las siguientes palabras (puedes escribir un máximo de 20): bodegón, cesta, manzanas, acuarela ... '
+                photo_tags: 'Escribe las palabras que identifiquen a tu obra. Debes separarlas usando comas (,).'
                 status: 'Selecciona si quieres que tu obra sea publicada.'
+                subject: 'Selecciona el tema principal de esta foto.'
+                photo_tecnique: "Selecciona la técnica usada para tratar la foto."
+            photo:
+                name: 'Título de esta foto'
         options:
             art:
                 status:

@@ -38,6 +38,13 @@
           <% end %>
         </ul>
       </li>
+      <li><%= link_to t('mainmenu.tecniques'), "", :onclick => 'return false;' %>
+        <ul class="sub-menu">
+          <% @tecniques.each do |tecnique| %>
+            <li><%= link_to tecnique.name, tecnique_path(:slug => tecnique.slug) %></li>
+          <% end %>
+        </ul>
+      </li>
       <li><a href="" onclick="return false;" class="no"><%= t('mainmenu.paintings')%></a></li>
       <li><%= link_to t('mainmenu.genres'), "", :onclick => 'return false;' %>
         <ul class="sub-menu">

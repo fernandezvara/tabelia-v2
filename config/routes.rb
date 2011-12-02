@@ -9,6 +9,10 @@ Tabelia::Application.routes.draw do
   match "admin/arts",                 :controller => 'admin',    :action => 'arts_index',       :as => 'admin_arts_index'
   match "admin/art/:slug",            :controller => 'admin',    :action => 'art_edit',         :as => 'admin_art_edit'
   match "admin/art/update/:id",       :controller => 'admin',    :action => 'art_update',       :as => 'admin_art_update'
+  match "admin/photos",               :controller => 'admin',    :action => 'photo_index',       :as => 'admin_photo_index'
+  match "admin/photo/:slug",          :controller => 'admin',    :action => 'photo_edit',         :as => 'admin_photo_edit'
+  match "admin/photo/update/:id",     :controller => 'admin',    :action => 'photo_update',       :as => 'admin_photo_update'
+  
   
   # messaging routes
   match "messages",                   :controller => 'messages', :action => 'inbox',            :as => 'inbox'
@@ -24,9 +28,6 @@ Tabelia::Application.routes.draw do
   match "action/unfollow/:username",  :controller => 'actions',  :action => 'unfollow',         :as => 'action_unfollow'
   match "action/like/:slug",          :controller => 'actions',  :action => 'like',             :as => 'action_like'
   match "action/unlike/:slug",        :controller => 'actions',  :action => 'unlike',           :as => 'action_unlike'
-  
-  match "style/:slug",                :controller => 'category', :action => 'show',             :as => 'category_show'
-  match "idiom/:slug",                :controller => 'idioms',   :action => 'show',             :as => 'idiom_show'
   
   match "user/confirmation/:c1/:c2",  :controller => 'users',    :action => 'confirmation',     :as => 'user_confirmation'
   match "user/:username",             :controller => 'users',    :action => 'show',             :as => "user_profile"
@@ -46,8 +47,11 @@ Tabelia::Application.routes.draw do
 
   match "search",                     :controller => 'search',   :action => 'index',            :as => "search"
 
+  match "style/:slug",                :controller => 'category', :action => 'show',             :as => 'category_show'
+  match "idiom/:slug",                :controller => 'idioms',   :action => 'show',             :as => 'idiom_show'
   match "style/:slug",                :controller => 'category', :action => 'show',             :as => "category"
   match "subject/:slug",              :controller => 'subject',  :action => 'show',             :as => "subject"
+  match "tecnique/:slug",             :controller => 'tecniques',:action => 'show',             :as => "tecnique"
 
   match 'user/comment/:username',     :controller => 'comments', :action => 'create',           :as => 'comment_user'
   match 'view/comments/:username/:last',    :controller => 'comments', :action => 'view',          :as => 'view_more_comments'

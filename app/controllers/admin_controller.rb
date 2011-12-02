@@ -29,7 +29,7 @@ class AdminController < ApplicationController
   end
   
   def arts_index
-    @arts = Art.order_by(:created_at, :desc).page(params[:page]).per(30)
+    @arts = Art.where(:photo => false).order_by(:created_at, :desc).page(params[:page]).per(30)
   end
   
   def art_edit
@@ -71,6 +71,52 @@ class AdminController < ApplicationController
     end
     redirect_to admin_arts_index_path
   end
+  
+  def photo_index
+    @arts = Art.where(:photo => true).order_by(:created_at, :desc).page(params[:page]).per(30)
+  end
+  
+  def photo_edit
+    @art = Art.where(:slug=> params[:slug]).first
+  end
+
+  def photo_update
+    @art = Art.where(:slug => params[:id]).first
+    @art.name = params[:art][:name]
+    @art.price = params[:art][:price]
+    @art.image = params[:art][:image] if params[:art][:image].nil? == false
+    @art.max_height = params[:art][:max_height]
+    @art.max_width = params[:art][:max_width]
+    @art.accepted = params[:art][:accepted]
+    @art.status_reason = params[:art][:status_reason]
+    if @art.accepted_changed? == true
+      accepted_changed = true
+    else
+      accepted_changed = false
+    end
+    if @art.save
+      Resque.enqueue(FindSimilarArt, @art.id.to_s)
+      if accepted_changed == true and @art.accepted == true
+        # change the privacy options for show the art to the public
+        user = @art.user
+        user.privacy.sos = 2
+        user.save
+        # generates the upa event 'user-published-art'
+        data = Hash.new
+        data['who'] = @art.user.id.to_s
+        data['when'] = Time.now
+        data['what'] = "upa"
+        data['art'] = @art.id.to_s
+        Resque.enqueue(Notificator, data)
+      end
+      flash[:success] = "Arte actualizado correctamente"
+    else
+      flash[:error] = "No se ha podido actualizar la obra"
+    end
+    redirect_to admin_photo_index_path
+  end
+  
+  
   
   private
   

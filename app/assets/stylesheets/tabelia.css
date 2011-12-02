@@ -21,12 +21,9 @@
 body                    { font-family: Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif; color:#7d7d7d; background-color:#f7f7f7;}
 #page					{ margin: 0 auto; background-color: #fff; padding:0; top: 65px; }
 
-div.section             { padding-bottom: 0 !important; }
-div#main				{ min-height:100px; margin-bottom:39px; }
-
 section					{ padding-bottom: 0 !important; }
 hr						{ background: #c20000; }
-section#main            { min-height:100px; margin-bottom:39px; }
+section#main            { min-height:450px; margin-bottom:39px; }
 
 footer                  { margin-bottom:0px; overflow:hidden; height:36px; font-size:12px;}
 footer p				{ margin: 0 10px; font-size:12px;}
@@ -138,8 +135,8 @@ div.frontpage span.u { font-weight: bold; text-decoration:underline;}
 
 .nivoSlider {
     position:relative;
-    width:660px; /* Change this to your images width */
-    height:350px; /* Change this to your images height */
+    width:660px; 
+    height:350px; 
     background:url(http://assets.tabelia.com/assets/preload.gif) no-repeat 50% 50%;
 	margin: 20px 0;
 }

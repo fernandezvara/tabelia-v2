@@ -1,6 +1,7 @@
 en:
     users_profile:
         my_art: 'MY ART'
+        my_photos: 'MY PHOTOS'
         about_me: 'ABOUT ME'
         about_me_empty: 'There is no information about this user'
         inspirations: 'INSPIRATIONS'

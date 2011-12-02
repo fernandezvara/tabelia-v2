@@ -1,0 +1,29 @@
+<% content_for :main do %>
+<h2>Arte</h2>
+<div class="paginate">
+  <%= paginate @arts, :inner_window => 1 %>
+</div>
+<table>
+  <thead>
+    <th scope="col">Nombre</th>
+    <th scope="col">Usuario</th>
+    <th scope="col">Tema</th>
+    <th scope="col">Publicado</th>
+    <th scope="col">Acciones</th>
+  </thead>
+  <tbody>
+  <% @arts.each do |art| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%= link_to art.name, admin_art_edit_path(:slug => art.slug) %></td>
+      <td><%= link_to art.user.name, admin_user_edit_path(:username => art.user.username) %></td>
+      <td><%= art.subject.name %></td>
+      <td><%= art.accepted %></td>
+      <td><%= link_to 'Editar', admin_photo_edit_path(:slug => art.slug) %> | <%= link_to 'Ver perfil', art_profile_path(:slug => art.slug) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<div class="paginate">
+  <%= paginate @arts, :inner_window => 1 %>
+</div>
+<% end %>

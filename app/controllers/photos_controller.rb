@@ -30,7 +30,10 @@ class PhotosController < ApplicationController
         similar_arts = ArtSimilar.where(:art_id => @art.id.to_s)
         @similar_art = Array.new
         similar_arts.each do |similar|
-          @similar_art << Art.find(similar.similar_id)
+          temp_art = Art.find(similar.similar_id)
+          if temp_art.photo == true
+            @similar_art << Art.find(similar.similar_id)
+          end
         end
         @art_colors = ColorRelation.colors_of(@art)
         @title = @art.name
@@ -47,7 +50,10 @@ class PhotosController < ApplicationController
           similar_arts = ArtSimilar.where(:art_id => @art.id.to_s)
           @similar_art = Array.new
           similar_arts.each do |similar|
-            @similar_art << Art.find(similar.similar_id)
+            temp_art = Art.find(similar.similar_id)
+            if temp_art.photo == true
+              @similar_art << Art.find(similar.similar_id)
+            end
           end
           @art_colors = ColorRelation.colors_of(@art)
           @title = t("users.index.title")
@@ -73,7 +79,7 @@ class PhotosController < ApplicationController
   def index
     if current_user
       @arts = current_user.arts.where(:photo => true).page(params[:page]).per(30)
-      @title = t("arts.index.title")
+      @title = t("photos.index.title")
       respond_to do |format|
         format.html { render :layout => 'main' }
       end
@@ -84,7 +90,7 @@ class PhotosController < ApplicationController
 
   def new
     @art = Art.new
-    @title = t("arts.new.title")
+    @title = t("photos.new.title")
     @tags = ""
     respond_to do |format|
       format.html { render :layout => 'main' }
@@ -98,6 +104,7 @@ class PhotosController < ApplicationController
     @art.description =      params[:art][:description]
     @art.price =            params[:art][:price]
     @art.subject_id =       params[:art][:subject_id]
+    @art.tecnique_id =      params[:art][:tecnique_id]
     @art.status =           params[:art][:status]
     @art.tags =             params[:art][:tags]
     @art.user =             current_user
@@ -145,7 +152,7 @@ class PhotosController < ApplicationController
     @art.description =      params[:art][:description]
     @art.price =            params[:art][:price]
     @art.subject_id =       params[:art][:subject_id]
-    @art.genre_id =         params[:art][:genre_id]
+    @art.tecnique_id =      params[:art][:tecnique_id]
     @art.status =           params[:art][:status]
     @art.tags =             params[:art][:tags]
 

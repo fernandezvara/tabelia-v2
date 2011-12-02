@@ -35,22 +35,37 @@ class UsersController < ApplicationController
       end
       # arts to display...
       if @user == current_user
-        @arts = @user.arts
+        @arts = @user.arts.where(:photo => false)
+        @photos = @user.arts.where(:photo => true)
       else
         if current_user.nil? == true
           user = @user.id.to_s
           search = Art.search do
              with(:show_search).greater_than(2)
+             with(:photo, false)
              with(:user_id, user)
            end
            @arts = search.results
+           search = Art.search do
+              with(:show_search).greater_than(2)
+              with(:photo, true)
+              with(:user_id, user)
+            end
+            @photos = search.results
         else
           user = @user.id.to_s
           search = Art.search do
              with(:show_search).greater_than(1)
+             with(:photo, false)
              with(:user_id, user)
            end
            @arts = search.results
+           search = Art.search do
+              with(:show_search).greater_than(1)
+              with(:photo, true)
+              with(:user_id, user)
+            end
+            @photos = search.results
         end
       end
       

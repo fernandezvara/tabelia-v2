@@ -6,7 +6,7 @@ class Subject
   #localized_field :url,    :type => String
   field :slug
 
-  has_many :photos
+  has_many :arts
   
   
 end

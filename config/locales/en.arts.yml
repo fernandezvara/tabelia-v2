@@ -3,9 +3,10 @@ en:
         singular: 'art'
         plural: 'arts'
         tecnique: 'Tecnique'
+        you_selected_do_not_show: "You selected to do not show this art."
         status_title: 'PUBLISH STATUS'
         status:
-            accepted: "Art is visible and it\'s published"
+            accepted: "Art is visible and it's published"
             non_accepted_reason0: 'Waiting for be approved.'
             non_accepted_reason1: 'Art is not accepted. Bad quality of the original file.'
             non_accepted_reason2: 'Art is not accepted. Art do not follow allowed contents.'
@@ -20,6 +21,8 @@ en:
         profile:
             category: 'Style: '
             idiom: 'Idiom / Theme: '
+            subject: 'Subject: '
+            tecnique: 'Tecnique: '
             listed: 'Added %{time} ago'
             similar_art: 'SIMILAR ART'
             art_description: 'DESCRIPTION'
@@ -55,6 +58,8 @@ en:
             title: 'New photo'
         edit:
             title: 'Edit: {art_name}'
+        you_selected_do_not_show: "You selected to do not show this photo."
+        edit_art_information: 'Edit photo information'
     mongoid:
         models:
             art: 'Art'
@@ -64,9 +69,12 @@ en:
                 price: 'Price'
                 description: 'Description'
                 original: 'Original file'
+                genre: 'Genre/Idiom'
                 category: 'Style'
                 tags: 'Tags'
                 status: 'Show?'
+                subject: 'Subject'
+                tecnique: 'Tecnique'
         hints:
             art:
                 name: 'Name of this art'
@@ -76,7 +84,12 @@ en:
                 category: 'Select the style of this art.'
                 tecnique: 'If you have used more than two tecniques for this art, please, select the two main ones.'
                 tags: 'Write the words that can help to identify your art. Use the comma (,) as separator. You can add up to 20 tags for each art'
+                photo_tags: 'Write the words that can help to identify your art. Use the comma (,) as separator. You can add up to 20 tags'
                 status: 'Do you want to show this art?'
+                subject: 'Select the main subject of this photo.'
+                photo_tecnique: "Select the tecnique you used for this photo. Select Direct if you haven't made special effects to the photo more than normal compensations."
+            photo:
+                name: 'Name of this photo'
         options:
             art:
                 status:

@@ -23,9 +23,16 @@
       $("select#art_subject_id").attr("title", "<%=  t("mongoid.hints.art.subject") %>");
     </script>
   </div>
+  <div class="input select optional">
+     <%= f.label :tecnique, :class => ['select', 'optional'] %>
+     <%= f.select :tecnique_id, options_from_collection_for_select(Tecnique.all, 'id', 'name', @art.tecnique_id) %>
+     <script type="text/javascript">
+       $("select#art_tecnique_id").attr("title", "<%=  t("mongoid.hints.art.photo_tecnique") %>");
+     </script>
+   </div>
   <div class="input string optional">
     <%= f.label :tags, :class => ['text', 'optional'] %>
-    <%= f.text_field :tags, :maxlenght => 300, :value => @tags, :title => t("mongoid.hints.art.tags") %>
+    <%= f.text_field :tags, :maxlenght => 300, :value => @tags, :title => t("mongoid.hints.art.photo_tags") %>
   </div>
   <div class="input text optional">
     <%= f.label :status, :class => ['text', 'optional'] %>

@@ -30,7 +30,10 @@ class ArtsController < ApplicationController
         similar_arts = ArtSimilar.where(:art_id => @art.id.to_s)
         @similar_art = Array.new
         similar_arts.each do |similar|
-          @similar_art << Art.find(similar.similar_id)
+          temp_art = Art.find(similar.similar_id)
+          if temp_art.photo == false
+            @similar_art << Art.find(similar.similar_id)
+          end
         end
         @art_colors = ColorRelation.colors_of(@art)
         @title = @art.name
@@ -47,7 +50,10 @@ class ArtsController < ApplicationController
           similar_arts = ArtSimilar.where(:art_id => @art.id.to_s)
           @similar_art = Array.new
           similar_arts.each do |similar|
-            @similar_art << Art.find(similar.similar_id)
+            temp_art = Art.find(similar.similar_id)
+            if temp_art.photo == false
+              @similar_art << Art.find(similar.similar_id)
+            end
           end
           @art_colors = ColorRelation.colors_of(@art)
           @title = t("users.index.title")

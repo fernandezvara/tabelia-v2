@@ -10,9 +10,10 @@ class Art
   after_save :create_tags
   
   belongs_to :user
-  belongs_to :category
-  belongs_to :genre
-  belongs_to :subject
+  belongs_to :category    # Style for painting
+  belongs_to :genre       # Idiom for painting
+  belongs_to :subject     # Subject / Type for photo
+  belongs_to :tecnique    # Tecnique for photo
   
   has_many :artcomments
   has_many :color_relations
@@ -27,7 +28,6 @@ class Art
   field :accepted,          :type => Boolean,  :default => false
   field :status_reason,     :type => Integer,  :default => 0
   field :photo,             :type => Boolean,  :default => false
-  #field :show_search,      :type => Boolean,  :default => false
   
   field :m_oil,             :type => Boolean, :default => false             # Óleo
   field :m_watercolor,      :type => Boolean, :default => false             # Acuarela
@@ -47,6 +47,12 @@ class Art
   field :m_colored_pencil,  :type => Boolean, :default => false             # Lápices de colores
   field :m_digital,         :type => Boolean, :default => false             # Pintura digital
   field :m_mixed,           :type => Boolean, :default => false             # Técnicas mixtas
+  
+  field :exif_manu,         :type => String # Manufacturer
+  field :exif_model,        :type => String # Model
+  field :exif_expos,        :type => String # Exposure
+  field :exif_f,            :type => String # f-factor
+  field :exif_iso,          :type => String # ISO
   
   slug :name
   
@@ -84,7 +90,8 @@ class Art
     
     string :category_slug
     string :genre_slug
-    string :subject_slug 
+    string :subject_slug
+    string :tecnique_slug
     
     boolean :m_oil
     boolean :m_watercolor
@@ -127,6 +134,15 @@ class Art
   def subject_slug
     if self.photo == true
       slug = self.subject.slug
+    else
+      slug = ""
+    end
+    slug
+  end
+  
+  def tecnique_slug
+    if self.photo == true
+      slug = self.tecnique.slug
     else
       slug = ""
     end

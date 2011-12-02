@@ -1,0 +1,41 @@
+<% if @art.status == false %>
+  <div class="box green">
+    <div class="content"><%= t('photos.you_selected_do_not_show') %></div>
+  </div>
+<% end %>
+
+<% if @art.accepted == false %>
+<div class="box green">
+  <div class="title"><%= t('arts.status_title')%></div>
+  <div class="content">
+  <% case @art.status_reason 
+    when 0 %>
+    <%= t("arts.status.non_accepted_reason0") %>
+  <% when 1 %>
+    <%= t("arts.status.non_accepted_reason1") %>
+  <% when 2 %>
+    <%= t("arts.status.non_accepted_reason2") %>
+  <% end %>    
+  </div>
+</div>
+<% end %>
+
+<% if @art.user == current_user %>
+<div class="box purple">
+  <div class="content">
+  <%= link_to t('photos.edit_art_information'), edit_photo_path(:slug => @art.slug), :class => 'abutton' %>
+  </div>
+</div>
+<% end %>
+
+
+<% if @art.status == true and @art.accepted == true %>
+<div id="add_to_cart">
+  <%= link_to t('arts.profile.add_to_cart'), add_to_cart_path(:slug => @art.slug), :class => ['abutton', 'big', 'yellow'], :rel => 'modal' %>
+</div>
+<% end %>
+
+<%= render :partial => 'partials/photos/profile/photo_info' %>
+<% if @similar_art.count > 0 %>
+  <%= render :partial => 'partials/photos/profile/similar_art' %>
+<% end %>

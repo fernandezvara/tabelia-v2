@@ -1,4 +1,5 @@
   <%= render :partial => 'partials/user/profile/myart' %>
+  <%= render :partial => 'partials/user/profile/myphotos' %>
 <div class="unitx3 left">
   <% cache("about-profile-#{@user.id.to_s}-#{I18n.locale.to_s}") do %>
   <%= render :partial => 'partials/user/profile/about' %>

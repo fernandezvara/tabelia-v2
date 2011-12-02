@@ -1,0 +1,18 @@
+<div class="column unitx5 left first">
+  <h2><%= @art.name %></h2>
+</div>
+<div class="column unitx1" id="like_status">
+  <% if current_user %>
+  <% if current_user != @art.user %>
+    <% if GraphClient.connected?('Forward', 'Like', current_user, @art) == false %>
+      <%= link_to t('common.like'), action_like_path(:slug => @art.slug), :remote => true, :class => ['abutton', 'like'], :walk => 'no' %>
+    <% else %>
+      <%= link_to t('common.you_like_it'), action_unlike_path(:slug => @art.slug), :remote => true, :class => ['abutton', 'unlike'], :walk => 'no' %>
+    <% end %>
+  <% end %>
+  
+  <% end %>
+</div>
+<div class="column unitx2">
+
+</div>

@@ -215,3 +215,17 @@ I18n.with_locale(:es) do
   g.save
 end
 
+I18n.with_locale(:en) do 
+  Tecnique.create!(:name => 'HDR', :slug => 'hdr')
+  Tecnique.create!(:name => 'Collage', :slug => 'collage')
+
+end
+
+I18n.with_locale(:es) do 
+  g = Tecnique.where(:slug => 'hdr').first
+  g.name = 'HDR'
+  g.save
+  g = Tecnique.where(:slug => 'collage').first
+  g.name = 'Collage'
+  g.save
+end
