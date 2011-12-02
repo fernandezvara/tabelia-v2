@@ -1,3 +1,18 @@
+<div class="box green">
+  <div class="title"><%= t('search.filters') %></div>
+  <div class="content">
+    <% 
+    view = { 
+      t('search.view_all') => '2',
+      t('search.only_art') => '0',
+      t('search.only_photos') => '1'
+    }
+    %>
+    <%= select_tag "view",  options_for_select(view) %>
+  </div>
+</div>
+
+
 <form><input type="text" id="color" name="color" value="#<%= @color %>" /></form>
 <div id="colorpicker" style="height:200px;"></div>
 <div style="text-align: center; overflow:hidden;">
@@ -12,6 +27,17 @@
            url: '/color/' + color,
            dataType: "script"
        });
-    })
+    });
+    $('select#view').change(function() {
+      var color = $("input#color").val().replace("#", "");
+    	$.ajax({
+        url: '/color/' + color ,
+        data: {
+          'utf8'  : '%E2%9C%93',
+          'view': $("select#view").val()
+        },
+        dataType: 'script'
+      });
+    });
   });
 </script>

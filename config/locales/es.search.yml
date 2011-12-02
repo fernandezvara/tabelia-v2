@@ -17,6 +17,11 @@ es:
         idioms_prompt: 'Todos los temas'
         tecniques: 'Técnicas:'
         tecniques_prompt: 'Todas las técnicas'
+        subjects: 'Temas:'
+        subjects_prompt: "Todos los temas"
         search_by_color: 'BÚSQUEDA POR COLOR'
         search: 'Buscar'
         there_are_no_entries: 'No se han encontrado obras con esos criterios.'
+        view_all: 'Ver todo'
+        only_art: 'Solo cuadros'
+        only_photos: 'Solo fotos'

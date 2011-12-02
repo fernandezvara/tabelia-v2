@@ -203,7 +203,14 @@ end
 I18n.with_locale(:en) do 
   Subject.create!(:name => 'Portrait', :slug => 'portrait')
   Subject.create!(:name => 'Urban', :slug => 'urban')
-
+  Subject.create!(:name => 'Landscape', :slug => 'landscape')
+  Subject.create!(:name => 'War', :slug => 'war')
+  Subject.create!(:name => 'Nature', :slug => 'nature')
+  Subject.create!(:name => 'Subacuatic', :slug => 'subacuatic')
+  Subject.create!(:name => 'Documental', :slug => 'documental')
+  Subject.create!(:name => 'Skyline', :slug => 'skyline')
+  Subject.create!(:name => 'Glamour', :slug => 'glamour')
+  Subject.create!(:name => 'Still Life', :slug => 'still-life')
 end
 
 I18n.with_locale(:es) do 
@@ -213,12 +220,41 @@ I18n.with_locale(:es) do
   g = Subject.where(:slug => 'urban').first
   g.name = 'Urbano'
   g.save
+  g = Subject.where(:slug => 'landscape').first
+  g.name = 'Paisaje'
+  g.save
+  g = Subject.where(:slug => 'war').first
+  g.name = 'Guerra'
+  g.save
+  g = Subject.where(:slug => 'nature').first
+  g.name = 'Naturaleza'
+  g.save
+  g = Subject.where(:slug => 'subacuatic').first
+  g.name = 'Subacuatic'
+  g.save
+  g = Subject.where(:slug => 'documental').first
+  g.name = 'Documental'
+  g.save
+  g = Subject.where(:slug => 'skyline').first
+  g.name = 'Skyline'
+  g.save
+  g = Subject.where(:slug => 'glamour').first
+  g.name = 'Glamour'
+  g.save
+  g = Subject.where(:slug => 'still-life').first
+  g.name = 'Bodegón'
+  g.save
 end
 
 I18n.with_locale(:en) do 
   Tecnique.create!(:name => 'HDR', :slug => 'hdr')
   Tecnique.create!(:name => 'Collage', :slug => 'collage')
-
+  Tecnique.create!(:name => 'Black and white', :slug => 'black-and-white')
+  Tecnique.create!(:name => 'Macro', :slug => 'macro')
+  Tecnique.create!(:name => 'Panoramic', :slug => 'panoramic')
+  Tecnique.create!(:name => 'Analogical', :slug => 'analogical')
+  Tecnique.create!(:name => 'Realistic', :slug => 'realistic')
+  Tecnique.create!(:name => 'Artistic', :slug => 'artistic')
 end
 
 I18n.with_locale(:es) do 
@@ -227,5 +263,23 @@ I18n.with_locale(:es) do
   g.save
   g = Tecnique.where(:slug => 'collage').first
   g.name = 'Collage'
+  g.save
+  g = Tecnique.where(:slug => 'black-and-white').first
+  g.name = 'Blanco y Negro'
+  g.save
+  g = Tecnique.where(:slug => 'macro').first
+  g.name = 'Macro'
+  g.save
+  g = Tecnique.where(:slug => 'panoramic').first
+  g.name = 'Panorámica'
+  g.save
+  g = Tecnique.where(:slug => 'analogical').first
+  g.name = 'Analógica'
+  g.save
+  g = Tecnique.where(:slug => 'realistic').first
+  g.name = 'Realística'
+  g.save
+  g = Tecnique.where(:slug => 'artistic').first
+  g.name = 'Artística'
   g.save
 end

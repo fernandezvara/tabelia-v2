@@ -1,9 +1,9 @@
 <% content_for :main do %>
 <div class="box round">
-<h2>Foto: <%= @art.name %></h2>
+<h2>Arte: <%= @art.name %></h2>
 <br />
 <div class="left">
-<%= form_for @art, :url => admin_photo_update_path(@art) do |f| %>
+<%= form_for @art, :url => admin_art_update_path(@art) do |f| %>
   <ul>
     <li>
       <%= f.label :name %>
