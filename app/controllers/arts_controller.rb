@@ -27,12 +27,15 @@ class ArtsController < ApplicationController
         arttags.each do |tag|
           @tags << tag.tag.text
         end
-        similar_arts = ArtSimilar.where(:art_id => @art.id.to_s)
+        similar_arts = ArtSimilar.where(:art_id => @art.id.to_s, :photo => @art.photo).limit(4)
         @similar_art = Array.new
         similar_arts.each do |similar|
           temp_art = Art.find(similar.similar_id)
           if temp_art.photo == false
+            begin
             @similar_art << Art.find(similar.similar_id)
+            rescue
+            end
           end
         end
         @art_colors = ColorRelation.colors_of(@art)
@@ -47,12 +50,15 @@ class ArtsController < ApplicationController
           arttags.each do |tag|
             @tags << tag.tag.text
           end
-          similar_arts = ArtSimilar.where(:art_id => @art.id.to_s)
+          similar_arts = ArtSimilar.where(:art_id => @art.id.to_s, :photo => @art.photo).limit(4)
           @similar_art = Array.new
           similar_arts.each do |similar|
             temp_art = Art.find(similar.similar_id)
             if temp_art.photo == false
+              begin
               @similar_art << Art.find(similar.similar_id)
+              rescue
+              end
             end
           end
           @art_colors = ColorRelation.colors_of(@art)

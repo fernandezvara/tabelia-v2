@@ -25,6 +25,7 @@ en:
             tecnique: 'Tecnique: '
             listed: 'Added %{time} ago'
             similar_art: 'SIMILAR ART'
+            similar_art: 'SIMILAR PHOTOS'
             art_description: 'DESCRIPTION'
             no_art_description: 'There are no description for this art'
             tags: 'TAGS'

@@ -18,12 +18,12 @@
           </section>
         </section>
       </div><!-- content -->
-      <hr class="full">
+      <hr class="full nobottom">
       <%= render :partial => '/partials/common/footer' %>
     </div>
   </div>
-  <%= debug(params) if Rails.env.development? %>
-  <%= debug(session) if Rails.env.development? %>
-  <%= debug(request.env) if Rails.env.development? %>
+  <%#= debug(params) if Rails.env.development? %>
+  <%#= debug(session) if Rails.env.development? %>
+  <%#= debug(request.env) if Rails.env.development? %>
 </body>
 </html>

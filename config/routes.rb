@@ -42,7 +42,7 @@ Tabelia::Application.routes.draw do
   match "photo/:slug",                :controller => 'photos',   :action => 'show',             :as => "photo_profile"
   match "photo/:slug/likes",          :controller => 'photos',   :action => 'likes',            :as => "photo_likes"
   match "photo/:slug/edit",           :controller => 'photos',   :action => 'edit',             :as => "edit_photo"
-
+  match "photo/:slug/update",         :controller => 'photos',   :action => 'update',           :as => "update_photo"
   match "color/(:color)",             :controller => 'color',    :action => 'index',            :as => "color_index"
 
   match "search",                     :controller => 'search',   :action => 'index',            :as => "search"

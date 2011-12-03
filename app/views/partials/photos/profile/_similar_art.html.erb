@@ -1,9 +1,15 @@
 <div class="box green">
-  <div class="title"><%= t('arts.profile.similar_art') %></div>
+  <div class="title"><%= t('arts.profile.similar_photos') %></div>
   <div class="content">
     <% @similar_art.each do |art| %>
-    <div class="image_thumb">
-      <%= link_to image_tag(art.image.url(:thumb).to_s, :alt => art.name), photo_profile_path(:slug => art.slug) %>
+    <div>
+      <div class="image_thumb">
+        <%= link_to image_tag(art.image.url(:thumb).to_s, :alt => art.name), photo_profile_path(:slug => art.slug) %>
+      </div>
+      <div class="userinfo right">
+        <br />
+        <p><%= link_to art.name, art_profile_path(:slug => art.slug) %></p>
+      </div>
     </div>
     <% end %>
   </div>

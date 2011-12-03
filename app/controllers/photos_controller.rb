@@ -124,7 +124,7 @@ class PhotosController < ApplicationController
       Resque.enqueue(AdminNotification, current_user.id.to_s, @art.id.to_s)
       Resque.enqueue(FindSimilarArt, @art.id.to_s)
       flash[:success] = "#{@art.name} added correctly."
-      redirect_to arts_path
+      redirect_to photos_path
     else
       flash[:error] = t('common.please_fix_errors_on_form')
       render 'new', :layout => 'main'
@@ -171,7 +171,7 @@ class PhotosController < ApplicationController
       end
       Resque.enqueue(FindSimilarArt, @art.id.to_s)
       flash[:success] = "#{@art.name} edited correctly."
-      redirect_to arts_path
+      redirect_to photos_path
     end
   end
 

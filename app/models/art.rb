@@ -57,6 +57,8 @@ class Art
   slug :name
   
   index :slug, unique: true
+  index :photo
+   
   
   validates_presence_of :name
   validates_presence_of :price

@@ -1,8 +1,12 @@
 <script type="text/javascript" charset="utf-8">
 var $container = $('div#last_show');
+var $containerp = $("div#photos_random");
 var arts = new Array();
-var i = 0;
+var photos = new Array();
+var i = 0;//paintings
 var div = 0;
+var o = 0; //photos
+var divp = 0;
 <% cache("#{@cache}", :expires_in => 1.hour) do %>
   <% @arts = @search.results %>
   <% i = 0 %>
@@ -11,6 +15,15 @@ var div = 0;
     <% i = i + 1 -%>
   <% end %>
 <% end %>
+<% cache("#{@cache_photos}", :expires_in => 1.hour) do %>
+  <% @photos = @search_photos.results %>
+  <% i = 0 %>
+  <% @photos.each do |photo| %>
+    photos[<%= i %>] = '<%= escape_javascript(link_to image_tag(photo.image.url(:splash).to_s, :alt => photo.name, :title => photo.name), photo_profile_path(:slug => photo.slug)) %>';
+    <% i = i + 1 -%>
+  <% end %>
+<% end %>
+
 
 function addImage() {
   var newDiv = document.createElement('div')
@@ -27,6 +40,23 @@ function addImage() {
   if(i == arts.length) {
     i = 0;
   }
+  
+  // new photo
+  var newDiv1 = document.createElement('div')
+  $(newDiv1).addClass("bimg").attr('id', divp).html(photos[o]);
+  $containerp.prepend(newDiv1);
+
+  var ddp = divp - 8;
+  if($("div#"+ ddp).length) {
+    $("div#"+ ddp).remove();
+  }
+  
+  o++;
+  divp++;
+  if(o == photos.length) {
+    o = 0;
+  }
+  
 }  
 
 $(window).load(function(){
@@ -34,7 +64,7 @@ $(window).load(function(){
     controlNav:false,
     pauseTime:6000,
     keyboadNav:false,
-    effect: 'fade',
+    effect: 'slideInLeft',
     directionNav: false
   });
 });
@@ -46,23 +76,41 @@ $(document).ready(function(){
     trigger: 'hover',
     gravity: 'w'
   });
-
-  $container.masonry({
-    itemSelector : 'div#last_show div.bimg',
-    gutterWidth: 1,
-    isAnimated: true,
-    columnWidth: 164
+  $("#photos_random img").tipsy({
+    live: true,
+    trigger: 'hover',
+    gravity: 'w'
   });
-  for(a =0; a<= 2; a++){
+  
+  $container.imagesLoaded(function() {
+    $container.masonry({
+      itemSelector : 'div#last_show div.bimg',
+      gutterWidth: 1,
+      isAnimated: true,
+      columnWidth: 164
+    });
+  });
+  $containerp.imagesLoaded(function() {
+    $containerp.masonry({
+      itemSelector : 'div#photos_random div.bimg',
+      gutterWidth: 1,
+      isAnimated: true,
+      columnWidth: 164
+    });
+  });
+  for(a =0; a<= 7; a++){
     addImage();
   }
   setTimeout(function() {
-   $container.masonry('reload'); 
+    
+   $container.masonry('reload');
+   $containerp.masonry('reload');
   }, 500);
   setInterval(function(){
     addImage();
     $container.masonry('reload');
-    }, 10000);
+    $containerp.masonry('reload');
+    }, 6000);
 });
 
 

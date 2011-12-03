@@ -26,6 +26,7 @@ es:
             tecnique: 'Técnica: '
             listed: 'Añadido hace %{time}'
             similar_art: 'OBRAS SIMILARES'
+            similar_photos: 'FOTOS SIMILARES'
             art_description: 'DESCRIPCIÓN DE LA OBRA'
             no_art_description: 'El usuario no ha escrito una descripción de esta obra'
             tags: 'TAGS'

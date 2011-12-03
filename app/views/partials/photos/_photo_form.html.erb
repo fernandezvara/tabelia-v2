@@ -1,4 +1,13 @@
-<%= form_for @art, :url => photos_path, :html => { :multipart => true, :class => 'simple_form' } do |f| %>
+<% if @art.new? 
+  url = photos_path
+else 
+  url = update_photo_path(:slug => @art.slug)
+end
+  
+  
+%>
+  
+<%= form_for @art, :url => url, :html => { :multipart => true, :class => 'simple_form' } do |f| %>
   <%= f.hidden_field :slug %>
   <div class="input string optional">
     <%= f.label :name, :class => ['string', 'optional'] %>

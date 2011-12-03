@@ -2,10 +2,19 @@ class PagesController < ApplicationController
   def index
     if current_user
       @cache = "front-page-logged-#{rand(10)}"
-      puts @cache
+      @cache_photos = "front-page-logged-photos-#{rand(10)}"
       if fragment_exist?(@cache) == false
         @search = Art.search do
            with(:show_search).greater_than(1)
+           with(:photo, false)
+           paginate(:per_page => 40, :page => 1)
+           order_by(:random)
+         end
+      end
+      if fragment_exist?(@cache_photos) == false
+        @search_photos = Art.search do
+           with(:show_search).greater_than(1)
+           with(:photo, true)
            paginate(:per_page => 40, :page => 1)
            order_by(:random)
          end
@@ -15,14 +24,22 @@ class PagesController < ApplicationController
       end
     else
       @cache = "front-non-logged-#{rand(10)}"
-      puts "******************* @cache = #{@cache}"
+      @cache_photos = "front-non-logged-photos-#{rand(10)}"
       if fragment_exist?(@cache) == false
         @search = Art.search do
            with(:show_search).greater_than(2)
+           with(:photo, false)
            paginate(:per_page => 40, :page => 1)
            order_by(:random)
          end
-         puts "*****************Resultados: #{@search.results.count}"
+      end
+      if fragment_exist?(@cache_photos) == false
+        @search_photos = Art.search do
+           with(:show_search).greater_than(1)
+           with(:photo, true)
+           paginate(:per_page => 40, :page => 1)
+           order_by(:random)
+         end
       end
       
       respond_to do |format|

@@ -34,8 +34,8 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   version :normal do 
     process :resize_to_fit => [730, 730]
-    process :quality => 70
-    process :watermark_normal
+    process :quality => 95
+    process :watermark
     process :title_it
   end
   
@@ -101,6 +101,36 @@ class ImageUploader < CarrierWave::Uploader::Base
       text.fill = 'black'
       text.annotate(img, 0, 0, 0, 0, "© #{model.name} - #{model.user.name}")
       img
+    end
+  end
+  
+  def title_it2
+    manipulate! do |img|
+      text = Magick::Draw.new
+      text.gravity = Magick::SouthEastGravity
+      text.pointsize = 14
+      text.fill = 'white'
+      text.font = "#{Rails.root}/app/assets/images/wm/cabin.ttf"
+      text.stroke = 'none'
+      text.annotate(img, 0, 0, 0, 0, "© #{model.name} - #{model.user.name}")
+      text.gravity = Magick::SouthEastGravity
+      text.fill = 'black'
+      text.annotate(img, 1, 1, 0, 0, "© #{model.name} - #{model.user.name}")
+      img
+    end
+  end
+  
+  
+  def watermark
+    manipulate! do |img|
+      logo = Magick::Image.read(Rails.root + 'app/assets/images/wm/watermark.png').first
+      #center_cols = (img.columns/2) - (logo.columns/2)
+      #center_rows = (img.rows/2) - (logo.rows/2)
+      
+      center_cols = img.columns - logo.columns
+      center_rows = img.rows - logo.rows
+      
+      img = img.dissolve(logo, 0.50, 1, center_cols, center_rows)
     end
   end
   

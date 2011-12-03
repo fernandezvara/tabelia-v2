@@ -15,6 +15,8 @@ class Stat
   track :sells        # sells done that day (Art)
   
   track :popularity   # points of popularity for the given day
+
+  field :popularity_today , :type => Float
   
   index(
     [
@@ -23,4 +25,6 @@ class Stat
     ],
     unique: true, background: true
     )
+    
+  index :popularity_today
 end

@@ -1,4 +1,5 @@
-require File.expand_path("../config/environment", __FILE__)
+system("pwd")
+require File.expand_path("../../config/environment", __FILE__)
 
 # Art popularity
 
@@ -57,6 +58,7 @@ hashArtVisits.each do |key, value|
     stat = Stat.where(:st_type => 'Art', :st_id => key).first
   end
   stat.popularity.set(hashPopularityPoints[key])
+  stat.popularity_today = hashPopularityPoints[key]
   stat.save!
 end
 
