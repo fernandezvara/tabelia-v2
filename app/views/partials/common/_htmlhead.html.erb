@@ -11,43 +11,47 @@
   <% end %>
   <%= javascript_include_tag "tabelia" %>
   <%= csrf_meta_tags %>
+  
   <link href="http://assets.tabelia.com/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link href="http://assets.tabelia.com/favicon.ico" rel="icon" type="image/x-icon"/>
   <link rel="canonical" href="<%= @canonical %>" />
   <meta property="fb:app_id" content="195975813810721" />
   <meta preperty="og:site_name" content="tabelia">
   <meta property="og:url" content="<%= @canonical %>" /> 
-  <% if controller_name == "arts" and action_name == "show" %>
-  <meta property="og:type" content="tabelia:art" /> 
-  <meta property="og:title" content="<%= @art.name %>"/>
-  <meta property="og:description" content="<%= @art.description.to_s %>" />
-  
-  <% if @art.image.to_s.nil? == true %>
-  <meta property="og:image" content="http://assets.tabelia.com<%= @art.image.url(:thumb).to_s %>" />
-  <% else %>
-  <meta property="og:image" content="<%= @art.image.url(:thumb).to_s %>" />
-  <% end %>
-  <% cache("art-tags-#{@art.slug}", :expire_in => 1.day) do %>
-  <meta name="description" content="<%= @art.description %>" />
-  <meta name="keywords" content="<%= @tags.join(", ") %>">
-  <% end %>
+  <% if controller_name == "arts" or controller_name == "photos" %>
+    <% if action_name == "show" %>
+      <meta property="og:type" content="tabelia:art" /> 
+      <meta property="og:title" content="<%= @art.name %>"/>
+      <meta property="og:description" content="<%= @art.description.to_s %>" />
+      <% if @art.image.to_s.nil? == true %>
+      <meta property="og:image" content="http://assets.tabelia.com<%= @art.image.url(:thumb).to_s %>" />
+      <% else %>
+      <meta property="og:image" content="<%= @art.image.url(:thumb).to_s %>" />
+      <% end %>
+      <% cache("art-tags-#{@art.slug}", :expire_in => 1.day) do %>
+      <meta name="description" content="<%= @art.description %>" />
+      <meta name="keywords" content="<%= @tags.join(", ") %>">
+      <% end %>
+    <% end %>
   <% else
-  if controller_name == "users" and action_name == "show" %>
-  <meta property="og:type" content="tabelia:artist" /> 
-  <meta property="og:title" content="<%= @user.name %>"/>
-  <meta property="og:description" content="<%= @user.about.to_s %>" />
-  <% if @user.avatar.to_s.nil? == true %>
-  <meta property="og:image" content="http://assets.tabelia.com<%= @user.avatar.url(:thumb).to_s %>" />
-  <% else %>
-  <meta property="og:image" content="<%= @user.avatar.url(:thumb).to_s %>" />
-  <% end %>
-  <% cache("user-tags-#{@user.username}", :expire_in => 1.day) do %>
-  <meta name="description" content="<%= @user.about.to_s %>" />
-  <meta name="keywords" content="<%= @inspirations.join(", ") if @inspirations %>">
-  <% end %>
-  <% else %>
-  <meta property="og:title" content="<%= title %>"/>
-  <% end %>
+    if controller_name == "users" and action_name == "show" %>
+      <meta property="og:type" content="tabelia:artist" /> 
+      <meta property="og:title" content="<%= @user.name %>"/>
+      <meta property="og:description" content="<%= @user.about.to_s %>" />
+      <% if @user.avatar.to_s.nil? == true %>
+      <meta property="og:image" content="http://assets.tabelia.com<%= @user.avatar.url(:thumb).to_s %>" />
+      <% else %>
+      <meta property="og:image" content="<%= @user.avatar.url(:thumb).to_s %>" />
+      <% end %>
+      <% cache("user-tags-#{@user.username}", :expire_in => 1.day) do %>
+      <meta name="description" content="<%= @user.about.to_s %>" />
+      <meta name="keywords" content="<%= @inspirations.join(", ") if @inspirations %>">
+      <% end %>
+    <% else %>
+    <meta name="description" content="<%= t('common.tabelia_description') %>" />
+    <meta name="keywords" content="<%= t('common.tabelia_keywords') %>">
+    <meta property="og:title" content="<%= title %>"/>
+    <% end %>
   <% end %>
   
   <link href='http://fonts.googleapis.com/css?family=Cabin&amp;v2' rel='stylesheet' type='text/css'>
@@ -60,7 +64,10 @@
   });
   </script>
   <% end %>
-      
+  
+  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"><![endif]-->
+  <!--[if lt IE 7]><meta http-equiv="imagetoolbar" content="no"><![endif]-->
+  
   <% if @show_confirmation == true %>
     <script type="text/javascript">
       $(document).ready(function() {
@@ -68,6 +75,28 @@
       });
     </script>
   <% end %>
+
+  <% if I18n.locale.to_s == 'es' %>
+    <script type="text/javascript">
+      jQuery.timeago.settings.strings = {
+         prefixAgo: "hace",
+         prefixFromNow: "dentro de",
+         suffixAgo: "",
+         suffixFromNow: "",
+         seconds: "menos de un minuto",
+         minute: "un minuto",
+         minutes: "unos %d minutos",
+         hour: "una hora",
+         hours: "%d horas",
+         day: "un día",
+         days: "%d días",
+         month: "un mes",
+         months: "%d meses",
+         year: "un año",
+         years: "%d años"
+      };
+    </script>
+    <% end %>
 
   
   <script type="text/javascript">

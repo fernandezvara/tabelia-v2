@@ -1,0 +1,13 @@
+<div class="box green">
+  <div class="title"><%= t('mainmenu.myaccount')%></div>
+  <div class="content">
+    <p><%= link_to t('mainmenu.myart'), arts_path %></p>
+    <p><%= link_to t('mainmenu.myphotos'), photos_path %></p>
+    <p><%= link_to t('mainmenu.mysettings'), profile_basic_path %></p>
+    <% if current_user.arts.count > 0 %>
+    <p><%= link_to t('mainmenu.mysellitems'), '#' %></p>
+    <% end %>
+    <!-- <li><%#= link_to t('mainmenu.myorders'), "/login" %></li> -->
+    <p><%= link_to t('mainmenu.signout'), logout_path %></p>
+  </div>
+</div>

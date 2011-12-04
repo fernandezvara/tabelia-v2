@@ -1,9 +1,15 @@
 en:
     common:
+        tabelia_description: "tabelia is a marketplace where anyone is allowed to sell and buy their art, paintings and photos. Buyers are able to purcharse the best original art prints from alive artists over the world and choose all the properties of piece they are buying, streched canvases, special papers for frame, poster and photographic paper. tabelia is the perfect tool to promote your work and make your own online business."
+        tabelia_keywords: "marketplace, art, fine art, shop for art, painting, paintings, artists, alive artists, first class quality prints, art prints, posters, photo, photos, photographers, art catalog, photo catalog, print on demand, best printing quality, gallery, galleries, online art gallery, online gallery, mercado, arte, pintura, pinturas, cuadro, cuadros, artistas, artitas vivos, impresiones de calidad, impresiones de arte, reproducciones de arte, posters, fotografías, fotografía, arte digita, impresión bajo demanda, catálogo, galería, galería de arte, galeria de arte online, galería de arte virtual, tienda de arte"
         tabeliah1: 'tabelia. Your virtual art gallery online.'
         tabeliah2: 'art experience aesthetics decoration enjoy talent creativity skill exposure express show'
         logged_in: 'Logged in!'
         you: 'You'
+        some_paintings: 'RANDOM PUBLISHED PAINTINGS'
+        some_photos: 'RANDOM PUBLISHED PHOTOS'
+        trending_paintings: 'POPULAR PAINTINGS'
+        trending_photos: 'POPULAR PHOTOS'
         send_message: 'Message'
         like: 'Like'
         likes: 'likes'
@@ -44,6 +50,11 @@ en:
         how_tabelia_works: "How tabelia works?"
         big_art: 'Painting is bigger than scanner'
         confirmation_send: 'Confirmation sent!'
+        how_to_sell: 'How to sell'
+        how_to_buy: 'How to buy'
+        publish_paintings: 'Publish paintings'
+        publish_photos: 'Publish photographs'
+        buyer_steps: 'Buy process'
         footer:
             directory: 'User Directory'
             terms: 'Terms and Conditions'

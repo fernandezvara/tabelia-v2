@@ -3,8 +3,6 @@ class Notificator
   
   @queue = :notifications
   
-  
-  
   # activity types:
   #
   # cou | Comment on User

@@ -1,15 +1,34 @@
     <footer class="width4">
-      <div class="column width1 first">
-        <p><%= t('language.you_are_using')%> <%= t('language.language_name') %> <%= link_to t('language.change_link'), change_locale_path, :rel => 'modal' %></p>
-      </div>
-      <div class="column width3">
-    	<p class="align-right">
+        <ul class="footer_ul">
+          <li><%= t('language.you_are_using')%></li>
+          <% @languages.each do |key, value| %>
+            <% if I18n.locale == key %>
+              <li><%= value %></li>
+            <% else %>
+              <li><%= link_to value, set_locale_path(:language => key.to_s)%></li>
+            <% end %>
+          <% end %>
+        </ul>
+        <ul class="footer_ul">
+          <li><%= link_to t('common.how_to_sell'), page_how_to_sell_path %></li>
+          <li><%= link_to t('common.publish_paintings'), page_publish_paintings_path %></li>
+          <li><%= link_to t('common.publish_photos'), page_publish_photos_path %></li>
+        </ul>
+        <ul class="footer_ul">
+          <li><%= link_to t('common.how_to_buy'), page_how_to_buy_path %></li>
+          <li>TODO</li>
+          <li>TODO</li>
+        </ul>
+        <ul class="footer_ul">
+          <li><%= link_to(t('common.footer.terms'), page_terms_path) %></li>
+          <li>Vender pinturas TODO</li>
+          <li>Vender fotos TODO</li>
+        </ul>
+        
+    	<!-- <p class="align-right">
     	  <%= link_to(t('common.footer.directory'), users_path) %> · 
     	  <%= link_to(t('common.footer.terms'), page_terms_path) %> · 
-    	  <%= link_to(t('common.footer.help'), page_help_path) %> · 
-    	  
-    	  Copyright &copy; 2011. All Rights Reserved</p>
-    	</div>
+    	  <%= link_to(t('common.footer.help'), page_help_path) %> </p> -->
     	<div class="full greyed">
     	  <p class="align-right">Copyright &copy; 2011. All Rights Reserved</p>
     	</div>

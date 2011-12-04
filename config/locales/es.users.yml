@@ -1,9 +1,10 @@
 es:
     users_profile:
-        my_art: 'MIS OBRAS'
+        my_art: 'MIS PINTURAS'
+        my_photos: 'MIS FOTOGRAFÍAS'
         about_me: 'SOBRE MI'
         about_me_empty: 'El usuario no ha escrito nada'
-        inspirations: 'INSPIRACIÓN'
+        inspirations: 'ME INSPIRA'
         activity: 'ACTIVIDAD'
         comments: 'COMENTARIOS'
         user_info: 'INFORMACIÓN DEL USUARIO'

@@ -5,6 +5,6 @@
   <div class="text s12">
       <% link = link_to comment.user.name, user_profile_path(:username => comment.user.username) %>
       <%= simple_format("<strong>#{link}</strong>: " + comment.text) %>
-    <p class="s11 align-right"><span class="time_ago" info="<%= comment.created_at.to_i %>"><%= t('common.time_ago', :time =>  time_ago_in_words(comment.created_at)) %></span></p>
+      <%= timeagoright(comment.created_at) %>
   </div>
 </li>

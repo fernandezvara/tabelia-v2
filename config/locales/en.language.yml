@@ -1,7 +1,7 @@
 en:
     language:
         language_name: 'English'
-        you_are_using: 'Language: '
+        you_are_using: 'Languages '
         change_link: 'change/cambiar'
         change:
             title: 'CHANGE YOUR LANGUAGE'

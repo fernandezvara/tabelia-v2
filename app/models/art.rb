@@ -54,11 +54,13 @@ class Art
   field :exif_f,            :type => String # f-factor
   field :exif_iso,          :type => String # ISO
   
+  field :popularity,        :type => Float
+  
   slug :name
   
   index :slug, unique: true
   index :photo
-   
+  index :popularity
   
   validates_presence_of :name
   validates_presence_of :price
@@ -89,6 +91,8 @@ class Art
     end
     
     boolean :photo
+    
+    float :popularity
     
     string :category_slug
     string :genre_slug

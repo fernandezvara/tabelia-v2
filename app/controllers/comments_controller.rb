@@ -9,7 +9,16 @@ class CommentsController < ApplicationController
         @comment.text = params[:text]
         @comment.save!
         # delete caches
-        expire_fragment("comments-user-#{@user.id.to_s}-#{session[:locale].to_s}") if fragment_exist?("comments-user-#{@user.id.to_s}-#{session[:locale].to_s}") == true
+        if fragment_exist?("activity-profile-#{current_user.id.to_s}-es") == true
+          expire_fragment("activity-profile-#{current_user.id.to_s}-es") 
+          puts "deleting.... activity-profile-#{current_user.id.to_s}-es"
+        end
+        if fragment_exist?("activity-profile-#{current_user.id.to_s}-en") == true
+          expire_fragment("activity-profile-#{current_user.id.to_s}-en")
+          puts "deleting.... activity-profile-#{current_user.id.to_s}-en"
+        end
+        expire_fragment("comments-user-#{@user.id.to_s}-es") if fragment_exist?("comments-user-#{@user.id.to_s}-es") == true
+        expire_fragment("comments-user-#{@user.id.to_s}-en") if fragment_exist?("comments-user-#{@user.id.to_s}-en") == true
         data = Hash.new
         data['data'] = Hash.new
         data['who'] = current_user.id.to_s
@@ -53,7 +62,10 @@ class CommentsController < ApplicationController
         @comment.text = params[:text]
         @comment.save!
         #delete art comment cache
-        expire_fragment("comments-art-#{@art.id.to_s}-#{session[:locale].to_s}") if fragment_exist?("comments-art-#{@art.id.to_s}-#{session[:locale].to_s}") == true
+        expire_fragment("comments-art-#{@art.id.to_s}-es") if fragment_exist?("comments-art-#{@art.id.to_s}-es") == true
+        expire_fragment("comments-art-#{@art.id.to_s}-en") if fragment_exist?("comments-art-#{@art.id.to_s}-en") == true
+        expire_fragment("activity-profile-#{current_user.id.to_s}-es") if fragment_exist?("activity-profile-#{current_user.id.to_s}-es") == true
+        expire_fragment("activity-profile-#{current_user.id.to_s}-en") if fragment_exist?("activity-profile-#{current_user.id.to_s}-en") == true        
         data = Hash.new
         data['who'] = current_user.id.to_s
         data['when'] = Time.now

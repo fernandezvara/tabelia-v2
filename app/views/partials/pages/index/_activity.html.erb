@@ -1,5 +1,5 @@
-<%  useractivities = @current_user.useractivities.order_by(:when, :desc) 
-
+<%  
+useractivities = @current_user.useractivities.order_by(:when, :desc).limit(10)
 if useractivities.count > 0 %>
 <div class="box orange">
   <div class="title"><%= t('activity.title') %></div>

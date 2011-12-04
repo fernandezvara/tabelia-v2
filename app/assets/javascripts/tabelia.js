@@ -10,6 +10,7 @@
 //= require capify
 //= require farbtastic
 //= require slider
+//= require timeago
 
 //= require tipsy
 

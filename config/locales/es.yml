@@ -1,9 +1,15 @@
 es:
     common:
+        tabelia_description: "tabelia es el sitio online donde todos pueden vender y comprar obras de arte, cuadros y fotografías. Los compradores pueden elegir entre un amplio catálogo de las mejores obras de arte original hechas por artistas actuales de todo el mundo, pudiendo elegir cómo desean recibir la pieza de arte en su casa, eligiendo tamaño, tipo de papel: lienzo enmarcado, papeles especiales para enmarcar, posters o papel fotográfico de máxima calidad. Si eres artista, tabelia es la herramienta perfecta para promocionar tu trabajo y tener tu propio negocio online sin esfuerzo."
+        tabelia_keywords: "marketplace, art, fine art, shop for art, painting, paintings, artists, alive artists, first class quality prints, art prints, posters, photo, photos, photographers, art catalog, photo catalog, print on demand, best printing quality, gallery, galleries, online art gallery, online gallery, mercado, arte, pintura, pinturas, cuadro, cuadros, artistas, artitas vivos, impresiones de calidad, impresiones de arte, reproducciones de arte, posters, fotografías, fotografía, arte digita, impresión bajo demanda, catálogo, galería, galería de arte, galeria de arte online, galería de arte virtual, tienda de arte"
         tabeliah1: 'tabelia. Tu galeria de arte virtual en red.'
         tabeliah2: 'arte experiencia estética decoración disfruta talento creatividad habilidad exposición expresa muestra'
         logged_in: 'Inicio de sesión correcto'
         you: 'Tú'
+        some_paintings: 'ALGUNOS CUADROS PUBLICADOS'
+        some_photos: 'ALGUNAS FOTOS PUBLICADAS'
+        trending_paintings: 'CUADROS POPULARES'
+        trending_photos: 'FOTOS POPULARES'
         send_message: 'N. mensaje'
         like: 'Me gusta'
         likes: 'me gusta'
@@ -44,6 +50,11 @@ es:
         how_tabelia_works: '¿Cómo funciona tabelia?'
         big_art: 'La obra es más grande que mi escáner'
         confirmation_send: 'Se ha enviado la confirmación de nuevo.'
+        how_to_sell: 'Vender en tabelia'
+        how_to_buy: 'Comprar en tabelia'
+        publish_paintings: 'Publicar pinturas'
+        publish_photos: 'Publicar fotografías'
+        buyer_steps: 'Proceso de compra'
         footer:
             directory: 'Directorio de usuarios'
             terms: 'Condiciones generales'

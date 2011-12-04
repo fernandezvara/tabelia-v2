@@ -86,6 +86,12 @@ Tabelia::Application.routes.draw do
   match 'jobs',                        :controller => 'pages',   :action => 'jobs',         :as => 'page_jobs'
   match 'help',                        :controller => 'pages',   :action => 'help',         :as => 'page_help'
   match 'help/big_art',                :controller => 'pages',   :action => 'big_art',      :as => 'page_big_art'
+  match 'help/how_to_sell',            :controller => 'pages',   :action => 'how_to_sell',  :as => 'page_how_to_sell'
+  match 'help/how_to_buy',             :controller => 'pages',   :action => 'how_to_buy',   :as => 'page_how_to_buy'
+  match 'help/buyer_steps',            :controller => 'pages',   :action => 'buyer_steps',  :as => 'page_buyer_steps'
+  match 'help/paintings',      :controller => 'pages',   :action => 'publish_paintings',  :as => 'page_publish_paintings'
+  match 'help/photos',         :controller => 'pages',   :action => 'publish_photos',     :as => 'page_publish_photos'
+      
   match 'confirmation',                :controller => 'pages',   :action => 'confirmation', :as => 'page_confirmation'
   
   match 'send_confirmation',           :controller => 'users',   :action => 'resend_confirmation', :as => 'resend_conf'

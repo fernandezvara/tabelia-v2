@@ -1,3 +1,4 @@
 $('ul.comments').prepend("<%= escape_javascript(render :partial => 'partials/art/profile/comment', :locals => { :comment => @comment}) %>");
 $('textarea#text').val("Escribe un comentario");
+$("time.timeago, time.timeagoright").timeago();
 flashBar("Comentario añadido correctamente.", "success", {});

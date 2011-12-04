@@ -154,6 +154,7 @@ class ApplicationController < ActionController::Base
     @idioms ||= Genre.order_by(:name, :asc)
     @subjects ||= Subject.order_by(:name, :asc)
     @tecniques ||= Tecnique.order_by(:name, :asc)
+    @languages ||= LANGUAGES
   end
   
   def is_bot?

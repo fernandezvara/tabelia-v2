@@ -11,7 +11,7 @@
               <%= link_to @user.name, user_profile_path(:username => @user.username)  %>
             <% end %>
               <%= t('activity.comment_on_profile.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username)  %><%= t('activity.comment_on_profile.main_action2') %></p>
-              <p class="timeago" time="<%= activity.when.to_i %>"><%= t('common.time_ago', :time =>  time_ago_in_words(activity.when)) %></p>
+              <%= timeago(activity.when) %>
           <div class="actor left">
             <%= link_to image_tag(@to.avatar.url(:mini).to_s, :alt => @to.name), user_profile_path(:username => @to.username)  %>
           </div>
@@ -29,7 +29,7 @@
               <%= link_to @user.name, user_profile_path(:username => @user.username)  %>
             <% end %>
             <%= t('activity.comment_on_art.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username)  %><%= t('activity.comment_on_art.main_action2') %><%= link_to @art.name, art_profile_path(:slug => @art.slug)  %></p>
-            <p class="timeago" time="<%= activity.when.to_i %>"><%= t('common.time_ago', :time =>  time_ago_in_words(activity.when)) %></p>
+            <%= timeago(activity.when) %>
           <div class="actor left">
             <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug)  %>
           </div>
@@ -45,7 +45,7 @@
               <%= link_to @user.name, user_profile_path(:username => @user.username)  %>
             <% end %>
             <%= t('activity.user_publish_art.main_action') %><%= link_to @art.name, art_profile_path(:slug => @art.slug)  %></p>
-            <p class="timeago" time="<%= activity.when.to_i %>"><%= t('common.time_ago', :time =>  time_ago_in_words(activity.when)) %></p>
+            <%= timeago(activity.when) %>
           <div class="actor left">
             <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug)  %>
           </div>
@@ -61,7 +61,7 @@
               <%= link_to @user.name, user_profile_path(:username => @user.username) %>
             <% end %>
             <%= t('activity.user_follows_user.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username) %></p>
-            <p class="timeago" time="<%= activity.when.to_i %>"><%= t('common.time_ago', :time =>  time_ago_in_words(activity.when)) %></p>
+            <%= timeago(activity.when) %>
           <div class="actor left">
             <%= link_to image_tag(@to.avatar.url(:mini).to_s, :alt => @to.name), user_profile_path(:username => @to.username) %>
           </div>
@@ -88,7 +88,7 @@
               <%= t('activity.user_likes_art.pre') %><%= link_to @user.name, user_profile_path(:username => @user.username) %>
             <% end %>
             <%= t('activity.user_likes_art.main_action') %><%= link_to @art.user.name, user_profile_path(:username => @art.user.username)  %><%= t('activity.user_likes_art.main_action2') %><%= link_to @art.name, art_profile_path(:slug => @art.slug)  %></p>
-            <p class="timeago" time="<%= activity.when.to_i %>"><%= t('common.time_ago', :time =>  time_ago_in_words(activity.when)) %></p>
+            <%= timeago(activity.when) %>
           <div class="actor left">
             <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug)  %>
           </div>

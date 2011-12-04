@@ -1,0 +1,15 @@
+<% @popular = @search_popular_paintings.results %>
+  <ul id="popular">
+    <li><%= link_to image_tag(@popular[0].image.url(:thumb).to_s, :alt => @popular[0].name, :title => @popular[0].name, :class => 'tip'), art_profile_path(:slug => @popular[0].slug) if @popular[0] %></li>
+    <li><%= link_to image_tag(@popular[1].image.url(:thumb).to_s, :alt => @popular[1].name, :title => @popular[1].name, :class => 'tip'), art_profile_path(:slug => @popular[1].slug) if @popular[1] %></li>
+    <li><%= link_to image_tag(@popular[2].image.url(:thumb).to_s, :alt => @popular[2].name, :title => @popular[2].name, :class => 'tip'), art_profile_path(:slug => @popular[2].slug) if @popular[2] %></li>
+    <li><%= link_to image_tag(@popular[3].image.url(:thumb).to_s, :alt => @popular[3].name, :title => @popular[3].name, :class => 'tip'), art_profile_path(:slug => @popular[3].slug) if @popular[3] %></li>
+  </ul>
+  <% if @popular.count > 4 %>
+  <ul id="popular">
+    <li><%= link_to image_tag(@popular[4].image.url(:thumb).to_s, :alt => @popular[4].name, :title => @popular[4].name, :class => 'tip'), art_profile_path(:slug => @popular[4].slug) if @popular[4] %></li>
+    <li><%= link_to image_tag(@popular[5].image.url(:thumb).to_s, :alt => @popular[5].name, :title => @popular[5].name, :class => 'tip'), art_profile_path(:slug => @popular[5].slug) if @popular[5] %></li>
+    <li><%= link_to image_tag(@popular[6].image.url(:thumb).to_s, :alt => @popular[6].name, :title => @popular[6].name, :class => 'tip'), art_profile_path(:slug => @popular[6].slug) if @popular[6] %></li>
+    <li><%= link_to image_tag(@popular[7].image.url(:thumb).to_s, :alt => @popular[7].name, :title => @popular[7].name, :class => 'tip'), art_profile_path(:slug => @popular[7].slug) if @popular[7] %></li>
+  </ul>
+  <% end %>

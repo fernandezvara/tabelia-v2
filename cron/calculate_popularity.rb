@@ -50,7 +50,11 @@ hashArtVisits.each do |key, value|
     hashPopularityPoints[key] = hashPopularityPoints[key] + (0.15 * (hashArtVisits[key] / maxVisits))
   end
   
-  puts "popularity for #{Art.find(key).name} = #{hashPopularityPoints[key]}"
+  this_art = Art.find(key)
+  this_art.popularity = hashPopularityPoints[key]
+  this_art.save
+  
+  puts "popularity for #{this_art.name} = #{hashPopularityPoints[key]}"
   
   if Stat.count(:conditions => {:st_type => 'Art', :st_id => key}) == 0
     stat = Stat.create(:st_type => 'Art', :st_id => key)

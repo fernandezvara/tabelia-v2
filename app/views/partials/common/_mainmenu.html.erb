@@ -13,14 +13,8 @@
       <li><%= link_to t('mainmenu.login'), '/login', :rel => 'modal nofollow' %></li>
       <li><%= link_to t('mainmenu.signup'), '/signup', :rel => 'nofollow' %></li>
       <% else %>
-      <li><%= link_to current_user.name, user_profile_path(current_user.username) %>
-        <ul class="sub-menu">
-          <li><%= link_to t('mainmenu.myart'), arts_path %></li>
-          <li><%= link_to t('mainmenu.mysettings'), profile_basic_path %></li>
-          <!-- <li><%#= link_to t('mainmenu.myorders'), "/login" %></li> -->
-          <li><%= link_to t('mainmenu.signout'), logout_path %></li>
-        </ul>
-      </li>
+      <li><%= link_to current_user.name, user_profile_path(current_user.username) %></li>
+      <li><%= link_to t('mainmenu.signout'), logout_path %></li>
       <% end %>
     </ul>
     <div class="clear"></div>

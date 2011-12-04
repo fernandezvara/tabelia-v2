@@ -32,11 +32,14 @@ $(document).ready(function(){
 			$(this).find("div.actions").hide();
 		}
 	});
+	$("time.timeago, time.timeagoright").timeago();
 	$("img.tip").tipsy({
 	  live: true,
 	  trigger: 'hover',
 	  gravity: 'w'
 	});
+	
+	
 	
 });
 
