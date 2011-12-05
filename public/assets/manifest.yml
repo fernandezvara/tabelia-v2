@@ -52,6 +52,7 @@ social/twitter_64.png: social/twitter_64.png
 welcome/h2-en.png: welcome/h2-en.png
 welcome/h2-es.png: welcome/h2-es.png
 wm/cabin.ttf: wm/cabin.ttf
+wm/watermark.png: wm/watermark.png
 wm/wm-cart.png: wm/wm-cart.png
 wm/wm-normal.png: wm/wm-normal.png
 application.js: application.js

@@ -129,7 +129,7 @@ class ApplicationController < ActionController::Base
       if params[:go]
         session[:return_to] = params[:go]
       else
-        session[:return_to] = request.fullpath if request.get? and controller_name != "sessions" and controller_name != "locale" and action_name != "new" and action_name != "new_modal" and action_name != 'new_provider' and action_name != 'signup'
+        session[:return_to] = request.fullpath if request.get? and request.fullpath.include?('favicon') == false  and controller_name != "sessions" and controller_name != "locale" and action_name != "new" and action_name != "new_modal" and action_name != 'new_provider' and action_name != 'signup'
       end
     end
   end
