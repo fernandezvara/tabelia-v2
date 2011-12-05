@@ -23,12 +23,12 @@
 <div class="special-right left">
   <div class="clearfix"></div>
   <p class="s14 b" style="margin:5px 10px"><%= t('common.trending_paintings') %></p>
-  <% cache(@popular_paintings_cache) do %>
+  <% cache(@popular_paintings_cache, :expire_in => 1.hour) do %>
     <%= render :partial => 'partials/pages/index/popular_paintings' %>
   <% end %>
   <div class="clearfix"></div>
   <p class="s14 b" style="margin:5px 10px"><%= t('common.trending_photos') %></p>
-  <% cache(@popular_photos_cache) do %>
+  <% cache(@popular_photos_cache, :expire_in => 1.hour) do %>
     <%= render :partial => 'partials/pages/index/popular_photos' %>
   <% end %>
   
