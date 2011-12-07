@@ -26,7 +26,10 @@ es:
             subject: "Confirma tu cuenta en tabelia, %{user_name}"
             thanks_for_create_your_account: 'Gracias por crear tu cuenta.'
             please_follow_this_link: 'Por favor, sigue este enlace '
-            to_confirm_your_account: 'para confirmar la creación de tu cuenta.'       
+            to_confirm_your_account: 'para confirmar la creación de tu cuenta.'
+        your_art_has_been_published:
+            subject: '%{art_name} ha sido publicada'
+            text: "Tu obra '%{art_name}' ha sido publicada."
     activity:
         title: 'ACTIVIDAD RECIENTE'
         comment_on_profile:

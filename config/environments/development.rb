@@ -32,6 +32,11 @@ Tabelia::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   
+  #config.serve_static_assets = false
+  #config.action_controller.asset_host = "s3-eu-west-1.amazonaws.com/assets.tabelia.com"
+  
+  
+  
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
     paypal_options = {

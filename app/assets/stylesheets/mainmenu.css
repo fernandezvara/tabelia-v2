@@ -1,5 +1,5 @@
 #topmenu { 	padding: 0;margin: 0;float: right;  user-select: none; -moz-user-select: none;-khtml-user-select: none;}
-#topmenu .homemenu a, #topmenu .homemenu span { color:#fff; font-size:12px; }
+#topmenu .homemenu a, #topmenu .homemenu span { color:#fff; font-size:11px; }
 #topmenu .homemenu ul li a, #topmenu .homemenu ul li span, #topmenu .homemenu ul li p { text-decoration:none; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;	}
 #topmenu .homemenu ul li:hover>a { background: #d20000; }
 #topmenu .homemenu ul li:hover>a.no { background: #c20000; }
@@ -8,7 +8,7 @@
 #topmenu .homemenu ul ul li:last-child { border-bottom:	2px solid #c20000;}
 #topmenu .homemenu ul ul li { background: #aa0000; border-bottom:1px solid #c20000;	}
 #topmenu .homemenu ul ul li:hover {	 }
-#topmenu .homemenu ul ul li a {	margin-left: 2px; color:#fff !important; font-size: 12px !important; text-transform: none !important; padding:0px 10px 0px 10px;}
+#topmenu .homemenu ul ul li a {	margin-left: 2px; color:#fff !important; font-size: 11px !important; text-transform: none !important; padding:0px 10px 0px 10px;}
 #topmenu .homemenu ul ul li:hover>a {  background: #c20000; border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;}
 #topmenu .homemenu ul ul li.current-menu-item a { background: #181818 !important;  }
 .menu, .menu * { margin: 0; padding: 0; list-style:	none; }
@@ -24,7 +24,7 @@ ul.menu li li:hover ul, ul.menu li li.sfHover ul { left: 15em; /* match ul width
 ul.menu li li:hover li ul, ul.menu li li.sfHover li ul { top: -999em; }
 ul.menu li li li:hover ul, ul.menu li li li.sfHover ul { left: 15em; /* match ul width */ top: 0; }
 .menu { float:right; }
-.menu a { padding: 	6px 10px 5px 10px; text-decoration:none; }
+.menu a { padding: 	6px 8px 5px 8px; text-decoration:none; }
 .menu a.img { padding: 	6px 10px 0 10px; }
 .menu a, .sf-menu a:visited  { /* visited pseudo selector so IE6 applies text colour*/}
 .menu li a {}
@@ -68,7 +68,7 @@ ul.menu li span.message_count {
 	height:			10px;
 	text-indent: 	-999em;
 	overflow:		hidden;
-	background:		url('../../assets/menu/arrows-ffffff.png') no-repeat -10px -100px; /* 8-bit indexed alpha png. IE6 gets solid image only */
+	background:		url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/menu/arrows-ffffff.png) no-repeat -10px -100px; /* 8-bit indexed alpha png. IE6 gets solid image only */
 }
 a > .sf-sub-indicator {  /* give all except IE6 the correct values */
 	top:			.8em;
@@ -97,7 +97,7 @@ li.sfHover > a > .sf-sub-indicator {
 
 /*** shadows for all but IE6 ***/
 .sf-shadow ul {
-	background:	url('../../assets/menu/shadow.png') no-repeat bottom right;
+	background:	url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/menu/shadow.png) no-repeat bottom right;
 	padding: 0 10px 12px 0;
 
 }

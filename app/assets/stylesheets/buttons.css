@@ -82,7 +82,7 @@ input[type=submit]:hover, input[type=button]:hover, a.abutton:hover, .pagination
 
 input[type=submit], input[type=button] {
 	padding:4px 24px;
-	font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 } 
 
 a.abutton {
@@ -139,12 +139,12 @@ a.follow {
 	box-shadow:inset 0px 1px 0px 0px #e3e3e3;
 	text-shadow:1px 1px 0px #ccc;
 	padding:2px 12px 2px 24px;
-	background: #ededed url('/assets/icons/plusgrey.png') no-repeat 6px 5px;
+	background: #ededed url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/plusgrey.png) no-repeat 6px 5px;
 }
 
 a.follow:hover {
 	padding:2px 12px 2px 24px;
-	background: #00ac00 url('/assets/icons/plusgreen.png') no-repeat 6px 5px;
+	background: #00ac00 url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/plusgreen.png) no-repeat 6px 5px;
 	color:#fff !important;
 	-moz-box-shadow:inset 0px 1px 0px 0px #0f0;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #0f0;
@@ -155,7 +155,7 @@ a.follow:hover {
 
 a.unfollow {
 	padding:2px 12px 2px 24px;
-	background: #00ac00 url('/assets/icons/checkgreen.png') no-repeat 6px 5px;
+	background: #00ac00 url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/checkgreen.png) no-repeat 6px 5px;
 	color:#fff !important;
 	-moz-box-shadow:inset 0px 1px 0px 0px #0f0;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #0f0;
@@ -166,7 +166,7 @@ a.unfollow {
 
 a.unfollow:hover {
 	padding:2px 12px 2px 24px;
-	background: #ee0000 url('/assets/icons/cancel.png') no-repeat 6px 5px;
+	background: #ee0000 url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/cancel.png) no-repeat 6px 5px;
 	color:#fff !important;
 	-moz-box-shadow:inset 0px 1px 0px 0px #f00;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #f00;
@@ -181,13 +181,13 @@ a.delete {
 	-webkit-box-shadow:inset 0px 1px 0px 0px #e3e3e3;
 	box-shadow:inset 0px 1px 0px 0px #e3e3e3;
 	padding:2px 9px 2px 24px;
-	background: #ededed url('/assets/icons/cancel.png') no-repeat 6px 5px;
+	background: #ededed url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/cancel.png) no-repeat 6px 5px;
 	text-shadow:0 0;
 }
 
 a.delete:hover {
 	padding:2px 9px 2px 24px;
-	background: #ee0000 url('/assets/icons/cancel.png') no-repeat 6px 5px;
+	background: #ee0000 url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/cancel.png) no-repeat 6px 5px;
 	color:#fff !important;
 	-moz-box-shadow:inset 0px 1px 0px 0px #f00;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #f00;
@@ -203,7 +203,7 @@ a.like {
 	box-shadow:inset 0px 1px 0px 0px #e3e3e3;
 	text-shadow:1px 1px 0px #ccc;
 	padding:2px 12px 2px 24px;
-	background: #ededed url('/assets/icons/heartgrey.png') no-repeat 6px 5px;
+	background: #ededed url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/heartgrey.png) no-repeat 6px 5px;
 }
 
 a.like:hover {
@@ -213,17 +213,17 @@ a.like:hover {
 	border: 1px solid #c20000;
 	text-shadow:1px 1px 0px #c20000;
 	padding:2px 12px 2px 24px;
-	background: #f20000 url('/assets/icons/heartred.png') no-repeat 6px 5px;
+	background: #f20000 url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/heartred.png) no-repeat 6px 5px;
 }
 
 a.unlike {
 	padding:2px 12px 2px 24px;
-	background: #d20000 url('/assets/icons/heartred2.png') no-repeat 6px 5px;
+	background: #d20000 url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/heartred2.png) no-repeat 6px 5px;
 }
 
 a.unlike:hover {
 	padding:2px 12px 2px 24px;
-	background: #ee0000 url('/assets/icons/cancel.png') no-repeat 6px 5px;
+	background: #ee0000 url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/cancel.png) no-repeat 6px 5px;
 	color:#fff !important;
 	-moz-box-shadow:inset 0px 1px 0px 0px #f00;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #f00;
@@ -239,13 +239,13 @@ a.message {
 	box-shadow:inset 0px 1px 0px 0px #e3e3e3;
 	text-shadow:1px 1px 0px #ccc;
 	padding:2px 12px 2px 24px;
-	background: #ededed url('/assets/icons/mailgrey.png') no-repeat 6px 5px;
+	background: #ededed url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/mailgrey.png) no-repeat 6px 5px;
 }
 
 a.message:hover {
 	border: 1px solid #ddd;
 	padding:2px 12px 2px 24px;
-	background: #dedede url('/assets/icons/mailwhite.png') no-repeat 6px 5px;
+	background: #dedede url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/mailwhite.png) no-repeat 6px 5px;
 	color: #fff !important;
 }
 
@@ -254,12 +254,12 @@ input.comment_submit {
 	vertical-align:top;
 	top:0;
 	padding:3px 10px 3px 10px;
-	background: #ededed url('/assets/icons/commentgrey.png') no-repeat 3px 3px;
+	background: #ededed url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/commentgrey.png) no-repeat 3px 3px;
 }
 
 input.comment_submit:hover {
 	padding:3px 10px 3px 10px;
-	background: #7d7d7d url('/assets/icons/comment.png') no-repeat 3px 3px;
+	background: #7d7d7d url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/comment.png) no-repeat 3px 3px;
 	-moz-box-shadow:inset 0px 1px 0px 0px #aaa;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #aaa;
 	box-shadow:inset 0px 1px 0px 0px #aaa;

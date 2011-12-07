@@ -1,4 +1,7 @@
 class CartController < ApplicationController
+  
+  force_ssl
+  
   def index
     @current_cart = current_cart
     @items = @current_cart.items

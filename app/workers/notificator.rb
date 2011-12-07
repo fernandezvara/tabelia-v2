@@ -224,9 +224,17 @@ class Notificator
               # TODO : Must publish on behalf of the user and tabelia itself, better to do it below all
               case originator.language
                when 'es'
-                 text = "He publicado '#{art.name}' http://www.tabelia.com/art/#{art.slug} #tabelia"
+                 if art.photo == false
+                   text = "He publicado '#{art.name}' http://www.tabelia.com/art/#{art.slug} #tabelia"
+                 else
+                   text = "He publicado '#{art.name}' http://www.tabelia.com/photo/#{art.slug} #tabelia"
+                 end
                when 'en'
-                 text = "I have published '#{art.name}' http://www.tabelia.com/art/#{art.slug} #tabelia"
+                 if art.photo == false
+                   text = "I have published '#{art.name}' http://www.tabelia.com/art/#{art.slug} #tabelia"
+                 else
+                   text = "I have published '#{art.name}' http://www.tabelia.com/photo/#{art.slug} #tabelia"
+                 end
                end
             when 'ufu'
               case originator.language
@@ -297,7 +305,11 @@ class Notificator
           config.oauth_token = '417036554-6RJxZsjPskuSfbIvNRqpk2bQtc3Pzlm0Gqpybw8S'
           config.oauth_token_secret = 'etbvn0bXhuIY3Psuj6Go3min1k51aGzJCeWQ8ZQ0I4'
         end
-        text = "#{art.name} - #{originator.name} #tabelia http://www.tabelia.com/art/#{art.slug}"
+        if art.photo == false
+          text = "#{art.name} - #{originator.name} #tabelia http://www.tabelia.com/art/#{art.slug} #art"
+        else
+          text = "#{art.name} - #{originator.name} #tabelia http://www.tabelia.com/photo/#{art.slug} #art"
+        end
         begin
           #image = File.open(art.original.versions[:scaled].to_s)
           image = nil
@@ -322,22 +334,30 @@ class Notificator
       case _what
       when 'cou'
         # Sends a mail to the receiver if he/she allows it, telling that the originator has commented his/her profile
-        #NotifierMailer.comment_on_user(originator, receiver, comment).deliver
+        if receiver.privacy.mcp == true
+          NotifierMailer.comment_on_user(originator, receiver, comment).deliver
+        end
       when 'coa'
         # Sends a mail to the receiver if he/she allows it, telling that the originator has commented the art
-        #NotifierMailer.comment_on_art(originator, receiver, comment, art).deliver
+        if receiver.privacy.mca == true
+          NotifierMailer.comment_on_art(originator, receiver, comment, art).deliver
+        end
       when 'upa'
         # Sends a mail to each follower of originator
         receivers.each do |receiver|
-          # NotifierMailer.user_publish_art(originator, receiver, art).deliver
+          NotifierMailer.user_publish_art(originator, receiver, art).deliver
         end
-        # NotifierMailer.your_art_has_been_published(originater, art).deliver
+        NotifierMailer.your_art_has_been_published(originator, art).deliver
       when 'ufu'
         # Sends a mail to the receiver if he/she allows it, telling that the originator begins following him/her
-        #NotifierMailer.user_follows_user(originator, receiver).deliver
+        if receiver.privacy.mof == true
+          NotifierMailer.user_follows_user(originator, receiver).deliver
+        end
       when 'ula'
         # Sends a mail to the receiver if he/she allows it, telling that the originator begins liking his/her art
-        #NotifierMailer.user_likes_art(originator, receiver, art).deliver
+        if receiver.privacy.mol == true
+          NotifierMailer.user_likes_art(originator, receiver, art).deliver
+        end
       end
     rescue Exception => e
       puts e.message

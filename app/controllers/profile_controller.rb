@@ -1,6 +1,8 @@
 class ProfileController < ApplicationController
   before_filter :current_user?
   
+  force_ssl
+  
   def basic
     @user = current_user
     if params[:user]

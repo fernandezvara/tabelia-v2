@@ -9,6 +9,17 @@ class NotifierMailer < ActionMailer::Base
     end
   end
   
+  def your_art_has_been_published(user, art)
+    @user = user
+    @receiver = @user
+    @art = art
+    puts "Mail to: #{@user.email} - Subject: #{t('mail.your_art_has_been_published.subject', :art_name => @art.name)}'"
+    mail(:to => "#{@user.name} <#{@user.email}>", :subject => t('mail.your_art_has_been_published.subject', :art_name => @art.name)) do |format|
+      format.html { render :layout => 'tabeliamail' }
+    end
+  end
+  
+  
   def confirmation(user)
     I18n.locale = user.language do
       @user = user

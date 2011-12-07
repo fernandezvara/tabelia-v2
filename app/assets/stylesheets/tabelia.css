@@ -18,14 +18,17 @@
 */
 
 /* BASICS */
-body                    { font-family: Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif; color:#7d7d7d; background-color:#f7f7f7;}
+/* body                    { font-family: Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif; color:#7d7d7d; background-color:#f7f7f7;} */
+body                    { font-family: 'Helvetica Neue', 'lucida grande', verdana, arial, sans-serif; color:#7d7d7d; background-color:#f7f7f7;}
 #page					{ margin: 0 auto; background-color: #fff; padding:0; top: 65px; }
 
 section					{ padding-bottom: 0 !important; }
 hr						{ background: #c20000; }
 section#main            { min-height:50px; margin-bottom:39px; }
 
-footer                  { margin-bottom:0px; overflow:hidden; height: 136px; font-size:12px;}
+footer                  { margin-bottom:0px; overflow:hidden; height: 136px; font-size:13px;}
+footer a, footer li { font-size:12px;}
+
 footer p				{ margin: 0 10px; font-size:12px; top:0; line-height:24px;}
 .greyed                 { background-color: #f0f0f0; height:36px; }
 .greyed p 				{ line-height:36px;}
@@ -38,7 +41,7 @@ hr.nobottom             { margin-bottom:0px;}
 .header-login           { background-color: #c20000; color: #fff; height:65px; width:990px; margin: 0 auto;}
 .header-login .in       { padding: 0px 10px 0px 0px; line-height:30px; }
 .header-login .logo     { padding: 10px 15px; height: 50px; overflow:hidden; }
-.header-login h1        { text-indent: -9999px; margin:0; height:40px; width:152px; background: url(/assets/logo.png) no-repeat !important; top:0;}
+.header-login h1        { text-indent: -9999px; margin:0; height:40px; width:152px; background: url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/logo.png) no-repeat !important; top:0;}
 .header-login .logo a   { font-size:13px; line-height:13px;} 
 .header-login .search a,
 .header-login .search a:hover,
@@ -113,7 +116,7 @@ div#actions a            { top:10px; }
 
 div#add_to_cart 		 {overflow:hidden; margin-bottom:10px; text-align:center;}
 
-span.search-bg           { background:#fafafa url(/assets/icons/search.png) no-repeat !important; background-position: 290px 4px !important; display:block; padding:2px 5px; margin-top:15px; }
+span.search-bg           { background:#fafafa url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/search.png) no-repeat !important; background-position: 290px 4px !important; display:block; padding:2px 5px; margin-top:15px; }
 span.search-bg input#search  { background-color:transparent; border: 0px; color:#7d7d7d; width:278px; margin-right:20px; line-height:18px;}
 
 div#color                { cursor:pointer;}
@@ -153,7 +156,7 @@ div#photos_random { width:330px; height: 660px; overflow:hidden; }
     position:relative;
     width:660px; 
     height:350px; 
-    background:url(http://assets.tabelia.com/assets/preload.gif) no-repeat 50% 50%;
+    background:url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/preload.gif) no-repeat 50% 50%;
 	margin: 5px 0;
 }
 .nivoSlider img {

@@ -1,7 +1,7 @@
 #encoding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
-    
+  
   helper_method :current_user, :current_cart
   
   before_filter :last_page_to_session, :load_categories, :set_locale, :redirect_to_profile_edit, :rel_canonical, :confirmed?

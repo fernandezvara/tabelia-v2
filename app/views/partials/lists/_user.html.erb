@@ -26,7 +26,11 @@
     </div>
     <div class="a">
     <% arts.each do |a| %>
+      <% if a.photo == false %>
       <%= link_to image_tag(a.image.url(:thumb).to_s, :alt => a.name, :style => 'margin-right:10px;', :class => 'tip', :title => a.name), art_profile_path(:slug => a.slug) %>
+      <% else %>
+      <%= link_to image_tag(a.image.url(:thumb).to_s, :alt => a.name, :style => 'margin-right:10px;', :class => 'tip', :title => a.name), photo_profile_path(:slug => a.slug) %>
+      <% end %>
     <% end %>
     </div>
 

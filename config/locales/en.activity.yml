@@ -27,6 +27,9 @@ en:
             thanks_for_create_your_account: 'Thanks for create an account on our site!'
             please_follow_this_link: 'Please, follow this link '
             to_confirm_your_account: 'to confirm your account creation.'
+        your_art_has_been_published:
+            subject: '%{art_name} has been published'
+            text: "Your art '%{art_name}' has been published."
     activity:
         title: 'RECENT ACTIVITY'
         comment_on_profile:

@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  
+  force_ssl :only => [ :new, :create, :create_external ]
+  
   def new
     @user = User.new
     @title = t('sessions.new.title')

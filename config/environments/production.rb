@@ -42,7 +42,7 @@ Tabelia::Application.configure do
   config.cache_store = :redis_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  config.action_controller.asset_host = "http://assets.tabelia.com"
+  config.action_controller.asset_host = "s3-eu-west-1.amazonaws.com/assets.tabelia.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += [ 'tabelia.js', 'admin.js', 'admin.css', 'tabelia.css' ]

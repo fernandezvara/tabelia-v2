@@ -2,7 +2,7 @@ class ColorController < ApplicationController
   def index
     if params[:color]
       @color = params[:color]
-      relations = Color.near_colors(params[:color], 8)
+      relations = Color.near_colors(params[:color], 4)
       @arts = Array.new
       case params[:view]
       when "1"

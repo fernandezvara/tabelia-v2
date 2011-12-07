@@ -6,21 +6,23 @@ version 0.5
 */
 
 /******************** Reset ********************/
-html, body, div, span, a, img,
-h1, h2, h3, h4, h5, h6, hgroup, p,
+html, body, div, span, a, p, img
+h1, h2, h3, h4, h5, h6, hgroup,
 dl, dialog, dt, dd, ol, ul, li, 
 abbr, acronym, address, b, big, blockquote, 
 cite, code, del, dfn, em, i, ins, kbd, pre, q, 
 samp, tt, var, small, strong, sub, sup, 
 object, iframe, form, fieldset, label, legend, 
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, footer, header, nav, section,
+article, aside, header, nav, section,
 figure, menu, time, mark, audio, video						{ font-family: inherit; font-size: 100%; font-weight: inherit; font-style: inherit; vertical-align: baseline; white-space: normal; text-align: left; margin: 0; padding: 0; border: 0; outline: 0; background: transparent; }
 textarea													{ font-family: inherit; font-size: 100%; font-weight: normal; font-style: normal; white-space: normal; text-align: left; margin: 0; padding: 0; }
 article, aside, footer, header, nav, section,
 dialog, figure, hgroup, menu								{ display: block; }
 
-h1, h2, h3, h4, h5, h6										{ font-size: 100%; font-weight: normal; }
+
+
+h1, h2, h3, h4, h5, h6										{ font-size: 90%; font-weight: normal; }
 del, ins													{ text-decoration: none; }
 ol, ul														{ list-style: none; }
 nav ul														{ list-style-type: none; }
@@ -75,30 +77,30 @@ h1, h2, h3, h4, h5      			{ position: relative; color: #464646;}
 h1, h2								{ line-height: 28px; margin-bottom: 25px; }
 h1, h2, h3, h4						{ margin-top: 18px; }
 h3, h4, h5      					{ line-height: 18px; }
-h1									{ font-size: 28px; top: 10px; }
-h2									{ font-size: 22px; top: 10px; }
-h3									{ font-size: 18px; top: 1px; }
+h1									{ font-size: 24px; top: 10px; }
+h2									{ font-size: 19px; top: 10px; }
+h3									{ font-size: 16px; top: 1px; }
 h4									{ font-size: 15px; top: 2px; }
-h5									{ font-size: 13px; top: 4px; }
+h5									{ font-size: 12px; top: 4px; }
 h1:first-child,
 h2:first-child,
 h3:first-child,
 h4:first-child						{ margin-top: 0; margin-left:10px;}
 
-p									{ font-size: 13px; line-height: 18px; position: relative; top: 5px; display:block; }
+p									{ font-size: 11px; line-height: 16px; position: relative; top: 3px; display:block; }
 pre { top: 200px;}
-small								{ font-size: 11px; }
+small								{ font-size: 10px; }
 abbr, code, kbd,
 samp, small, var					{ line-height: 15px; }
-ul, ol, dl, dialog					{ font-size: 13px; line-height: 18px; position: relative; top: 5px; margin-bottom: 10px; }
+ul, ol, dl, dialog					{ font-size: 11px; line-height: 18px; position: relative; top: 5px; margin-bottom: 10px; }
 li ul, li ol, ul ul, ol ol			{ top: 0; margin-top: 0; margin-bottom: 0; }
 li h1, li h2, li h3,
 li h4, li h5, li h6,
 li p								{ top: 0; }
-form, legend, label					{ font-size: 13px; line-height: 18px; }
+form, legend, label					{ font-size: 11px; line-height: 18px; }
 legend								{ position: relative; top: 5px; }
-table								{ font-size: 13px; }
-caption								{ font-size: 13px; line-height: 18px; position: relative; }
+table								{ font-size: 11px; }
+caption								{ font-size: 11px; line-height: 18px; position: relative; }
 hr									{ position: relative; height: 4px; margin: 0 0 10px 0; }
 
 

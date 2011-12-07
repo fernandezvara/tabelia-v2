@@ -6,7 +6,7 @@
   <%= stylesheet_link_tag    "tabelia" %>
   <% if controller_name == 'pages' and action_name == 'index' %>
   <style type="text/css">
-    div.frontpage h2.logo { text-indent: -9999px; width:330px; height:200px; background: url(http://assets.tabelia.com/assets/welcome/h2-<%= I18n.locale.to_s %>.png) no-repeat !important; margin-left:0px; margin-bottom:0px;}
+    div.frontpage h2.logo { text-indent: -9999px; width:330px; height:200px; background: url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/welcome/h2-<%= I18n.locale.to_s %>.png) no-repeat !important; margin-left:0px; margin-bottom:0px;}
   </style>
   <% end %>
   <%= javascript_include_tag "tabelia" %>
@@ -54,7 +54,7 @@
     <% end %>
   <% end %>
   
-  <link href='http://fonts.googleapis.com/css?family=Cabin&amp;v2' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Cabin&amp;v2' rel='stylesheet' type='text/css'>
   <% if flash.count > 0 %>
   <script type="text/javascript">
   $(document).ready(function() {
