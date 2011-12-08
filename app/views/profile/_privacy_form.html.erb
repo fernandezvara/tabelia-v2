@@ -44,17 +44,34 @@
   <div class="input optional <%= "field_with_errors" if @privacy.errors.keys.include?(:mol) %>">
     <label class="optional" for="privacy_mol"><%= t("simple_form.labels.mol") %></label>
     <%= collection_select('privacy', 'mol', [[false, t('simple_form.labels.molf')] ,[true, t('simple_form.labels.molt')]], :first, :last, :prompt => false) %>
-    <script type="text/javascript">
-      $("select#privacy_sos").attr("title", "<%= t('simple_form.titles.sos') %>");
-      $("select#privacy_acp").attr("title", "<%= t('simple_form.titles.acp') %>");
-      $("select#privacy_aca").attr("title", "<%= t('simple_form.titles.aca') %>");   
-      $("select#privacy_mom").attr("title", "<%= t('simple_form.titles.mom') %>");
-      $("select#privacy_mcp").attr("title", "<%= t('simple_form.titles.mcp') %>");
-      $("select#privacy_mca").attr("title", "<%= t('simple_form.titles.mca') %>");
-      $("select#privacy_mof").attr("title", "<%= t('simple_form.titles.mof') %>");
-      $("select#privacy_mol").attr("title", "<%= t('simple_form.titles.mol') %>");
-    </script>
   </div>
+  <p class="division"><%= t('simple_form.labels.profile_networks')%></p>
+  <div class="input optional <%= "field_with_errors" if @privacy.errors.keys.include?(:paf) %>">
+    <label class="optional" for="privacy_paf"><%= t("simple_form.labels.paf") %></label>
+    <%= collection_select('privacy', 'paf', [[false, t('simple_form.labels.do_not_allow')] ,[true, t('simple_form.labels.allow')]], :first, :last, :prompt => false) %>
+  </div>
+  <div class="input optional <%= "field_with_errors" if @privacy.errors.keys.include?(:pat) %>">
+    <label class="optional" for="privacy_pat"><%= t("simple_form.labels.pat") %></label>
+    <%= collection_select('privacy', 'pat', [[false, t('simple_form.labels.do_not_allow')] ,[true, t('simple_form.labels.allow')]], :first, :last, :prompt => false) %>
+  </div>
+  <div class="input optional <%= "field_with_errors" if @privacy.errors.keys.include?(:pag) %>">
+    <label class="optional" for="privacy_pap"><%= t("simple_form.labels.pag") %></label>
+    <%= collection_select('privacy', 'pag', [[false, t('simple_form.labels.do_not_allow')] ,[true, t('simple_form.labels.allow')]], :first, :last, :prompt => false) %>
+  </div>
+
+  <script type="text/javascript">
+    $("select#privacy_sos").attr("title", "<%= t('simple_form.titles.sos') %>");
+    $("select#privacy_acp").attr("title", "<%= t('simple_form.titles.acp') %>");
+    $("select#privacy_aca").attr("title", "<%= t('simple_form.titles.aca') %>");   
+    $("select#privacy_mom").attr("title", "<%= t('simple_form.titles.mom') %>");
+    $("select#privacy_mcp").attr("title", "<%= t('simple_form.titles.mcp') %>");
+    $("select#privacy_mca").attr("title", "<%= t('simple_form.titles.mca') %>");
+    $("select#privacy_mof").attr("title", "<%= t('simple_form.titles.mof') %>");
+    $("select#privacy_mol").attr("title", "<%= t('simple_form.titles.mol') %>");
+    $("select#privacy_paf").attr("title", "<%= t('simple_form.titles.paf') %>");
+    $("select#privacy_pat").attr("title", "<%= t('simple_form.titles.pat') %>");
+    $("select#privacy_pag").attr("title", "<%= t('simple_form.titles.pag') %>");
+  </script>
   <%= submit_tag t('helpers.submit.user.update'),   :disable_with => t('common.working') %>
   
 <% end %>

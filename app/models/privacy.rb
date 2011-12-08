@@ -12,7 +12,11 @@ class Privacy
   field :mca, :type => Boolean, :default => true # mail on comment on art         0 - no, 1 - yes
   field :mof, :type => Boolean, :default => true # mail on follow                 0 - no, 1 - yes
   field :mol, :type => Boolean, :default => true # mail on like                   0 - no, 1 - yes
-
+  
+  field :paf, :type => Boolean, :default => true # facebook allow publish
+  field :pat, :type => Boolean, :default => true # twitter allow publish
+  field :pag, :type => Boolean, :default => true # google+ allow publish
+  
   embedded_in :user
   
 end

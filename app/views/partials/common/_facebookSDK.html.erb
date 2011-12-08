@@ -1,0 +1,18 @@
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({ appId: '195975813810721', channelUrl: '//www.tabelia.com/channel/<%= I18n.locale.to_s.downcase %>', status: true, cookie: true, oauth: true, xfbml: true });
+  };
+
+  (function(d){
+     var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     <% case I18n.locale.to_s.downcase %>
+     <% when 'en' %>
+     js.src = "//connect.facebook.net/en_US/all.js";
+     <% when 'es' %>
+     js.src = "//connect.facebook.net/es_ES/all.js";
+     <% end %>
+     d.getElementsByTagName('head')[0].appendChild(js);
+   }(document));
+</script>

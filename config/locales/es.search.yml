@@ -20,7 +20,7 @@ es:
         subjects: 'Temas:'
         subjects_prompt: "Todos los temas"
         search_by_color: 'BÚSQUEDA POR COLOR'
-        search: 'Buscar'
+        search_button: 'Buscar'
         there_are_no_entries: 'No se han encontrado obras con esos criterios.'
         view_all: 'Ver todo'
         only_art: 'Solo cuadros'

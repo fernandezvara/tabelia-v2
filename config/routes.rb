@@ -88,7 +88,7 @@ Tabelia::Application.routes.draw do
   match 'help/big_art',                :controller => 'pages',   :action => 'big_art',      :as => 'page_big_art'
   match 'help/how_to_sell',            :controller => 'pages',   :action => 'how_to_sell',  :as => 'page_how_to_sell'
   match 'help/how_to_buy',             :controller => 'pages',   :action => 'how_to_buy',   :as => 'page_how_to_buy'
-  match 'help/buyer_steps',            :controller => 'pages',   :action => 'buyer_steps',  :as => 'page_buyer_steps'
+  match 'help/shopping',               :controller => 'pages',   :action => 'shopping',  :as => 'page_shopping'
   match 'help/paintings',      :controller => 'pages',   :action => 'publish_paintings',  :as => 'page_publish_paintings'
   match 'help/photos',         :controller => 'pages',   :action => 'publish_photos',     :as => 'page_publish_photos'
       
@@ -116,6 +116,9 @@ Tabelia::Application.routes.draw do
   resources :users, :only => [:index, :edit, :create, :update] do
     get 'page/:page', :action => :index, :on => :collection
   end
+  
+  # FACEBOOK specific
+  match 'channel/:locale', :controller => 'pages', :action => 'channel'
   
   match 'robots.(:format)' => 'robots#index'
   root :to => 'pages#index'

@@ -2,10 +2,14 @@
 class MessagesController < ApplicationController
   
   def inbox
-    @conversations = current_user.conversations.order_by(:updated_at, :desc)
-    respond_to do |format|
-      format.html { render :layout => 'main' }
-      format.js
+    if current_user 
+      @conversations = current_user.conversations.order_by(:updated_at, :desc)
+      respond_to do |format|
+        format.html { render :layout => 'main' }
+        format.js
+      end
+    else
+      redirect_to :root
     end
   end
   

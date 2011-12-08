@@ -1,5 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
+<% if controller_name == 'arts' and action_name == 'show' %>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/Painting">
+<% else %>
+  <% if controller_name == 'photos' and action_name == 'show' %>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/Photograph">
+  <% else %>
+    <% if controller_name == 'users' and action_name == 'show' %>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/Person">
+    <% else %>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/">
+    <% end %>
+  <% end %>
+<% end %>
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# tabelia: http://ogp.me/ns/fb/tabelia#">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title><%= title %></title>
@@ -12,21 +24,26 @@
   <%= javascript_include_tag "tabelia" %>
   <%= csrf_meta_tags %>
   
-  <link href="http://assets.tabelia.com/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-  <link href="http://assets.tabelia.com/favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="//s3-eu-west-1.amazonaws.com/assets.tabelia.com/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="//s3-eu-west-1.amazonaws.com/assets.tabelia.com/favicon.ico" rel="icon" type="image/x-icon"/>
   <link rel="canonical" href="<%= @canonical %>" />
   <meta property="fb:app_id" content="195975813810721" />
-  <meta preperty="og:site_name" content="tabelia">
+  <meta property="og:site_name" content="tabelia">
   <meta property="og:url" content="<%= @canonical %>" /> 
+  <meta itemprop="url" content="<%= @canonical %>" />
   <% if controller_name == "arts" or controller_name == "photos" %>
     <% if action_name == "show" %>
       <meta property="og:type" content="tabelia:art" /> 
       <meta property="og:title" content="<%= @art.name %>"/>
       <meta property="og:description" content="<%= @art.description.to_s %>" />
+      <meta itemprop="name" content="<%= @art.name %>">
+      <meta itemprop="description" content="<%= @art.description.to_s %>">
       <% if @art.image.to_s.nil? == true %>
       <meta property="og:image" content="http://assets.tabelia.com<%= @art.image.url(:thumb).to_s %>" />
+      <meta itemprop="image" content="http://assets.tabelia.com<%= @art.image.url(:thumb).to_s %>">
       <% else %>
-      <meta property="og:image" content="<%= @art.image.url(:thumb).to_s %>" />
+      <meta property="og:image" content="http:<%= @art.image.url(:splash).to_s %>" />
+      <meta itemprop="image" content="http:<%= @art.image.url(:splash).to_s %>" />
       <% end %>
       <% cache("art-tags-#{@art.slug}", :expire_in => 1.day) do %>
       <meta name="description" content="<%= @art.description %>" />
@@ -38,10 +55,12 @@
       <meta property="og:type" content="tabelia:artist" /> 
       <meta property="og:title" content="<%= @user.name %>"/>
       <meta property="og:description" content="<%= @user.about.to_s %>" />
+      <meta itemprop="name" content="<%= @user.name %>">
+      <meta itemprop="description" content="<%= @user.about.to_s %>">
       <% if @user.avatar.to_s.nil? == true %>
       <meta property="og:image" content="http://assets.tabelia.com<%= @user.avatar.url(:thumb).to_s %>" />
       <% else %>
-      <meta property="og:image" content="<%= @user.avatar.url(:thumb).to_s %>" />
+      <meta property="og:image" content="http:<%= @user.avatar.url(:thumb).to_s %>" />
       <% end %>
       <% cache("user-tags-#{@user.username}", :expire_in => 1.day) do %>
       <meta name="description" content="<%= @user.about.to_s %>" />
@@ -54,7 +73,7 @@
     <% end %>
   <% end %>
   
-  <link href='//fonts.googleapis.com/css?family=Cabin&amp;v2' rel='stylesheet' type='text/css'>
+  <!-- <link href='//fonts.googleapis.com/css?family=Cabin&amp;v2' rel='stylesheet' type='text/css'> -->
   <% if flash.count > 0 %>
   <script type="text/javascript">
   $(document).ready(function() {

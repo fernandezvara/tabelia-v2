@@ -8,8 +8,8 @@ $(document).ready(function(){
     autoArrows:  true,
     dropShadows: false
     });
-	$.facebox.settings.closeImage = 'http://assets.tabelia.com/assets/facebox/closelabel.png';
-	$.facebox.settings.loadingImage = 'http://assets.tabelia.com/assets/preload.gif';
+	$.facebox.settings.closeImage = '//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/facebox/closelabel.png';
+	$.facebox.settings.loadingImage = '//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/preload.gif';
 	$('a[rel*=modal]').live("mousedown", function() { 
 	    $(this).unbind('click'); //everytime you click unbind the past event handled.
 	    $(this).facebox();

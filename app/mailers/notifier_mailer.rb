@@ -21,13 +21,12 @@ class NotifierMailer < ActionMailer::Base
   
   
   def confirmation(user)
-    I18n.locale = user.language do
-      @user = user
-      puts "Mail to: #{@user.email} - Subject: #{t('mail.confirmation.subject', :user_name => user.name)}'"
-      mail(:to => "#{@user.name} <#{@user.email}>", :subject => t('mail.confirmation.subject', :user_name => user.name)) do |format|
-        format.text
-        format.html { render :layout => 'tabeliamail' }
-      end
+    I18n.locale = user.language
+    @user = user
+    puts "Mail to: #{@user.email} - Subject: #{t('mail.confirmation.subject', :user_name => @user.name)}'"
+    mail(:to => "#{@user.name} <#{@user.email}>", :subject => t('mail.confirmation.subject', :user_name => @user.name)) do |format|
+      format.text
+      format.html { render :layout => 'tabeliamail' }
     end
   end
   

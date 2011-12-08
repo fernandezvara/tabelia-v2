@@ -16,7 +16,7 @@
         </ul>
         <ul class="footer_ul">
           <li><%= link_to t('common.how_to_buy'), page_how_to_buy_path %></li>
-          <li>TODO</li>
+          <li><%= link_to t('common.shopping_process'), page_shopping_path %></li>
           <li>TODO</li>
         </ul>
         <ul class="footer_ul">
@@ -33,3 +33,12 @@
     	  <p class="align-right">Copyright &copy; 2011. All Rights Reserved</p>
     	</div>
     </footer>
+    <script type="text/javascript">
+      window.___gcfg = {lang: '<%= I18n.locale.to_s %>'};
+
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>

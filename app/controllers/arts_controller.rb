@@ -77,11 +77,15 @@ class ArtsController < ApplicationController
 
   def user_art_show
     @user = User.where(:username => params[:username]).first
-    @arts = @user.arts.where(:photo => false, :accepted => true, :status => true).page(params[:page]).per(30)
-    @title = t("users.index.title")
-    respond_to do |format|
-      format.html { render :layout => 'main' }
-      format.js
+    if @user.nil? == true
+      show_404
+    else   
+      @arts = @user.arts.where(:photo => false, :accepted => true, :status => true).page(params[:page]).per(30)
+      @title = t("users.index.title")
+      respond_to do |format|
+        format.html { render :layout => 'main' }
+        format.js
+      end
     end
   end
 

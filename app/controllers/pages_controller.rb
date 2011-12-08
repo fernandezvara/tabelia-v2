@@ -123,7 +123,7 @@ class PagesController < ApplicationController
     end
   end
 
-  def buyer_process
+  def shopping
     @title = t('common.steps_buyer_steps')
     respond_to do |format|
       format.html do
@@ -179,11 +179,24 @@ class PagesController < ApplicationController
     end
   end
 
-  def confirmation
+  def confirmation  
     respond_to do |format|
       format.html do 
         render :layout => 'application'
       end
     end
   end
+  
+  def channel
+    @locale = params[:locale]
+    response.headers["Cache-Control"] = "max-age=#{60*60*24*365}"
+    response.headers["Pragma"] = "public"
+    response.headers["Expires"] = Time.now + 1.year
+    respond_to do |format|
+      format.html do 
+        render :layout => 'blank'
+      end
+    end
+  end
+  
 end

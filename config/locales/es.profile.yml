@@ -43,6 +43,12 @@ es:
             mol: 'Me gusta'
             molt: 'Si, recibir un correo cuando a alguien le guste una obra'
             molf: 'No deseo recibir este tipo de notificación'
+            profile_networks: 'PUBLICACIÓN EN REDES SOCIALES'
+            paf: 'Facebook'
+            pat: 'Twitter'
+            pag: 'Google'
+            do_not_allow: 'No publicar'
+            allow: 'Publicación permitida'
         titles: 
             name: "Escribe el nombre que quieras que otros vean"
             username: "Escribe el nombre de usuario que deseas"
@@ -63,6 +69,9 @@ es:
             mca: "Selecciona si deseas recibir una notificación cuando alguien comente en tus obras"
             mof: "Selecciona si deseas recibir una notificación cuando alguien se haga seguidor tuyo"
             mol: "Selecciona si deseas recibir una notificación cuando alguien diga que le gusta una obra tuya"
+            paf: "Selecciona si quieres que tabelia publique en tu muro cuando añadas una foto o pintura a tu perfil. Enlazará a tu obra directamente."
+            pat: "Selecciona si quieres que tabelia publique cuando añadas una obra o digas que te gusta, o cuando comiences a seguir a otro usuario."
+            pag: "Selecciona si quieres que tabelia publique en google+ por tí (Actualmente no se publica en google+ ningún evento)"
         hints:
             username: 'Sólo letras, números, guiones (-) y guiones bajos (_) están permitidos'
             gender: 'El sexo no se publica en tu perfil'

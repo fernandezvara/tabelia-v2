@@ -7,11 +7,11 @@
 <div id="slider" class="nivoSlider">
   <% case I18n.locale.to_s %>
   <% when 'en' %>
-    <img src="http://assets.tabelia.com/assets/welcome/slide_01_en.jpg" alt="" />
-    <img src="http://assets.tabelia.com/assets/welcome/slide_02_en.jpg" alt="" />
+    <a href="/help/how_to_buy"><img src="//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/welcome/slide_01_en.jpg" alt="Buy art" /></a>
+    <a href="/help/how_to_sell"><img src="//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/welcome/slide_02_en.jpg" alt="Sell your art" /></a>
   <% when 'es' %>
-    <img src="http://assets.tabelia.com/assets/welcome/slide_01_es.jpg" alt="" />
-    <img src="http://assets.tabelia.com/assets/welcome/slide_02_es.jpg" alt="" />
+    <a href="/help/how_to_buy"><img src="//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/welcome/slide_01_es.jpg" alt="Compra arte" /></a>
+    <a href="/help/how_to_sell"><img src="//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/welcome/slide_02_es.jpg" alt="Vende tus obras" /></a>
   <% end %>
 </div>
 
@@ -30,6 +30,7 @@
 
 <% content_for :right do %>
 <div class="special-right left">
+  <%= render :partial => 'partials/common/share' %>
   <div class="clearfix"></div>
     <p class="s14 b" style="margin:5px 10px"><%= t('common.trending_paintings') %></p>
   <% cache(@popular_paintings_cache) do %>

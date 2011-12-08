@@ -21,6 +21,7 @@
 
 <% content_for :right do %>
 <div class="special-right left">
+  <%= render :partial => 'partials/common/share' %>
   <div class="clearfix"></div>
   <p class="s14 b" style="margin:5px 10px"><%= t('common.trending_paintings') %></p>
   <% cache(@popular_paintings_cache, :expire_in => 1.hour) do %>

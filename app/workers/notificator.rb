@@ -281,7 +281,11 @@ class Notificator
             when 'ufu'
               fb_user.og_action!('tabelia:follow', :artist => "http://www.tabelia.com/user/#{receiver.username}")
             when 'ula'
-              fb_user.og_action!('tabelia:like', :art => "http://www.tabelia.com/art/#{art.slug}", :artist => "http://www.tabelia.com/user/#{receiver.username}")
+              if art.photo == false
+                fb_user.og_action!('tabelia:like', :art => "http://www.tabelia.com/art/#{art.slug}", :artist => "http://www.tabelia.com/user/#{receiver.username}")
+              else
+                fb_user.og_action!('tabelia:like', :art => "http://www.tabelia.com/photo/#{art.slug}", :artist => "http://www.tabelia.com/user/#{receiver.username}")
+              end
             end
           rescue
             puts 'Error al publicar en Facebook'
@@ -294,10 +298,11 @@ class Notificator
     end
     
     ##### tabelia stream on facebook and twitter
-    begin
-      case _what
-      when 'upa'
+    
+    case _what
+    when 'upa'
         # twitter
+      begin
         Twitter.configure do |config|
           # TODO: must be an environment variable
           config.consumer_key = 'bqe8mTvQ0eBsLr3jHTkg'
@@ -324,10 +329,30 @@ class Notificator
           #options['status'] = text
           Twitter.update_with_media(text, image, options)
         end
+      rescue Exception => e
+        puts "Error twitter desde @tabelia_com: #{e.message}"
       end
-    rescue Exception => e
-      puts "Error twitter desde @tabelia_com: #{e.message}"
+        #facebook! 
+      begin
+        app = FbGraph::Application.new('195975813810721').fetch
+        token = app.get_access_token('6dd0f434bedf217c06d3205dd2bb1e59')
+        if art.photo == false
+          link = "http://www.tabelia.com/art/#{art.slug}"
+        else
+          link = "http://www.tabelia.com/photo/#{art.slug}"
+        end
+        app.feed!(
+        :name => art.name,
+        :caption => art.user.name,
+        :description => art.description,
+        :picture => 'http:' + art.image.url(:splash).to_s,
+        :link => link,
+        :access_token => token)
+      rescue Exception => e
+        puts "Error facebook al publicar en la página: #{e.message}"
+      end
     end
+    
     
     # mail - last since it's the most time consuming task
     begin
@@ -345,7 +370,7 @@ class Notificator
       when 'upa'
         # Sends a mail to each follower of originator
         receivers.each do |receiver|
-          NotifierMailer.user_publish_art(originator, receiver, art).deliver
+          #NotifierMailer.user_publish_art(originator, receiver, art).deliver
         end
         NotifierMailer.your_art_has_been_published(originator, art).deliver
       when 'ufu'

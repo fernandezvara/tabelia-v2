@@ -43,6 +43,12 @@ en:
             mol: 'Likes'
             molt: 'Yes, I want to receive an email when someone likes one of my arts'
             molf: "No, I don't want to receive emails when someone likes my art"
+            profile_networks: 'PUBLISHING TO SOCIAL NETWORKS'
+            paf: 'Facebook'
+            pat: 'Twitter'
+            pag: 'Google'
+            do_not_allow: 'Not allowed'
+            allow: 'Publish allowed'
         titles: 
             name: "Write the name others will see"
             username: "Write the username you want to have"
@@ -63,6 +69,9 @@ en:
             mca: "Select if you want to receive an email when someone comment your arts"
             mof: "Select if you want to receive an email when someone follows you"
             mol: "Select if you want to receive an email when someone like your art"
+            paf: "Select if you allow tabelia to publish in your stream when you add a photograph or painting"
+            pat: "Select if you allow tabelia to publish tweets when you add or like a photograph or painting and when you follow an user"
+            pag: "Select if you allow tabelia to publish actions on your behalf (Not used at the moment)"
         hints:
             username: 'Only letters, numbers, hyphens (-) and underscores (_) are allowed'
             gender: "Your gender won't be published on your profile"

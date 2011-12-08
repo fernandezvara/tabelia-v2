@@ -1,6 +1,7 @@
 /* TAGS */
 a.tag {
 	font-size:12px;
+	line-height:24px;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border-radius: 2px;
@@ -14,7 +15,7 @@ a.tag:hover {
 }
 
 p.tags {
-	line-height:23px;
+	line-height:24px;
 }
 /* BOXES */
 .box {

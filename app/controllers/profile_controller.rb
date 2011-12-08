@@ -70,7 +70,11 @@ class ProfileController < ApplicationController
     @privacy = current_user.privacy
     if params[:privacy]
       if @privacy.update_attributes(params[:privacy])
-        current_user.save
+        u = current_user
+        u.fap = params[:privacy][:fap]
+        u.tap = params[:privacy][:tap]
+        u.gap = params[:privacy][:gap]
+        u.save
         # update arts, applies new privacy settings
         arts = current_user.arts.all
         arts.each do |art|
