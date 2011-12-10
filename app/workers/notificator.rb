@@ -334,20 +334,31 @@ class Notificator
       end
         #facebook! 
       begin
-        app = FbGraph::Application.new('195975813810721').fetch
-        token = app.get_access_token('6dd0f434bedf217c06d3205dd2bb1e59')
+        #app = FbGraph::Application.new('195975813810721').fetch
+        #token = app.get_access_token('6dd0f434bedf217c06d3205dd2bb1e59')
         if art.photo == false
           link = "http://www.tabelia.com/art/#{art.slug}"
         else
           link = "http://www.tabelia.com/photo/#{art.slug}"
         end
-        app.feed!(
-        :name => art.name,
-        :caption => art.user.name,
-        :description => art.description,
-        :picture => 'http:' + art.image.url(:splash).to_s,
-        :link => link,
-        :access_token => token)
+        #app.feed!(
+        #:name => art.name,
+        #:caption => art.user.name,
+        #:description => art.description,
+        #:picture => 'http:' + art.image.url(:splash).to_s,
+        #:link => link,
+        #:access_token => token)
+        page = FbGraph::Page.new('285048508193773')
+        page.access_token = 'AAACyPSzESiEBAPOpXqcq6kXwtwlSKisHYCIsiFGFxk7tCLm4S9gvYgYUSMZCqY24LPxoKCjpQFvQ3DjlEZBlJNdcZBz7xFzytxhlqXOIAZDZD'
+        page.feed!(
+          :message => "#{art.name} - #{art.user.name}",
+          :name => art.name,
+          :caption => art.user.name,
+          :description => art.description,
+          :picture => "http:#{art.image.url(:splash).to_s}",
+          :link => link
+        )
+        
       rescue Exception => e
         puts "Error facebook al publicar en la página: #{e.message}"
       end

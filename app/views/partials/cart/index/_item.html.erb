@@ -17,7 +17,7 @@
       <thead>
         <tr>
           <th colspan="2">
-            <p class="s14">DETAILS</p>
+            <p class="s14"><%= t('cart.details') %></p>
           </th>
           <th colspan="2">
             <p></p>
@@ -26,27 +26,35 @@
       </thead>
       <tbody>
         <tr>
-          <td>Height:</td>
-          <td><%= item.height %>cm</td>
-          <td>Artist:</td>
+          <td><%= t("cart.height")%></td>
+          <td><%= item.height %> cm</td>
+          <td><%= t("cart.artist")%></td>
           <td><%= number_to_currency(artist_price, :unit => '€') %></td>
         </tr>
         <tr>
-          <td>Width:</td>
-          <td><%= item.width %>cm</td>
-          <td>Tabelia:</td>
+          <td><%= t("cart.width")%></td>
+          <td><%= item.width %> cm</td>
+          <td><%= t("cart.manipullation") %></td>
           <td><%= number_to_currency(tabelia_price, :unit => '€') %></td>
         </tr>
         <tr>
-          <td>Media:</td>
-          <td>value / option</td>
+          <td><%= t("cart.media") %></td>
+          <td><%= t("media.id_#{item.media_id}")%></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
-          <td>Framed:</td>
-          <td></td>
-          <td>Total:</td>
+          <% if item.media_id == 3 %>
+          <td><%= t("cart.framed_canvas") %></td>
+            <% if item.frame == true %>
+            <td><%= t('common.oyes') %></td>
+            <% else %>
+            <td><%= t('common.ono') %></td>
+            <% end %>
+          <% else %>
+          <td></td><td></td>
+          <% end %>
+          <td><%= t("cart.total") %></td>
           <td><%= number_to_currency(total_price, :unit => '€') %></td>
         </tr>
       </tbody>

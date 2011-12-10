@@ -12,7 +12,7 @@
     <div class="image_thumb">
       <%= link_to image_tag(@art.user.avatar.url(:thumb).to_s, :alt => @art.user.name), user_profile_path(:username => @art.user.username) %>
     </div>
-    <div class="userinfo right" itemprop="creator" itemscope itemtype="http://schema.org/Person">
+    <div class="userinfo right" itemprop="author" itemscope itemtype="http://schema.org/Person">
       <p><%= link_to raw("<span itemprop=\"name\">") + @art.user.name + raw("</span>"), user_profile_path(:username => @art.user.username), :itemprop => 'url' %></p>
       <br />
       <% followers = GraphClient.get_count('Backward', 'Follow', @art.user) %>

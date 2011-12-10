@@ -6,4 +6,4 @@
 <p><%= address.county if address.county.nil? == false %></p>
 <p><%= address.postalcode %></p>
 <p><%= address.country.name %></p>
-<p><%= link_to 'Edit', edit_address_path(address), :rel => 'modal' %></p>
+<p><%= link_to t('cart.edit'), edit_address_path(address), :rel => 'modal' %></p>

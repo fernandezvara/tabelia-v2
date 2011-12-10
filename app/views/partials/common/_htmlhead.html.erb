@@ -16,11 +16,6 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title><%= title %></title>
   <%= stylesheet_link_tag    "tabelia" %>
-  <% if controller_name == 'pages' and action_name == 'index' %>
-  <style type="text/css">
-    div.frontpage h2.logo { text-indent: -9999px; width:330px; height:200px; background: url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/welcome/h2-<%= I18n.locale.to_s %>.png) no-repeat !important; margin-left:0px; margin-bottom:0px;}
-  </style>
-  <% end %>
   <%= javascript_include_tag "tabelia" %>
   <%= csrf_meta_tags %>
   
@@ -30,6 +25,7 @@
   <meta property="fb:app_id" content="195975813810721" />
   <meta property="og:site_name" content="tabelia">
   <meta property="og:url" content="<%= @canonical %>" /> 
+  <meta property="fb:admins" content="1615327419"/>
   <meta itemprop="url" content="<%= @canonical %>" />
   <% if controller_name == "arts" or controller_name == "photos" %>
     <% if action_name == "show" %>

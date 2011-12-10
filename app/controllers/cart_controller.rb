@@ -51,7 +51,7 @@ class CartController < ApplicationController
     end   
 
     if @invoice_address
-      @total_payment_taxes = Taxes.calculate(@invoice_address.country_id.upcase, @invoice_address.is_company, @total_payment_tabelia).round(2)
+      @total_payment_taxes = Taxes.calculate(@invoice_address.country_id.upcase, @invoice_address.is_company, @subtotal_payment).round(2)
       @total_payment = (@subtotal_payment + @total_payment_taxes).round(2)
       # falta añadir transporte
     else
@@ -96,7 +96,7 @@ class CartController < ApplicationController
     #Taxes...
     @invoice_address = Address.find(session[:invoice_address])
     # falta añadir transporte!!!
-    @total_payment_taxes = Taxes.calculate(@invoice_address.country_id.upcase, @invoice_address.is_company, @total_payment_tabelia).round(2)
+    @total_payment_taxes = Taxes.calculate(@invoice_address.country_id.upcase, @invoice_address.is_company, @subtotal_payment).round(2)
     @total_payment = (@subtotal_payment + @total_payment_taxes).round(2)
     
     puts "subtotal: #{@subtotal_payment}"

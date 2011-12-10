@@ -196,15 +196,33 @@ class Art
     # margins, especifica el margen a añadir
     margin = 3
     # paper prices
-    paper_1 = 0.12 # Coste lienzo
-    paper_2 = 0.16 # Coste papel texturado
+    papers = Hash.new
+    papers[1] = 0.021 # poster 
+    papers[2] = 0.029 # foto
+    papers[3] = 0.089 # lienzo
+    papers[4] = 0.080 # texturado
+
     # frame
-    frame_cost = 20
+    frame_cms = ((width + height) * 2)
+    meters_round = (frame_cms / 100).ceil
+    cost_frame = 2  # 2 euros per lineal meter
+    total_frame = cost_frame * meters_round
+    
     # Costes de manipulacion
-    manipullation_cost = 15
-    manipullation_cost_cm = 0.30 # por centimetro
+    case paper_id    # manipullation cost varies from paper type
+    when 1
+      manipullation_cost = 5
+      manipullation_cost_cm = 0.1
+    when 2
+      manipullation_cost = 10
+      manipullation_cost_cm = 0.2
+    else
+      manipullation_cost = 15
+      manipullation_cost_cm = 0.60 # por centimetro
+    end
+    
     # Coste de tinta
-    ink_cm2 = 0.003
+    ink_cm2 = 0.0004
     # Centimetros cuadrados
     cm2 = width * height
     
@@ -220,11 +238,7 @@ class Art
       end
     end
     # Precio papel
-    if paper_id == 1
-      price = (paper_length * paper_1)
-    else
-      price = (paper_length * paper_2)
-    end
+    price = papers[paper_id] * paper_length
     
     # Coste de tinta
     price = price + (ink_cm2 * cm2)
@@ -235,9 +249,17 @@ class Art
     price = price + (paper_length * manipullation_cost_cm)
     
     if frame == 1
-      price = price + frame_cost
+      price = price + total_frame
     end
     
+    m = manipullation_cost+(paper_length * manipullation_cost_cm)
+    puts "Paper lenght: #{paper_length}"
+    puts "Tinta: #{(ink_cm2 * cm2)}"
+    puts "Papel: #{papers[paper_id] * paper_length}"
+    puts "coste total: #{(ink_cm2 * cm2) + (papers[paper_id] * paper_length)}"
+    puts "Manipullation costs: #{m}"
+    puts "Price: #{price}"
+    puts "Margen: #{(m / price)}"
     # returning price
     price
   end

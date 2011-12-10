@@ -1,4 +1,9 @@
-<%= pluralize(@current_cart.items.count, 'item') %>
+<% if @current_cart.items.count == 1 %>
+  <p class="ml10"><%= t('cart.1item') %></p>
+<% else %>
+  <p class="ml10"><%= t('cart.xitems', :number => @current_cart.items.count) %></p>
+<% end %>
+
 <ul id="cart">
 <% @items.each do |item| %>
   <%= render :partial => 'partials/cart/index/item', :locals => { :item => item } %>

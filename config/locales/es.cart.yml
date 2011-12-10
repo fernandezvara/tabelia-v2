@@ -1,0 +1,77 @@
+es:
+    media:
+        id_1: 'Póster'
+        id_2: 'Papel fotográfico'
+        id_3: 'Lienzo'
+        id_4: 'Papel texturado'
+    cart:
+        title: 'Cesta de la compra'
+        1item: '1 artículo'
+        xitems: '%{number} artículos'
+        details: 'DETALLES'
+        height: 'Alto:'
+        width: 'Ancho:'
+        media: 'Tipo de papel:'
+        framed: 'Enmarcado'
+        framed_canvas: 'En bastidor:'
+        artist: 'Artista:'
+        manipullation: 'Montaje y manipulación:'
+        total: 'Total:'
+        address: 'DIRECCIÓN DE ENTREGA'
+        there_are_no_addresses: 'No tienes ninguna dirección asociada a tu cuenta.'
+        to_create_one: 'Para continuar tu compra, '
+        add_a_new: 'añade una dirección'
+        add_a_new_address: 'Nueva dirección'
+        delivery_address: 'DIRECCIÓN DE ENTREGA'
+        invoice_address: 'DIRECCIÓN DE FACTURACIÓN'
+        edit: 'Editar'
+        add_a_new_address: 'Añadir dirección'
+        order_details: 'DETALLES DEL PEDIDO'
+        artist_s: 'Artista/s:'
+        shipping: 'Gastos de envío:'
+        taxes: 'Impuestos'
+        checkout: 'Hacer el pedido'
+        new_address: 'Nueva dirección'
+    address:
+        new:
+            title: 'Nueva dirección'
+        edit:
+            title: 'Editando: %{name}'
+    simple_form:
+        labels:
+            address:
+                address_name: 'Alias'
+                fullname: 'Nombre y apellidos'
+                is_company: '¿Empresa?'
+                company: 'Nombre de la empresa'
+                address_line1: 'Dirección'
+                address_line2: 'Dirección (cont.)'
+                city: 'Localidad'
+                county: 'Provincia/Condado'
+                postalcode: 'Código Postal'
+                country: 'País'
+
+        options:
+            address:
+                is_company:
+                    true: 'Si'
+                    false: 'No'
+        titles:
+            address:
+                address_name: 'Escribe un nombre a esta dirección que te ayude a recordar. Ej/ Casa'
+                fullname: 'Nombre completo de la persona de contacto para esta dirección.'
+                company: 'Nombre de la empresa/compañía.'
+                address_line1: 'Dirección: Nombre, número, piso (en su caso)'
+                
+            
+            
+
+    helpers:
+        submit:
+            item:
+                create: "Añadir a la cesta"
+                update: "Guardar cambios"
+            address:
+                create: "Añadir dirección"
+                update: "Guardar cambios"
+        

@@ -9,20 +9,20 @@
     <%= f.hidden_field :height, :value => @min_height %>
     <%= f.hidden_field :art_id, :value => @art.id.to_s %>
     <%= f.hidden_field :cart_id, :value => @current_cart.id.to_s %>
-    <%= image_tag @art.image.url(:cart).to_s, :alt => @art.name, :style => 'margin: 10px auto' %>
     <p style="text-align:center">Dimensions: <span id="width"><%= @min_width %></span>cm x <span id="mheight"><%= @min_height %></span>cm</p>
+    <%= image_tag @art.image.url(:cart).to_s, :alt => @art.name, :style => 'margin: 10px auto' %>
   </div>
   <div class="column unitx2 right" style="margin-left:0px">
     
     <p class="cart_title">MEDIA</p>
     <div class="input string" style="margin-top:5px">
-      <% medias =  { 'Lienzo' => 1, 'Papel texturado' => 2} %>
+      <% medias =  { 'Póster' => 1, 'Papel fotográfico' => 2, 'Lienzo' => 3, 'Papel texturado' => 4} %>
       <%= f.select :media_id, options_for_select(medias, '1'), {}, :style => 'width:150px' %>
     </div>
     <p class="cart_title">FRAME</p>
     <div class="input string" style="margin-top:5px">
       <% frames =  { 'No' => 0, 'Si' => 1} %>
-      <%= f.select :frame, options_for_select(frames, '0'), {}, :style => 'width:150px;' %>
+      <%= f.select :frame, options_for_select(frames, '0'), {}, :style => 'width:150px;', :disabled => 'disabled' %>
     </div>
     <br />
     <p class="cart_title">COST</p>
@@ -68,7 +68,7 @@
       dimension: '&nbsp;cm' });
     
     $('select#item_media_id').change(function(){
-      if ($(this).val() == '2') {
+      if ($(this).val() != '3') {
         $('select#item_frame').val('0');
         $('select#item_frame').attr('disabled', 'disabled');
       } 
