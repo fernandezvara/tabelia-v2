@@ -24,7 +24,7 @@ es:
         add_a_new_address: 'Nueva dirección'
         delivery_address: 'DIRECCIÓN DE ENTREGA'
         invoice_address: 'DIRECCIÓN DE FACTURACIÓN'
-        edit: 'Editar'
+        edit: 'Cambiar'
         add_a_new_address: 'Añadir dirección'
         order_details: 'DETALLES DEL PEDIDO'
         artist_s: 'Artista/s:'
@@ -32,6 +32,11 @@ es:
         taxes: 'Impuestos'
         checkout: 'Hacer el pedido'
         new_address: 'Nueva dirección'
+        dimensions: 'Dimensiones:'
+        media_add_to_cart: 'TIPO DE PAPEL'
+        framed_add_to_cart: 'BASTIDOR'
+        summary: 'RESUMEN'
+        delete: 'Borrar'
     address:
         new:
             title: 'Nueva dirección'
@@ -50,7 +55,6 @@ es:
                 county: 'Provincia/Condado'
                 postalcode: 'Código Postal'
                 country: 'País'
-
         options:
             address:
                 is_company:
@@ -62,10 +66,6 @@ es:
                 fullname: 'Nombre completo de la persona de contacto para esta dirección.'
                 company: 'Nombre de la empresa/compañía.'
                 address_line1: 'Dirección: Nombre, número, piso (en su caso)'
-                
-            
-            
-
     helpers:
         submit:
             item:
@@ -74,4 +74,3 @@ es:
             address:
                 create: "Añadir dirección"
                 update: "Guardar cambios"
-        

@@ -3,13 +3,13 @@
     <h2><%= @art.name %></h2>
   </div>
   <hr>
-  <%= form_for @item, :url => cart_create_path do |f| %>
+  <%= form_for @item, :url => cart_update_path(:id => @item.id.to_s) do |f| %>
   <div class="column unitx3 center first">
-    <%= f.hidden_field :width, :value => @min_width %>
-    <%= f.hidden_field :height, :value => @min_height %>
+    <%= f.hidden_field :width, :value => @item.width %>
+    <%= f.hidden_field :height, :value => @item.height %>
     <%= f.hidden_field :art_id, :value => @art.id.to_s %>
     <%= f.hidden_field :cart_id, :value => @current_cart.id.to_s %>
-    <p style="text-align:center"><%= t('cart.dimensions')%> <span id="width"><%= @min_width %></span>cm x <span id="mheight"><%= @min_height %></span>cm</p>
+    <p style="text-align:center"><%= t('cart.dimensions')%> <span id="width"><%= @item.width %></span>cm x <span id="mheight"><%= @item.height %></span>cm</p>
     <%= image_tag @art.image.url(:cart).to_s, :alt => @art.name, :style => 'margin: 10px auto' %>
   </div>
   <div class="column unitx2 right" style="margin-left:0px">
@@ -17,12 +17,16 @@
     <p class="cart_title"><%= t('cart.media_add_to_cart')%></p>
     <div class="input string" style="margin-top:5px">
       <% medias =  { t('media.id_1') => 1, t('media.id_2') => 2, t('media.id_3') => 3, t('media.id_4') => 4} %>
-      <%= f.select :media_id, options_for_select(medias, '1'), {}, :style => 'width:150px' %>
+      <%= f.select :media_id, options_for_select(medias, @item.media_id), {}, :style => 'width:150px' %>
     </div>
     <p class="cart_title"><%= t('cart.framed_add_to_cart')%></p>
     <div class="input string" style="margin-top:5px">
       <% frames =  { t('common.ono') => 0, t('common.oyes') => 1} %>
-      <%= f.select :frame, options_for_select(frames, '0'), {}, :style => 'width:150px;', :disabled => 'disabled' %>
+      <% if @item.media_id == 3 %>
+      <%= f.select :frame, options_for_select(frames, @framed), {}, :style => 'width:150px;' %>
+      <% else %>
+      <%= f.select :frame, options_for_select(frames, @framed), {}, :style => 'width:150px;', :disabled => 'disabled' %>
+      <% end%>
     </div>
     <br />
     <p class="cart_title"><%= t('cart.summary')%></p>

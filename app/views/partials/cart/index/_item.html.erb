@@ -1,12 +1,17 @@
 <% 
   art = item.art
   artist_price = art.price
-  tabelia_price = art.get_price(item.height, item.width, item.media_id, item.frame)
+  if item.frame == true
+    framed = 1
+  else
+    framed = 0
+  end
+  tabelia_price = art.get_price(item.height, item.width, item.media_id, framed)
   total_price = artist_price + tabelia_price
 %>
 
 <li class="<%= cycle('odd', 'even') %>">
-  <div class="left item_shot">
+  <div class="left item_shot center">
     <%= image_tag art.image.url(:cart).to_s, :alt => art.name, :title => art.name %>
   </div>
   <div class="right item_info">
@@ -16,20 +21,17 @@
     <table cellspacing="0" cellpadding="0">
       <thead>
         <tr>
-          <th colspan="2">
+          <th colspan="4">
             <p class="s14"><%= t('cart.details') %></p>
-          </th>
-          <th colspan="2">
-            <p></p>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><%= t("cart.height")%></td>
-          <td><%= item.height %> cm</td>
-          <td><%= t("cart.artist")%></td>
-          <td><%= number_to_currency(artist_price, :unit => '€') %></td>
+          <td width="25%"><%= t("cart.height")%></td>
+          <td width="25%"><%= item.height %> cm</td>
+          <td width="25%"><%= t("cart.artist")%></td>
+          <td width="25%"><%= number_to_currency(artist_price, :unit => '€') %></td>
         </tr>
         <tr>
           <td><%= t("cart.width")%></td>
@@ -54,10 +56,15 @@
           <% else %>
           <td></td><td></td>
           <% end %>
-          <td><%= t("cart.total") %></td>
-          <td><%= number_to_currency(total_price, :unit => '€') %></td>
+          <td class="b"><%= t("cart.total") %></td>
+          <td class="b"><%= number_to_currency(total_price, :unit => '€') %></td>
         </tr>
       </tbody>
     </table>
+    <br />
+    <p class="right hidden">
+      <%= link_to t('cart.edit'), cart_edit_path(:id => item.id.to_s), :class => 'abutton', :rel => 'modal', :walk => 'no' %>
+      <%= link_to t('cart.delete'), cart_delete_path(:id => item.id.to_s) %>
+    </p>
   </div>
 </li>

@@ -9,3 +9,14 @@
   <%= render :partial => 'partials/cart/index/item', :locals => { :item => item } %>
 <% end %>
 </ul>
+
+<script type="text/javascript">
+  $("ul#cart li").hover(
+    function(){
+    $(this).find("p.hidden").fadeIn();
+  },
+    function(){
+    $(this).find("p.hidden").fadeOut();      
+    }
+  );
+</script>

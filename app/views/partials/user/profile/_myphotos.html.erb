@@ -2,9 +2,15 @@
 <div class="box purple">
   <div class="title"><%= t('users_profile.my_photos') %><%= link_to t('common.see_all_female'), user_photos_path(:username => @user.username) if @photos.count > 8 %></div>
   <div class="content">
-    <% @photos.each do |art| %>
+    <% if @photos.count > 8 
+      count = 8
+    else
+      count = @photos.count
+    end
+      %>
+    <% 0.upto(count - 1) do |c| %>
       <div class="image_thumb">
-        <%= link_to image_tag(art.image.url(:thumb).to_s, :alt => art.name, :title => art.name, :class => 'tip'), photo_profile_path(:slug => art.slug) %>
+        <%= link_to image_tag(@photos[c].image.url(:thumb).to_s, :alt => @photos[c].name, :title => @photos[c].name, :class => 'tip'), photo_profile_path(:slug => @photos[c].slug) %>
       </div>
     <% end %>
   </div>

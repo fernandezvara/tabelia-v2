@@ -11,16 +11,20 @@
           <td><%= t('cart.manipullation') %></td>
           <td><%= number_to_currency(@total_payment_tabelia, :unit => '€') %></td>
         </tr>
-        <tr>
-          <td><%= t('cart.shipping') %></td>
-          <td><%= number_to_currency(@total_payment, :unit => '€') %></td>
-        </tr>
         <% if @total_payment_taxes != 0 %>
         <tr>
           <td><%= t('cart.taxes') %></td>
           <td><%= number_to_currency(@total_payment_taxes, :unit => '€') %></td>
         </tr>
         <% end %>
+        <tr>
+          <% if @total_payment_transport == 0 %>
+          <td colspan="2"><%= t('cart.fill_your_address') %></td>
+          <% else %>
+          <td><%= t('cart.shipping') %></td>
+          <td><%= number_to_currency(@total_payment_transport, :unit => '€') %></td>
+          <% end %>
+        </tr>
         <tr>
           <td><%= t('cart.total') %></td>
           <td><%= number_to_currency(@total_payment, :unit => '€') %></td>

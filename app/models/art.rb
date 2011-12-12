@@ -212,13 +212,13 @@ class Art
     case paper_id    # manipullation cost varies from paper type
     when 1
       manipullation_cost = 5
-      manipullation_cost_cm = 0.1
+      manipullation_cost_cm = 0.15
     when 2
       manipullation_cost = 10
       manipullation_cost_cm = 0.2
     else
       manipullation_cost = 15
-      manipullation_cost_cm = 0.60 # por centimetro
+      manipullation_cost_cm = 0.70 # por centimetro
     end
     
     # Coste de tinta

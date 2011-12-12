@@ -1,0 +1,4 @@
+$("div#main-left").html("<%= escape_javascript(render :partial => 'partials/cart/index/left') %>");
+<% if @flash %>
+	flashBar("<%= @flash %>", "success", {});
+<% end %>
