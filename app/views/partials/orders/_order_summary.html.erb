@@ -1,0 +1,64 @@
+<li style="padding: 0 10px">
+  <div id="order-title">
+    <div style="float:left; width: 400px; padding:5px 0">
+      <p class="s16 b"><%= t('order.invoice.order_number') %> <%= invoice.number %> (<%= l(invoice.created_at, :format => :short) %>)</p>
+    </div>
+    <div style="float:right; padding:5px 0"><p class="s16"><%= t('order.invoice.status')%> <%= t("order.invoice.statuses.s#{invoice.status}")%>
+  </div>
+  <div class="clearfix"></div>
+  <ul id="listing">
+    <% order.order_items.each do |item| %>
+      <li>
+        <div class="artlist left">
+          <div class="avatar left">
+          <% if item.art.photo == false %>
+            <%= link_to image_tag(item.art.image.url(:thumb).to_s, :alt => item.art.name, :title => item.art.name, :class => 'tip'), art_profile_path(:slug => item.art.slug)%>
+          </div>
+          <div class="artdata right">
+            <p class="s12"><%= link_to item.art.name, art_profile_path(:slug => item.art.slug) %><%= t('common.by') %><%= link_to item.art.user.name, user_profile_path(:username => item.art.user.username) %></p>
+      <% else %>
+            <%= link_to image_tag(item.art.image.url(:thumb).to_s, :alt => item.art.name, :title => item.art.name, :class => 'tip'), art_profile_path(:slug => item.art.slug)%>
+          </div>
+          <div class="artdata right">
+            <p class="s12"><%= link_to item.art.name, photo_profile_path(:slug => item.art.slug) %><%= t('common.by') %><%= link_to item.art.user.name, user_profile_path(:username => item.art.user.username) %></p>
+      <% end %>
+            <p class="s12"><%= t('cart.media') %>  <%= t("media.id_#{item.media_id}") %> · <%= t('cart.dimensions') %> <%= item.height %>cm x <%= item.width %>cm. <%= t("cart.in_frame") if item.frame == true %></p>
+          </div>
+        </div>
+        <div class="right" style="padding:10px">
+          <p class="s12 b"><%= number_to_currency(((item.item_tabelia_amount + item.item_user_amount)/ 100.0).round(2), :unit => '€') %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  <div class="right" style="width:200px">
+    <div class="left" style="width:100px; text-align:right">
+      <%= t('cart.subtotal')%>
+    </div>
+    <div class="align-right b" style="width:100px">
+      <%= number_to_currency((order.order_subtotal_amount / 100.0).round(2), :unit => '€') %>
+    </div>
+    <% if order.order_tax_amount.nil? == false and order.order_tax_amount != 0 %>
+    <div class="left" style="width:100px; text-align:right">
+      <%= t('cart.taxes')%>
+    </div>
+    <div class="align-right b" style="width:100px">
+      <%= number_to_currency((order.order_tax_amount / 100.0).round(2), :unit => '€') %>
+    </div>
+    <% end %>
+    <% if order.order_transport_amount.nil? == false and order.order_transport_amount != 0 %>
+    <div class="left" style="width:100px; text-align:right">
+      <%= t('cart.shipping')%>
+    </div>
+    <div class="align-right b" style="width:100px">
+      <%= number_to_currency((order.order_transport_amount / 100.0).round(2), :unit => '€') %>
+    </div>
+    <% end %>
+    <div class="left" style="width:100px; text-align:right">
+      <%= t('cart.total')%>
+    </div>
+    <div class="align-right b" style="width:100px">
+      <%= number_to_currency((order.order_total_amount / 100.0).round(2), :unit => '€') %>
+    </div>
+  </div>
+</li>

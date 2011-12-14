@@ -3,11 +3,10 @@
 <% end %>
 
 <% content_for :left do %>
-  <p>Payment is accepted. Please confirm your purcharse.</p>
+  <p>Gracias por comprar en tabelia.</p>
+  <br /><br />
+  <p><a href="/" class="abutton">Volver al inicio</a>
   
-  <%= form_for @order do |f| %>
-    <%= f.submit 'Confirm your order', :disable_with => "Please wait..." %>
-  <% end %>
 
   <br /><br /><br />
   <%= @details.inspect %>

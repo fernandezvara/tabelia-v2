@@ -1,0 +1,43 @@
+<% content_for :title do %>
+<div class="column unitx5 left first">
+  <h2><%= t('order.invoice.my_invoices') %></h2>
+</div>
+<% end %>
+
+<% content_for :left do %>
+
+  <% if @invoices.count == 0 %>
+    <p class="ml10 s14 center"><%= t('order.invoice.0orders') %></p>
+    <br />
+    <p class="ml10 s14 center"><%= t('order.invoice.please_try_again') %></p>
+  <% else %>
+  <ul id="cart">
+    <% @invoices.each do |invoice| %>
+      <% order = invoice.order %>
+      <%= render :partial => 'partials/orders/order_summary', :locals => { :invoice => invoice, :order => order } %>
+    <% end %>
+  </ul>
+  <% end %>
+
+<% end %>
+
+<% content_for :right do %>
+<br />
+<div class="box orange" style="margin-bottom:100px">
+  <div class="title"><%= t('common.help_title') %></div>
+  <div class="content">
+  <% case I18n.locale.to_s %>
+  <% when 'es' %>
+    <p class="justify">Este es el estado de tus pedidos, aquí puedes ver la información actualizada sobre su proceso.</p>
+    <br />
+    <p class="justify">Cuando un pedido cambia de estado recibirás un correo de notificación.</p>
+    <br />
+  <% when 'en' %>
+  <p class="justify">This page have the updated status for every order you have made.</p>
+  <br />
+  <p class="justify">When an order changes its status you will receive a notification by mail with the update.</p>
+  <br />
+  <% end %>
+  </div>
+</div>
+<% end %>

@@ -17,6 +17,7 @@ es:
         artist: 'Artista:'
         manipullation: 'Montaje y manipulación:'
         total: 'Total:'
+        subtotal: 'Subtotal:'
         address: 'DIRECCIÓN DE ENTREGA'
         there_are_no_addresses: 'No tienes ninguna dirección asociada a tu cuenta.'
         to_create_one: 'Para continuar tu compra, '
@@ -29,7 +30,7 @@ es:
         order_details: 'DETALLES DEL PEDIDO'
         artist_s: 'Artista/s:'
         shipping: 'Gastos de envío:'
-        taxes: 'Impuestos'
+        taxes: 'Impuestos:'
         checkout: 'Hacer el pedido'
         new_address: 'Nueva dirección'
         dimensions: 'Dimensiones:'
@@ -37,11 +38,25 @@ es:
         framed_add_to_cart: 'BASTIDOR'
         summary: 'RESUMEN'
         delete: 'Borrar'
+        in_frame: '· En bastidor.'
     address:
         new:
             title: 'Nueva dirección'
         edit:
             title: 'Editando: %{name}'
+    order:
+        invoice:
+            my_invoices: 'Mis pedidos'
+            0orders: 'No has realizado ningún pedido aún o la información sobre tus pedidos no está actualizada.'
+            please_try_again: 'Si ya has hecho un pedido, por favor vuelve a intentarlo pasados unos minutos.'
+            name: 'Factura'
+            name_and_number: "Factura %{number}"
+            order_number: 'Pedido: '
+            status: 'Estado:'
+            statuses:
+                s1: 'En preparación'
+                s5: 'Enviado'
+                s10: 'Entregado'
     simple_form:
         labels:
             address:

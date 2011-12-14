@@ -3,6 +3,9 @@ en:
         singular: 'art'
         plural: 'arts'
         tecnique: 'Tecnique'
+        subject_title: 'SUBJECTS'
+        style_title: 'STYLES'
+        tecniques_title: 'TECNIQUES'
         you_selected_do_not_show: "You selected to do not show this art."
         status_title: 'PUBLISH STATUS'
         status:

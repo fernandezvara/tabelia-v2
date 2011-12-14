@@ -109,8 +109,13 @@ Tabelia::Application.routes.draw do
   match 'profile/services',            :controller => 'profile', :action => 'services',     :as => 'profile_services'
   match 'profile/billing',             :controller => 'profile', :action => 'billing',      :as => 'profile_billing'
   
+  match 'my/orders',                   :controller => 'invoices',:action => 'index',        :as => 'my_orders'
+  match 'my/invoice/:number',          :controller => 'invoices',:action => 'show',         :as => 'my_invoice'  
   #match 'user/:username/edit',         :controller => 'users',   :action => 'edit',         :as => 'edit_user'
   
+  match 'shop/photos/:subject/:tecnique/(:page)', :controller => 'shop', :action => 'photos',       :as => 'shop_photos'
+  match 'shop/paintings/:category/:idiom/:tecnique/(:page)', :controller => 'shop', :action => 'paintings',       :as => 'shop_paintings'
+    
   resources :order   #, :only => [:new, :create]
   resources :addresses, :only => [:new, :create, :edit, :update, :destroy]
   resources :arts,   :only => [:index, :new, :create, :update]

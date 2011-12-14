@@ -38,9 +38,14 @@ $(document).ready(function(){
 	  trigger: 'hover',
 	  gravity: 'w'
 	});
-	
-	
-	
 });
 
+$(window).load(function(){  
+	$.each($('body').find("img.item"), function() {
+		var parent_height = $(this).parent().parent().height();
+	    var image_height = $(this).height();  
+	    var top_margin = (parent_height - image_height)/2 - 5;  
+	    $(this).css( 'margin-top' , top_margin);
+	});
+});
 

@@ -1,0 +1,13 @@
+<% content_for :left do %>
+
+  aquí el menú!
+  
+<% end %>
+
+<% content_for :right do %>
+  <ul id="l">
+    <% @arts.each do |art| %>
+      <%= render :partial => 'partials/lists/shopitem', :locals => { :art => art } %>
+    <% end %>
+  </ul>
+<% end %>

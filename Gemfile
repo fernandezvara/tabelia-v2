@@ -14,6 +14,7 @@ gem 'bson_ext', '1.4.0'
 gem 'trackoid'
 gem 'mongoid_slug'
 gem 'mongoid_i18n', :require => 'mongoid/i18n'
+gem 'mongoid_auto_increment'
 gem 'redis'
 gem 'redis-store'
 

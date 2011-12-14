@@ -45,6 +45,11 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :watermark_cart
   end
 
+  version :s do
+    process :resize_to_fit => [165, 165]
+    process :quality => 90
+  end
+
   version :splash do
     process :quality => 70
     process :resize_to_fill => [164, 164]

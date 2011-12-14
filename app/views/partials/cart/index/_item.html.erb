@@ -15,7 +15,11 @@
     <%= image_tag art.image.url(:cart).to_s, :alt => art.name, :title => art.name %>
   </div>
   <div class="right item_info">
+    <% if art.photo == false %>
     <p class="s16"><%= link_to art.name, art_profile_path(:slug => art.slug) %></p>
+    <% else %>
+    <p class="s16"><%= link_to art.name, photo_profile_path(:slug => art.slug) %></p>
+    <% end %>
     <p class="s14"><%= link_to art.user.name, user_profile_path(:username => art.user.username) %></p>
     <br />
     <table cellspacing="0" cellpadding="0">

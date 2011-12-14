@@ -1,9 +1,6 @@
 class Order
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Slug
-  
-  field :order_number,            :type => String
   
   field :payer_id,                :type => String
   field :payer,                   :type => String
@@ -19,14 +16,13 @@ class Order
   
   field :ip_address,              :type => String
   
-  field :status,                  :type => Integer
+  field :status,                  :type => Boolean, :default => false
   
   field :delivery_address_id,     :type => String
   field :invoice_address_id,      :type => String
   
-  slug :order_number
-  
   belongs_to :user
+  belongs_to :invoice
   
   has_many :order_items
   
@@ -43,7 +39,7 @@ class Order
   def purchase
     response = process_purchase
     transactions.create!(:action => "purchase", :amount => order_total_amount, :response => response)
-    self.status = 1 if response.success?
+    self.status = true if response.success?
     self.save if response.success?
     response.success?
   end
@@ -59,7 +55,7 @@ class Order
       :token             => token,
       :payer_id          => payer_id,
       :subtotal          => order_subtotal_amount,
-      :shipping          => 0,
+      :shipping          => order_transport_amount,
       :handling          => 0,
       :tax               => order_tax_amount
     }

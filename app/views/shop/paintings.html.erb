@@ -1,0 +1,94 @@
+<% content_for :title do %>
+<h2><%= t('arts.paintings_title')%></h2>
+<% end %>
+
+<% content_for :left do %>
+<div class="box orange">
+  <div class="title"><%= t('arts.subject_title') %></div>
+  <div class="content" id="subjects">
+    <% @idioms.each do |c| %>
+      <p><%= link_to c.name, shop_paintings_path(:category => '_', :tecnique => '_', :idiom => c.slug) %></p>
+    <% end %>
+  </div>
+</div>
+
+  <div class="box orange">
+    <div class="title"><%= t('arts.style_title') %></div>
+    <div class="content" id="styles">
+      <% @categories.each do |c| %>
+        <p><%= link_to c.name, shop_paintings_path(:category => c.slug, :tecnique => '_', :idiom => '_') %></p>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="box orange">
+    <div class="title"><%= t('arts.tecnique_title') %></div>
+    <div class="content" id="tecniques">
+      <% 
+      tecniques = {
+        t('arts.media.oil') => 'oil',
+        t('arts.media.watercolor') => 'watercolor',
+        t('arts.media.hot_wax') => 'hot_wax',
+        t('arts.media.pastel') => 'pastel',
+        t('arts.media.gouache') => 'gouache',
+        t('arts.media.tempera') => 'tempera',
+        t('arts.media.ink') => 'ink',
+        t('arts.media.graphite') => 'graphite',
+        t('arts.media.charcoal') => 'charcoal',
+        t('arts.media.sepia') => 'sepia',
+        t('arts.media.sanguine') => 'sanguine',
+        t('arts.media.crayon') => 'crayon',
+        t('arts.media.acrylic') => 'acrylic',
+        t('arts.media.aerography') => 'aerography',
+        t('arts.media.marker_pen') => 'marker_pen',
+        t('arts.media.colored_pencil') => 'colored_pencil',
+        t('arts.media.digital') => 'digital',
+        t('arts.media.mixed') => 'mixed'
+      }
+      tecniques.each do |key, value| %>
+        <p><%= link_to key, shop_paintings_path(:category => '_', :tecnique => value, :idiom => '_') %></p>
+      <% end %>
+    </div>
+  </div>
+  
+  
+  <script type="text/javascript">
+  var subh = $("div#subjects").height();
+  var styh = $("div#styles").height();
+  var tech = $("div#tecniques").height();
+    $(window).ready(function(){
+      
+      $("div#subjects").css("height", "90px");
+      $("div#styles").css("height", "90px");
+      $("div#tecniques").css("height", "90px");
+      $("div#subjects").hover(
+        function() { $(this).animate({ "height":subh}, "slow"); },
+        function() { $(this).animate({ "height":'90px'}, "slow"); }
+      );
+      $("div#styles").hover(
+        function() { $(this).animate({ "height":styh}, "slow"); },
+        function() { $(this).animate({ "height":'90px'}, "slow"); }
+      );
+      $("div#tecniques").hover(
+        function() { $(this).animate({ "height":tech}, "slow"); },
+        function() { $(this).animate({ "height":'90px'}, "slow"); }
+      );
+    });
+  </script>
+<% end %>
+
+<% content_for :right do %>
+  <div class="paginate-right">
+    <%= paginate @arts, :inner_window => 1 %>
+  </div>
+  <div class="clearfix"></div>
+  <ul id="l">
+    <% @arts.each do |art| %>
+      <%= render :partial => 'partials/lists/shopitem', :locals => { :art => art } %>
+    <% end %>
+  </ul>
+  <div class="paginate-right">
+    <%= paginate @arts, :inner_window => 1 %>
+  </div>
+  <div class="clearfix"></div>
+<% end %>
