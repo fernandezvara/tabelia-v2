@@ -1,11 +1,17 @@
 en:
     arts:
+        paintings_title: 'Paintings'
+        photos_title: 'Photographs'
+        paintings_by_populatity: 'Paintings by popularity'
+        photos_by_populatity: 'Photographs by popularity'
         singular: 'art'
         plural: 'arts'
         tecnique: 'Tecnique'
-        subject_title: 'SUBJECTS'
-        style_title: 'STYLES'
-        tecniques_title: 'TECNIQUES'
+        title_paintings: 'BROWSE PAINTINGS'
+        title_photos: 'BROWSE PHOTOGRAPHS'
+        subject_title: 'by subject'
+        style_title: 'by style'
+        tecnique_title: 'by tecniques'
         you_selected_do_not_show: "You selected to do not show this art."
         status_title: 'PUBLISH STATUS'
         status:

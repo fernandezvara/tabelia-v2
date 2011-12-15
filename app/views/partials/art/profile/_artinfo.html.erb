@@ -1,7 +1,8 @@
 <div class="box orange">
   <div class="content">
-      <p><%= t('arts.profile.idiom') %><%= link_to @art.genre.name, idiom_show_path(:slug => @art.genre.slug) %></p>
-      <p><%= t('arts.profile.category') %><%= link_to @art.category.name, category_path(:slug => @art.category.slug) %></p>
+      <p><%= t('arts.profile.idiom') %>
+      <%= link_to @art.genre.name, shop_paintings_path(:category => '_', :tecnique => '_', :idiom =>  @art.genre.slug) %></p>
+      <p><%= t('arts.profile.category') %><%= link_to @art.category.name, shop_paintings_path(:category =>  @art.category.slug, :tecnique => '_', :idiom => '_') %></p>
       <p id="liked_by"><%= render :partial => 'partials/art/profile/liked_by' %></p>
       <p><%= t('arts.profile.listed', :time => time_ago_in_words(@art.created_at)) %></p>
       <% if @art.accepted == true %>

@@ -115,7 +115,13 @@ Tabelia::Application.routes.draw do
   
   match 'shop/photos/:subject/:tecnique/(:page)', :controller => 'shop', :action => 'photos',       :as => 'shop_photos'
   match 'shop/paintings/:category/:idiom/:tecnique/(:page)', :controller => 'shop', :action => 'paintings',       :as => 'shop_paintings'
-    
+  match 'shop/popular/paintings/(:page)',                    :controller => 'shop', :action => 'popular_paintings',       :as => 'shop_popular_paintings'  
+  match 'shop/popular/photos/(:page)',                       :controller => 'shop', :action => 'popular_photos',          :as => 'shop_popular_photos'  
+
+  # Facebook shops
+  match 'fb',                          :controller => 'fb',      :action => 'show',          :as => 'facebook_shop'
+  match 'fb/my',                       :controller => 'fb',      :action => 'my',            :as => 'facebook_shop_my'
+  
   resources :order   #, :only => [:new, :create]
   resources :addresses, :only => [:new, :create, :edit, :update, :destroy]
   resources :arts,   :only => [:index, :new, :create, :update]

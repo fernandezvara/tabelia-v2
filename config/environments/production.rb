@@ -63,11 +63,11 @@ Tabelia::Application.configure do
   config.active_support.deprecation = :notify
   
   config.after_initialize do
-    ActiveMerchant::Billing::Base.mode = :test
+    # ActiveMerchant::Billing::Base.mode = :test
     paypal_options = {
-        :login => "a.fernandez_api1.retocontinuo.com",
-        :password => "F6QHH3PU8XDKHU2R",
-        :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31Aq82t6M6hez5dohH0F8uEfMzRFPH"
+        :login => "paypal_api1.tabelia.com",
+        :password => "NB5XEFHEQ2N5VVAM",
+        :signature => "A8ImoSP.QI-YKhlLQkX3eT5AswpKAlHs2YkmXStuUwvX6HN4cm0YG0Yd"
       }
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end

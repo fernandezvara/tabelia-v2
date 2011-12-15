@@ -2,8 +2,8 @@ class PagesController < ApplicationController
   def index
     if current_user
       # popular paintings and photos
-      @popular_paintings_cache = "logged-pop-art-#{Time.now.day}-#{Time.now.month}"
-      @popular_photos_cache =    "logged-pop-pho-#{Time.now.day}-#{Time.now.month}"
+      @popular_paintings_cache = "1logged-pop-art-#{Time.now.day}-#{Time.now.month}"
+      @popular_photos_cache =    "1logged-pop-pho-#{Time.now.day}-#{Time.now.month}"
       if fragment_exist?(@popular_paintings_cache) == false
         @search_popular_paintings = Art.search do
           with(:show_search).greater_than(1)
@@ -40,17 +40,17 @@ class PagesController < ApplicationController
          end
       end
       respond_to do |format|
-        format.html { render :layout => 'splash' }
+        format.html { render :layout => 'shop' }
       end
     else
       # popular paintings and photos
-      @popular_paintings_cache = "no-logged-pop-art-#{Time.now.day}-#{Time.now.month}"
-      @popular_photos_cache =    "no-logged-pop-pho-#{Time.now.day}-#{Time.now.month}"
+      @popular_paintings_cache = "1no-logged-pop-art-#{Time.now.day}-#{Time.now.month}"
+      @popular_photos_cache =    "1no-logged-pop-pho-#{Time.now.day}-#{Time.now.month}"
       if fragment_exist?(@popular_paintings_cache) == false
         @search_popular_paintings = Art.search do
           with(:show_search).greater_than(2)
           with(:photo, false)
-          paginate(:per_page => 6, :page => 1)
+          paginate(:per_page => 8, :page => 1)
           order_by(:popularity, :desc)
         end
       end
@@ -58,7 +58,7 @@ class PagesController < ApplicationController
         @search_popular_photos = Art.search do
           with(:show_search).greater_than(2)
           with(:photo, true)
-          paginate(:per_page => 6, :page => 1)
+          paginate(:per_page => 8, :page => 1)
           order_by(:popularity, :desc)
         end
       end
@@ -82,7 +82,7 @@ class PagesController < ApplicationController
       end
       
       respond_to do |format|
-        format.html { render  'notloggedin', :layout => 'first_page' }
+        format.html { render  'notloggedin', :layout => 'shop' }
       end
     end
   end

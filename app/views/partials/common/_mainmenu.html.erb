@@ -28,14 +28,14 @@
       <li><%= link_to t('mainmenu.subjects'), "", :onclick => 'return false;' %>
         <ul class="sub-menu">
           <% @subjects.each do |subject| %>
-            <li><%= link_to subject.name, subject_path(:slug => subject.slug) %></li>
+            <li><%= link_to subject.name, shop_photos_path(:subject => subject.slug, :tecnique => '_') %></li>
           <% end %>
         </ul>
       </li>
       <li><%= link_to t('mainmenu.tecniques'), "", :onclick => 'return false;' %>
         <ul class="sub-menu">
           <% @tecniques.each do |tecnique| %>
-            <li><%= link_to tecnique.name, tecnique_path(:slug => tecnique.slug) %></li>
+            <li><%= link_to tecnique.name, shop_photos_path(:subject => '_', :tecnique => tecnique.slug) %></li>
           <% end %>
         </ul>
       </li>
@@ -43,18 +43,18 @@
       <li><%= link_to t('mainmenu.genres'), "", :onclick => 'return false;' %>
         <ul class="sub-menu">
           <% @idioms.each do |idiom| %>
-            <li><%= link_to idiom.name, idiom_show_path(:slug => idiom.slug) %></li>
+            <li><%= link_to idiom.name, shop_paintings_path(:category => '_', :tecnique => '_', :idiom => idiom.slug) %></li>
           <% end %>
         </ul>
       </li>
       <li><%= link_to t('mainmenu.categories'), "", :onclick => 'return false;' %>
         <ul class="sub-menu">
           <% @categories.each do |category| %>
-            <li><%= link_to category.name, category_show_path(:slug => category.slug) %></li>
+            <li><%= link_to category.name, shop_paintings_path(:category => category.slug, :tecnique => '_', :idiom => '_') %></li>
           <% end %>
         </ul>
       </li>
-      <li><a href="#"><%= t('mainmenu.cart') %> <% if current_cart.items.count > 0 %>
+      <li><a href="/cart"><%= t('mainmenu.cart') %> <% if current_cart.items.count > 0 %>
       (<%= current_cart.items.count %>)
       <% end %></a></li>
     </ul>

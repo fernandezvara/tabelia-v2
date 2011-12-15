@@ -171,6 +171,7 @@ div#photos_random { width:330px; height: 660px; overflow:hidden; }
     height:350px; 
     background:url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/preload.gif) no-repeat 50% 50%;
 	margin: 5px 0;
+	float:left;
 }
 .nivoSlider img {
     position:absolute;

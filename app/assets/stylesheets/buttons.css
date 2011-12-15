@@ -251,6 +251,10 @@ a.message:hover {
 
 input.comment_submit {
 	display:none;
+	border: 1px solid #e0e0e0;
+	-moz-box-shadow:inset 0px 1px 0px 0px #e3e3e3;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #e3e3e3;
+	box-shadow:inset 0px 1px 0px 0px #e3e3e3;
 	vertical-align:top;
 	top:0;
 	padding:3px 10px 3px 10px;

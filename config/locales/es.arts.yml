@@ -1,13 +1,17 @@
 es:
     arts:
         paintings_title: 'Pintura'
-        photo_title: 'Fotografía'
+        photos_title: 'Fotografía'
+        paintings_by_populatity: 'Pinturas por popularidad'
+        photos_by_populatity: 'Fotografías por popularidad'
         singular: 'obra'
         plural: 'obras'
         tecnique: 'Técnica'
-        subject_title: 'TEMAS'
-        style_title: 'ESTILOS'
-        tecnique_title: 'TÉCNICAS'
+        title_paintings: 'PINTURAS'
+        title_photos: 'FOTOGRAFIAS'
+        subject_title: 'Temas'
+        style_title: 'Estilos'
+        tecnique_title: 'Técnicas'
         likes_of: 'Me gusta'
         you_selected_do_not_show: "Has seleccionado no mostrar esta obra"
         status_title: 'ESTADO DE PUBLICACIÓN'
