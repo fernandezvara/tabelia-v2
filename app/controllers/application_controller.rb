@@ -6,6 +6,13 @@ class ApplicationController < ActionController::Base
   
   before_filter :last_page_to_session, :load_categories, :set_locale, :redirect_to_profile_edit, :rel_canonical, :confirmed?
   
+  after_filter :set_access_control_headers
+   
+  def set_access_control_headers
+    headers['Access-Control-Allow-Origin'] = 'http://www.tabelia.com/, https://www.tabelia.com/'
+    headers['Access-Control-Request-Method'] = '*'
+  end
+  
   def rel_canonical
     if Rails.env.development?
       @canonical = 'http://localhost:3000' + request.fullpath

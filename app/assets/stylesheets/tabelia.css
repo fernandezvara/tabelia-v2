@@ -147,7 +147,7 @@ ul#l li { margin:0 10px 0 0; min-height:220px; width:180px; float:left; text-ali
 ul#l li div.image { height:195px; text-align:center; }
 img.item { padding:5px; background-color:#f0f0f0; border: solid 1px #ddd; -moz-box-shadow: 1px 1px 5px #ccc; -webkit-box-shadow: 1px 1px 5px #ccc; box-shadow: 1px 1px 5px #ccc; }
 img.item:hover { border: solid 1px #aaa; -moz-box-shadow: 1px 1px 5px #999; -webkit-box-shadow: 1px 1px 5px #999; box-shadow: 1px 1px 5px #999; }
-div#styles, div#subjects, div#tecniques { overflow:hidden; }
+div#styles, div#subjects, div#tecniques, div#psubjects, div#ptecniques { overflow:hidden; }
 div.paginate-right { float:right; margin:20px;}
 
 .width-x { width:200px; }

@@ -345,7 +345,7 @@ class Notificator
         #:name => art.name,
         #:caption => art.user.name,
         #:description => art.description,
-        #:picture => 'http:' + art.image.url(:splash).to_s,
+        #:picture => 'http:' + art.image.url(:static).to_s,
         #:link => link,
         #:access_token => token)
         page = FbGraph::Page.new('285048508193773')
@@ -355,7 +355,7 @@ class Notificator
           :name => art.name,
           :caption => art.user.name,
           :description => art.description,
-          :picture => "http:#{art.image.url(:splash).to_s}",
+          :picture => "http:#{art.image.url(:static).to_s}",
           :link => link
         )
         

@@ -10,7 +10,7 @@
         </span></li>
       <% end %>
       <% if current_user.nil? %>
-      <li><%= link_to t('mainmenu.login'), '/login', :rel => 'modal nofollow' %></li>
+      <li><%= link_to t('mainmenu.login'), 'http://www.tabelia.com/login', :rel => 'modal nofollow' %></li>
       <li><%= link_to t('mainmenu.signup'), '/signup', :rel => 'nofollow' %></li>
       <% else %>
       <li><%= link_to current_user.name, user_profile_path(current_user.username) %></li>

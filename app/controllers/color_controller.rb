@@ -1,7 +1,7 @@
 class ColorController < ApplicationController
   def index
     if params[:color]
-      @color = params[:color]
+      @color = params[:color].gsub("#", "")
       relations = Color.near_colors(params[:color], 4)
       @arts = Array.new
       case params[:view]

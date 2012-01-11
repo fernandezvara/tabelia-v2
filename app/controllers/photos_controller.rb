@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   
-  force_ssl :only => [ :index, :new, :create, :edit, :update, :add_to_cart ]
+  force_ssl :only => [ :index, :new, :create, :edit, :update ]
   
   def show
     @art = Art.where(:slug => params[:slug], :photo => true).first

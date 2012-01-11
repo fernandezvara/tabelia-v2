@@ -158,7 +158,7 @@ class ShopController < ApplicationController
     end
     @arts = @search.results
     puts "arts.count = #{@arts.count}"
-    @title = t('arts.title_paintings')
+    @title = t('arts.paintings_title')
     respond_to do |format|
       format.html { render :layout => 'shop' }
       format.js

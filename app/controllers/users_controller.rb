@@ -1,7 +1,10 @@
 # encoding: UTF-8
 class UsersController < ApplicationController
   
-  force_ssl :only => [ :signup, :new, :new_provider, :create, :update ]
+  force_ssl :only => [ :signup, :new, :create, :update ]
+  
+  skip_before_filter :verify_authenticity_token, :only => [ :new_provider ]
+  
   
   def show
     @user = User.where(:username => params[:username]).first

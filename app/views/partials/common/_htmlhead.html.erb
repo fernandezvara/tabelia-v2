@@ -38,8 +38,8 @@
       <meta property="og:image" content="http://assets.tabelia.com<%= @art.image.url(:thumb).to_s %>" />
       <meta itemprop="image" content="http://assets.tabelia.com<%= @art.image.url(:thumb).to_s %>">
       <% else %>
-      <meta property="og:image" content="http:<%= @art.image.url(:splash).to_s %>" />
-      <meta itemprop="image" content="http:<%= @art.image.url(:splash).to_s %>" />
+      <meta property="og:image" content="http:<%= @art.image.url(:static).to_s %>" />
+      <meta itemprop="image" content="http:<%= @art.image.url(:static).to_s %>" />
       <% end %>
       <% cache("art-tags-#{@art.slug}", :expire_in => 1.day) do %>
       <meta name="description" content="<%= @art.description %>" />

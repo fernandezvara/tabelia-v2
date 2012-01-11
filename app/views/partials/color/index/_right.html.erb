@@ -1,3 +1,4 @@
+<form method="post">
 <div class="box green">
   <div class="title"><%= t('search.filters') %></div>
   <div class="content">
@@ -13,9 +14,11 @@
 </div>
 
 
-<form><input type="text" id="color" name="color" value="#<%= @color %>" /></form>
+<input type="text" id="color" name="color" value="#<%= @color %>" />
 <div id="colorpicker" style="height:200px;"></div>
 <div style="text-align: center; overflow:hidden;">
+  <input type="submit" />
+  </form>
   <a href="#" class="abutton" id="colorsearch" data-remote="true"><%= t('search.search_button')%></a>
 </div>
 <script type="text/javascript">
@@ -25,7 +28,7 @@
       var color = $("input#color").val().replace("#", "");
       $.ajax({
            url: '/color/' + color,
-           dataType: "script"
+           type: "POST"
        });
     });
     $('select#view').change(function() {

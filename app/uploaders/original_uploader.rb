@@ -21,4 +21,5 @@ class OriginalUploader < CarrierWave::Uploader::Base
   def extension_white_list
     %w(jpg jpeg png tif tiff)
   end
+  
 end

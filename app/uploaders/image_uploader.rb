@@ -19,8 +19,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    # "avatar.jpg" if original_filename
-    "#{random_token}.jpg" if original_filename.present?
+    if version_name.to_s == "static"
+      return "s.jpg"
+    else
+      return "#{random_token}.jpg" if original_filename.present?
+    end
   end
 
   def random_token
@@ -50,9 +53,12 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :quality => 90
   end
 
-  version :splash do
-    process :quality => 70
+  version :static do
+    process :quality => 90
     process :resize_to_fill => [164, 164]
+    #def full_filename(for_file = model.image.file)
+    #  "static.jpg"
+    #end
   end
 
   version :thumb do
