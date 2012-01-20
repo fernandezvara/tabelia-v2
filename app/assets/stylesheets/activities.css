@@ -5,10 +5,14 @@ ul.activities {
 }
 
 ul.activities li {
-	background-color: #fafafa;
-	padding:5px;
-	margin-bottom:5px;
-	overflow:hidden;
+
+	
+	background-color: #f6f6f6;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 0px;
+	padding: 5px;
+	overflow: auto;
+	
 }
 
 ul.activities li span {

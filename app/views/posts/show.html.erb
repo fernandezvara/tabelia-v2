@@ -1,0 +1,80 @@
+<% content_for :title do %>
+<div class="left inner-title"><p><%= @post.title %></p></div>
+<% if current_user %>
+<div class="right-box">
+  <div style="padding:20px 250px 10px 20px;float:right">
+    <%= link_to t('articles.new_article'), new_post_path, :class => 'abutton' %>
+  <% if @post.user == current_user %>
+      <%= link_to t('articles.edit_this_article'), post_edit_path(:slug => @post.slug), :class => 'abutton' %>
+  <% end %>
+  </div>
+</div>  
+<% end %>
+<div class="clearfix"></div>
+<% end %>
+
+<% content_for :left do %>
+  <%= image_tag @post.image1.url(:post).to_s, :class => 'item2', :style => 'margin:0 0 0 50px' if @post.image1.to_s.nil? == false %>
+  <div class="box common">
+    <div class="title">
+    </div>
+    <div class="content">
+      <p>Categoria: <%= link_to @post.postcategory.title, "#" %></p>
+      <% tags = Tagging.of_object_as_where_creator(@post, 'post', @user)
+      tags_array = Array.new
+      tags.each do |tag|
+        tags_array << tag.tag.text
+      end %>
+      <p>
+      <% tags_array.each do |tag| %>
+        <%= link_to tag, "#", :class => 'tag' %>
+      <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="clearfix">
+  <div id="postshare">
+    <div class="inner">
+      <fb:like href="" send="false" layout="button_count" width="120" show_faces="false"></fb:like>
+      <br /><br />
+      <a href="//twitter.com/share" class="twitter-share-button" data-count="none">Tweet it</a>
+      <br /><br />
+      <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+      <g:plusone size="medium"></g:plusone>
+      <br /><br />
+      <%= link_to image_tag(@post.image2.url(:thumb).to_s, :class => 'item2', :height => 75, :width => 75), @post.image2.url.to_s, :rel => 'modal' if @post.image2.to_s.nil? == false %>
+      <%= link_to image_tag(@post.image3.url(:thumb).to_s, :class => 'item2', :height => 75, :width => 75), @post.image3.url.to_s, :rel => 'modal' if @post.image3.to_s.nil? == false %>
+      <%= link_to image_tag(@post.image4.url(:thumb).to_s, :class => 'item2', :height => 75, :width => 75), @post.image4.url.to_s, :rel => 'modal' if @post.image4.to_s.nil? == false %>
+      <%= link_to image_tag(@post.image5.url(:thumb).to_s, :class => 'item2', :height => 75, :width => 75), @post.image5.url.to_s, :rel => 'modal' if @post.image5.to_s.nil? == false %>
+    </div>
+  </div>
+  <div id="posttext">
+    <div class="inner">
+    <%= Redcarpet.new(@post.text, :filter_html, :hard_wrap, :autolink, :no_intraemphasis).to_html.html_safe %>
+    </div>
+  </div>
+  
+  <div class="box common">
+    <div class="title">
+      <p><%= @post.postcomments.count %> COMENTARIOS</p>
+    </div>
+    <div class="content">
+    <% if @post.postcomments.count != 0 %>
+      <ul id="blogcomments">
+        <% @post.postcomments.each do |comment| %>
+          <% begin %>
+            <%= render :partial => 'partials/articles/comment', :locals => { :commment => comment } %>
+          <% rescue %>
+        
+          <% end %>
+        <% end %>
+      </ul>
+    <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :right do %>
+  <%= render :partial => 'partials/user/profile/profileinfo' %>
+  <%= render :partial => 'partials/articles/other_articles_same_user' %>
+<% end %>

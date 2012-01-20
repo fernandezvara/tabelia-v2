@@ -1,9 +1,8 @@
 class Category
   include Mongoid::Document
-  include Mongoid::I18n
   
-  localized_field :name,    :type => String
-  localized_field :url,    :type => String
+  field :name,    :type => String, :localize => true
+  field :url,     :type => String, :localize => true
   field :slug
 
   has_many :arts

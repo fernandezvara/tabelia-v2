@@ -4,11 +4,11 @@
 }
 
 .simple_form label {
-	font: 12px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: 15px/20px 'Helvetica Neue', 'lucida grande', helvetica, verdana, arial, sans-serif;
 	float: left;
-	width: 100px;
+	width: 150px;
 	text-align: right;
-	margin: 4px 10px 4px 10px;
+	margin: 6px 10px;
 }
 
 .simple_form div.input {
@@ -17,8 +17,8 @@
 }
 
 .simple_form div.input input[type=text], .simple_form div.input input[type=password], .simple_form div.input textarea, .simple_form div.input select {
-	font: 12px/16px "Helvetica Neue", Helvetica, Arial, sans-serif;
-	width:335px;
+	font: 15px/20px 'Helvetica Neue', 'lucida grande', helvetica, verdana, arial, sans-serif;
+	width:450px;
 	margin: 4px 10px 0 0;
 	padding: 6px 5px;
 	background: #fcfcfc;
@@ -28,7 +28,7 @@
 	border-radius:3px;
 } 
 
-.simple_form div.field_with_errors input[type=text], .simple_form div.field_with_errors select {
+.simple_form div.field_with_errors input[type=text], .simple_form div.field_with_errors select, .simple_form div.field_with_errors textarea  {
 	background-color:#ffc9c9;
 }
 
@@ -37,7 +37,7 @@
 } 
 
 .simple_form div.boolean, .simple_form input[type=submit] {
-	margin-left: 120px;
+	margin-left: 170px;
 	clear:left;
 }
 
@@ -53,7 +53,7 @@
 
 .simple_form .error {
 	clear: left;
-	margin-left: 120px;
+	margin-left: 170px;
 	font-size: 12px;
 	color: #D00;
 	display: block;
@@ -61,7 +61,7 @@
 
 .simple_form .hint {
 	clear: left;
-	margin-left: 120px;
+	margin-left: 170px;
 	font-size: 12px;
 	color: #aaa;
 	display: block;
@@ -87,7 +87,7 @@ div#error_in_form {
 }
 
 textarea {
-	font: 12px/16px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: 13px/18px 'Helvetica Neue', 'lucida grande', helvetica, verdana, arial, sans-serif;
 	margin: 0 0 0 0;
 	background: #fafafa;
 	border: 1px solid #ddd;
@@ -109,6 +109,14 @@ textarea {
 	padding:5px;
 }
 
+.simple_form textarea#post_description { 
+	height:60px;
+}
+
+.simple_form textarea#post_text { 
+	height:300px;
+}
+
 div#errors, div#errors ul {
 	font-size:11px;
 	line-height:13px;
@@ -122,4 +130,4 @@ form.big div.input label, form.big div.input input[type=text], form.big div.inpu
 	font: 15px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
 	}
 
-div#user_url { clear:left; margin-left:120px; font-size:14px; color:#c20000; background-color:#fafafa; border: 1px solid #f0f0f0; display:block; text-align: center; padding:10px; width:330px;margin-bottom:10px; cursor:default;}
+div#user_url { clear:left; margin-left:170px; font-size:14px; color:#c20000; background-color:#fafafa; border: 1px solid #f0f0f0; display:block; text-align: center; padding:10px; width:445px;margin-bottom:10px; cursor:default;}

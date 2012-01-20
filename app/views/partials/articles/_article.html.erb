@@ -1,0 +1,18 @@
+<li class="<%= cycle('odd', 'even') %>">
+  <div class="artlist left">
+    <div class="avatar left">
+      <%= link_to image_tag(article.image1.url(:thumb).to_s, :alt => article.title), post_edit_path(:slug => article.slug) %>
+    </div>      
+    <div class="artdata right">
+      <p class="s14"><%= link_to article.title, post_edit_path(:slug => article.slug) %> (<%= link_to t('common.view'), post_show_path(:slug => article.slug) %>)</p>
+      <p><%= article.description %></p>
+    </div>
+  </div>
+  <div class="likes align-right">
+    <div class="n">
+      <p class="s28 center">0</p>
+      <p class="center"><%= t('common.likes') %></p>
+    </div>
+  </div>
+  <div class="clear"></div>
+</li>

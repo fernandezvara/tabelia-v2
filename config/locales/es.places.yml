@@ -1,0 +1,6 @@
+es:
+    places:
+        new_place: 'Nuevo lugar'
+        error_in_form: 'Por favor corrige los errores resaltados.'
+        no_description_provided: 'No se ha facilitado una descripción.'
+        agenda_empty: 'La agenda está vacía.'

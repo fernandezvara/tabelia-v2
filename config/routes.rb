@@ -1,4 +1,5 @@
 Tabelia::Application.routes.draw do
+
   get 'logout' => "sessions#destroy", :as => 'logout'
   get 'login'  => "sessions#new",     :as => "login"
 
@@ -118,16 +119,31 @@ Tabelia::Application.routes.draw do
   match 'shop/popular/paintings/(:page)',                    :controller => 'shop', :action => 'popular_paintings',       :as => 'shop_popular_paintings'  
   match 'shop/popular/photos/(:page)',                       :controller => 'shop', :action => 'popular_photos',          :as => 'shop_popular_photos'  
 
+  # Posts
+  match 'post/:slug',        :controller => 'posts', :action => 'show', :as => 'post_show'
+  match 'post/:slug/edit',   :controller => 'posts', :action => 'edit', :as => 'post_edit'
+
+  # Events
+  match 'event/:slug',       :controller => 'events', :action => 'show',   :as => 'event_show'
+  match 'event/:slug/edit',  :controller => 'events', :action => 'edit',   :as => 'event_edit'
+  match 'agenda',            :controller => 'events', :action => 'agenda', :as => 'agenda'
+  
+  # Places
+  match 'place/:slug',       :controller => 'places', :action => 'show',   :as => 'place_profile'
+  
   # Facebook shops
   match 'fb',                          :controller => 'fb',      :action => 'show',          :as => 'facebook_shop'
   match 'fb/my',                       :controller => 'fb',      :action => 'my',            :as => 'facebook_shop_my'
   
   resources :order   #, :only => [:new, :create]
   resources :addresses, :only => [:new, :create, :edit, :update, :destroy]
-  resources :arts,   :only => [:index, :new, :create, :update]
-  resources :photos, :only => [:index, :new, :create, :update]
+  resources :arts,      :only => [:index, :new, :create, :update]
+  resources :photos,    :only => [:index, :new, :create, :update]
   resources :sessions
-  resources :users, :only => [:index, :edit, :create, :update] do
+  resources :posts,     :only => [:index, :new, :create, :update, :delete, :destroy]
+  resources :events,    :only => [:index, :new, :create, :update, :delete, :destroy]
+  resources :places,    :only => [:index, :new, :create, :update, :delete, :destroy]
+  resources :users,     :only => [:index, :edit, :create, :update] do
     get 'page/:page', :action => :index, :on => :collection
   end
   

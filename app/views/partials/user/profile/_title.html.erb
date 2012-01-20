@@ -1,18 +1,21 @@
-<div class="unitx6 left">
-  <h2><%= @user.name %></h2>
+<div class="inner-title left">
+  <p><%= @user.name %></p>
 </div>
 <% if current_user %>
+<div class="unitx2 align-right">&nbsp;</div>
 <% if current_user != @user %>
+
 <div class="unitx1 align-right" id="message">
       <%= link_to t('common.send_message'), new_message_path(:username => @user.username), :rel => 'modal', :class => ['abutton', 'message'], :style => 'margin-right:10px' %>
 </div>
-<div class="unitx1 left" id="follow_status">
+<div class="unitx2 align-right" id="follow_status">
     <% if GraphClient.connected?('Forward', 'Follow', current_user, @user) == false %>
       <%= link_to t('common.follow'), action_follow_path(:username => @user.username), :remote => true, :class => ['abutton', 'follow'], :walk => 'no' %>
     <% else %>
       <%= link_to t('common.you_follow'), action_unfollow_path(:username => @user.username), :remote => true, :class => ['abutton', 'unfollow'], :walk => 'no' %>
     <% end %>
 </div>
+
 
 <% end %>
 <% end %>

@@ -1,11 +1,11 @@
-<header id="branding" class="full" style="position:fixed; z-index:95;">
+
   <div class="header-login">
     <div class="align-left logo">
       <a href="/">
         <h1><%= t('common.tabeliah1')%></h1>
       </a>
     </div>
-    <div class="align-left search">
+    <div class="align-right search">
       <%= form_tag search_path, :method => :get, :id => 'searchf' do %>
       <span class="search-bg"><input type="text" name="search" id="search" value="<%= params[:search] if params[:search].present? %>" /></span>
       <p class="right"><%= link_to t('mainmenu.search_by_color'), color_index_path %></p>
@@ -13,7 +13,6 @@
     </div>
       
     <div class="in align-right">
-<%= render :partial => '/partials/common/mainmenu' %>
+      <%#= render :partial => '/partials/common/mainmenu' %>
     </div>
   </div>
-</header>

@@ -1,11 +1,11 @@
 <% if @art.status == false %>
-  <div class="box green">
+  <div class="box common">
     <div class="content"><%= t('arts.you_selected_do_not_show') %></div>
   </div>
 <% end %>
 
 <% if @art.accepted == false %>
-<div class="box green">
+<div class="box common">
   <div class="title"><%= t('arts.status_title')%></div>
   <div class="content">
   <% case @art.status_reason 
@@ -21,7 +21,7 @@
 <% end %>
 
 <% if @art.user == current_user %>
-<div class="box purple">
+<div class="box common">
   <div class="content">
   <%= link_to t('arts.profile.edit_art_information'), edit_art_path(:slug => @art.slug), :class => 'abutton' %>
   </div>

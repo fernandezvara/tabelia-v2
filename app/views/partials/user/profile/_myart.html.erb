@@ -1,5 +1,5 @@
 <% if @arts.count > 0 %>
-<div class="box purple">
+<div class="box common">
   <div class="title"><%= t('users_profile.my_art') %><%= link_to t('common.see_all_female'), user_arts_path(:username => @user.username) if @arts.count > 8 %></div>
   <div class="content">
     <% if @arts.count > 8 

@@ -1,0 +1,31 @@
+<% content_for :title do %>
+<div class="left inner-title"><p><%= t('articles.index.title') %></p></div>
+<div class="right-box">
+  <div style="padding:20px 250px 10px 20px;float:right">
+    <%= link_to t('articles.new_article'), new_post_path, :class => 'abutton' %>
+  </div>
+</div>
+<div class="clearfix"></div>
+<% end %>
+
+<% content_for :left do %>
+  <% if @posts.count == 0 %>
+    <br /><br /><p class="center s16"><%= t('articles.there_are_not') %></p>
+  <% else %>
+  <div class="paginate">
+    <%= paginate @posts, :inner_window => 1 %>
+  </div>
+  <ul id="listing">
+    <% @posts.each do |article| %>
+      <%= render :partial => 'partials/articles/article', :locals => { :article => article } %>
+    <% end %>
+  </ul>
+  <div class="paginate">
+    <%= paginate @posts, :inner_window => 1 %>
+  </div>
+  <% end %>
+<% end %>
+
+<% content_for :right do %>
+  <%= render :partial => 'partials/art/index/right' %>
+<% end %>

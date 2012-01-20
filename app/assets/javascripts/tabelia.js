@@ -11,7 +11,8 @@
 //= require farbtastic
 //= require slider
 //= require timeago
-
+//= require cycle
 //= require tipsy
+//= require autosuggest
 
 //= require onload

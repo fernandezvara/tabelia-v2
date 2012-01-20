@@ -1,0 +1,115 @@
+<%= form_for @post, :html => { :multipart => true, :class => 'simple_form' } do |f| %>
+  <%= f.hidden_field :slug %>
+  <div class="input string optional">
+    <%= f.label :title, :class => ['string', 'optional'] %>
+    <%= f.text_field :title, :maxlenght => 50, :title => t("mongoid.hints.art.name") %>
+  </div>
+  <div class="input string optional">
+    <%= f.label :description, :class => ['string', 'optional'] %>
+    <%= f.text_area :description, :cols => 40, :rows => 4, :maxlenght => 160, :title => t("mongoid.hints.art.price") %>
+    <span class="hint"><em>160</em><%= t("simple_form.hints.gender") %></span>
+  </div>
+  <div class="input text optional">
+    <%= f.label :text, :class => ['text', 'optional']%>
+    <%= f.text_area :text, :cols => 40, :rows => 10, :title => t("mongoid.hints.art.description")  %>
+  </div>
+  <div class="input file optional">
+    <%#= f.label :original, :class => ['file', 'optional'] %>
+    <%#= f.file_field :original, :title => t("mongoid.hints.art.original") %>
+  </div>
+  <div class="clearfix"></div>
+  <div class="input select optional">
+    <%= f.label :postcategory_id, :class => ['select', 'optional'] %>
+    <%= f.select :postcategory_id, options_from_collection_for_select(Postcategory.all, 'id', 'title', @post.postcategory_id) %>
+    <script type="text/javascript">
+      $("select#postcategory_id").attr("title", "<%=  t("mongoid.hints.art.genre") %>");
+    </script>
+  </div>
+  <div class="input string optional">
+    <%= f.label :tags, :class => ['text', 'optional'] %>
+    <%= f.text_field :tags, :maxlenght => 300, :value => @tags, :title => t("mongoid.hints.art.tags") %>
+  </div>
+  <div class="input text optional">
+    <%= f.label :publish, :class => ['text', 'optional'] %>
+    <%= f.select :publish, [[t('mongoid.options.art.status.active'), true], [t('mongoid.options.art.status.inactive'), false]] %>
+    <script type="text/javascript">
+      $("select#art_status").attr("title", "<%=  t("mongoid.hints.art.status") %>");
+    </script>
+  </div>
+  <div class="input file optional">
+    <%= f.label :image1, :class => ['file', 'optional'] %>
+    <%= f.file_field :image1, :title => t("mongoid.hints.art.original") %>
+  </div>
+  <div class="clearfix"></div>
+  <div class="input file optional">
+    <%= f.label :image2, :class => ['file', 'optional'] %>
+    <%= f.file_field :image2, :title => t("mongoid.hints.art.original") %>
+  </div>
+  <div class="clearfix"></div>
+  <div class="input file optional">
+    <%= f.label :image3, :class => ['file', 'optional'] %>
+    <%= f.file_field :image3, :title => t("mongoid.hints.art.original") %>
+  </div>
+  <div class="clearfix"></div>
+  <div class="input file optional">
+    <%= f.label :image4, :class => ['file', 'optional'] %>
+    <%= f.file_field :image4, :title => t("mongoid.hints.art.original") %>
+  </div>
+  <div class="clearfix"></div>
+  <div class="input file optional">
+    <%= f.label :image5, :class => ['file', 'optional'] %>
+    <%= f.file_field :image5, :title => t("mongoid.hints.art.original") %>
+  </div>
+  <div class="clearfix"></div>
+  
+  <% if current_user.admin == true %>
+  <div class="input text optional">
+    <%= f.label :spotlight, :class => ['text', 'optional'] %>
+    <%= f.select :spotlight, [[t('mongoid.options.art.status.active'), true], [t('mongoid.options.art.status.inactive'), false]] %>
+  </div>
+  <div class="input text optional">
+    <label class="text optional" for="post_language">Lenguaje</label>
+    <select id="post_language" name="post[language]">
+      <option value="es" selected="selected">Castellano</option>
+      <option value="en">Inglés</option>
+    </select>
+  </div>
+  <% end %>
+  <%= f.submit :disable_with => t('common.working')  %>
+<% end %>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("input[type=text], input[type=file], select, textarea").tipsy({
+    live: true,
+    trigger: 'hover',
+    gravity: 'w'
+  });
+  $("input:checkbox").tipsy({
+    live: true,
+    trigger: 'hover',
+    gravity: 's'
+  });
+  
+  var total_letras = 160;
+  
+  $('textarea#post_description').keydown(function(event) {
+    var l = $(this).val().length;
+    if (event.keyCode == 46 || event.keyCode == 8  || event.keyCode == 9 || event.keyCode == 37  || event.keyCode == 39 ) { }
+    else
+    {
+      if (l >= total_letras) {
+        return false;
+      }
+    }
+  });
+  
+  $('textarea#post_description').keyup(function(){
+    var l = $(this).val().length;
+    $('em').html(total_letras - l);
+  })
+
+  $('em').html(total_letras - $('textarea#post_description').val().length);
+});
+
+
+</script>

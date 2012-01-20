@@ -1,0 +1,12 @@
+<% content_for :title do %>
+<div class="left inner-title"><p><%= t('articles.new_article') %></p></div>
+<div class="clearfix"></div>
+<% end %>
+
+<% content_for :left do %>
+  <%= render :partial => 'partials/articles/article_form' %>
+<% end %>
+
+<% content_for :right do %>
+  <%= render :partial => 'partials/art/index/right' %>
+<% end %>

@@ -1,0 +1,22 @@
+<div class="box common">
+  <div class="content center">
+    <%= image_tag(@place.logo.url.to_s, :alt => @place.name) %>
+  </div>
+  <div class="content">
+    <p><%= @place.name %></p>
+  </div>
+</div>
+<div class="box common">
+  <div class="title"><%= t('places.localization')%></div>
+  <div class="content">
+    <p><%= @place.street %></p>
+    <p><%= @place.postalcode %> <%= @place.city %></p>
+    <% if @place.country_id %>
+    <p><%= flag(@place.country) %> <%= @place.country.name %></p>
+    <% end %>
+  </div>
+  <div class="content">
+    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=214x300&sensor=false&zoom=15&markers=#{@place.coordinates[1]}%2C#{@place.coordinates[0]}", :alt => @place.name %>
+    
+  </div>
+</div>

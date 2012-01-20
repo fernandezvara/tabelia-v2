@@ -55,6 +55,8 @@ en:
         publish_paintings: 'Publish paintings'
         publish_photos: 'Publish photographs'
         shopping_process: 'Shopping process'
+        view: 'view'
+        read_more: 'Read more >'
         footer:
             directory: 'User Directory'
             terms: 'Terms and Conditions'

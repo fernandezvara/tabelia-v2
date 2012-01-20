@@ -1,0 +1,58 @@
+<%= form_for @event, :html => { :multipart => true, :class => 'simple_form' } do |f| %>
+  <%= f.hidden_field :slug %>
+  <div class="input string optional">
+    <%= f.label :title, :class => ['string', 'optional'] %>
+    <%= f.text_field :title, :maxlenght => 50, :title => t("mongoid.hints.art.name") %>
+  </div>
+  <div class="input string optional">
+    <%= label_tag :place_name, 'Lugar', :class => ['string', 'optional'] %>
+    <%= text_field_tag :place_name, "", :maxlenght => 50, :title => t("mongoid.hints.art.name") %>
+    <%= f.hidden_field :place_id %>
+  </div>
+  <div class="input string optional">
+    <%= f.label :description, :class => ['string', 'optional'] %>
+    <%= f.text_area :description, :cols => 40, :rows => 8, :title => t("mongoid.hints.art.price") %>
+  </div>
+  <div class="input text optional">
+    <%= f.label :publish, :class => ['text', 'optional'] %>
+    <%= f.select :publish, [[t('mongoid.options.art.status.active'), true], [t('mongoid.options.art.status.inactive'), false]] %>
+    <script type="text/javascript">
+      $("select#art_status").attr("title", "<%=  t("mongoid.hints.art.status") %>");
+    </script>
+  </div>
+  <div class="input file optional">
+    <%= f.label :image1, :class => ['file', 'optional'] %>
+    <%= f.file_field :image1, :title => t("mongoid.hints.art.original") %>
+  </div>
+  <div class="clearfix"></div>
+  <%= f.submit :disable_with => t('common.working')  %>
+<% end %>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("input[type=text], input[type=file], select, textarea").tipsy({
+    live: true,
+    trigger: 'hover',
+    gravity: 'w'
+  });
+  $("input:checkbox").tipsy({
+    live: true,
+    trigger: 'hover',
+    gravity: 's'
+  });
+  
+  var total_letras = 160;
+  
+  var options = {
+    script:"test.php?json=true&limit=6&",		
+    varname:"input",		
+    json:true,		
+    shownoresults:false,		
+    maxresults:6,
+    callback: function (obj) { 
+      $('input#event_place_id').val(obj.id);
+      }	
+  };
+  var as_json = new bsn.AutoSuggest('place_name', options);
+  
+});
+</script>

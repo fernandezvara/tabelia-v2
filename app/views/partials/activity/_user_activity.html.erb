@@ -11,13 +11,14 @@
               <%= link_to @user.name, user_profile_path(:username => @user.username)  %>
             <% end %>
               <%= t('activity.comment_on_profile.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username)  %><%= t('activity.comment_on_profile.main_action2') %></p>
-              <%= timeago(activity.when) %>
           <div class="actor left">
             <%= link_to image_tag(@to.avatar.url(:mini).to_s, :alt => @to.name), user_profile_path(:username => @to.username)  %>
           </div>
           <div class="data right">
             <p><%= @comment.text %></p>
           </div>
+          <div class="clearfix"></div>
+          <%= timeago(activity.when) %>
         <% when 'coa' %>
           <% @art = Art.find(activity.art) %>
           <% @to = @art.user %>
@@ -29,13 +30,15 @@
               <%= link_to @user.name, user_profile_path(:username => @user.username)  %>
             <% end %>
             <%= t('activity.comment_on_art.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username)  %><%= t('activity.comment_on_art.main_action2') %><%= link_to @art.name, art_profile_path(:slug => @art.slug)  %></p>
-            <%= timeago(activity.when) %>
+            
           <div class="actor left">
             <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug)  %>
           </div>
           <div class="data right">
             <p><%= @comment.text %></p>
           </div>
+          <div class="clearfix"></div>
+          <%= timeago(activity.when) %>
         <% when 'upa' %>
           <% @art = Art.find(activity.art) %>
           <p>
@@ -45,13 +48,15 @@
               <%= link_to @user.name, user_profile_path(:username => @user.username)  %>
             <% end %>
             <%= t('activity.user_publish_art.main_action') %><%= link_to @art.name, art_profile_path(:slug => @art.slug)  %></p>
-            <%= timeago(activity.when) %>
+
           <div class="actor left">
             <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug)  %>
           </div>
           <div class="data right">
             <p><%= simple_format(truncate(@art.description, :length => 100, :omission => ' ...')) %></p>
           </div>
+          <div class="clearfix"></div>
+          <%= timeago(activity.when) %>
         <% when 'ufu' %>
           <% @to = User.find(activity.to) %>
           <p>
@@ -61,7 +66,7 @@
               <%= link_to @user.name, user_profile_path(:username => @user.username) %>
             <% end %>
             <%= t('activity.user_follows_user.main_action') %><%= link_to @to.name, user_profile_path(:username => @to.username) %></p>
-            <%= timeago(activity.when) %>
+
           <div class="actor left">
             <%= link_to image_tag(@to.avatar.url(:mini).to_s, :alt => @to.name), user_profile_path(:username => @to.username) %>
           </div>
@@ -79,6 +84,8 @@
             <p><%= t('common.follows_to_users', :number => following) %></p>
             <% end %>
           </div>
+          <div class="clearfix"></div>
+          <%= timeago(activity.when) %>
         <% when 'ula' %>
           <% @art = Art.find(activity.art) %>
           <p>
@@ -88,7 +95,6 @@
               <%= t('activity.user_likes_art.pre') %><%= link_to @user.name, user_profile_path(:username => @user.username) %>
             <% end %>
             <%= t('activity.user_likes_art.main_action') %><%= link_to @art.user.name, user_profile_path(:username => @art.user.username)  %><%= t('activity.user_likes_art.main_action2') %><%= link_to @art.name, art_profile_path(:slug => @art.slug)  %></p>
-            <%= timeago(activity.when) %>
           <div class="actor left">
             <%= link_to image_tag(@art.image.url(:mini).to_s, :alt => @art.name), art_profile_path(:slug => @art.slug)  %>
           </div>
@@ -101,6 +107,8 @@
               <% end %>
             </p>
           </div>
+          <div class="clearfix"></div>
+          <%= timeago(activity.when) %>
         <% end %>
         <% rescue
         end %>

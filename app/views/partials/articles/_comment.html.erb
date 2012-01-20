@@ -1,0 +1,8 @@
+<li>
+  <div class="author">
+    <%= link_to image_tag(@comment.user.avatar.url(:thumb).to_s, :alt => @comment.user.name), user_profile_path(:username => @comment.user.username) %>
+  </div>
+  <div class="comment">
+    <%= Redcarpet.new(@comment.text, :filter_html, :hard_wrap, :autolink, :no_intraemphasis).to_html.html_safe %>
+  </div>
+</li>

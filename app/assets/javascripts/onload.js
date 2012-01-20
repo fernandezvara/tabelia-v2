@@ -1,13 +1,5 @@
 $(document).ready(function(){ 
-  $('ul.menu').superfish({
-    animation:   
-		{
-			height:'show'
-		},
-    speed:         'fast',
-    autoArrows:  true,
-    dropShadows: false
-    });
+
 	$.facebox.settings.closeImage = '//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/facebox/closelabel.png';
 	$.facebox.settings.loadingImage = '//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/preload.gif';
 	$('a[rel*=modal]').live("mousedown", function() { 
@@ -38,6 +30,15 @@ $(document).ready(function(){
 	  trigger: 'hover',
 	  gravity: 'w'
 	});
+	$('div#spotlight').cycle({
+		fx: 'fade',
+		timeout: 10000,
+		speed: 500,
+		pause: 0,
+		cleartype: true,
+		cleartypeNoBg: true
+	});
+	
 });
 
 $(window).load(function(){  

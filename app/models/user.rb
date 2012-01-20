@@ -31,6 +31,15 @@ class User
 
   field :gender,        :type => Boolean,  :default => true
   
+  field :usertype,      :type => Integer,  :default => 0
+  
+  # 0 - Usuario
+  # 1 - Artista
+  # 2 - Escuela
+  # 3 - Galeria de Arte
+  # 4 - Salas de Exposición
+  # 5 - Decoradores
+  
   field :twitter_url,   :type => String
   field :facebook_url,  :type => String
   field :website_url,   :type => String
@@ -68,12 +77,13 @@ class User
   has_many :arts
   has_many :authorizations
   has_many :artcomments
-  
   has_many :addresses
-  
   has_many :orders
-  
   has_many :invoices
+  has_many :posts
+  has_many :locations
+  has_many :events
+  has_many :places
   
   references_many :comments_received, :class_name => 'Comment', :foreign_key => 'receiver_id'
   references_many :comments_authored, :class_name => 'Comment', :foreign_key => 'author_id'
@@ -229,7 +239,5 @@ class User
   def resque_solr_remove
     Resque.enqueue(SolrRemove, "User", id)
   end
-  
 
-  
 end

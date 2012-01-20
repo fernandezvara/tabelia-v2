@@ -106,7 +106,7 @@ class ArtsController < ApplicationController
     @title = t("arts.new.title")
     @tags = ""
     respond_to do |format|
-      format.html { render :layout => 'main' }
+      format.html { render :layout => 'main2' }
     end
   end
 
@@ -158,7 +158,7 @@ class ArtsController < ApplicationController
       redirect_to arts_path
     else
       flash[:error] = t('common.please_fix_errors_on_form')
-      render 'new', :layout => 'main'
+      render 'new', :layout => 'main2'
     end
   end
 
@@ -172,7 +172,7 @@ class ArtsController < ApplicationController
     end
     @tags = tags.join(',')
     respond_to do |format|
-      format.html { render :layout => 'main' }
+      format.html { render :layout => 'main2' }
     end
   end
 

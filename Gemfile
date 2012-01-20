@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 #gem 'rake', '0.8.7'
-gem 'rails', '3.1.1'
+gem 'rails'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -9,24 +9,24 @@ gem 'rails', '3.1.1'
 #gem 'sqlite3'
 
 # Database
-gem 'mongoid', '2.2.3'
-gem 'bson_ext', '1.4.0'
+gem 'mongoid' #, '2.2.3'
+gem 'bson_ext'
 gem 'trackoid'
 gem 'mongoid_slug'
-gem 'mongoid_i18n', :require => 'mongoid/i18n'
+#gem 'mongoid_i18n', :require => 'mongoid/i18n'
 gem 'mongoid_auto_increment'
 gem 'redis'
 gem 'redis-store'
 
 # Markdown
-gem 'redcarpet'
+gem 'redcarpet', '1.17.2'
 
 # Pagination
 gem 'kaminari'
 
 # search
-gem 'sunspot', "~> 1.3.0.rc6"
-gem "sunspot_rails", "~> 1.3.0.rc6"
+#gem 'sunspot', "~> 1.3.0.rc6"
+#gem "sunspot_rails", "~> 1.3.0.rc6"
 gem 'sunspot_mongoid'
 
 # Crypt
@@ -66,7 +66,8 @@ gem 'prawn', '1.0.0.rc1'
 # Country task
 gem 'hpricot'
 
-
+# Geolocalization
+gem 'geocoder'
 
 
 

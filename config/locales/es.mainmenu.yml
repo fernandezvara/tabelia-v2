@@ -14,6 +14,8 @@ es:
         myaccount: 'MI CUENTA'
         myart: 'Mis pinturas'
         myphotos: 'Mis fotografías'
+        myarticles: 'Mis artículos / blog'
+        myevents: 'Mis eventos / agenda'
         mysettings: 'Mi cuenta / privacidad'
         mysellitems: 'Mis ventas'
         myorders: 'Mis pedidos'

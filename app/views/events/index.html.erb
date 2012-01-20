@@ -1,0 +1,31 @@
+<% content_for :title do %>
+<div class="left inner-title"><p><%= t('events.index.title') %></p></div>
+<div class="right-box">
+  <div style="padding:20px 250px 10px 20px;float:right">
+    <%= link_to t('events.new_event'), new_event_path, :class => 'abutton' %>
+  </div>
+</div>
+<div class="clearfix"></div>
+<% end %>
+
+<% content_for :left do %>
+  <% if @events.count == 0 %>
+    <br /><br /><p class="center s16"><%= t('events.there_are_not') %></p>
+  <% else %>
+  <div class="paginate">
+    <%= paginate @events, :inner_window => 1 %>
+  </div>
+  <ul id="listing">
+    <% @events.each do |event| %>
+      <%= render :partial => 'partials/events/event', :locals => { :event => event } %>
+    <% end %>
+  </ul>
+  <div class="paginate">
+    <%= paginate @events, :inner_window => 1 %>
+  </div>
+  <% end %>
+<% end %>
+
+<% content_for :right do %>
+  <%= render :partial => 'partials/art/index/right' %>
+<% end %>

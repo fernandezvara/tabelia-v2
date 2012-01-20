@@ -4,7 +4,7 @@
       <%= link_to image_tag(art.image.url(:thumb).to_s, :alt => art.name), edit_art_path(:slug => art.slug) %>
     </div>      
     <div class="artdata right">
-      <p><%= link_to art.name, edit_art_path(:slug => art.slug) %></p>
+      <p><%= link_to art.name, edit_art_path(:slug => art.slug), :class => 's14' %></p>
       <% case art.status 
       when true
         case art.accepted

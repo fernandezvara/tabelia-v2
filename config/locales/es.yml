@@ -57,6 +57,8 @@ es:
         publish_paintings: 'Publicar pinturas'
         publish_photos: 'Publicar fotografías'
         shopping_process: 'Proceso de compra'
+        view: 'ver'
+        read_more: 'Leer más >'
         footer:
             directory: 'Directorio de usuarios'
             terms: 'Condiciones generales'

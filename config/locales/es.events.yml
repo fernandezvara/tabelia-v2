@@ -1,0 +1,6 @@
+es:
+    events:
+        new_event: 'Nuevo evento'
+        there_are_not: 'No has publicado ningún evento aún.'
+        index:
+            title: 'Mis eventos'

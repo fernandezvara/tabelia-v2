@@ -15,7 +15,7 @@ samp, tt, var, small, strong, sub, sup,
 object, iframe, form, fieldset, label, legend, 
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, header, nav, section,
-figure, menu, time, mark, audio, video						{ font-family: inherit; font-size: 100%; font-weight: inherit; font-style: inherit; vertical-align: baseline; white-space: normal; text-align: left; margin: 0; padding: 0; border: 0; outline: 0; background: transparent; }
+figure, menu, time, mark, audio, video						{ font-family: inherit; font-size: 100%; font-weight: 300; font-style: inherit; vertical-align: baseline; white-space: normal; text-align: left; margin: 0; padding: 0; border: 0; outline: 0; background: transparent; }
 textarea													{ font-family: inherit; font-size: 100%; font-weight: normal; font-style: normal; white-space: normal; text-align: left; margin: 0; padding: 0; }
 article, aside, footer, header, nav, section,
 dialog, figure, hgroup, menu								{ display: block; }
@@ -31,7 +31,7 @@ table														{ border-collapse: separate; border-spacing: 0; background-co
 blockquote:before, blockquote:after, q:before, q:after		{ content: ""; }
 blockquote, q												{ quotes: "" ""; }
 input														{ margin: 0; }
-
+img                                                         { border-style:none;}
 
 /********** Deprecated and obsolete elements **********/
 applet, basefont, dir, font, isindex, menu, s, strike, u	{ font-family: inherit; font-size: 100%; font-weight: normal; font-style: normal; white-space: normal; vertical-align: baseline; text-decoration: inherit; text-align: left; color: inherit; margin: 0; padding: 0; border: 0; outline: 0; }
@@ -40,7 +40,7 @@ nobr														{ white-space: normal; }
 blink														{ text-decoration: none; }
 marquee														{ overflow: visible; }
 
-body											{ font-family: helvetica, arial, sans-serif; line-height: 1.5; background: white; color: black; }
+body											{ font-family: 'helvetica neue', helvetica, arial, sans-serif; line-height: 1.5; font-weight:300;} /* background: white; color: black; } */
 h1, h2, h3, h4, h5, h6							{ line-height: 1.2; }
 h4, h5, h6										{ font-weight: bold; }
 b, strong, caption, th, thead, dt, legend		{ font-weight: bold; }
@@ -87,12 +87,12 @@ h2:first-child,
 h3:first-child,
 h4:first-child						{ margin-top: 0; margin-left:10px;}
 
-p									{ font-size: 11px; line-height: 16px; position: relative; top: 3px; display:block; }
+p									{ font-size: 13px; line-height: 18px; position: relative; display:block; }
 pre { top: 200px;}
 small								{ font-size: 10px; }
 abbr, code, kbd,
 samp, small, var					{ line-height: 15px; }
-ul, ol, dl, dialog					{ font-size: 11px; line-height: 18px; position: relative; top: 5px; margin-bottom: 10px; }
+ul, ol, dl, dialog					{ font-size: 13px; line-height: 18px; position: relative; top: 5px; margin-bottom: 10px; }
 li ul, li ol, ul ul, ol ol			{ top: 0; margin-top: 0; margin-bottom: 0; }
 li h1, li h2, li h3,
 li h4, li h5, li h6,
@@ -105,7 +105,7 @@ hr									{ position: relative; height: 4px; margin: 0 0 10px 0; }
 
 
 /******************** Grid ********************/
-#page				{ width: 990px; position: relative; } /* 82.5em */
+#page				{ width: 990px;  } /* 82.5em */
 /* #page:after			{ content: "."; display: block; height: 0; clear: both; visibility: hidden; } */ 
 
 /* Base column markup */

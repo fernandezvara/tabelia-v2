@@ -4,10 +4,37 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user, :current_cart
   
-  before_filter :last_page_to_session, :load_categories, :set_locale, :redirect_to_profile_edit, :rel_canonical, :confirmed?
+  before_filter :last_page_to_session, :load_categories, :set_locale, :redirect_to_profile_edit, :rel_canonical, :confirmed?, :user_location
   
   after_filter :set_access_control_headers
-   
+  
+  def user_location
+    if session[:location_city] 
+      @city = session[:location_city]
+    else
+      @city = request.location.city
+      session[:location_city] = request.location.city
+    end
+    if session[:location_country]
+      @country = session[:location_country]
+    else
+      @country = request.location.country_code
+      session[:location_country] = request.location.country_code
+    end
+    if session[:location_long]
+      @long = session[:location_long]
+    else
+      @long = request.location.longitude
+      session[:location_long] = request.location.longitude
+    end
+    if session[:location_lat]
+      @lat = session[:location_lat]
+    else
+      @lat = request.location.latitude
+      session[:location_lat] = request.location.latitude
+    end
+  end
+  
   def set_access_control_headers
     headers['Access-Control-Allow-Origin'] = 'http://www.tabelia.com/, https://www.tabelia.com/'
     headers['Access-Control-Request-Method'] = '*'

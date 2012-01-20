@@ -1,0 +1,11 @@
+<div class="box common">
+  <div class="title">
+    <p><%= t('articles.other_articles_from_same_user')%></p>
+  </div>
+  <div class="content">
+    <% @user.posts.order_by(:created_at, :desc).limit(5).each do |post| %>
+      <p><%= link_to post.title, post_show_path(:slug => post.slug) %> (<%= time_ago_in_words(post.created_at) %>)</p>
+    <% end %>
+  </div>
+</div>
+

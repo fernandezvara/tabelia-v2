@@ -4,9 +4,9 @@
     <%= link_to image_tag(comment.author.avatar.url(:mini).to_s, :alt => comment.author.name), user_profile_path(:username => comment.author.username)  %>
   </div>
   <div class="text s12">
-      <% link = link_to comment.author.name, user_profile_path(:username => comment.author.username) %>
-      <%= simple_format("<strong>#{raw(link)}</strong>: " + comment.text) %>
-      <%= timeagoright(comment.created_at) %>
+      <%= link_to comment.author.name, user_profile_path(:username => comment.author.username) %>
+      <p><%= simple_format(comment.text) %><p>
+      <%= timeago(comment.created_at) %>
   </div>
 </li>
 <% rescue 

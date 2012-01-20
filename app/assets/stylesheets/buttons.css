@@ -10,9 +10,9 @@ input[type=submit], input[type=button], a.abutton, .pagination a {
 	display:inline-block;
 	color:#ffffff !important;
 	font-size: 12px;
-	font-weight:bold;
+	font-width:500;
 	text-decoration:none;
-	text-shadow:1px 1px 0px #b92800;
+	text-shadow:1px 1px 0px #600;
 	position:relative;
 	width:auto;
 	cursor:hand;
@@ -233,17 +233,16 @@ a.unlike:hover {
 }
 
 a.message {
-	border: 1px solid #e0e0e0;
-	-moz-box-shadow:inset 0px 1px 0px 0px #e3e3e3;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #e3e3e3;
-	box-shadow:inset 0px 1px 0px 0px #e3e3e3;
+	border: 1px solid #c0c0c0;
+	-moz-box-shadow:inset 0px 1px 0px 0px #c9c9c9;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #c9c9c9;
+	box-shadow:inset 0px 1px 0px 0px #c9c9c9;
 	text-shadow:1px 1px 0px #ccc;
 	padding:2px 12px 2px 24px;
-	background: #ededed url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/mailgrey.png) no-repeat 6px 5px;
+	background: #ddd url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/mailgrey.png) no-repeat 6px 5px;
 }
 
 a.message:hover {
-	border: 1px solid #ddd;
 	padding:2px 12px 2px 24px;
 	background: #dedede url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/mailwhite.png) no-repeat 6px 5px;
 	color: #fff !important;

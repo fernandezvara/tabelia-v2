@@ -1,0 +1,20 @@
+<%= simple_form_for @place do |f| %>
+  <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id.to_s } %>
+  <%= f.input :name %>
+  <%= f.input :place_info %>  
+  <%= f.input :street %>
+  <%= f.input :city %>
+  <%= f.input :postalcode %>
+  <div class="input optional <%= "field_with_errors" if @place.errors.keys.include?(:country_id) %>">
+    <label class="optional" for="place_country_id"><%= t("simple_form.labels.country") %></label>
+    <%= collection_select('place', 'country_id', Country.allowed_to_user.order_by([:name, :asc]), :id, :name, :prompt => true) %>
+    <script type="text/javascript">
+      $("select#user_country_id").attr("title", "<%= t('simple_form.titles.country') %>");
+    </script>
+  </div>
+  <%= f.input :phone1 %>
+  <%= f.input :phone2 %>
+  <%= f.input :email %>
+  <%= f.input :website %>
+  <%= f.button :submit %>
+<% end %>

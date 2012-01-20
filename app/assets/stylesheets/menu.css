@@ -1,0 +1,228 @@
+/* For the first menu level only ---------- */
+#container .menu, #container .menu ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+	width:990px;
+	top: 0px;
+	z-index:99;
+}
+.menu > li {float:left;}
+.menu > li.floatr {float:right;}
+
+/* --------------------------------------- */
+.menu ul {
+	position:absolute;
+	display:none;
+	width:125px;
+}
+.menu > li.floatr > ul {right:0;}
+.menu li {position:relative;}
+.menu li:hover > ul {display:block;}
+.menu a {display:block;}
+.menu ul ul {
+	top:0;
+	left:125px;
+}
+.menu > li.floatr > ul ul {left:-125px;}
+.menu ul a {position:relative;}
+/* --------------------------------------- */
+.menu .cols1, .menu .cols2, .menu .cols3, .menu .cols4, .menu .cols5 {
+	position:absolute;
+	display:none;
+	overflow:auto;
+	padding:5px;
+}
+.menu .cols1 {width:160px;}
+.menu .cols2 {width:320px;}
+.menu .cols3 {width:480px;}
+.menu .cols4 {width:640px;}
+.menu .cols5 {width:800px;}
+
+.menu > li.floatr > div {right:0;}
+.menu > li:hover > div {display:block;}
+
+.menu .col1, .menu .col2, .menu .col3, .menu .col4, .menu .col5 {float:left; padding:5px;}
+.menu .col1 {width:150px;}
+.menu .col2 {width:310px;}
+.menu .col3 {width:470px;}
+.menu .col4 {width:630px;}
+.menu .col5 {width:790px;}
+
+.gray {
+	height: 20px;
+	border-top: 10px solid #c20000;
+	border-bottom: 10px solid #c20000;
+	background-color:#c20000;
+	font:13px/18px "Helvetica Neue", helvetica, Arial, sans-serif;
+}
+
+.gray > li > a, .gray li > ul > li a {
+	color: #fff;
+	font-weight:normal;
+	font-width:500;
+	text-decoration: none;
+	padding: 2px 15px;
+	
+	-webkit-transition: background-color .3s;
+	-moz-transition: background-color .3s;
+	-ms-transition: background-color .3s;
+	transition: background-color .3s;
+}
+
+.gray > li, .gray li > ul > li {
+	border-right: 2px solid #ffffff;
+	-webkit-transition: background-color .3s;
+	-moz-transition: background-color .3s;
+	-ms-transition: background-color .3s;
+	transition: background-color .3s;
+}
+
+.gray > li:hover, .gray li > ul > li:hover, .gray > li:hover a, .gray li > ul > li:hover a {
+	background-color: #fff;
+	color: #c20000;
+}
+
+.gray > li > a img, .gray li > ul > li > a img {
+	border: 0;
+	margin-right: 7px;
+}
+
+/* For the first menu level only ---------- */
+
+.gray > li {}
+.gray > li > a {}
+
+.gray > li.floatr {
+	border-right: none;
+	border-left: 2px solid #fff;
+}
+.gray > li.floatr > a {
+	border-right: none;
+}
+
+.gray > li > a .bubble, .gray > li > a .bubble-red, .gray > li > a .bubble-blue, .gray > li > a .bubble-orange, .gray > li > a .bubble-purple {
+	position: absolute;
+	font-size: 11px;
+	line-height: 14px;
+	color: #fff;
+	padding: 0 3px;
+	right: 2px;
+	top: -8px;
+	text-shadow: none;
+}
+.gray > li > a .bubble-red, .gray > li > a .bubble {
+	
+	background-color: #660000;
+}
+
+/* --------------------------------------- */
+
+.gray ul {
+	border: 1px solid #cfcfcf;
+	border-top: none;
+	
+	background-color:#e5e5e5;
+	
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));
+	background-image: -webkit-linear-gradient(top, #eee, #ddd);
+	background-image: -moz-linear-gradient(top, #eee, #ddd);
+	background-image: -o-linear-gradient(top, #eee, #ddd);
+	background-image: -ms-linear-gradient(top, #eee, #ddd);
+	background-image: linear-gradient(top, #eee, #ddd);
+	
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border-top-left-radius: 0;
+}
+.gray li.floatr ul {
+	border-top-left-radius: 3px;
+	border-top-right-radius: 0;
+}
+
+.gray ul .bubble {
+	background-color: #ccc;
+	border-bottom: 1px solid #fff;
+	font-size: 11px;
+	line-height: 14px;
+	padding: 2px 8px;
+	position: absolute;
+	right: 6px;
+	
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	
+	-webkit-box-shadow: 0 1px 2px #888 inset;
+	-moz-box-shadow: 0 1px 2px #888 inset;
+	box-shadow: 0 1px 2px #888 inset;
+}
+
+.gray ul li {border-top: 1px solid #cfcfcf;}
+.gray ul li a {border-top: 1px solid #f3f3f3;}
+.gray > li > ul > li:first-child {border-top-color: #b8b8b8;}
+
+.gray > li:first-child > ul {left: -1px;}
+.gray > li > ul {left: -2px;}
+.gray ul ul {top: -1px;}
+.gray > li.floatr > ul {right: -1px; left: auto;}
+.gray > li.floatr > ul ul {left: -127px;}
+
+/* Mega menu ----------------------------- */
+
+.gray li > div {
+	border: 1px solid #aa0000;
+	background-color: #fff;
+	border-top: none;
+	
+
+}
+.gray li.floatr > div {
+}
+
+.gray > li:first-child > div {left: -1px;}
+.gray > li > div {left: -2px;}
+.gray > li.floatr > div {right: -1px; left: auto;}
+
+.gray div ol {
+	border:none;
+	background:none;
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+
+.gray div a {
+	text-decoration:none;
+	padding:2px 0;
+}
+
+.gray div a:hover {
+	text-decoration:underline;
+}
+
+.gray div p {
+	margin:0;
+	padding:5px 0;
+	line-height:18px;
+}
+
+.gray div h4, .gray div h5, .gray div h6 {
+	padding:0;
+	margin:0;
+}
+
+.gray div h4 {
+	font-size:16px;
+	font-weight:normal;
+	border-bottom:1px solid #b00;
+	padding-bottom:5px;
+}
+
+.gray div h5 {
+	font-size:13px;
+	font-weight:normal;
+	border-bottom:1px solid #ccc;
+	padding-bottom:5px;
+}

@@ -11,14 +11,14 @@ class SearchController < ApplicationController
     if params[:type].present? == true
       case params[:type]
       when 'user'
-        @search = User.search do
+        @search = Sunspot.search(User) do
           fulltext params[:search]
           spellcheck
           with(:show_search).greater_than(show_search_level)
           paginate(:per_page => 30, :page => params[:page])
         end
       when 'art'
-        @search = Art.search do
+        @search = Sunspot.search(Art) do
           fulltext params[:search] do
             highlight :name
           end

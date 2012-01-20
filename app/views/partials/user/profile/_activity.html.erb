@@ -1,6 +1,6 @@
 <% activities = Activity.where(:user_id => @user.id.to_s).order_by(:when, :desc).limit(20) %>
 <% if activities.count > 0 %>
-<div class="box orange">
+<div class="box common">
   <div class="title"><%= t('activity.title') %></div>
   <div class="content">
     <ul class="activities">

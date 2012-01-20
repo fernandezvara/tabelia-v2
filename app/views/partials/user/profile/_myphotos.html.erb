@@ -1,5 +1,5 @@
 <% if @photos.count > 0 %>
-<div class="box purple">
+<div class="box common">
   <div class="title"><%= t('users_profile.my_photos') %><%= link_to t('common.see_all_female'), user_photos_path(:username => @user.username) if @photos.count > 8 %></div>
   <div class="content">
     <% if @photos.count > 8 

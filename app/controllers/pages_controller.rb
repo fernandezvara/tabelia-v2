@@ -5,7 +5,7 @@ class PagesController < ApplicationController
       @popular_paintings_cache = "1logged-pop-art-#{Time.now.day}-#{Time.now.month}"
       @popular_photos_cache =    "1logged-pop-pho-#{Time.now.day}-#{Time.now.month}"
       if fragment_exist?(@popular_paintings_cache) == false
-        @search_popular_paintings = Art.search do
+        @search_popular_paintings = Sunspot.search(Art) do
           with(:show_search).greater_than(1)
           with(:photo, false)
           paginate(:per_page => 8, :page => 1)
@@ -13,7 +13,7 @@ class PagesController < ApplicationController
         end
       end
       if fragment_exist?(@popular_photos_cache) == false
-        @search_popular_photos = Art.search do
+        @search_popular_photos = Sunspot.search(Art) do
           with(:show_search).greater_than(1)
           with(:photo, true)
           paginate(:per_page => 8, :page => 1)
@@ -24,7 +24,7 @@ class PagesController < ApplicationController
       @cache = "front-page-logged-#{rand(10)}"
       @cache_photos = "front-page-logged-photos-#{rand(10)}"
       if fragment_exist?(@cache) == false
-        @search = Art.search do
+        @search = Sunspot.search(Art) do
            with(:show_search).greater_than(1)
            with(:photo, false)
            paginate(:per_page => 40, :page => 1)
@@ -32,22 +32,23 @@ class PagesController < ApplicationController
          end
       end
       if fragment_exist?(@cache_photos) == false
-        @search_photos = Art.search do
+        @search_photos = Sunspot.search(Art) do
            with(:show_search).greater_than(1)
            with(:photo, true)
            paginate(:per_page => 40, :page => 1)
            order_by(:random)
          end
       end
+      @spotlight = Post.where(:language => I18n.locale.to_s, :spotlight => true).order_by(:updated_at).limit(5)
       respond_to do |format|
-        format.html { render :layout => 'shop' }
+        format.html { render :layout => 'index' }
       end
     else
       # popular paintings and photos
       @popular_paintings_cache = "1no-logged-pop-art-#{Time.now.day}-#{Time.now.month}"
       @popular_photos_cache =    "1no-logged-pop-pho-#{Time.now.day}-#{Time.now.month}"
       if fragment_exist?(@popular_paintings_cache) == false
-        @search_popular_paintings = Art.search do
+        @search_popular_paintings = Sunspot.search(Art) do
           with(:show_search).greater_than(2)
           with(:photo, false)
           paginate(:per_page => 8, :page => 1)
@@ -55,7 +56,7 @@ class PagesController < ApplicationController
         end
       end
       if fragment_exist?(@popular_photos_cache) == false
-        @search_popular_photos = Art.search do
+        @search_popular_photos = Sunspot.search(Art) do
           with(:show_search).greater_than(2)
           with(:photo, true)
           paginate(:per_page => 8, :page => 1)
@@ -65,7 +66,7 @@ class PagesController < ApplicationController
       @cache = "front-non-logged-#{rand(10)}"
       @cache_photos = "front-non-logged-photos-#{rand(10)}"
       if fragment_exist?(@cache) == false
-        @search = Art.search do
+        @search = Sunspot.search(Art) do
            with(:show_search).greater_than(2)
            with(:photo, false)
            paginate(:per_page => 40, :page => 1)
@@ -73,7 +74,7 @@ class PagesController < ApplicationController
          end
       end
       if fragment_exist?(@cache_photos) == false
-        @search_photos = Art.search do
+        @search_photos = Sunspot.search(Art) do
            with(:show_search).greater_than(1)
            with(:photo, true)
            paginate(:per_page => 40, :page => 1)

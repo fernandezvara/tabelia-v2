@@ -1,0 +1,187 @@
+      <ul class="menu gray slide" id="menu">
+      		<li><a href="#">Fotografía</a>
+      			<!-- start mega menu -->
+      			<div class="cols4">
+      				<div class="col2">
+      					<h4>Temática</h4>
+      				</div>
+      				<div class="col2">
+      					<h4>Técnicas</h4>
+      				</div>
+      				<div class="col1">
+      					<ol>
+      					    <li>
+      					        <a href="#">Calendars</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Countdowns</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Database Abstractions</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Navigation</a>
+      					    </li>
+      					</ol>
+      				</div>
+      				<div class="col1">
+      					<ol>
+      					    <li>
+      					        <a href="#">Navigation and Menus</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Layouts</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Annimations and Effects</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Buttons</a>
+      					    </li>
+      					</ol>
+      				</div>
+      				<div class="col1">
+      					<ol>
+      					    <li>
+      					        <a href="#">iPhone</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Android</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Native web</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Titanium</a>
+      					    </li>
+      					</ol>
+      				</div>
+      				<div class="col1">
+      					<ol>
+      					    <li>
+      					        <a href="#">News Tickers</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Navigation</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Rating and Charts</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Loaders and Uploaders</a>
+      					    </li>
+      					</ol>
+      				</div>
+      			</div>
+      			<!-- end mega menu -->
+      		</li>
+
+      		<li><a href="#">Pintura</a>
+      			<!-- start mega menu -->
+      			<div class="cols4">
+      				<div class="col2">
+      					<h4>Temática</h4>
+      				</div>
+      				<div class="col2">
+      					<h4>Técnicas</h4>
+      				</div>
+      				<div class="col1">
+      					<ol>
+      					    <li>
+      					        <a href="#">Calendars</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Countdowns</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Database Abstractions</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Navigation</a>
+      					    </li>
+      					</ol>
+      				</div>
+      				<div class="col1">
+      					<ol>
+      					    <li>
+      					        <a href="#">Navigation and Menus</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Layouts</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Annimations and Effects</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Buttons</a>
+      					    </li>
+      					</ol>
+      				</div>
+      				<div class="col1">
+      					<ol>
+      					    <li>
+      					        <a href="#">iPhone</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Android</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Native web</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Titanium</a>
+      					    </li>
+      					</ol>
+      				</div>
+      				<div class="col1">
+      					<ol>
+      					    <li>
+      					        <a href="#">News Tickers</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Navigation</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Rating and Charts</a>
+      					    </li>
+      					    <li>
+      					        <a href="#">Loaders and Uploaders</a>
+      					    </li>
+      					</ol>
+      				</div>
+      			</div>
+      			<!-- end mega menu -->
+      		</li>
+
+          <li class="floatr"><a href="/cart"><%= t('mainmenu.cart') %> 
+            <% if current_cart.items.count > 0 %>
+              <span class="bubble"><%= current_cart.items.count %></span>
+              <% end %>
+          </a></li>
+          <% if current_user.nil? %>
+          <li class="floatr"><%= link_to t('mainmenu.signup'), '/signup', :rel => 'nofollow' %></li>
+          <li class="floatr"><%= link_to t('mainmenu.login'), 'http://www.tabelia.com/login', :rel => 'modal nofollow' %></li>
+          <% else %>
+          <li class="floatr"><%= link_to current_user.name, user_profile_path(current_user.username) %>
+            <div class="cols1">
+              <ol>
+                <li><%= link_to t('mainmenu.myart'), arts_path %></li>
+                <li><%= link_to t('mainmenu.myphotos'), photos_path %></li>
+                <li><%= link_to t('mainmenu.myarticles'), posts_path %></li>
+                <li><%= link_to t('mainmenu.myevents'), events_path %></li>
+                <li><%= link_to t('mainmenu.mysettings'), profile_basic_path %></li>
+                <% if current_user.arts.count > 0 %>
+                <li><%= link_to t('mainmenu.mysellitems'), '#' %></li>
+                <% end %>
+                <li><%= link_to t('mainmenu.signout'), logout_path %></li>
+              </ol>
+            </div>
+          </li>
+          <li class="floatr"><a href="/messages">Mensajes
+            <% if current_user.unreaded_conversations > 0  %>
+              <span class="bubble"><%= current_user.unreaded_conversations %></span>
+            <% end %>
+            </a>
+          </li>
+          <% end %>
+      	</ul>

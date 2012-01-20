@@ -18,4 +18,8 @@ module ApplicationHelper
     options[:class] ||= "timeagoright"
     content_tag(:time, time.to_s, options.merge(:datetime => time.getutc.iso8601)) if time
   end
+  
+  def flag(country)
+    image_tag("//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/countries/#{country.code}.png".downcase, :alt => country.name)
+  end
 end

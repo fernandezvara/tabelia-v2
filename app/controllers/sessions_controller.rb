@@ -19,6 +19,8 @@ class SessionsController < ApplicationController
     else
       @error = "Invalid email or password"
     end
+    
+    redirect_to_or_default(@redirect, :notice => notice)
   end
 
   def create_external
@@ -60,7 +62,6 @@ class SessionsController < ApplicationController
     end
     
     redirect_to_or_default(root_url, :notice => notice)
-
   end
 
   def destroy

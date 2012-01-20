@@ -1,0 +1,13 @@
+<div class="slide">
+  <div class="article-image">
+    <%= link_to image_tag(article.image1.url(:spotlight).to_s, :class => 'item2', :height => "320", :width => "450"), post_show_path(:slug => article.slug) %>
+  </div>
+  <div class="article">
+    <p class="category"><%= link_to article.postcategory.title, '#' %></p>
+    <p class="s18 title"><%= link_to article.title, post_show_path(:slug => article.slug) %></p>
+    <p class="poster-info"><%= t('articles.posted_by') %><%= link_to article.user.name, user_profile_path(:username => article.user.username) %></p>
+    <p class="brief"><%= article.description %></p>
+    <p class="align-right"><%= link_to t('common.read_more'), post_show_path(:slug => article.slug) %></p>
+  </div>
+</div>
+    

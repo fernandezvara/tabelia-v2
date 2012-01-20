@@ -1,0 +1,12 @@
+<% content_for :title do %>
+<div class="left inner-title"><p><%= t('places.new_place') %></p></div>
+<div class="clearfix"></div>
+<% end %>
+
+<% content_for :left do %>
+  <%= render :partial => 'partials/places/place_form' %>
+<% end %>
+
+<% content_for :right do %>
+  TODO!
+<% end %>

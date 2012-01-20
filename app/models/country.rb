@@ -1,9 +1,8 @@
 class Country
   include Mongoid::Document
-  include Mongoid::I18n
   
   field :code,              :type => String  # ISO code
-  localized_field :name,    :type => String
+  field :name,    :type => String, :localize => true
   
   field :accept_send,       :type => Boolean
   field :accept_user,       :type => Boolean
