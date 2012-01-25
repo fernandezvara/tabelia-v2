@@ -1,2 +1,53 @@
-<h1>Events#agenda</h1>
-<p>Find me in app/views/events/agenda.html.erb</p>
+<% content_for :title do %>
+<div class="left inner-title"><p><%= t('events.agenda') %></p></div>
+<div class="clearfix"></div>
+<% end %>
+
+<% content_for :left do %>
+  <% if @agenda.count == 0 %> %>
+    <p class="s14 center">No se han encontrado resultados para tu búsqueda.</p>
+  <% else %>
+    <p class="s14 center">Se han encontrado <%= @agenda.count %> resultados para tu búsqueda.</p>
+  <% end %>
+  <p class="center">Localización: <%= @location %> </p>
+  <br />
+  <% if @agenda.count > 0 %>
+  <div class="paginate">
+    <%= paginate @agenda, :inner_window => 1 %>
+  </div>
+  <ul id="listing2">
+    <% @agenda.each do |event| %>
+      <%= render :partial => 'partials/events/event', :locals => { :event => event } %>
+    <% end %>
+  </ul>
+  <div class="paginate">
+    <%= paginate @agenda, :inner_window => 1 %>
+  </div>
+  <% end %>
+<% end %>
+
+<% content_for :right do %>
+<div class="box common">
+  <div class="title">
+    Filtros
+  </div>
+  <div class="content">
+<%= form_tag "/agenda", :method => 'get' %>
+<p><%= t('event.type') %></p>
+<p><%= collection_select('event', 'eventcategory_id', Eventcategory.all.order_by([:name, :asc]), :id, :name, :prompt => 'Todas las categorias', :selected => @category_id) %></p>
+<br />
+<p><%= t('event.localization') %></p>
+<p><%= text_field_tag 'location', @location %></p>
+<br />
+<p><%= t('event.select_date') %></p>
+<% begin %>
+<%= select_day(params[:date][:day].to_i) %> <%= select_month(params[:date][:month].to_i) %> <%= select_year(params[:date][:year].to_i)%>
+<% rescue %>
+<%= select_day(Time.now) %> <%= select_month(Time.now) %> <%= select_year(Time.now)%>
+<% end %>
+<br /><br />
+     <input type="submit" value="filtrar" />
+    </form>
+  </div>
+</div>
+<% end %>

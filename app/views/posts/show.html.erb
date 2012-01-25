@@ -56,12 +56,12 @@
   
   <div class="box common">
     <div class="title">
-      <p><%= @post.postcomments.count %> COMENTARIOS</p>
+      <p><%= @post.comments.count %> COMENTARIOS</p>
     </div>
     <div class="content">
-    <% if @post.postcomments.count != 0 %>
+    <% if @post.comments.count != 0 %>
       <ul id="blogcomments">
-        <% @post.postcomments.each do |comment| %>
+        <% @post.comments.each do |comment| %>
           <% begin %>
             <%= render :partial => 'partials/articles/comment', :locals => { :commment => comment } %>
           <% rescue %>

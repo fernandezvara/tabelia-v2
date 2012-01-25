@@ -1,0 +1,12 @@
+<% content_for :title do %>
+<div class="left inner-title"><p><%= @place.name %></p></div>
+<div class="clearfix"></div>
+<% end %>
+
+<% content_for :left do %>
+  0 photos!!!!
+<% end %>
+
+<% content_for :right do %>
+  <%= render :partial => 'partials/places/info' %>
+<% end %>

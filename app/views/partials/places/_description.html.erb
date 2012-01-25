@@ -2,7 +2,7 @@
   <div class="title">
   </div>
   <div class="content">
-    <% if @place.place_info == '' %>
+    <% if @place.place_info == '' or @place.place_info.nil? == true %>
       <%= t('places.no_description_provided') %>
     <% else %>
       <%= Redcarpet.new(@place.place_info, :filter_html, :hard_wrap, :autolink, :no_intraemphasis).to_html.html_safe %>

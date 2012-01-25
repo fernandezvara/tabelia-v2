@@ -15,7 +15,7 @@
   <div class="paginate">
     <%= paginate @events, :inner_window => 1 %>
   </div>
-  <ul id="listing">
+  <ul id="listing2">
     <% @events.each do |event| %>
       <%= render :partial => 'partials/events/event', :locals => { :event => event } %>
     <% end %>

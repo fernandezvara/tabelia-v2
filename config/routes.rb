@@ -85,37 +85,37 @@ Tabelia::Application.routes.draw do
   
   #match 'auth/:provider/callback',    :controller => 'sessions', :action => 'create_external',  :as => 'create_external'
   
-  match 'terms',                       :controller => 'pages',   :action => 'terms',        :as => 'page_terms'
-  match 'privacy',                     :controller => 'pages',   :action => 'privacy',      :as => 'page_privacy'
-  match 'jobs',                        :controller => 'pages',   :action => 'jobs',         :as => 'page_jobs'
-  match 'help',                        :controller => 'pages',   :action => 'help',         :as => 'page_help'
-  match 'help/big_art',                :controller => 'pages',   :action => 'big_art',      :as => 'page_big_art'
-  match 'help/how_to_sell',            :controller => 'pages',   :action => 'how_to_sell',  :as => 'page_how_to_sell'
-  match 'help/how_to_buy',             :controller => 'pages',   :action => 'how_to_buy',   :as => 'page_how_to_buy'
-  match 'help/shopping',               :controller => 'pages',   :action => 'shopping',  :as => 'page_shopping'
-  match 'help/paintings',      :controller => 'pages',   :action => 'publish_paintings',  :as => 'page_publish_paintings'
-  match 'help/photos',         :controller => 'pages',   :action => 'publish_photos',     :as => 'page_publish_photos'
+  match 'terms',                       :controller => 'pages',   :action => 'terms',               :as => 'page_terms'
+  match 'privacy',                     :controller => 'pages',   :action => 'privacy',             :as => 'page_privacy'
+  match 'jobs',                        :controller => 'pages',   :action => 'jobs',                :as => 'page_jobs'
+  match 'help',                        :controller => 'pages',   :action => 'help',                :as => 'page_help'
+  match 'help/big_art',                :controller => 'pages',   :action => 'big_art',             :as => 'page_big_art'
+  match 'help/how_to_sell',            :controller => 'pages',   :action => 'how_to_sell',         :as => 'page_how_to_sell'
+  match 'help/how_to_buy',             :controller => 'pages',   :action => 'how_to_buy',          :as => 'page_how_to_buy'
+  match 'help/shopping',               :controller => 'pages',   :action => 'shopping',            :as => 'page_shopping'
+  match 'help/paintings',              :controller => 'pages',   :action => 'publish_paintings',   :as => 'page_publish_paintings'
+  match 'help/photos',                 :controller => 'pages',   :action => 'publish_photos',      :as => 'page_publish_photos'
       
-  match 'confirmation',                :controller => 'pages',   :action => 'confirmation', :as => 'page_confirmation'
+  match 'confirmation',                :controller => 'pages',   :action => 'confirmation',        :as => 'page_confirmation'
   
   match 'send_confirmation',           :controller => 'users',   :action => 'resend_confirmation', :as => 'resend_conf'
   
-  match 'language',                    :controller => 'locale',  :action => 'change',       :as => 'change_locale'
-  match 'locale/:language',            :controller => 'locale',  :action => 'set',          :as => 'set_locale'        
+  match 'language',                    :controller => 'locale',  :action => 'change',              :as => 'change_locale'
+  match 'locale/:language',            :controller => 'locale',  :action => 'set',                 :as => 'set_locale'        
   
-  match 'profile/basic',               :controller => 'profile', :action => 'basic',        :as => 'profile_basic'
-  match 'profile/about',               :controller => 'profile', :action => 'about',        :as => 'profile_about'
-  match 'profile/avatar',              :controller => 'profile', :action => 'avatar',       :as => 'profile_avatar'
-  match 'profile/privacy',             :controller => 'profile', :action => 'privacy',      :as => 'profile_privacy'
-  match 'profile/services',            :controller => 'profile', :action => 'services',     :as => 'profile_services'
-  match 'profile/billing',             :controller => 'profile', :action => 'billing',      :as => 'profile_billing'
+  match 'profile/basic',               :controller => 'profile', :action => 'basic',               :as => 'profile_basic'
+  match 'profile/about',               :controller => 'profile', :action => 'about',               :as => 'profile_about'
+  match 'profile/avatar',              :controller => 'profile', :action => 'avatar',              :as => 'profile_avatar'
+  match 'profile/privacy',             :controller => 'profile', :action => 'privacy',             :as => 'profile_privacy'
+  match 'profile/services',            :controller => 'profile', :action => 'services',            :as => 'profile_services'
+  match 'profile/billing',             :controller => 'profile', :action => 'billing',             :as => 'profile_billing'
   
-  match 'my/orders',                   :controller => 'invoices',:action => 'index',        :as => 'my_orders'
-  match 'my/invoice/:number',          :controller => 'invoices',:action => 'show',         :as => 'my_invoice'  
-  #match 'user/:username/edit',         :controller => 'users',   :action => 'edit',         :as => 'edit_user'
+  match 'my/orders',                   :controller => 'invoices',:action => 'index',               :as => 'my_orders'
+  match 'my/invoice/:number',          :controller => 'invoices',:action => 'show',                :as => 'my_invoice'  
+  #match 'user/:username/edit',         :controller => 'users',   :action => 'edit',                :as => 'edit_user'
   
-  match 'shop/photos/:subject/:tecnique/(:page)', :controller => 'shop', :action => 'photos',       :as => 'shop_photos'
-  match 'shop/paintings/:category/:idiom/:tecnique/(:page)', :controller => 'shop', :action => 'paintings',       :as => 'shop_paintings'
+  match 'shop/photos/:subject/:tecnique/(:page)',            :controller => 'shop', :action => 'photos',                  :as => 'shop_photos'
+  match 'shop/paintings/:category/:idiom/:tecnique/(:page)', :controller => 'shop', :action => 'paintings',               :as => 'shop_paintings'
   match 'shop/popular/paintings/(:page)',                    :controller => 'shop', :action => 'popular_paintings',       :as => 'shop_popular_paintings'  
   match 'shop/popular/photos/(:page)',                       :controller => 'shop', :action => 'popular_photos',          :as => 'shop_popular_photos'  
 
@@ -124,12 +124,14 @@ Tabelia::Application.routes.draw do
   match 'post/:slug/edit',   :controller => 'posts', :action => 'edit', :as => 'post_edit'
 
   # Events
-  match 'event/:slug',       :controller => 'events', :action => 'show',   :as => 'event_show'
+  #match 'event/:slug',       :controller => 'events', :action => 'show',   :as => 'event_show'
   match 'event/:slug/edit',  :controller => 'events', :action => 'edit',   :as => 'event_edit'
-  match 'agenda',            :controller => 'events', :action => 'agenda', :as => 'agenda'
+  match 'agenda/(:category)/(:year)/(:month)/(:day)', :controller => 'events', :action => 'agenda', :as => 'agenda'
   
   # Places
-  match 'place/:slug',       :controller => 'places', :action => 'show',   :as => 'place_profile'
+  #match 'place/:slug',       :controller => 'places', :action => 'show',   :as => 'place_profile'
+  #match 'place/:slug/edit',  :controller => 'places', :action => 'edit',   :as => 'edit_place'
+  match 'places/search(.format)', :controller => 'places', :action => 'search', :as => 'places_search'
   
   # Facebook shops
   match 'fb',                          :controller => 'fb',      :action => 'show',          :as => 'facebook_shop'
@@ -141,8 +143,10 @@ Tabelia::Application.routes.draw do
   resources :photos,    :only => [:index, :new, :create, :update]
   resources :sessions
   resources :posts,     :only => [:index, :new, :create, :update, :delete, :destroy]
-  resources :events,    :only => [:index, :new, :create, :update, :delete, :destroy]
-  resources :places,    :only => [:index, :new, :create, :update, :delete, :destroy]
+  resources :events
+  resources :places do
+    resources :images
+  end
   resources :users,     :only => [:index, :edit, :create, :update] do
     get 'page/:page', :action => :index, :on => :collection
   end

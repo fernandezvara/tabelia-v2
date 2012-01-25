@@ -101,7 +101,7 @@ form, legend, label					{ font-size: 11px; line-height: 18px; }
 legend								{ position: relative; top: 5px; }
 table								{ font-size: 11px; }
 caption								{ font-size: 11px; line-height: 18px; position: relative; }
-hr									{ position: relative; height: 4px; margin: 0 0 10px 0; }
+hr									{ position: relative; height: 2px; margin: 0 0 10px 0; }
 
 
 /******************** Grid ********************/

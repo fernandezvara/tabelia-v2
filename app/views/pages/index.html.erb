@@ -59,7 +59,7 @@
 <% content_for :right do %>
 <div class="box common">
   <div class="title">
-    AGENDA  <a href="#">cambiar</a>
+    AGENDA  <%= link_to 'ver todos', agenda_path(:category => '_', :year => Date.today.year, :month => Date.today.month, :day => Date.today.day)%> 
   </div>
   <div class="title">
     <p><%= @city %>, <%= @country %></p>

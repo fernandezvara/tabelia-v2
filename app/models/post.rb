@@ -30,7 +30,7 @@ class Post
   belongs_to :postcategory
   belongs_to :user
   
-  has_many :postcomments
+  has_many :comments, :as => :commentable
   
   validates_presence_of :title, :description, :text, :language
   

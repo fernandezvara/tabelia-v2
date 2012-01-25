@@ -1,2 +1,12 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<% content_for :title do %>
+<div class="left inner-title"><p><%= t('events.new_event') %></p></div>
+<div class="clearfix"></div>
+<% end %>
+
+<% content_for :left do %>
+  <%= render :partial => 'partials/events/event_form' %>
+<% end %>
+
+<% content_for :right do %>
+  <%= render :partial => 'partials/art/index/right' %>
+<% end %>

@@ -15,7 +15,7 @@ class ShopController < ApplicationController
     else
       tecnique = params[:tecnique]
     end
-    @search = Art.search do
+    @search = Sunspot.search(Art) do
       with(:photo, true)
       with(:show_search).greater_than(show_search_level)
       with(:subject_slug, params[:subject]) if subject
@@ -47,7 +47,7 @@ class ShopController < ApplicationController
     else
       idiom = params[:idiom]
     end
-    @search = Art.search do
+    @search = Sunspot.search(Art) do
       with(:photo, false)
       with(:show_search).greater_than(show_search_level)
       with(:category_slug, category) if category
@@ -98,7 +98,7 @@ class ShopController < ApplicationController
     else
       tecnique = params[:tecnique]
     end
-    @search = Art.search do
+    @search = Sunspot.search(Art) do
       with(:photo, true)
       with(:show_search).greater_than(show_search_level)
       with(:subject_slug, params[:subject]) if subject
@@ -130,7 +130,7 @@ class ShopController < ApplicationController
     else
       idiom = params[:idiom]
     end
-    @search = Art.search do
+    @search = Sunspot.search(Art) do
       with(:photo, false)
       with(:show_search).greater_than(show_search_level)
       with(:category_slug, category) if category

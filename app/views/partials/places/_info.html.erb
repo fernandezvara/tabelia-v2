@@ -1,4 +1,9 @@
 <div class="box common">
+  <% if @place.user == current_user %>
+  <div class="content center">
+    <%= link_to t('places.edit_this_place'), edit_place_path(:id => @place.slug), :class => 'abutton' %>
+  </div>
+  <% end %>
   <div class="content center">
     <%= image_tag(@place.logo.url.to_s, :alt => @place.name) %>
   </div>

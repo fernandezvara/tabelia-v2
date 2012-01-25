@@ -45,13 +45,13 @@ class UsersController < ApplicationController
       else
         if current_user.nil? == true
           user = @user.id.to_s
-          search = Art.search do
+          search = Sunspot.search(Art) do
              with(:show_search).greater_than(2)
              with(:photo, false)
              with(:user_id, user)
            end
            @arts = search.results
-           search = Art.search do
+           search = Sunspot.search(Art) do
               with(:show_search).greater_than(2)
               with(:photo, true)
               with(:user_id, user)
@@ -59,13 +59,13 @@ class UsersController < ApplicationController
             @photos = search.results
         else
           user = @user.id.to_s
-          search = Art.search do
+          search = Sunspot.search(Art) do
              with(:show_search).greater_than(1)
              with(:photo, false)
              with(:user_id, user)
            end
            @arts = search.results
-           search = Art.search do
+           search = Sunspot.search(Art) do
               with(:show_search).greater_than(1)
               with(:photo, true)
               with(:user_id, user)

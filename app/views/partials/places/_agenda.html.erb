@@ -3,10 +3,14 @@
     AGENDA
   </div>
   <div class="content">
-    <%# if @place.events.count == 0 %>
+    <% if @agenda.count == 0 %>
       <%= t('places.agenda_empty') %>
-    <%# else %>
-      
-    <%# %>
+    <% else %>
+      <ul id="listing2">
+      <% @agenda.each do |event| %>
+        <%= render :partial => 'partials/events/agendaentry', :locals => { :event => event } %>
+      <% end %>
+      </ul>
+    <% end %>
   </div>
 </div>

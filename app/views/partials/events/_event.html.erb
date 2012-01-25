@@ -1,0 +1,23 @@
+<li class="<%= cycle('odd', 'even') %>">
+    <div class="avatar left">
+      <%= link_to image_tag(event.image1.url(:thumb).to_s, :alt => event.title), event_path(:id => event.slug) %>
+    </div>      
+    <div class="data">
+      <p><%= link_to event.eventcategory.name, agenda_path(:category => event.eventcategory.slug) %>: <%= link_to event.title, event_path(:id => event.slug), :class => 'b' %> </p>
+      <p><%= event.place.name %> (<%= event.place.street %>)</p>
+      <p><%= l(event.start)%> - <%= l(event.finish) %>
+      <div class="actions"><%= link_to 'Editar', edit_event_path(:id => event.slug), :class => 'abutton' %></div>
+    </div>
+  <% comments_count = event.comments.count %>
+  <div class="box">
+    <div class="n">
+      <p class="s28 center"><%= comments_count %></p>
+      <% if comments_count == 1 %>
+      <p class="center"><%= t('comments.singular') %></p>
+      <% else %>
+      <p class="center"><%= t('comments.plural') %></p>
+      <% end %>
+    </div>
+  </div>
+  <div class="clear"></div>
+</li>

@@ -1,14 +1,47 @@
 <%= form_for @event, :html => { :multipart => true, :class => 'simple_form' } do |f| %>
-  <%= f.hidden_field :slug %>
+  <%#= f.hidden_field :slug %>
   <div class="input string optional">
     <%= f.label :title, :class => ['string', 'optional'] %>
     <%= f.text_field :title, :maxlenght => 50, :title => t("mongoid.hints.art.name") %>
   </div>
+  <div class="input optional">
+    <label class="optional" for="eventcategory_id"><%= t("simple_form.labels.category") %></label>
+    <%= collection_select('event', 'eventcategory_id', Eventcategory.all.order_by([:name, :asc]), :id, :name) %>
+    <script type="text/javascript">
+      $("select#eventcategory_id").attr("title", "<%= t('simple_form.titles.country') %>");
+    </script>
+  </div>
+  <div class="date required">
+    <%= f.label :start, :class => ['string', 'optional'] %>
+    <%= f.date_select :start, :title => t("mongoid.hints.art.name") %>
+  </div>
+  <div class="date required">
+    <%= f.label :finish, :class => ['string', 'optional'] %>
+    <%= f.date_select :finish, :title => t("mongoid.hints.art.name") %>
+  </div>
   <div class="input string optional">
-    <%= label_tag :place_name, 'Lugar', :class => ['string', 'optional'] %>
-    <%= text_field_tag :place_name, "", :maxlenght => 50, :title => t("mongoid.hints.art.name") %>
+    <%= f.label :place_name, 'Lugar', :class => ['string', 'optional'],  %>
+    <%= f.text_field :place_name, :maxlenght => 50, :title => t("mongoid.hints.art.name") %>
     <%= f.hidden_field :place_id %>
   </div>
+  <div id="direction" style="display:none;">
+    <div class="input string optional">
+      <%= f.label :place_street, :class => ['string', 'optional'] %>
+      <%= f.text_field :place_street, :maxlenght => 50, :title => t("mongoid.hints.art.name") %>
+    </div>
+    <div class="input string optional">
+      <%= f.label :place_city, :class => ['string', 'optional'] %>
+      <%= f.text_field :place_city, :maxlenght => 50, :title => t("mongoid.hints.art.name") %>
+    </div>
+    <div class="input optional">
+      <label class="optional" for="place_country_id"><%= t("simple_form.labels.country") %></label>
+      <%= collection_select('event', 'place_country_id', Country.all.order_by([:name, :asc]), :id, :name, :prompt => true) %>
+      <script type="text/javascript">
+        $("select#event_place_country_id").attr("title", "<%= t('simple_form.titles.country') %>");
+      </script>
+    </div>
+  </div>
+  
   <div class="input string optional">
     <%= f.label :description, :class => ['string', 'optional'] %>
     <%= f.text_area :description, :cols => 40, :rows => 8, :title => t("mongoid.hints.art.price") %>
@@ -17,7 +50,7 @@
     <%= f.label :publish, :class => ['text', 'optional'] %>
     <%= f.select :publish, [[t('mongoid.options.art.status.active'), true], [t('mongoid.options.art.status.inactive'), false]] %>
     <script type="text/javascript">
-      $("select#art_status").attr("title", "<%=  t("mongoid.hints.art.status") %>");
+      $("select#event_status").attr("title", "<%=  t("mongoid.hints.art.status") %>");
     </script>
   </div>
   <div class="input file optional">
@@ -40,19 +73,29 @@ $(document).ready(function() {
     gravity: 's'
   });
   
-  var total_letras = 160;
-  
   var options = {
-    script:"test.php?json=true&limit=6&",		
+    script:"/places/search.json?limit=6&",		
     varname:"input",		
     json:true,		
-    shownoresults:false,		
+    shownoresults:false,
     maxresults:6,
+    timeout:5000,
+    minchars:4,
     callback: function (obj) { 
-      $('input#event_place_id').val(obj.id);
-      }	
+        alert(obj.id);
+        $('input#event_place_id').val(obj.id);
+        $('div#direction').slideUp();
+      }
   };
-  var as_json = new bsn.AutoSuggest('place_name', options);
+  var as_json = new bsn.AutoSuggest('event_place_name', options);
   
+  $('input#event_place_name').keyup(function(e){
+    if ( e.keyCode == 9 || e.keyCode == 37  || e.keyCode == 38 ) { 
+      return false;
+    } else {
+      $('input#event_place_id').val("");
+      $('div#direction').slideDown();
+    }
+  });
 });
 </script>

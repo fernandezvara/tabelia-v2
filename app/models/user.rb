@@ -81,7 +81,6 @@ class User
   has_many :orders
   has_many :invoices
   has_many :posts
-  has_many :locations
   has_many :events
   has_many :places
   

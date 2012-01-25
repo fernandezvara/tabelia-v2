@@ -16,7 +16,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$("li.message").live({
+	$("li").live({
 		mouseover: function() {
 			$(this).find("div.actions").show();
 		},

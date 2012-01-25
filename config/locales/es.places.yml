@@ -1,6 +1,10 @@
 es:
     places:
         new_place: 'Nuevo lugar'
+        edit_place: 'Edicción de información del sitio'
+        edit_this_place: 'Edita este sitio'
+        success_edit: 'Sitio editado correctamente.'
+        localization: 'Localización'
         error_in_form: 'Por favor corrige los errores resaltados.'
         no_description_provided: 'No se ha facilitado una descripción.'
         agenda_empty: 'La agenda está vacía.'

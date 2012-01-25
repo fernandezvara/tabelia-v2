@@ -23,14 +23,15 @@
 
 /* BASICS */
 /* body                    { font-family: Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif; color:#7d7d7d; background-color:#f7f7f7;} */
-body                    { font-family: 'Helvetica Neue', 'lucida grande', helvetica, verdana, arial, sans-serif; color:#7d7d7d; background-color:#eee;}
+body                    { font-family: 'Helvetica Neue', 'Segoe UI', 'lucida grande', helvetica, verdana, arial, sans-serif; color:#7d7d7d; background-color:#eee;}
 #page					{ margin: 0 auto; background-color: rgba(255, 255, 255, 0.6); padding:0; }
 
 .width1-5 { width: 312px; }
 .width2-5 { width: 660px; }
 
 section					{ padding-bottom: 0 !important; }
-hr						{ background: #c20000; }
+hr						{ background: #660000; }
+hr.thin                 { height:1px;}
 section#main            { min-height:50px; margin-bottom:39px; }
 
 footer                  { margin-bottom:0px; overflow:hidden; height: 136px; font-size:13px;}
@@ -103,7 +104,16 @@ ul#listing div.artdata   { padding: 0; width: 515px; height:75px; overflow:hidde
 ul#listing div.likes     { padding: 10px; width: 100px; height:75px;}
 ul#listing div.likes .n  { text-align:center; height:73px; vertical-align:middle; border: 1px solid #f0f0f0; background:#fafafa;}
 
-	
+ul#listing2               { list-style: none; margin-left:0; }
+ul#listing2 li            { border-bottom: 1px solid #f7f7f7;  height:75px; padding:10px;} /* border-right: 1px solid #f7f7f7; */
+ul#listing2 li.even        { height:75px; background-color: #fdfdfd;}
+ul#listing2 li.odd        { height:75px !important; background-color: #fefefe;}
+ul#listing2 li:first-child { border-top:1px solid #f7f7f7;}
+ul#listing2 div.avatar { padding:0; height:75px; width:75px; margin:0; float:left;}
+ul#listing2 div.data { margin: 0 10px; padding:0; height:75px; width:500px; float:left;}
+ul#listing2 div.box { clear:right; padding:0; height:73px; width:73px; border: 1px solid #f0f0f0; background:#fafafa; margin:0; float:right;}
+ul#listing2 div.box .n    { }
+
 ul#cart                  { list-style: none; margin-left:0; }
 ul#cart li               { border-bottom: 1px solid #ddd; overflow:hidden;} /* border-right: 1px solid #ddd; */
 ul#cart li.even          { background-color: #f1f1f1;}
@@ -122,7 +132,7 @@ div#follow_status a,
 div#message a,
 
 div#actions a            { top:10px; }
-
+div.actions              { display:none;}
 div#add_to_cart 		 {overflow:hidden; margin-bottom:10px; text-align:center;}
 
 span.search-bg           { background:#fafafa url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/search.png) no-repeat !important; background-position: 290px 4px !important; display:block; padding:2px 5px; margin-top:15px; border: 1px solid #c20000;}
@@ -214,3 +224,160 @@ div#photos_random { width:330px; height: 660px; overflow:hidden; }
 }
 
 
+
+
+
+
+
+div.autosuggest
+{
+	position: absolute;
+	background-color:#000;
+	padding: 0;
+	
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+div.autosuggest div.as_header,
+div.autosuggest div.as_footer
+{
+	position: relative;
+	height: 0px;
+	overflow: hidden;
+}
+div.autosuggest div.as_footer
+{
+	
+}
+
+div.autosuggest div.as_header div.as_corner,
+div.autosuggest div.as_footer div.as_corner
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 0px;
+	width: 0px;
+}
+div.autosuggest div.as_footer div.as_corner
+{
+	
+}
+div.autosuggest div.as_header div.as_bar,
+div.autosuggest div.as_footer div.as_bar
+{
+	height: 0px;
+	overflow: hidden;
+	background-color: #333;
+}
+
+
+div.autosuggest ul
+{
+	list-style: none;
+	margin: 0 0 -4px 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+div.autosuggest ul li
+{
+	color: #ccc;
+	padding: 0;
+	margin: 0 4px 4px;
+	text-align: left;
+}
+
+div.autosuggest ul li a
+{
+	color: #ccc;
+	display: block;
+	text-decoration: none;
+	background-color: transparent;
+	text-shadow: #000 0px 0px 5px;
+	position: relative;
+	padding: 0;
+	width: 100%;
+}
+div.autosuggest ul li a:hover
+{
+	background-color: #444;
+}
+div.autosuggest ul li.as_highlight a:hover
+{
+	background-color: #1B5CCD;
+}
+
+div.autosuggest ul li a span
+{
+	display: block;
+	padding: 3px 6px;
+	font-weight: bold;
+}
+
+div.autosuggest ul li a span small
+{
+	color: #999;
+}
+
+div.autosuggest ul li.as_highlight a span small
+{
+	color: #ccc;
+}
+
+div.autosuggest ul li.as_highlight a
+{
+	color: #fff;
+	background-color: #1B5CCD;
+}
+
+div.autosuggest ul li.as_highlight a span
+{
+
+}
+
+div.autosuggest ul li a .tl,
+div.autosuggest ul li a .tr
+{
+	background-image: transparent;
+	background-repeat: no-repeat;
+	width: 6px;
+	height: 6px;
+	position: absolute;
+	top: 0;
+	padding: 0;
+	margin: 0;
+}
+div.autosuggest ul li a .tr
+{
+	right: 0;
+}
+
+div.autosuggest ul li.as_highlight a .tl
+{
+	left: 0;
+
+}
+
+div.autosuggest ul li.as_highlight a .tr
+{
+	right: 0;
+
+}
+
+
+
+div.autosuggest ul li.as_warning
+{
+	font-weight: bold;
+	text-align: center;
+}
+
+div.autosuggest ul em
+{
+	font-style: normal;
+	color: #6EADE7;
+}

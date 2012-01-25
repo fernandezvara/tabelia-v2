@@ -6,21 +6,15 @@ class PhotoUploader < CarrierWave::Uploader::Base
   storage :fog
 
   def store_dir
-    # "#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-    if version_name
-      "#{mounted_as}/#{model.id}"
-    else
-      "#{mounted_as}_orig/#{model.id}"
-    end
+    "#{mounted_as}/#{model.id}"
   end
 
   def default_url
-    "/assets/fallback/art_" + [version_name, "default.jpg"].compact.join('_')
+    "//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/fallback/art_" + [version_name, "default.jpg"].compact.join('_')
   end
 
   def filename
-    # "avatar.jpg" if original_filename
-    "#{random_token}.jpg" if original_filename.present?
+    return "#{random_token}.jpg" if original_filename.present?
   end
 
   def random_token
@@ -29,29 +23,17 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
   
   process :convert_to_jpg
-  #process :resize_to_fit => [730, 730]
-  #process :quality => 70
+  process :resize_to_fit => [730, 730]
+  process :quality => 95
 
-  version :normal do 
-    process :resize_to_fit => [730, 730]
-    process :quality => 70
-    process :watermark_normal
-    process :title_it
+  version :profile do
+    process :resize_to_fill => [120, 120]
+    process :quality => 80
   end
   
-  version :cart do
-    process :resize_to_fit => [300, 300]
-    process :quality => 70
-    process :watermark_cart
-  end
-
-  version :splash do
-    process :quality => 70
-    process :resize_to_fill => [164, 164]
-  end
-
   version :thumb do
     process :resize_to_fill => [75, 75]
+    process :quality => 80
   end
 
   version :mini do
@@ -59,7 +41,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-    %w(jpg jpeg png)
+    %w(jpg jpeg png tif tiff)
   end
   
   def convert_to_jpg
@@ -67,58 +49,4 @@ class PhotoUploader < CarrierWave::Uploader::Base
     manipulate!(:format => 'jpg')
   end
   
-  def resize_boxed
-    # not used, but useful for other time
-    manipulate! do |img|
-      puts img.columns
-      puts img.rows
-      if img.columns > img.rows
-        if img.columns % img.rows < 100
-          img = img.resize_to_fill(165, 165)
-        else
-          img = img.resize_to_fill(330, 165)
-        end
-      else
-        if img.rows % img.columns < 100 or img.rows == img.columns
-          img = img.resize_to_fill(165, 165)
-        else
-          img = img.resize_to_fill(165, 330)
-        end
-      end
-    end
-  end
-  
-  def title_it
-    manipulate! do |img|
-      text = Magick::Draw.new
-      text.gravity = Magick::SouthEastGravity
-      text.pointsize = 14
-      text.fill = 'white'
-      text.font = "#{Rails.root}/app/assets/images/wm/cabin.ttf"
-      text.stroke = 'none'
-      text.annotate(img, 0, 0, 0, 0, "© #{model.name} - #{model.user.name}")
-      text.gravity = Magick::SouthWestGravity
-      text.fill = 'black'
-      text.annotate(img, 0, 0, 0, 0, "© #{model.name} - #{model.user.name}")
-      img
-    end
-  end
-  
-  def watermark_normal
-    manipulate! do |img|
-      logo = Magick::Image.read(Rails.root + 'app/assets/images/wm/wm-normal.png').first
-      center_cols = (img.columns/2) - (logo.columns/2)
-      center_rows = (img.rows/2) - (logo.rows/2)
-      img = img.dissolve(logo, 0.50, 1, center_cols, center_rows)
-    end
-  end
-  
-  def watermark_cart
-    manipulate! do |img|
-      logo = Magick::Image.read(Rails.root + 'app/assets/images/wm/wm-cart.png').first
-      center_cols = (img.columns/2) - (logo.columns/2)
-      center_rows = (img.rows/2) - (logo.rows/2)
-      img = img.dissolve(logo, 0.50, 1, center_cols, center_rows)
-    end
-  end
 end

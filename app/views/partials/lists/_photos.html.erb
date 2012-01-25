@@ -1,0 +1,11 @@
+<% if photos.count == 0 %>
+  <% if controller_name == 'events' %>
+    <%= t('events.there_are_no_photos') %>
+  <% else %>
+    <%= t('places.there_are_no_photos') %>
+  <% end %>
+<% else %>
+  <% photos.each do |photo| %>
+    <%= render :partial => 'partials/events/photoslist', :locals => { :photo => photo } %>
+  <% end %>
+<% end %>
