@@ -2,7 +2,8 @@ class Taxes
   
   def self.calculate(country_id, is_company, amount)
     
-    tax_basic = 0.18
+    #tax_basic = 0.18
+    tax_basic = 0
     
     eu_countries = ['ES', 'DE', 'AT', 'BE', 'BG', 'CY', 'DK', 'EE', 'SK', 'SI', 'FI', 'FR', 'GR', 'HU', 'IE', 'IT',
       'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SE', 'GB', 'CZ']

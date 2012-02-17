@@ -1,0 +1,23 @@
+<% content_for :title do %>
+<div class="left inner-title"><p><%= @title %></p></div>
+<div class="clearfix"></div>
+<% end %>
+
+<% content_for :left do %>
+<ul id="ll">
+  <% 0.upto(47) do |n| %>
+    <% begin %>
+      <li>
+        <div class="image">
+        <%= link_to image_tag(@search[n.to_s]['thumbnail_110_url'], :alt => @search[n.to_s]['title'], :class=> 'item'), fotolia_show_path(:id => @search[n.to_s]['id']) %>
+        </div>
+        <p class="center"><%= link_to truncate(@search[n.to_s]['title'], :length => 50), fotolia_show_path(:id => @search[n.to_s]['id']) %></p>
+      </li>
+    <% rescue %>
+    
+    <% end %>
+  <% end %>
+  
+</ul>
+
+<% end %>

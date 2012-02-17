@@ -11,14 +11,14 @@
 #topmenu .homemenu ul ul li a {	margin-left: 2px; color:#fff !important; font-size: 11px !important; text-transform: none !important; padding:0px 10px 0px 10px;}
 #topmenu .homemenu ul ul li:hover>a {  background: #c20000; border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;}
 #topmenu .homemenu ul ul li.current-menu-item a { background: #181818 !important;  }
-.menu, .menu * { margin: 0; padding: 0; list-style:	none; }
+.menu, .menu * { margin: 0; padding: 0; list-style:	none; z-index:999;}
 .menu {}
-.menu ul { position: absolute; top:	-999em; width: 200px; /* left offset of submenus need to match (see below) */}
+.menu ul { position: absolute; top:	-999em; width: 200px; z-index:999; /* left offset of submenus need to match (see below) */}
 .menu ul li { width: 100%; }
 .menu li:hover { visibility:	inherit; /* fixes IE7 'sticky bug' */}
-.menu li { float: left; position: relative; }
+.menu li { float: left; position: relative; z-index:999; }
 .menu a { display: block; position:	relative; }
-.menu li:hover ul, .menu li.sfHover ul { left: 0; top: 31px; /* match top ul list item height */ z-index: 99; }
+.menu li:hover ul, .menu li.sfHover ul { left: 0; top: 31px; /* match top ul list item height */ z-index: 999; }
 ul.menu li:hover li ul, ul.menu li.sfHover li ul { top: -999em; }
 ul.menu li li:hover ul, ul.menu li li.sfHover ul { left: 15em; /* match ul width */ top: 0; }
 ul.menu li li:hover li ul, ul.menu li li.sfHover li ul { top: -999em; }
@@ -30,7 +30,7 @@ ul.menu li li li:hover ul, ul.menu li li li.sfHover ul { left: 15em; /* match ul
 .menu li a {}
 ul.menu ul li a {}
 ul.menu li.sfHover a.sf-with-ul {}
-.menu li { z-index:99; }
+.menu li { z-index:999; }
 .menu li li {}
 .menu li li li {}
 .menu li li:hover, .menu li li.sfHover,

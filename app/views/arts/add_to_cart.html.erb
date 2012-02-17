@@ -3,7 +3,7 @@
     <h2><%= @art.name %></h2>
   </div>
   <hr>
-  <%= form_for @item, :url => cart_create_url(:protocol => 'https') do |f| %>
+  <%= form_for @item, :url => cart_create_url do |f| %>
   <div class="column unitx3 center first">
     <%= f.hidden_field :width, :value => @min_width %>
     <%= f.hidden_field :height, :value => @min_height %>

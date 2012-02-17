@@ -1,0 +1,19 @@
+<li class="<%= cycle('odd', 'even') %>">
+  <div class="artlist left">
+    <div class="avatar left">
+      <%= link_to image_tag(article.image1.url(:thumb).to_s, :alt => article.title), post_show_path(:slug => article.slug) %>
+    </div>      
+    <div class="artdata right">
+      <p class="s14"><%= link_to article.title, post_show_path(:slug => article.slug) %></p>
+      <p><%= link_to article.user.name, user_profile_path(:username => article.user.username) %> <%= t('common.time_ago', :time => time_ago_in_words(article.created_at))  %></p>
+      <p><%= article.description %></p>
+    </div>
+  </div>
+  <div class="likes align-right">
+    <div class="n">
+      <p class="s28 center"><fb:comments-count href="<%= post_show_url(:slug => article.slug).to_s %>"> </fb:comments-count></p>
+      <p class="center"><%= t('common.comments_downcase') %></p>
+    </div>
+  </div>
+  <div class="clear"></div>
+</li>

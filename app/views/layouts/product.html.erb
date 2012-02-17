@@ -1,0 +1,29 @@
+<%= render :partial => '/partials/common/htmlhead' %>
+<body class="page-home">
+  <%= render :partial => '/partials/common/facebookSDK' %>
+  <%= render :partial => '/partials/common/header' %>
+  <div id="page">
+    <div id="container">
+      <%= render :partial => '/partials/common/menu' %>
+      <div id="content">
+        <section class="width4 stroke" id='main'>
+          <section class="column full first" id="main-title">
+            <%= yield :title %>
+          </section>        
+          <section class="column width2-5 first" id="main-left">
+            <%= yield :product %>
+            <br />
+          </section>
+        </section>
+      </div><!-- content -->
+      <hr class="full nobottom">
+      <%= render :partial => '/partials/common/footer' %>
+    </div>
+  </div>
+  <%#= debug(params) if Rails.env.development? %>
+  <div style="margin-top:120px">
+  <%= debug(session) if Rails.env.development? %>
+  </div>
+  <%#= debug(request.env) if Rails.env.development? %>
+</body>
+</html>

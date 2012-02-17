@@ -1,10 +1,24 @@
 <% 
   art = item.art
-  artist_price = art.price
+  if art.fotolia == true
+    artist_price = item.custom_price
+  else
+    artist_price = art.price
+  end
   if item.frame == true
     framed = 1
   else
     framed = 0
+  end
+  case item.media_id
+  when 3
+    material = 'canvas'
+  end
+  
+  if item.art.fotolia == true
+    f = FotoliaRest::Client.new('WSfE8EmGSKWUrGpDVRS30n6M1ZOmsLnF', 'retocontinuo', 'Enertia22')
+    image_response = f.execute('media', 'getMediaData', { :language_id => 5, :thumbnail_size => 110, :id => item.fotolia_id } )
+    image = image_response.response
   end
   tabelia_price = art.get_price(item.height, item.width, item.media_id, framed)
   total_price = artist_price + tabelia_price
@@ -12,15 +26,23 @@
 
 <li class="<%= cycle('odd', 'even') %>">
   <div class="left item_shot center">
-    <%= image_tag art.image.url(:cart).to_s, :alt => art.name, :title => art.name %>
+    <% if art.fotolia == true %>
+      <%= image_tag image['thumbnail_url'], :class => 'item2', :height => image['thumbnail_height'], :width => image['thumbnail_width'] %>
+    <% else %>
+      <%= image_tag art.image.url(:cart).to_s, :alt => art.name, :title => art.name %>
+    <% end %>
   </div>
   <div class="right item_info">
+    <% if art.fotolia == true %>
+      <p class="s16"><%= link_to "#{image['title']} -  ##{item.fotolia_id}", fotolia_show_path(:id => item.fotolia_id, :material => material, :item_id => item.id.to_s) %>
+    <% else%>
     <% if art.photo == false %>
-    <p class="s16"><%= link_to art.name, art_profile_path(:slug => art.slug) %></p>
-    <% else %>
-    <p class="s16"><%= link_to art.name, photo_profile_path(:slug => art.slug) %></p>
-    <% end %>
+      <p class="s16"><%= link_to art.name, art_profile_path(:slug => art.slug) %></p>
+      <% else %>
+      <p class="s16"><%= link_to art.name, photo_profile_path(:slug => art.slug) %></p>
+      <% end %>
     <p class="s14"><%= link_to art.user.name, user_profile_path(:username => art.user.username) %></p>
+    <% end %>
     <br />
     <table cellspacing="0" cellpadding="0">
       <thead>
@@ -34,8 +56,13 @@
         <tr>
           <td width="25%"><%= t("cart.height")%></td>
           <td width="25%"><%= item.height %> cm</td>
+          <% if item.art.fotolia == true %>
+          <td width="25%"><%= t("cart.license")%></td>
+          <td width="25%"><%= number_to_currency(item.custom_price, :unit => '€') %></td>
+          <% else %>
           <td width="25%"><%= t("cart.artist")%></td>
           <td width="25%"><%= number_to_currency(artist_price, :unit => '€') %></td>
+          <% end %>
         </tr>
         <tr>
           <td><%= t("cart.width")%></td>
@@ -67,7 +94,11 @@
     </table>
     <br />
     <p class="right hidden">
+      <% if item.art.fotolia == true %>
+      <%= link_to t('cart.edit'), fotolia_show_path(:id => item.fotolia_id, :material => material, :item_id => item.id.to_s), :class => 'abutton' %>
+      <% else %>
       <%= link_to t('cart.edit'), cart_edit_path(:id => item.id.to_s), :class => 'abutton', :rel => 'modal', :walk => 'no' %>
+      <% end %>
       <%= link_to t('cart.delete'), cart_delete_path(:id => item.id.to_s) %>
     </p>
   </div>

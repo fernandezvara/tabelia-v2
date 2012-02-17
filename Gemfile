@@ -69,7 +69,7 @@ gem 'hpricot'
 # Geolocalization
 gem 'geocoder'
 
-
+gem 'fotolia_rest'
 
 group :development do
   gem 'faker'

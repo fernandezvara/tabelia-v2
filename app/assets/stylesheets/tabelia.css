@@ -16,6 +16,8 @@
  *= require tipsy
  *= require menu
  *= require blog
+ *= require jcrop
+
  *= require_self
 */
 
@@ -49,7 +51,7 @@ hr.nobottom             { margin-bottom:0px;}
 .header-login           { background-color: transparent; color: #c20000; height:65px; width:990px; margin: 0 auto;}
 .header-login .in       { padding: 0px 10px 0px 0px; line-height:30px; }
 .header-login .logo     { padding: 10px 15px; height: 50px; overflow:hidden; }
-.header-login h1        { text-indent: -9999px; margin:0; height:40px; width:152px; background: url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/logo.png) no-repeat !important; top:0;}
+.header-login h1        { text-indent: -9999px; margin:0; height:40px; width:152px; background: url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/logo-red.png) no-repeat !important; top:0;}
 .header-login .logo a   { font-size:13px; line-height:13px;} 
 .header-login .search { margin-right:10px;}
 .header-login .search a,
@@ -88,6 +90,9 @@ span.important          { font-size:12px; font-weight: bold; }
 .width3a               { width:658px;} 
 
 p.division              { font-size:14px; padding-left: 10px; font-weight:bold;margin-bottom:15px; display:block; border-bottom:1px solid #f0f0f0;}
+p.tit                   { display:block; border-bottom: 1px solid #c20000;}
+p.selected              { background-color: #c20000; color:#fff;}
+
 /* ul#listing               { list-style: none; margin-left:0; border: 1px solid #c20000;} */
 ul#listing               { list-style: none; margin-left:0; }
 ul#listing li            { border-bottom: 1px solid #f7f7f7;  height:95px;} /* border-right: 1px solid #f7f7f7; */
@@ -163,6 +168,15 @@ div.message_top {background:#FFF6BF;color:#514721;border-bottom:2px solid #FFD32
 ul#l { margin:0 0 20px 0; padding:0; list-style:none; overflow:hidden; }
 ul#l li { margin:0 8px 0 0; min-height:220px; width:180px; float:left; text-align:center; }
 ul#l li div.image { height:195px; text-align:center; }
+
+ul#ll { margin:0 0 20px 0; padding:0; list-style:none; overflow:hidden; }
+ul#ll li { margin:0 5px 0 0; min-height:205px; width:160px; float:left; text-align:center; }
+ul#ll li div.image { height:150px; text-align:center; }
+
+ul#lll { margin:0 0 20px 0; padding:0; list-style:none; overflow:hidden; }
+ul#lll li { margin:0; min-height:205px; width:146px; float:left; text-align:center; }
+ul#lll li div.image { height:150px; text-align:center; }
+
 img.item { padding:7px; background-color:#f0f0f0; border: solid 1px #ddd; -moz-box-shadow: 1px 1px 5px #ccc; -webkit-box-shadow: 1px 1px 5px #ccc; box-shadow: 1px 1px 5px #ccc; }
 img.item:hover { border: solid 1px #aaa; -moz-box-shadow: 1px 1px 5px #999; -webkit-box-shadow: 1px 1px 5px #999; box-shadow: 1px 1px 5px #999; }
 img.item2 { padding:10px; margin-top:10px; background-color:#f0f0f0; border: solid 1px #ddd; -moz-box-shadow: 1px 1px 5px #ccc; -webkit-box-shadow: 1px 1px 5px #ccc; box-shadow: 1px 1px 5px #ccc; display:inline-block;}

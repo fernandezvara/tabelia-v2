@@ -1,0 +1,74 @@
+<%= image_tag("//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/materials/#{I18n.locale.to_s}/canvas.jpg") %>
+<div class="box common">
+  <div class="content">
+  <% if @item.new? %>
+    <%= f.hidden_field :width, :value => @min_width %>
+    <%= f.hidden_field :height, :value => @min_height %>
+    <%= f.hidden_field :art_id, :value => @art.id.to_s %> <%# aqui debe ir el id personalizable....%>
+    <%= f.hidden_field :media_id, :value => 3 %>
+    <%= f.hidden_field :fotolia_id, :value => params[:id] %>
+  <% else %>
+    <%= f.hidden_field :width %>
+    <%= f.hidden_field :height %>  
+    <%= f.hidden_field :art_id %>
+    <%= f.hidden_field :media_id %>
+    <%= f.hidden_field :fotolia_id %>
+  <% end %>
+  
+  <%= f.hidden_field :cart_id, :value => @current_cart.id.to_s %>
+  
+  <%= f.hidden_field :custom_price, :value => @license_cost %>
+  <p style="text-align:center"><%= t('cart.dimensions')%> <span id="width"><%= @min_width %></span>cm x <span id="mheight"><%= @min_height %></span>cm</p>
+  
+  <p class="cart_title"><%= t('cart.framed_add_to_cart')%></p>
+  <div class="input string" style="margin-top:5px">
+    <% frames =  { t('common.ono') => false, t('common.oyes') => true} %>
+    
+    <%= f.select :frame, options_for_select(frames, @item.frame), {}, :style => 'width:150px;' %>
+  </div>
+  <br />
+  <p class="cart_title"><%= t('cart.summary')%></p>
+  <div style="float:left; width: 150px; color:#aaa;" class="s12"><%= t('cart.license') %></div><div id="artist_price" style="text-align:right; color:#aaa;" class="s12"><%= number_to_currency(@license_cost, :unit => '€')%></div>
+  <div style="float:left; width: 150px; color:#aaa;" class="s12"><%= t('cart.manipullation') %></div><div id="tabelia_price" style="text-align:right;  color:#aaa;" class="s12"><%= number_to_currency(@tabelia_price, :unit => '€') %></div>
+  <div style="float:left; width: 150px; font-weight:bold;" class="s12"><%= t('cart.total') %></div><div id="total_price" style="text-align:right; font-weight:bold" class="s12"><%= number_to_currency(@total, :unit => '€') %></div>    
+  <br />
+  <br />
+  <%= f.submit %>
+  <br />
+  <br />
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+var correction = <%= @correction %>;
+  $("#item_width").slider({ 
+    from: <%= @min_width %>, 
+    to: <%= @max_width %>, 
+    step: 0.5, 
+    round: 2, 
+    onstatechange: function(value) { 
+      $("span#width").text(parseFloat(value).toFixed(2));
+      var height = parseFloat(value * correction);
+      $("input#item_height").val(height.toFixed(2));
+      $("span#mheight").text(height.toFixed(2));
+      },
+    callback: function() {
+      update_price();
+      },
+    dimension: '&nbsp;cm' });
+  $('select#item_frame').change(function(){
+    update_price();
+  });
+  function update_price() {
+  		$.ajax({
+        url: '/cart/price',
+        data: {
+          'credits'  : '<%= @license_cost %>',
+          'height'   : $('input#item_height').val(),
+          'width'    : $('input#item_width').val(),
+          'media_id' : $('input#item_media_id').val(),
+          'frame'    : $('select#item_frame').val()
+        },
+        dataType: 'script'
+      });
+  }
+  </script>

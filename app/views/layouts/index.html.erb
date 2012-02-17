@@ -12,8 +12,11 @@
           <section class="column full first" id="main-title">
             <%= yield :title %>
           </section>
-          <section class="column full first" id="main-spotlight">
+          <section class="column width-y first" id="main-spotlight">
             <%= yield :spotlight %>
+          </section>
+          <section class="column width-x" id="main-messages">
+            <%= yield :messages %>
           </section>
           <section class="column width-y first" id="main-left">
             <%= yield :left %>

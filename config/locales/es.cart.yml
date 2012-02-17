@@ -15,6 +15,7 @@ es:
         framed: 'Enmarcado'
         framed_canvas: 'En bastidor:'
         artist: 'Artista:'
+        license: 'Licencia:'
         manipullation: 'Montaje y manipulación:'
         total: 'Total:'
         subtotal: 'Subtotal:'
@@ -39,6 +40,7 @@ es:
         summary: 'RESUMEN'
         delete: 'Borrar'
         in_frame: '· En bastidor.'
+        fill_your_address: 'Escribe tu dirección, por favor.'
     address:
         new:
             title: 'Nueva dirección'

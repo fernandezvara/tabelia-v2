@@ -1,12 +1,8 @@
 <div class="box common">
   <div class="title">
-    <%= t('common.comments')%>
+    <p><%= t('common.comments') %></p>
   </div>
   <div class="content">
-    <%# if @place.events.count == 0 %>
-      <%= t('common.no_comments_yet') %>
-    <%# else %>
-      
-    <%# %>
+    <div class="fb-comments" data-href="<%= @canonical %>" data-num-posts="6" data-width="718"></div>
   </div>
 </div>

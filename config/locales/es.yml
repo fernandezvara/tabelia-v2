@@ -27,6 +27,8 @@ es:
         see_all_male: 'ver todos....'
         view_more: 'ver más'
         comments: 'COMENTARIOS'
+        comments_downcase: 'comentario/s'
+        comment_downcase: 'comentario'
         time_ago: 'hace %{time}'
         write_a_comment: 'Escribe un comentario'
         no_comments_yet: 'No hay comentarios aún.'
@@ -59,6 +61,9 @@ es:
         shopping_process: 'Proceso de compra'
         view: 'ver'
         read_more: 'Leer más >'
+        filters_caps: 'FILTROS'
+        filters: 'Filtros'
+        in_spotlight: 'PORTADA'
         footer:
             directory: 'Directorio de usuarios'
             terms: 'Condiciones generales'

@@ -14,5 +14,6 @@
 //= require cycle
 //= require tipsy
 //= require autosuggest
+//= require jcrop
 
 //= require onload

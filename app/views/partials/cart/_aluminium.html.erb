@@ -1,0 +1,137 @@
+<%= image_tag("//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/materials/#{I18n.locale.to_s}/aluminium.jpg") %>
+<div class="box common">
+  <div class="content">
+  <% if @item.new? %>
+
+    <%= f.hidden_field :art_id, :value => @art.id.to_s %> <%# aqui debe ir el id personalizable....%>
+    <%= f.hidden_field :media_id, :value => 5 %>
+    <%= f.hidden_field :fotolia_id, :value => params[:id] %>
+    <% if @min_width > @min_height %>
+      <% @item.orientation = 'h' %>
+      <%= f.hidden_field :width, :value => 25.4 %>
+      <%= f.hidden_field :height, :value => 20.32 %>
+      <% @item.width = 25.4 %>
+      <% @item.height = 20.32 %>
+    <% else %>
+      <% @item.orientation = 'v' %>
+      <%= f.hidden_field :width, :value => 20.32 %>
+      <%= f.hidden_field :height, :value => 25.4 %>
+      <% @item.width = 20.32 %>
+      <% @item.height = 25.4 %>
+    <% end %>
+    <% @item.x = 0 %>
+    <% @item.y = 0 %>
+    <% @item.h = 1000 %>
+    <% @item.w = 1000 %>
+  <% else %>
+    <%= f.hidden_field :width %>
+    <%= f.hidden_field :height %>  
+    <%= f.hidden_field :art_id %>
+    <%= f.hidden_field :media_id %>
+    <%= f.hidden_field :fotolia_id %>
+  <% end %>
+  
+  <%= f.hidden_field :x %>
+  <%= f.hidden_field :y %>
+  <%= f.hidden_field :h %>
+  <%= f.hidden_field :w %>
+  <%= f.hidden_field :cart_id, :value => @current_cart.id.to_s %>
+  
+  <%= f.hidden_field :custom_price, :value => @license_cost %>
+  
+  <p class="cart_title"><%= t('cart.framed_add_to_cart')%></p>
+  <div class="input string" style="margin-top:5px">
+    <% orientations =  { 'horizontal' => 'h', 'vertical' => 'v' } %>
+    <%= f.select :orientation, options_for_select(orientations, @item.orientation), {}, :style => 'width:150px;' %>
+  </div>
+  <p class="cart_title"><%= t('cart.framed_add_to_cart')%></p>
+  <div class="input string" style="margin-top:5px">
+    <% sizes =  { '20,32cm x 25,4cm' => 's', '27,94cm x 35,56cm' => 'm', '40,68cm x 50,80cm' => 'l' } %>
+    <%= f.select :size, options_for_select(sizes, @item.size), {}, :style => 'width:150px;' %>
+  </div>
+  <br />
+  <p class="cart_title"><%= t('cart.summary')%></p>
+  <div style="float:left; width: 150px; color:#aaa;" class="s12"><%= t('cart.license') %></div><div id="artist_price" style="text-align:right; color:#aaa;" class="s12"><%= number_to_currency(@license_cost, :unit => '€')%></div>
+  <div style="float:left; width: 150px; color:#aaa;" class="s12"><%= t('cart.manipullation') %></div><div id="tabelia_price" style="text-align:right;  color:#aaa;" class="s12"><%= number_to_currency(@tabelia_price, :unit => '€') %></div>
+  <div style="float:left; width: 150px; font-weight:bold;" class="s12"><%= t('cart.total') %></div><div id="total_price" style="text-align:right; font-weight:bold" class="s12"><%= number_to_currency(@total, :unit => '€') %></div>    
+  <br />
+  <br />
+  <%= f.submit %>
+  <br />
+  <br />
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+$(window).load(function(){
+  var crop;
+
+  initCrop();
+  update_price();
+
+  function initCrop(){
+    crop = $.Jcrop('img.crop');
+  }
+
+  var aspect_ratio = <%= @item.width / @item.height %>;
+  crop.setSelect([<%= @item.x %>, <%= @item.y %>, <%= @item.w %>, <%= @item.h %> ]);
+  
+  crop.setOptions({
+    onChange: updateCoords,
+    aspectRatio: aspect_ratio,
+    addClass: 'jcrop-dark',
+    bgOpacity: .4,
+    allowSelect: false
+  });
+
+  var correction = <%= @correction %>;
+
+  $('select#item_orientation').change(function(){
+    updateAll();
+  });
+  $('select#item_size').change(function(){
+    updateAll();
+  });
+  
+  function updateCoords(c) {
+    $('input#item_x').val(c.x);
+    $('input#item_y').val(c.y);
+    $('input#item_h').val(c.h);
+    $('input#item_w').val(c.w);
+  }
+  function updateAll() {
+      var l,s;
+      switch($('select#item_size').val()) {
+        case 's':
+          l = 25.4;
+          s = 20.32;
+        case 'm':
+          l = 35.56;
+          s = 27.94;
+        case 'l':
+          l = 50.80;
+          s = 40.68;
+      }
+      if ($('select#item_orientation').val() == 'h') {
+        aspect_ratio = l / s;
+      } else {
+        aspect_ratio = s / l;
+      }
+      crop.setOptions({aspectRatio: aspect_ratio});
+      crop.animateTo([0, 0, 1000 ,1000]);
+      update_price();
+  }
+
+  function update_price() {
+  		$.ajax({
+        url: '/cart/price',
+        data: {
+          'credits'  : '<%= @license_cost %>',
+          'media_id' : $('input#item_media_id').val(),
+          'size'     : $('select#item_size').val(),
+          'frame'    : $('select#item_frame').val()
+        },
+        dataType: 'script'
+      });
+  }
+}); // end window.load
+  </script>

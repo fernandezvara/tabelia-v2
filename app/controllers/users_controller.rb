@@ -96,7 +96,7 @@ class UsersController < ApplicationController
       @page = 1
     end
     
-    @search = User.search do
+    @search = Sunspot.search(User) do
       with(:show_search).greater_than(show_search_level)
       order_by(:name, :asc)
       paginate(:per_page => 30, :page => @page)

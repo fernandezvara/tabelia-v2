@@ -19,13 +19,13 @@
     <div class="title">
     </div>
     <div class="content">
-      <p>Categoria: <%= link_to @post.postcategory.title, "#" %></p>
+      <p>Categoria: <%= link_to @post.postcategory.title, posts_category_path(:category => @post.postcategory.slug, :who => 'all', :language => session[:locale].to_s) %></p>
       <% tags = Tagging.of_object_as_where_creator(@post, 'post', @user)
       tags_array = Array.new
       tags.each do |tag|
         tags_array << tag.tag.text
       end %>
-      <p>
+      <p>Tags: 
       <% tags_array.each do |tag| %>
         <%= link_to tag, "#", :class => 'tag' %>
       <% end %>
@@ -56,20 +56,10 @@
   
   <div class="box common">
     <div class="title">
-      <p><%= @post.comments.count %> COMENTARIOS</p>
+      <p><%= t('common.comments') %></p>
     </div>
     <div class="content">
-    <% if @post.comments.count != 0 %>
-      <ul id="blogcomments">
-        <% @post.comments.each do |comment| %>
-          <% begin %>
-            <%= render :partial => 'partials/articles/comment', :locals => { :commment => comment } %>
-          <% rescue %>
-        
-          <% end %>
-        <% end %>
-      </ul>
-    <% end %>
+      <div class="fb-comments" data-href="<%= @canonical %>" data-num-posts="6" data-width="718"></div>
     </div>
   </div>
 <% end %>

@@ -31,6 +31,7 @@ class Place
   
   belongs_to :user
   belongs_to :country
+  belongs_to :placecategory
   
   slug :name
   

@@ -1,6 +1,6 @@
 <% if @current_user %>
   <% if @addresses.count == 0 %>
-  <div class="box orange">
+  <div class="box common">
     <div class="title"><%= t('cart.address')%></div>
     <div class="content">
       <p><%= t('cart.there_are_no_addresses')%></p>
@@ -8,7 +8,7 @@
     </div>
   </div>
   <% else %>
-  <div class="box orange">
+  <div class="box common">
     <div class="title"><%= t('cart.delivery_address')%></div>
     <div class="content">
       <%= collection_select("order", "address_delivery_id", @addresses, :id, :address_name, {:selected => session[:delivery_address] }, :style => 'width:150px') %>
@@ -45,11 +45,11 @@
   </script>
   <% end %>
 <% else %>
-<div class="box orange">
-  <div class="title">ADDRESS</div>
+<div class="box common">
+  <div class="title">TU DIRECCIÓN</div>
   <div class="content">
-    <p>You need to <%= link_to 'log in', login_path, :rel => 'modal' %> for continue with the purcharse.</p>
-    <p>If you don't have an account, <%= link_to 'register here', signup_path, :rel => 'modal' %></p>
+    <p>Debes <%= link_to 'entrar con tu usuario', login_path, :rel => 'modal' %> para continuar con la compra.</p>
+    <p>Si no tienes una cuenta aún, <%= link_to 'registrate en un momento', signup_path %>.</p>
   </div>
 </div>
 <% end %>

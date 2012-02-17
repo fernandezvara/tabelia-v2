@@ -23,6 +23,37 @@ class PostsController < ApplicationController
     end
   end
 
+  def category
+    @category = Postcategory.where(:slug => params[:category]).first
+    if @category.nil? == false
+      
+        
+      if current_user
+        show_search_level = 1
+      else
+        show_search_level = 2
+      end
+       
+    
+      @search = Sunspot.search(Post) do
+        with :category_slug, params[:category]
+        with(:tabelia, params[:who]) if params[:who].present? and params[:who] != '_' and params[:who] != 'all'
+        with(:show_search).greater_than(show_search_level)
+        with(:language, params[:lang]) if params[:lang].present? and params[:lang] != '_' and params[:lang] != 'all'
+        order_by :created_at, :desc
+        paginate(:per_page => 3, :page => params[:page])
+      end
+
+      @posts = @search.results
+      puts " ----------- @posts = #{@posts.count}"
+      respond_to do |format|
+        format.html { render :layout => 'main' }
+      end
+    else
+      redirect_to :not_found
+    end
+  end
+
   def new
     if current_user
       @post = Post.new

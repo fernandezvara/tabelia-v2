@@ -4,7 +4,7 @@
 <% end %>
 
 <% content_for :left do %>
-  <% if @agenda.count == 0 %> %>
+  <% if @agenda.count == 0 %>
     <p class="s14 center">No se han encontrado resultados para tu búsqueda.</p>
   <% else %>
     <p class="s14 center">Se han encontrado <%= @agenda.count %> resultados para tu búsqueda.</p>
@@ -32,9 +32,9 @@
     Filtros
   </div>
   <div class="content">
-<%= form_tag "/agenda", :method => 'get' %>
+<%= form_tag "/agenda", :method => 'post' %>
 <p><%= t('event.type') %></p>
-<p><%= collection_select('event', 'eventcategory_id', Eventcategory.all.order_by([:name, :asc]), :id, :name, :prompt => 'Todas las categorias', :selected => @category_id) %></p>
+<p><%= collection_select('event', 'eventcategory_id', Eventcategory.all.order_by([:name, :asc]), :id, :name, :prompt => t('events.all_categories'), :selected => @category_id) %></p>
 <br />
 <p><%= t('event.localization') %></p>
 <p><%= text_field_tag 'location', @location %></p>

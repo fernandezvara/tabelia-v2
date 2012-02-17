@@ -1,0 +1,84 @@
+<% content_for :title do %>
+<div class="left inner-title"><p><%= @image['title'] %></p></div>
+
+<div class="clearfix"></div>
+<% end %>
+
+<% content_for :product do %>
+<% if @item.new?
+  url = cart_create_url
+else
+  url = cart_update_url(:id => params[:item_id])
+end
+%>
+<%= form_for @item, :url => url do |f| %>
+<div style="width:100%; text-align:center">
+  <% case params[:material]
+  when 'canvas'
+  classimg = 'item2'
+  when 'aluminium'
+  classimg = 'crop'
+  %>
+  <%= f.hidden_field :remote_crop_url, :value => @image['thumbnail_url'] %>
+  <%
+  end
+  %>
+  <div style="width:400px; margin:0 auto">
+  <%= image_tag @image['thumbnail_url'], :class => classimg, :height => @image['thumbnail_height'], :width => @image['thumbnail_width'] %>
+  </div>
+  <p class="center s11">La marca de agua 'fotolia' no aparecerá impresa, se utiliza para preservar los derechos del autor.</p>
+</div>
+
+<div class="box common">
+  <div class="title">
+    <p>INFORMACIÓN</p>
+  </div>
+  <div class="content">
+    <p>© <%= @image['creator_name'] %> <%= link_to 'Ver todas las fotografías de este autor', fotolia_creator_path(:id => @image['creator_id'])%></p>
+    <br />
+    <p>
+      <% @image['keywords'].each do |keyword| %>
+        <%= link_to keyword['name'], fotolia_search_path(:q => keyword['name']), :class => 'tag' %>
+      <% end %>
+    </p>
+  </div>
+</div>
+<div class="box common">
+  <div class="title">
+    <p><%= t('common.comments') %></p>
+  </div>
+  <div class="content">
+    <div class="fb-comments" data-href="<%= @canonical %>" data-num-posts="6" data-width="640"></div>
+  </div>
+</div> 
+  <br />
+</section>
+<section class="column width1-5" id="main-right">
+<% if params[:material] %>
+  <%= render :partial => "partials/cart/#{params[:material]}", :locals => { :f => f } %>
+<% else %>
+  <%= render :partial => 'partials/cart/materials' %>
+<% end %>
+<div class="box common">
+  <div class="title">
+    <p>FOTOGRAFÍAS SIMILARES</p>
+  </div>
+  <div class="content">
+  <ul id="lll">
+  <% 0.upto(7) do |n| %>
+    <% begin %>
+      <li>
+        <div class="image">
+        <%= link_to image_tag(@similar[n.to_s]['thumbnail_110_url'], :alt => @similar[n.to_s]['title'], :class=> 'item'), fotolia_show_path(:id => @similar[n.to_s]['id']) %>
+        </div>
+        <p class="center"><%= link_to truncate(@similar[n.to_s]['title'], :length => 50), fotolia_show_path(:id => @similar[n.to_s]['id']) %></p>
+      </li>
+    <% rescue %>
+    
+    <% end %>
+  <% end %>
+  </ul>
+  </div>
+</div>
+<% end %> <%# fin del formulario %>
+<% end %>

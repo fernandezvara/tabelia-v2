@@ -1,5 +1,12 @@
 <%= simple_form_for @place do |f| %>
   <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id.to_s } %>
+  <div class="input optional">
+    <label class="optional" for="place_placecategory_id"><%= t("simple_form.labels.category") %></label>
+    <%= collection_select('place', 'placecategory_id', Placecategory.all.order_by([:title, :asc]), :id, :title) %>
+    <script type="text/javascript">
+      $("select#placeeventcategory_id").attr("title", "<%= t('simple_form.titles.country') %>");
+    </script>
+  </div>
   <%= f.input :name %>
   <%= f.input :place_info %>  
   <%= f.input :street %>

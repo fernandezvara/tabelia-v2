@@ -73,6 +73,7 @@ class PhotosController < ApplicationController
     @user = User.where(:username => params[:username]).first
     if @user.nil? == true
       show_404
+    else
       @arts = @user.arts.where(:photo => true, :accepted => true, :status => true).page(params[:page]).per(30)
       @title = t("users.index.title")
       respond_to do |format|

@@ -9,9 +9,9 @@ en:
         tecnique: 'Tecnique'
         title_paintings: 'BROWSE PAINTINGS'
         title_photos: 'BROWSE PHOTOGRAPHS'
-        subject_title: 'by subject'
-        style_title: 'by style'
-        tecnique_title: 'by tecniques'
+        subject_title: 'Subjects'
+        style_title: 'Styles'
+        tecnique_title: 'Tecniques'
         you_selected_do_not_show: "You selected to do not show this art."
         status_title: 'PUBLISH STATUS'
         status:

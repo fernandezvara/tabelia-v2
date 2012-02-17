@@ -122,6 +122,7 @@ Tabelia::Application.routes.draw do
   # Posts
   match 'post/:slug',        :controller => 'posts', :action => 'show', :as => 'post_show'
   match 'post/:slug/edit',   :controller => 'posts', :action => 'edit', :as => 'post_edit'
+  match 'posts/category/:category/(:who)/(:lang)', :controller => 'posts', :action => 'category', :as => 'posts_category'
 
   # Events
   #match 'event/:slug',       :controller => 'events', :action => 'show',   :as => 'event_show'
@@ -132,6 +133,12 @@ Tabelia::Application.routes.draw do
   #match 'place/:slug',       :controller => 'places', :action => 'show',   :as => 'place_profile'
   #match 'place/:slug/edit',  :controller => 'places', :action => 'edit',   :as => 'edit_place'
   match 'places/search(.format)', :controller => 'places', :action => 'search', :as => 'places_search'
+  
+  # Fotolia Photos
+  match 'stock/show/:id/(:material)',    :controller => 'stock',  :action => 'show',       :as => 'fotolia_show'
+  match 'stock/category/:id/(:page)',    :controller => 'stock',  :action => 'gallery',    :as => 'fotolia_category'
+  match 'stock/creator/:id/(:page)',     :controller => 'stock',  :action => 'creator',    :as => 'fotolia_creator'
+  match 'stock/search',                  :controller => 'stock',  :action => 'search',     :as => 'fotolia_search'
   
   # Facebook shops
   match 'fb',                          :controller => 'fb',      :action => 'show',          :as => 'facebook_shop'

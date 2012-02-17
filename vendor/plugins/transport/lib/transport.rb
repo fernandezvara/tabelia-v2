@@ -49,6 +49,50 @@ class Transport
     end
   end
   
+  def self.calculate_weight(country_id, height, width, framed)
+    const_altura = 5.0 # altura del objeto enmarcado
+    const_diametro_rollo = 6.0
+    # peso volumetrico
+    if framed == true
+      puts "framed!!!!"
+      volumetrico = (height.to_f * width.to_f * const_altura) / 5000.0
+    else
+      if height < width or height == width
+        # añadimos un margen interno
+        puts "h"
+        volumetrico = ((height.to_f + 6.0) * const_diametro_rollo * const_diametro_rollo) / 5000.0
+      else
+        puts "w"
+        w = width.to_f + 6.0
+        volumetrico = (w * const_diametro_rollo * const_diametro_rollo) / 5000.0
+      end
+    end
+    # peso normal
+    peso_metro_liston = 0.360 # kilos
+    peso_embalaje_rollo = 0.450 # kilos Tubo + emboltorio interior por metro lineal de tubo
+    peso_embalaje_montado = 0.200 # kilos por metro cuadrado
+    peso_material_cm2 = 0.000032 # Peso del material por cm2 el papel es de 320g +- m2 en kilos!, son 0,32 g/cm2
+    if framed == true
+      peso = ((((height + width) * 2 ) / 100).ceil * peso_metro_liston) + (((height / 100) * (width / 100)) * peso_embalaje_montado)
+    else
+      if height < width or height == width
+        peso_tubo = ((height + 10) / 100) * peso_embalaje_rollo
+      else
+        peso_tubo = ((width + 10) / 100) * peso_embalaje_rollo
+      end
+      peso = ((height * width) * peso_material_cm2) + peso_tubo
+    end
+    
+    puts "volumetrico = #{volumetrico}"
+    puts "peso = #{peso}"
+    
+    if volumetrico > peso
+      r =  volumetrico
+    else
+      r = peso
+    end
+    r
+  end
   
   def self.calculate(country_id, weight)
     next_weight = ((((weight * 100).round / 50) + 1) * 50) / 100.0
@@ -104,46 +148,46 @@ class Transport
     
     costs = {
       '0' => {
-        0.5 => 1,
-        1.0 => 2,
-        1.5 => 3,
-        2.0 => 4,
-        2.5 => 5,
-        3.0 => 6,
-        3.5 => 1,
-        4.0 => 2,
-        4.5 => 3,
-        5.0 => 4,
-        5.5 => 5,
-        6.0 => 6,
-        6.5 => 1,
-        7.0 => 2,
-        7.5 => 3,
-        8.0 => 4,
-        8.5 => 5,
-        9.0 => 6,
-        9.5 => 1,
-        10.0 => 2,
-        10.5 => 3,
-        11.0 => 4,
-        11.5 => 5,
-        12.0 => 6,
-        12.5 => 1,
-        13.0 => 2,
-        13.5 => 3,
-        14.0 => 4,
-        14.5 => 5,
-        15.0 => 6,
-        15.5 => 1,
-        16.0 => 2,
-        16.5 => 3,
-        17.0 => 4,
-        17.5 => 5,
-        18.0 => 6,
-        18.5 => 1,
-        19.0 => 2,
-        19.5 => 3,
-        20.0 => 4
+        0.5 => 8,
+        1.0 => 8,
+        1.5 => 8,
+        2.0 => 8,
+        2.5 => 8,
+        3.0 => 8,
+        3.5 => 8,
+        4.0 => 8,
+        4.5 => 8,
+        5.0 => 8,
+        5.5 => 8,
+        6.0 => 8,
+        6.5 => 8,
+        7.0 => 8,
+        7.5 => 8,
+        8.0 => 8,
+        8.5 => 8,
+        9.0 => 8,
+        9.5 => 8,
+        10.0 => 8,
+        10.5 => 8,
+        11.0 => 8,
+        11.5 => 8,
+        12.0 => 8,
+        12.5 => 8,
+        13.0 => 8,
+        13.5 => 8,
+        14.0 => 8,
+        14.5 => 8,
+        15.0 => 8,
+        15.5 => 8,
+        16.0 => 8,
+        16.5 => 8,
+        17.0 => 8,
+        17.5 => 8,
+        18.0 => 8,
+        18.5 => 8,
+        19.0 => 8,
+        19.5 => 8,
+        20.0 => 8
       },
       '1' => {
         0.5 => 1,
@@ -651,9 +695,13 @@ class Transport
       }
     }
     
-    recargo_combustible = 1.17  # cambiar!!!
-    
-    costs[zone_id.to_s][weight] * recargo_combustible
+    if zone_id.to_s == "0"
+      total = costs[zone_id.to_s][weight]
+    else
+      recargo_combustible = 1.17  # cambiar!!!
+      total = costs[zone_id.to_s][weight] * recargo_combustible
+    end
+    total
   end
   
 end

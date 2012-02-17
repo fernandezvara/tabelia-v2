@@ -1,158 +1,158 @@
       <ul class="menu gray slide" id="menu">
-      		<li><a href="#">Fotografía</a>
+        <li><a href="">Revista</a>
+          <div class="cols2">
+            <div class="col1"><h4>Noticias</h4></div>
+            <div class="col1"><h4>Agenda</h4></div>
+            <div class="col1">
+              <ol>
+                <% Postcategory.all.each do |cat| %>
+                  <li><%= link_to cat.title, posts_category_path(:category => cat.slug, :who => '_', :lang => session[:locale].to_s) %></li>
+                <% end %>
+              </ol>
+            </div>
+            <div class="col1">
+              <ol>
+                <% Eventcategory.all.each do |event| %>
+                  <li><%= link_to event.name, agenda_path(:category => event.slug) %></li>
+                <% end %>
+              </ol>
+            </div>
+          </div>
+        </li>
+      		<li><%= link_to t('arts.paintings_title'), shop_popular_paintings_path %>
       			<!-- start mega menu -->
       			<div class="cols4">
       				<div class="col2">
-      					<h4>Temática</h4>
+      					<h4><%= t('arts.subject_title') %></h4>
       				</div>
       				<div class="col2">
-      					<h4>Técnicas</h4>
+      					<h4><%= t('arts.style_title')%></h4>
+      				</div>
+      				<div class="col1">
+      					 <ol>
+        				  <% # subjects
+        				  total_idioms = @idioms.count
+        				  (0..((total_idioms/2).to_i - 1)).each do |count|
+        				    %>
+        				    <li>
+        				      <%= link_to "#{@idioms[count].name} (#{@idioms[count].arts.count})", shop_paintings_path(:category => '_', :tecnique => '_', :idiom => @idioms[count].slug) %>
+        				    </li>
+        				    <% end %>
+        					</ol>
+        				</div>
+        				<div class="col1">
+        					<ol>
+        					  <%
+        					  ((total_idioms/2).to_i..(total_idioms -1)).each do |count|
+        					  %>
+        				    <li>
+        				      <%= link_to "#{@idioms[count].name} (#{@idioms[count].arts.count})", shop_paintings_path(:category => '_', :tecnique => '_', :idiom => @idioms[count].slug) %>
+        				    </li>
+                    <% end %>
+        					</ol>
       				</div>
       				<div class="col1">
       					<ol>
-      					    <li>
-      					        <a href="#">Calendars</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Countdowns</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Database Abstractions</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Navigation</a>
-      					    </li>
-      					</ol>
-      				</div>
-      				<div class="col1">
-      					<ol>
-      					    <li>
-      					        <a href="#">Navigation and Menus</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Layouts</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Annimations and Effects</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Buttons</a>
-      					    </li>
-      					</ol>
-      				</div>
-      				<div class="col1">
-      					<ol>
-      					    <li>
-      					        <a href="#">iPhone</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Android</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Native web</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Titanium</a>
-      					    </li>
-      					</ol>
-      				</div>
-      				<div class="col1">
-      					<ol>
-      					    <li>
-      					        <a href="#">News Tickers</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Navigation</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Rating and Charts</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Loaders and Uploaders</a>
-      					    </li>
-      					</ol>
+        				  <% # subjects
+        				  total_styles = @categories.count
+        				  (0..((total_styles/2).to_i - 1)).each do |count|
+        				    %>
+        				    <li>
+        				      <%= link_to "#{@categories[count].name} (#{@categories[count].arts.count})", shop_paintings_path(:category => @categories[count].slug, :tecnique => '_', :idiom => '_') %>
+        				    </li>
+        				    <% end %>
+        					</ol>
+        				</div>
+        				<div class="col1">
+        					<ol>
+        					  <%
+        					  ((total_styles/2).to_i..(total_styles -1)).each do |count|
+        					  %>
+        				    <li>
+        				      <%= link_to "#{@categories[count].name} (#{@categories[count].arts.count})", shop_paintings_path(:category => @categories[count].slug, :tecnique => '_', :idiom => '_') %>
+        				    </li>
+                    <% end %>
+        					</ol>
       				</div>
       			</div>
       			<!-- end mega menu -->
       		</li>
-
-      		<li><a href="#">Pintura</a>
+          <li><%= link_to t('arts.photos_title'), shop_popular_photos_path %>
       			<!-- start mega menu -->
       			<div class="cols4">
       				<div class="col2">
-      					<h4>Temática</h4>
+      					<h4><%= t('arts.subject_title') %></h4>
       				</div>
       				<div class="col2">
-      					<h4>Técnicas</h4>
+      					<h4><%= t('arts.tecnique_title') %></h4>
       				</div>
       				<div class="col1">
-      					<ol>
-      					    <li>
-      					        <a href="#">Calendars</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Countdowns</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Database Abstractions</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Navigation</a>
-      					    </li>
+      				 <ol>
+      				  <% # subjects
+      				  total_subjects = @subjects.count
+      				  (0..((total_subjects/2).to_i - 1)).each do |count|
+      				    %>
+      				    <li>
+      				      <%= link_to "#{@subjects[count].name} (#{@subjects[count].arts.count})", shop_photos_path(:subject => @subjects[count].slug, :tecnique => '_') %>
+      				    </li>
+      				    <% end %>
       					</ol>
       				</div>
       				<div class="col1">
       					<ol>
-      					    <li>
-      					        <a href="#">Navigation and Menus</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Layouts</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Annimations and Effects</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Buttons</a>
-      					    </li>
+      					  <%
+      					  ((total_subjects/2).to_i..(total_subjects -1)).each do |count|
+      					  %>
+      				    <li>
+      				      <%= link_to "#{@subjects[count].name} (#{@subjects[count].arts.count})", shop_photos_path(:subject => @subjects[count].slug, :tecnique => '_') %>
+      				    </li>
+                  <% end %>
       					</ol>
       				</div>
       				<div class="col1">
-      					<ol>
-      					    <li>
-      					        <a href="#">iPhone</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Android</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Native web</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Titanium</a>
-      					    </li>
-      					</ol>
-      				</div>
-      				<div class="col1">
-      					<ol>
-      					    <li>
-      					        <a href="#">News Tickers</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Navigation</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Rating and Charts</a>
-      					    </li>
-      					    <li>
-      					        <a href="#">Loaders and Uploaders</a>
-      					    </li>
-      					</ol>
+      					 <ol>
+        				  <% # subjects
+        				  total_tecniques = @tecniques.count
+        				  (0..((total_tecniques/2).to_i - 1)).each do |count|
+        				    %>
+        				    <li>
+        				      <%= link_to "#{@tecniques[count].name} (#{@tecniques[count].arts.count})", shop_photos_path(:subject => '_', :tecnique => @tecniques[count].slug) %>
+        				    </li>
+        				    <% end %>
+        					</ol>
+        				</div>
+        				<div class="col1">
+        					<ol>
+        					  <%
+        					  ((total_tecniques/2).to_i..(total_tecniques -1)).each do |count|
+        					  %>
+        				    <li>
+        				      <%= link_to "#{@tecniques[count].name} (#{@tecniques[count].arts.count})", shop_photos_path(:subject => '_', :tecnique => @tecniques[count].slug) %>
+        				    </li>
+                    <% end %>
+        					</ol>
       				</div>
       			</div>
-      			<!-- end mega menu -->
       		</li>
-
+      		<li><%= link_to t('arts.photos_title'), shop_popular_photos_path %>
+      			<!-- start mega menu -->
+      			<div class="cols1">
+      				<div class="col1">
+      					<h4><%= t('arts.subject_title') %></h4>
+      					<%= link_to fotolia_category_name(1000000), fotolia_category_path(:id => 1000000) %>
+      					<%= link_to fotolia_category_name(2000000), fotolia_category_path(:id => 2000000) %>
+      					<%= link_to fotolia_category_name(3000000), fotolia_category_path(:id => 3000000) %>
+      					<%= link_to fotolia_category_name(4000000), fotolia_category_path(:id => 4000000) %>
+      					<%= link_to fotolia_category_name(5000000), fotolia_category_path(:id => 5000000) %>
+      					<%= link_to fotolia_category_name(6000000), fotolia_category_path(:id => 6000000) %>
+      					<%= link_to fotolia_category_name(7000000), fotolia_category_path(:id => 7000000) %>
+      					<%= link_to fotolia_category_name(8000000), fotolia_category_path(:id => 8000000) %>
+      					<%= link_to fotolia_category_name(9000000), fotolia_category_path(:id => 9000000) %>
+      					<%= link_to fotolia_category_name(10000000), fotolia_category_path(:id => 10000000) %>
+      					<%= link_to fotolia_category_name(99000000), fotolia_category_path(:id => 99000000) %>
+      				</div>
+      			</div>
+      		</li>
           <li class="floatr"><a href="/cart"><%= t('mainmenu.cart') %> 
             <% if current_cart.items.count > 0 %>
               <span class="bubble"><%= current_cart.items.count %></span>

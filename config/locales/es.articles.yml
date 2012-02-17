@@ -5,11 +5,18 @@ es:
         edit_title: 'Editando: '
         edit_this_article: 'Editar este artículo'
         there_are_not: 'No has escrito ningún artículo aún.'
+        there_are_not_articles_in_category: 'No hay artículos en esta categoría.'
         article_created_correctly: 'Artículo creado correctamente'
         article_edited_correctly: 'Artículo editado correctamente'
         fix_errors: 'Por favor, corrige los errores resaltados'
         posted_by: 'Escrito por '
         other_articles_from_same_user: 'ÚLTIMOS ARTÍCULOS'
+        type:
+            all_articles: 'Todos'
+            only_tabelia: 'Escritas por tabelia'
+            only_users: 'Escritas por usuarios'
         index:
             title: 'Mis artículos'
             title_caps: 'MIS ARTÍCULOS'
+        category:
+            title: 'Categoría: %{category_name}'

@@ -15,6 +15,7 @@
   <div id="company" style="display:<%= @address.is_company == true ? 'block' : 'none' %>">
     <%= f.input :company, :input_html => { :title => t('simple_form.titles.address.company') } %>
   </div>
+  <div class="clearfix"></div>
   <%= f.input :address_line1, :input_html => { :title => t('simple_form.titles.address.address_line1') } %>
   <%= f.input :address_line2 %>
   <%= f.input :city %> 

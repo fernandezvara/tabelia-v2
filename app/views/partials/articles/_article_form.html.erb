@@ -68,6 +68,10 @@
     <%= f.select :spotlight, [[t('mongoid.options.art.status.active'), true], [t('mongoid.options.art.status.inactive'), false]] %>
   </div>
   <div class="input text optional">
+    <%= f.label :tabelia, :class => ['text', 'optional'] %>
+    <%= f.select :tabelia, [[t('mongoid.options.art.status.active'), true], [t('mongoid.options.art.status.inactive'), false]] %>
+  </div>
+  <div class="input text optional">
     <label class="text optional" for="post_language">Lenguaje</label>
     <select id="post_language" name="post[language]">
       <option value="es" selected="selected">Castellano</option>

@@ -54,6 +54,8 @@ class Art
   field :exif_f,            :type => String # f-factor
   field :exif_iso,          :type => String # ISO
   
+  field :fotolia,           :type => Boolean, :default => false
+  
   field :popularity,        :type => Float
   
   slug :name
@@ -187,8 +189,8 @@ class Art
     @height.round(2)
   end
   
-  def dimension_correction
-    self.max_width / self.max_height
+  def dimension_correction(width = self.max_width, height = self.max_height)
+    width / height
   end
   
   def get_price(height, width, paper_id, frame = 0)
@@ -198,14 +200,14 @@ class Art
     # paper prices
     papers = Hash.new
     papers[1] = 0.021 # poster 
-    papers[2] = 0.029 # foto
-    papers[3] = 0.089 # lienzo
-    papers[4] = 0.080 # texturado
+    papers[2] = 0.037 # foto
+    papers[3] = 0.108 # lienzo
+    papers[4] = 0.129 # texturado
 
     # frame
     frame_cms = ((width + height) * 2)
     meters_round = (frame_cms / 100).ceil
-    cost_frame = 2  # 2 euros per lineal meter
+    cost_frame = 5  # 2 euros per lineal meter
     total_frame = cost_frame * meters_round
     
     # Costes de manipulacion
@@ -214,10 +216,10 @@ class Art
       manipullation_cost = 5
       manipullation_cost_cm = 0.15
     when 2
-      manipullation_cost = 10
+      manipullation_cost = 5
       manipullation_cost_cm = 0.2
     else
-      manipullation_cost = 15
+      manipullation_cost = 5
       manipullation_cost_cm = 0.70 # por centimetro
     end
     
@@ -227,10 +229,10 @@ class Art
     cm2 = width * height
     
     # Longitud de papel
-    if self.dimension_correction == 1
+    if self.dimension_correction(width, height) == 1
       paper_length = height + (margin * 2)
     else
-      if self.dimension_correction > 1
+      if self.dimension_correction(width, height) > 1
         # si la correccion es mayor que uno implica que el ancho es mayor
         paper_length = width + (margin * 2)
       else
@@ -262,6 +264,22 @@ class Art
     puts "Margen: #{(m / price)}"
     # returning price
     price
+  end
+  
+  def get_price_fixed(media_id, size, framed)
+    puts "media_id = #{media_id},   size = #{size},  framed = #{framed}"
+    case media_id
+    when '5'
+      case size
+      when 's'
+        result = 25
+      when 'm'
+        result = 35
+      when 'l'
+        result = 45
+      end
+    end
+    result
   end
   
   private

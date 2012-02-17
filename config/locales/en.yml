@@ -57,6 +57,7 @@ en:
         shopping_process: 'Shopping process'
         view: 'view'
         read_more: 'Read more >'
+        in_spotlight: 'SPOTLIGHTS'
         footer:
             directory: 'User Directory'
             terms: 'Terms and Conditions'

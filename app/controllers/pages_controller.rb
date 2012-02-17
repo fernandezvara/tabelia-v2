@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def index
+    @spotlight = Post.where(:language => I18n.locale.to_s, :spotlight => true, :publish => true).order_by(:updated_at).limit(5)
     if current_user
       # popular paintings and photos
       @popular_paintings_cache = "1logged-pop-art-#{Time.now.day}-#{Time.now.month}"
@@ -39,7 +40,6 @@ class PagesController < ApplicationController
            order_by(:random)
          end
       end
-      @spotlight = Post.where(:language => I18n.locale.to_s, :spotlight => true).order_by(:updated_at).limit(5)
       respond_to do |format|
         format.html { render :layout => 'index' }
       end
@@ -83,7 +83,8 @@ class PagesController < ApplicationController
       end
       
       respond_to do |format|
-        format.html { render  'notloggedin', :layout => 'shop' }
+        #format.html { render  'notloggedin', :layout => 'shop' }
+        format.html { render :layout => 'index' }
       end
     end
   end

@@ -17,6 +17,7 @@ class Post
   field :description,        :type => String
   field :text,               :type => String
   
+  field :tabelia,            :type => Boolean,    :default => false
   field :promoted,           :type => Boolean,    :default => false
   field :spotlight,          :type => Boolean,    :default => false
   field :publish,            :type => Boolean,    :default => true
@@ -49,6 +50,14 @@ class Post
     string :user_id do
       self.user.id.to_s
     end
+    string :tabelia do 
+      if self.tabelia == true
+        'tabelia'
+      else
+        'users'
+      end
+    end
+    time :created_at
     string :category_slug
     integer :show_search do 
       # show in search can be false if the user don't publish it

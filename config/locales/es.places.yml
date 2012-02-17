@@ -1,7 +1,7 @@
 es:
     places:
         new_place: 'Nuevo lugar'
-        edit_place: 'Edicción de información del sitio'
+        edit_place: 'Edición de información del sitio'
         edit_this_place: 'Edita este sitio'
         success_edit: 'Sitio editado correctamente.'
         localization: 'Localización'

@@ -11,6 +11,7 @@ class CartController < ApplicationController
     @total_payment_tabelia = 0.0
     @total_payment_taxes = 0.0
     @total_payment_transport = 0.0
+    @total_weight = 0.0
     @subtotal_payment = 0.0
     @total_payment = 0.0
     
@@ -46,8 +47,17 @@ class CartController < ApplicationController
     
     #calculamos los costes totales en base a los artículos que hay en el carrito
     @items.each do |item|
-      pay_user = item.art.price.round(2)
-      pay_tabelia = item.art.get_price(item.height, item.width, item.media_id, item.frame).round(2)
+      if item.art.fotolia == true
+        pay_user = item.custom_price.round(2)
+      else
+        pay_user = item.art.price.round(2)
+      end
+      if item.frame == true
+        framed = 1
+      else
+        framed = 0
+      end
+      pay_tabelia = item.art.get_price(item.height, item.width, item.media_id, framed).round(2)
       # calculo de transporte, depende del pais al que enviemos, con lo que si no tenemos dirección debe ser temporalmente
       # cero.
       if @invoice_address.nil? == true
@@ -60,18 +70,22 @@ class CartController < ApplicationController
             framed = false
           end
           country_id = @invoice_address.country_id.upcase
-          pay_transport = Transport.calculate_size('DE', item.height, item.width, framed)
+          pay_transport = Transport.calculate_weight(country_id, item.height, item.width, framed)
           
         rescue
           pay_transport = 0
         end
       end
+      puts "pay_transport = #{pay_transport}"
+      @total_weight = (@total_weight + pay_transport).round(2) # Peso total....
       @total_payment_users = (@total_payment_users + pay_user).round(2)
       @total_payment_tabelia = (@total_payment_tabelia + pay_tabelia).round(2)
-      @total_payment_transport = (@total_payment_transport + pay_transport).round(2)      
       @subtotal_payment = (@subtotal_payment + pay_user + pay_tabelia).round(2)
-    end  
-
+    end
+    puts "@total_weight = #{@total_weight}"
+    @total_payment_transport = (Transport.calculate(@invoice_address.country_id.upcase,@total_weight)).round(2)      
+    
+    
     if @invoice_address
       @total_payment_transport = @total_payment_transport + Taxes.calculate(@invoice_address.country_id.upcase, @invoice_address.is_company, @total_payment_transport).round(2)
       @total_payment_taxes = Taxes.calculate(@invoice_address.country_id.upcase, @invoice_address.is_company, @subtotal_payment).round(2)
@@ -98,6 +112,7 @@ class CartController < ApplicationController
     @total_payment_tabelia = 0.0
     @total_payment_taxes = 0.0
     @total_payment_transport = 0.0
+    @total_weight = 0.0
     @subtotal_payment = 0.0
     @total_payment = 0.0
 
@@ -106,8 +121,17 @@ class CartController < ApplicationController
     @invoice_address = Address.find(session[:invoice_address])
     
     @items.each do |item|
-      pay_user = item.art.price.round(2)
-      pay_tabelia = item.art.get_price(item.height, item.width, item.media_id, item.frame).round(2)
+      if item.frame == true
+        framed = 1
+      else
+        framed = 0
+      end
+      if item.art.fotolia == true
+        pay_user = item.custom_price.round(2)
+      else
+        pay_user = item.art.price.round(2)
+      end
+      pay_tabelia = item.art.get_price(item.height, item.width, item.media_id, framed).round(2)
       @total_payment_users = (@total_payment_users + pay_user).round(2)
       @total_payment_tabelia = (@total_payment_tabelia + pay_tabelia).round(2)
       if item.frame == 1
@@ -116,9 +140,9 @@ class CartController < ApplicationController
         framed = false
       end
       country_id = @invoice_address.country_id.upcase
-      pay_transport = Transport.calculate_size('DE', item.height, item.width, framed)
+      pay_transport = Transport.calculate_weight(country_id, item.height, item.width, framed)
       puts "Item: Transport: #{pay_transport}"
-      @total_payment_transport = (@total_payment_transport + pay_transport).round(2)
+      @total_weight = (@total_weight + pay_transport).round(2)
       @subtotal_payment = (@subtotal_payment + pay_user + pay_tabelia).round(2)
       
       paypal_item = { 
@@ -132,7 +156,7 @@ class CartController < ApplicationController
     
     #Taxes...
 
-    @total_payment_transport = @total_payment_transport + Taxes.calculate(@invoice_address.country_id.upcase, @invoice_address.is_company, @total_payment_transport).round(2)
+    @total_payment_transport = Transport.calculate(@invoice_address.country_id.upcase, @total_weight) + Taxes.calculate(@invoice_address.country_id.upcase, @invoice_address.is_company, @total_payment_transport).round(2)
     # falta añadir transporte!!!
     @total_payment_taxes = Taxes.calculate(@invoice_address.country_id.upcase, @invoice_address.is_company, @subtotal_payment).round(2)
     @total_payment = (@subtotal_payment + @total_payment_taxes + @total_payment_transport).round(2)
@@ -160,10 +184,28 @@ class CartController < ApplicationController
 
   
   def price
-    @art = Art.where(:slug => params[:art_id]).first
-    @artist_price = @art.price.to_f
-    @tabelia_price = @art.get_price(params[:height].to_f, params[:width].to_f, params[:media_id].to_i, params[:frame].to_i).to_f
-    @total = @artist_price + @tabelia_price 
+    if params[:art_id]
+      @art = Art.where(:slug => params[:art_id]).first
+      @artist_price = @art.price.to_f
+    end
+    if params[:credits]
+      @art = Art.where(:slug => 'fotolia').first
+      @artist_price = params[:credits].to_f
+    end
+    
+    if params[:frame] == "true"
+      framed = 1
+    else
+      framed = 0
+    end
+
+    case params[:media_id].to_i
+    when 1,2,3,4
+      @tabelia_price = @art.get_price(params[:height].to_f, params[:width].to_f, params[:media_id].to_i, framed).to_f
+    when 5
+      @tabelia_price = @art.get_price_fixed(params[:media_id], params[:size], framed).to_f
+    end
+    @total = @artist_price + @tabelia_price
     
     respond_to do |format|
       format.js
@@ -172,11 +214,12 @@ class CartController < ApplicationController
 
   def create
     @item = Item.new(params[:item])
+      
     @current_cart = current_cart
     if @item.save
       respond_to do |format|
         format.html { 
-          redirect_to(cart_path, :notice => 'Item added correctly.') 
+          redirect_to(cart_path, :notice => 'Articulo añadido correctamente.') 
         }
       end
     end
