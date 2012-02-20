@@ -33,6 +33,10 @@ class User
   
   field :usertype,      :type => Integer,  :default => 0
   
+  # art on demand -> Requerido aod_id
+  field :aod,           :type => Boolean,  :default => false
+  field :aod_id,        :type => Integer
+  
   # 0 - Usuario
   # 1 - Artista
   # 2 - Escuela
@@ -53,6 +57,7 @@ class User
   index :password_salt
   index :conf1 # confirmation token 1
   index :conf2 # confirmation token 2
+  index :aod_id,     unique: true
   
   validates_presence_of :name
 
@@ -65,7 +70,7 @@ class User
   validates_presence_of :username
   validates_uniqueness_of :username
   
-  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :on => :update
+  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :on => :update, :if => :non_aod?
                                   #    /^([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})$/i
   validates_confirmation_of :password, :on => :create, :if => :provider?
   validates_presence_of :password, :on => :create
@@ -161,6 +166,26 @@ class User
   	end
   end
   
+  # @generate_username
+  # generates a username based on the name 
+  # so 'Antonio Fernandez' became 'antonio-fernandez' unless there is already that username that makes 'antonio-fernandez-1' and so on
+  def generate_username(text = nil, counter = 0)
+    if text.nil?
+      text = name
+      temp_username = name.parameterize
+    else
+      counter +=1
+      temp_username = "#{text}-#{counter}".parameterize
+    end
+    
+    u = User.where(:username => temp_username).count
+    if u == 0
+      self.username = temp_username
+    else
+      generate_username(text, counter)
+    end
+  end
+  
   private
   
   def encrypt_password
@@ -227,6 +252,10 @@ class User
     else
       return false
     end
+  end
+  
+  def non_aod
+    false unless aod == true
   end
   
   protected

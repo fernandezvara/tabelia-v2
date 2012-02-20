@@ -4,21 +4,29 @@ class ColorsFromImage
   
   def self.perform(art_id)
     
+    require 'open-uri'
     colors = 64
     art = Art.find(art_id)
     
-    # Creates the images files, and uploads them to S3 storage
-    puts "readed: '#{art.original.versions[:scaled].to_s}'"
-    art.image = File.open(art.original.versions[:scaled].to_s, "rb")
-    #art.image = File.open(art.original.to_s)
-    art.save!
+    if art.aod == true
+      img = Magick::ImageList.new
+      url = open(art.aod_image_url)
+      img.from_blob(url.read)
+      img = img.quantize(colors)
+    else
+      # Creates the images files, and uploads them to S3 storage
+      puts "readed: '#{art.original.versions[:scaled].to_s}'"
+      art.image = File.open(art.original.versions[:scaled].to_s, "rb")
+      #art.image = File.open(art.original.to_s)
+      art.save!
     
-    puts 'saving to image completed ...'
-    puts 'quantize colors ....'
-    #img = Magick::Image.read("#{Rails.root}/public#{art.image}").first
-    img = Magick::Image.read(art.original.versions[:scaled].to_s).first
-    img = img.quantize(colors)
-
+      puts 'saving to image completed ...'
+      puts 'quantize colors ....'
+      #img = Magick::Image.read("#{Rails.root}/public#{art.image}").first
+      img = Magick::Image.read(art.original.versions[:scaled].to_s).first
+      img = img.quantize(colors)
+    end
+    
     hist = img.color_histogram
 
     pixels = hist.keys.sort_by {|value| hist[value]}.reverse

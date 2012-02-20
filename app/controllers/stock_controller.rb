@@ -134,8 +134,12 @@ class StockController < ApplicationController
       case params[:material]
       when 'canvas'
         @tabelia_price = @art.get_price(@min_height, @min_width, 3, 0).to_f
+      when 'photographic'
+        @tabelia_price = @art.get_price(@min_height, @min_width, 2, 0).to_f
+      when 'watercolor'
+        @tabelia_price = @art.get_price(@min_height, @min_width, 4, 0).to_f
       else
-        @tabelia_price = 0
+        @tabelia_price = @art.get_price(@min_height, @min_width, 3, 0).to_f
       end
     else
       if @item.frame == true
@@ -146,13 +150,15 @@ class StockController < ApplicationController
       case params[:material]
       when 'canvas'
         @tabelia_price = @art.get_price(@item.height, @item.width, 3, framed).to_f
+      when 'photographic'
+        @tabelia_price = @art.get_price(@item.height, @item.width, 3, 0).to_f
+      when 'watercolor'
+        @tabelia_price = @art.get_price(@item.height, @item.width, 4, 0).to_f
       else
-        @tabelia_price = 0
+        @tabelia_price = @art.get_price(@item.height, @item.width, 3, framed).to_f
       end
     end
-    
-
-    
+  
     @total = @license_cost + @tabelia_price
     
     respond_to do |format|

@@ -13,6 +13,8 @@
   case item.media_id
   when 3
     material = 'canvas'
+  when 5
+    material = 'aluminium'
   end
   
   if item.art.fotolia == true
@@ -20,16 +22,25 @@
     image_response = f.execute('media', 'getMediaData', { :language_id => 5, :thumbnail_size => 110, :id => item.fotolia_id } )
     image = image_response.response
   end
-  tabelia_price = art.get_price(item.height, item.width, item.media_id, framed)
+  case item.media_id
+  when 1,2,3,4
+    tabelia_price = art.get_price(item.height, item.width, item.media_id, framed)
+  when 5
+    tabelia_price = art.get_price_fixed(item.media_id, item.size, framed)
+  end
   total_price = artist_price + tabelia_price
 %>
 
 <li class="<%= cycle('odd', 'even') %>">
   <div class="left item_shot center">
-    <% if art.fotolia == true %>
-      <%= image_tag image['thumbnail_url'], :class => 'item2', :height => image['thumbnail_height'], :width => image['thumbnail_width'] %>
+    <% if item.x.nil? == true %>
+      <% if art.fotolia == true %>
+        <%= image_tag image['thumbnail_url'], :class => 'item2', :height => image['thumbnail_height'], :width => image['thumbnail_width'], :alt => image['title'] %>
+      <% else %>
+        <%= image_tag art.image.url(:cart).to_s, :alt => art.name, :title => art.name %>
+      <% end %>
     <% else %>
-      <%= image_tag art.image.url(:cart).to_s, :alt => art.name, :title => art.name %>
+      <%= image_tag item.crop.url(:cropped_thumb), :alt => art.name, :title => art.name %>
     <% end %>
   </div>
   <div class="right item_info">

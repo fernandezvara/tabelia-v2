@@ -45,6 +45,7 @@ gem 'simple_form'
 
 #Images
 gem 'rmagick'
+gem 'carrierwave', "0.5.7"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'fog'   # S3 storage
 

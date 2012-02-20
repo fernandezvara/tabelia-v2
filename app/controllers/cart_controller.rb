@@ -57,7 +57,13 @@ class CartController < ApplicationController
       else
         framed = 0
       end
-      pay_tabelia = item.art.get_price(item.height, item.width, item.media_id, framed).round(2)
+      
+      case item.media_id
+      when 1,2,3,4
+        pay_tabelia = item.art.get_price(item.height, item.width, item.media_id, framed).round(2)
+      when 5
+        pay_tabelia = item.art.get_price_fixed(item.media_id, item.size, framed).round(2)
+      end
       # calculo de transporte, depende del pais al que enviemos, con lo que si no tenemos dirección debe ser temporalmente
       # cero.
       if @invoice_address.nil? == true
@@ -214,9 +220,14 @@ class CartController < ApplicationController
 
   def create
     @item = Item.new(params[:item])
-      
+    puts "@item"
+    puts "#{@item.inspect}"
     @current_cart = current_cart
     if @item.save
+      @item.update
+      puts "reloaded...."
+      puts "#{@item.inspect}"
+      @item.save
       respond_to do |format|
         format.html { 
           redirect_to(cart_path, :notice => 'Articulo añadido correctamente.') 
@@ -269,14 +280,13 @@ class CartController < ApplicationController
       redirect_to root_path
     else
       if @item.update_attributes(params[:item])
+        @item.update
+        @item.save
         redirect_to cart_path, :notice => 'Item actualizado'
       else
         redirect_to cart_path, :notice => 'Error al actualizar'
       end
     end
   end
-  
-  
-
 
 end

@@ -24,9 +24,19 @@
   <link rel="canonical" href="<%= @canonical %>" />
   <meta property="fb:app_id" content="195975813810721" />
   <meta property="og:site_name" content="tabelia">
-  <meta property="og:url" content="<%= @canonical %>" /> 
   <meta property="fb:admins" content="1615327419"/>
+  <% if controller_name == "arts" or controller_name == "photos" or controller_name == "stock" %>
+    <% if action_name == "show" %>
+    <meta itemprop="url" content="<%= @fb_canonical %>" />
+    <meta property="og:url" content="<%= @fb_canonical %>" /> 
+    <% else %>
+    <meta itemprop="url" content="<%= @canonical %>" />
+    <meta property="og:url" content="<%= @canonical %>" /> 
+    <% end %>
+  <% else %>
   <meta itemprop="url" content="<%= @canonical %>" />
+  <meta property="og:url" content="<%= @canonical %>" /> 
+  <% end %>
   <% if controller_name == "arts" or controller_name == "photos" %>
     <% if action_name == "show" %>
       <meta property="og:type" content="tabelia:art" /> 

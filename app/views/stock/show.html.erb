@@ -57,7 +57,7 @@ end
 <% if params[:material] %>
   <%= render :partial => "partials/cart/#{params[:material]}", :locals => { :f => f } %>
 <% else %>
-  <%= render :partial => 'partials/cart/materials' %>
+  <%= render :partial => 'partials/cart/canvas', :locals => { :f => f } %>
 <% end %>
 <div class="box common">
   <div class="title">

@@ -58,6 +58,14 @@ class Art
   
   field :popularity,        :type => Float
   
+  # art on demand
+  field :aod,               :type => Boolean,  :default => false
+  field :aod_id,            :type => Integer
+  field :aod_min_width,     :type => Float
+  field :aod_min_height,    :type => Float
+  field :aod_image_url,     :type => String
+  # art on demand
+  
   slug :name
   
   index :slug, unique: true
@@ -203,6 +211,8 @@ class Art
     papers[2] = 0.037 # foto
     papers[3] = 0.108 # lienzo
     papers[4] = 0.129 # texturado
+    papers[5] = 0     # aluminio
+    papers[6] = 0     # metacrilato
 
     # frame
     frame_cms = ((width + height) * 2)
@@ -268,8 +278,8 @@ class Art
   
   def get_price_fixed(media_id, size, framed)
     puts "media_id = #{media_id},   size = #{size},  framed = #{framed}"
-    case media_id
-    when '5'
+    case media_id.to_i
+    when 5
       case size
       when 's'
         result = 25

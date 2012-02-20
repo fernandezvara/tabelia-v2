@@ -73,8 +73,7 @@ $(window).load(function(){
   }
 
   var aspect_ratio = <%= @item.width / @item.height %>;
-  crop.setSelect([<%= @item.x %>, <%= @item.y %>, <%= @item.w %>, <%= @item.h %> ]);
-  
+
   crop.setOptions({
     onChange: updateCoords,
     aspectRatio: aspect_ratio,
@@ -92,6 +91,8 @@ $(window).load(function(){
     updateAll();
   });
   
+  crop.setSelect([<%= @item.x %>, <%= @item.y %>, <%= @item.x + @item.w %>, <%= @item.y + @item.h %> ]);
+  
   function updateCoords(c) {
     $('input#item_x').val(c.x);
     $('input#item_y').val(c.y);
@@ -104,34 +105,42 @@ $(window).load(function(){
         case 's':
           l = 25.4;
           s = 20.32;
+          break;
         case 'm':
           l = 35.56;
           s = 27.94;
+          break;
         case 'l':
           l = 50.80;
           s = 40.68;
+          break;
       }
       if ($('select#item_orientation').val() == 'h') {
         aspect_ratio = l / s;
+        $('input#item_width').val(l);
+        $('input#item_height').val(s);
       } else {
         aspect_ratio = s / l;
+        $('input#item_width').val(s);
+        $('input#item_height').val(l);
       }
+      alert('l=' + l + '  -  s=' + s + '  - aspectRatio:' + aspect_ratio);
       crop.setOptions({aspectRatio: aspect_ratio});
       crop.animateTo([0, 0, 1000 ,1000]);
       update_price();
   }
 
   function update_price() {
-  		$.ajax({
-        url: '/cart/price',
-        data: {
-          'credits'  : '<%= @license_cost %>',
-          'media_id' : $('input#item_media_id').val(),
-          'size'     : $('select#item_size').val(),
-          'frame'    : $('select#item_frame').val()
-        },
-        dataType: 'script'
-      });
+		$.ajax({
+      url: '/cart/price',
+      data: {
+        'credits'  : '<%= @license_cost %>',
+        'media_id' : $('input#item_media_id').val(),
+        'size'     : $('select#item_size').val(),
+        'frame'    : $('select#item_frame').val()
+      },
+      dataType: 'script'
+    });
   }
 }); // end window.load
-  </script>
+</script>

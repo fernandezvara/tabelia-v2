@@ -47,6 +47,18 @@ class ApplicationController < ActionController::Base
     else
       @canonical = 'http://www.tabelia.com' + request.fullpath
     end
+    if controller_name == "arts" or controller_name == "photos" or controller_name == "stock"
+      if action_name == "show"
+        case controller_name
+        when "arts"
+          @fb_canonical = art_profile_url(:slug => params[:slug])
+        when "photos"
+          @fb_canonical = photo_profile_url(:slug => params[:slug])
+        when "stock"
+          @fb_canonical = fotolia_show_url(:id => params[:id])
+        end
+      end
+    end
   end
   
   def confirmed?
