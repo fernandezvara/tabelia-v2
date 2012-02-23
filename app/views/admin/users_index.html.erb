@@ -1,7 +1,7 @@
 <% content_for :main do %>
 <h2>Users</h2>
 <div class="paginate">
-  <%= paginate @users, :inner_window => 1 %>
+  <%= paginate @users, :inner_window => 2 %>
 </div>
 <table>
   <thead>
@@ -15,7 +15,11 @@
   <% @users.each do |user| %>
     <tr class="<%= cycle('odd', 'even') %>">
       <td><%= link_to user.name, admin_user_edit_path(:username => user.username) %></td>
+      <% if user.aod == true %>
+      <td>Art On Demand</td>
+      <% else %>
       <td><%= user.email %></td>
+      <% end %>
       <td><%= user.arts.count %></td>
       <td></td>
       <td><%= link_to 'Editar', admin_user_edit_path(:username => user.username) %> | <%= link_to 'Ver perfil', user_profile_path(:username => user.username) %></td>
@@ -24,6 +28,6 @@
   </tbody>
 </table>
 <div class="paginate">
-  <%= paginate @users, :inner_window => 1 %>
+  <%= paginate @users, :inner_window => 2 %>
 </div>
 <% end %>

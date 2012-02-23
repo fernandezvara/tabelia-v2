@@ -10,7 +10,7 @@ class ColorsFromImage
     
     if art.aod == true
       img = Magick::ImageList.new
-      url = open(art.aod_image_url)
+      url = open("http:#{art.aod_image_url}")
       img.from_blob(url.read)
       img = img.quantize(colors)
     else

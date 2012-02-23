@@ -16,7 +16,7 @@
     <tr class="<%= cycle('odd', 'even') %>">
       <td><%= link_to art.name, admin_art_edit_path(:slug => art.slug) %></td>
       <td><%= link_to art.user.name, admin_user_edit_path(:username => art.user.username) %></td>
-      <td><%= art.subject.name %></td>
+      <td><%= art.subject.name if art.subject %></td>
       <td><%= art.accepted %></td>
       <td><%= link_to 'Editar', admin_photo_edit_path(:slug => art.slug) %> | <%= link_to 'Ver perfil', art_profile_path(:slug => art.slug) %></td>
     </tr>

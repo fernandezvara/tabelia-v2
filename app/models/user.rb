@@ -206,26 +206,6 @@ class User
     end while User.where(:auth_token => self.auth_token).count > 0
   end
   
-  # @generate_username
-  # generates a username based on the name 
-  # so 'Antonio Fernandez' became 'antonio-fernandez' unless there is already that username that makes 'antonio-fernandez-1' and so on
-  def generate_username(text = nil, counter = 0)
-    if text.nil?
-      text = name
-      temp_username = name.parameterize
-    else
-      counter +=1
-      temp_username = "#{text}-#{counter}".parameterize
-    end
-    
-    u = User.where(:username => temp_username).count
-    if u == 0
-      self.username = temp_username
-    else
-      generate_username(text, counter)
-    end
-  end
-  
   def generate_privacy
     privacy = Privacy.new
     self.privacy = privacy
@@ -254,7 +234,7 @@ class User
     end
   end
   
-  def non_aod
+  def non_aod?
     false unless aod == true
   end
   

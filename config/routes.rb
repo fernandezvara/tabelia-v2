@@ -36,11 +36,11 @@ Tabelia::Application.routes.draw do
   match "user/:username/photos",      :controller => 'photos',   :action => 'user_photos_show', :as => "user_photos"
   match "user/:username/followers",   :controller => 'users',    :action => 'followers',        :as => "user_followers"
   match "user/:username/following",   :controller => 'users',    :action => 'following',        :as => "user_following"
-  match "art/:slug",                  :controller => 'arts',     :action => 'show',             :as => "art_profile"
+  match "art/:slug/(:material)",      :controller => 'arts',     :action => 'show',             :as => "art_profile"
   match "art/:slug/likes",            :controller => 'arts',     :action => 'likes',            :as => "art_likes"
   match "art/:slug/edit",             :controller => 'arts',     :action => 'edit',             :as => "edit_art"
 
-  match "photo/:slug",                :controller => 'photos',   :action => 'show',             :as => "photo_profile"
+  match "photo/:slug/(:material)",    :controller => 'photos',   :action => 'show',             :as => "photo_profile"
   match "photo/:slug/likes",          :controller => 'photos',   :action => 'likes',            :as => "photo_likes"
   match "photo/:slug/edit",           :controller => 'photos',   :action => 'edit',             :as => "edit_photo"
   match "photo/:slug/update",         :controller => 'photos',   :action => 'update',           :as => "update_photo"
@@ -118,6 +118,8 @@ Tabelia::Application.routes.draw do
   match 'shop/paintings/:category/:idiom/:tecnique/(:page)', :controller => 'shop', :action => 'paintings',               :as => 'shop_paintings'
   match 'shop/popular/paintings/(:page)',                    :controller => 'shop', :action => 'popular_paintings',       :as => 'shop_popular_paintings'  
   match 'shop/popular/photos/(:page)',                       :controller => 'shop', :action => 'popular_photos',          :as => 'shop_popular_photos'  
+  match 'shop/:username/(:page)',                            :controller => 'shop', :action => 'shop_user',               :as => 'shop_user'  
+
 
   # Posts
   match 'post/:slug',        :controller => 'posts', :action => 'show', :as => 'post_show'

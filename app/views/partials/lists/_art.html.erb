@@ -1,12 +1,24 @@
 <li class="<%= cycle('odd', 'even') %>">
   <div class="artlist left">
     <div class="avatar left">
+      <% if art.aod == true %>
+      <%= link_to image_tag(art.aod_image.url(:thumb).to_s, :alt => art.name), art_profile_path(:slug => art.slug) %>
+      <% else %>
       <%= link_to image_tag(art.image.url(:thumb).to_s, :alt => art.name), art_profile_path(:slug => art.slug) %>
+      <% end %>
     </div>      
     <div class="artdata right">
       <% if art.photo == false %>
-      <p><%= link_to art.name, art_profile_path(:slug => art.slug) %> <%= t('common.by')%> <%= link_to art.user.name, user_profile_path(:username => art.user.username) %></p>
-      <p><%= t('arts.profile.idiom') %><%= art.genre.name %> · <%= t('arts.profile.category') %><%= art.category.name %></p>
+      <p><%= link_to art.name, art_profile_path(:slug => art.slug) %> <%= t('common.by')%> <%= link_to art.user.name, shop_user_path(:username => art.user.username) %></p>
+      <p><% begin %>
+      <%= t('arts.profile.idiom') %><%= art.genre.name %> · 
+      <% rescue 
+      end %>
+      <% begin %>
+        <%= t('arts.profile.category') %><%= art.category.name %>
+      <% rescue
+      end %>  
+      </p>
       <% else %>
       <p><%= link_to art.name, photo_profile_path(:slug => art.slug) %> <%= t('common.by')%> <%= link_to art.user.name, user_profile_path(:username => art.user.username) %></p>
       <p><%= t('arts.profile.subject') %><%= art.subject.name %> · <%= t('arts.profile.tecnique') %><%= art.tecnique.name %></p>

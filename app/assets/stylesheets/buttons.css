@@ -197,13 +197,13 @@ a.delete:hover {
 }
 
 a.like {
-	border: 1px solid #e0e0e0;
+	border: 1px solid #d0d0d0;
 	-moz-box-shadow:inset 0px 1px 0px 0px #e3e3e3;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #e3e3e3;
 	box-shadow:inset 0px 1px 0px 0px #e3e3e3;
 	text-shadow:1px 1px 0px #ccc;
 	padding:2px 12px 2px 24px;
-	background: #ededed url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/heartgrey.png) no-repeat 6px 5px;
+	background: #e0e0e0 url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/icons/heartgrey.png) no-repeat 6px 5px;
 }
 
 a.like:hover {

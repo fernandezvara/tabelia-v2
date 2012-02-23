@@ -8,6 +8,81 @@ class PhotosController < ApplicationController
     if @art.nil? == true
       show_404 
     else
+      @cart = current_cart
+
+      if params[:item_id]
+        @item = Item.find(params[:item_id])
+      else
+        @item = Item.new
+      end
+      
+      puts @art.inspect 
+      
+      if @art.aod == true
+        @min_height = @art.aod_min_height
+        @min_width = @art.aod_min_width
+      else
+        @min_height = @art.min_height
+        @min_width = @art.min_width
+      end
+      
+      @max_height = @art.max_height
+      @max_width = @art.max_width
+      @correction = @art.dimension_correction
+      
+      puts @min_height
+      puts @min_width
+      if @item.new?
+        case params[:material]
+        when 'canvas'
+          @tabelia_price = @art.get_price(@min_height, @min_width, 3, 0).to_f
+          @material = 3
+        when 'photographic'
+          @tabelia_price = @art.get_price(@min_height, @min_width, 2, 0).to_f
+          @material = 2
+        when 'watercolor'
+          @tabelia_price = @art.get_price(@min_height, @min_width, 4, 0).to_f
+          @material = 4
+        when 'aluminium'
+          @tabelia_price = @art.get_price_fixed(5, 's', 0).to_f
+          @material = 5
+        else
+          @tabelia_price = @art.get_price(@min_height, @min_width, 3, 0).to_f
+          @material = 3
+        end
+      else
+        if @item.frame == true
+          framed = 1
+        else
+          framed = 0
+        end
+        case params[:material]
+        when 'canvas'
+          @tabelia_price = @art.get_price(@item.height, @item.width, 3, framed).to_f
+          @material = 3
+        when 'photographic'
+          @tabelia_price = @art.get_price(@item.height, @item.width, 2, 0).to_f
+          @material = 2
+        when 'watercolor'
+          @tabelia_price = @art.get_price(@item.height, @item.width, 4, 0).to_f
+          @material = 4
+        when 'aluminium'
+          @tabelia_price = @art.get_price_fixed(5, @item.size, framed).to_f
+          @material = 5
+        else
+          @tabelia_price = @art.get_price(@item.height, @item.width, 3, framed).to_f
+          @material = 3
+        end
+      end
+      
+      if @item.new?
+        @art_price = @art.quote(@min_height, @min_width, @art.aod, @material, 's')
+      else
+        @art_price = @art.quote(@item.height, @item.width, @art.aod, @item.media_id, 's')
+      end
+      
+      @total = @art_price + @tabelia_price
+      
       # verify if art has been published
       if @art.accepted == true and @art.status == true
         if fragment_exist?("comments-art-#{@art.id.to_s}-#{I18n.locale.to_s}") == false
@@ -30,17 +105,20 @@ class PhotosController < ApplicationController
         arttags.each do |tag|
           @tags << tag.tag.text
         end
-        similar_arts = ArtSimilar.where(:art_id => @art.id.to_s)
+        similar_arts = ArtSimilar.where(:art_id => @art.id.to_s, :photo => @art.photo).limit(8)
         @similar_art = Array.new
         similar_arts.each do |similar|
           temp_art = Art.find(similar.similar_id)
-          if temp_art.photo == true
+          if temp_art.photo == false
+            begin
             @similar_art << Art.find(similar.similar_id)
+            rescue
+            end
           end
         end
         @art_colors = ColorRelation.colors_of(@art)
         @title = @art.name
-        render :layout => 'main'
+        render :layout => 'product'
       else
         # if the art has not been published by the artist or is not accepted, we only show the art to the artist
         if @art.user == current_user
@@ -50,17 +128,20 @@ class PhotosController < ApplicationController
           arttags.each do |tag|
             @tags << tag.tag.text
           end
-          similar_arts = ArtSimilar.where(:art_id => @art.id.to_s)
+          similar_arts = ArtSimilar.where(:art_id => @art.id.to_s, :photo => @art.photo).limit(8)
           @similar_art = Array.new
           similar_arts.each do |similar|
             temp_art = Art.find(similar.similar_id)
-            if temp_art.photo == true
+            if temp_art.photo == false
+              begin
               @similar_art << Art.find(similar.similar_id)
+              rescue
+              end
             end
           end
           @art_colors = ColorRelation.colors_of(@art)
           @title = t("users.index.title")
-          render :layout => 'main'
+          render :layout => 'product'
         else
           # art not belongs to the user
           show_404

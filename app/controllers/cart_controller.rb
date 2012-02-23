@@ -192,7 +192,13 @@ class CartController < ApplicationController
   def price
     if params[:art_id]
       @art = Art.where(:slug => params[:art_id]).first
-      @artist_price = @art.price.to_f
+      #if @art.aod == true
+      #  @artist_price = (11.8).to_f
+        #@art.quote(params[:height].to_f, params[:width].to_f, @art.aod, params[:media_id].to_i, params[:size])
+      #else
+      #  @artist_price = @art.price.to_f
+      #end
+      @artist_price = @art.quote(params[:height].to_f, params[:width].to_f, @art.aod, params[:media_id].to_i, params[:size])
     end
     if params[:credits]
       @art = Art.where(:slug => 'fotolia').first

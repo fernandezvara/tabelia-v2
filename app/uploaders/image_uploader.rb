@@ -35,8 +35,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   #process :resize_to_fit => [730, 730]
   #process :quality => 70
 
+  version :big do
+    process :watermark_big
+    process :title_it
+  end
+
   version :normal do 
-    process :resize_to_fit => [730, 730]
+    process :resize_to_fit => [550, 550]
     process :quality => 95
     process :watermark
     process :title_it
@@ -131,12 +136,20 @@ class ImageUploader < CarrierWave::Uploader::Base
     end
   end
   
-  
   def watermark
     manipulate! do |img|
       logo = Magick::Image.read(Rails.root + 'app/assets/images/wm/watermark.png').first
-      #center_cols = (img.columns/2) - (logo.columns/2)
-      #center_rows = (img.rows/2) - (logo.rows/2)
+      
+      center_cols = img.columns - logo.columns
+      center_rows = img.rows - logo.rows
+      
+      img = img.dissolve(logo, 0.50, 1, center_cols, center_rows)
+    end
+  end
+
+  def watermark_big
+    manipulate! do |img|
+      logo = Magick::Image.read(Rails.root + 'app/assets/images/wm/watermark_big.png').first
       
       center_cols = img.columns - logo.columns
       center_rows = img.rows - logo.rows

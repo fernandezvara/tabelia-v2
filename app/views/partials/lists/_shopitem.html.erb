@@ -1,14 +1,22 @@
 <li>
   <% if art.photo == false %>
   <div class="image">
+  <% if art.aod == true %>
+  <%= link_to image_tag(art.aodimage.url(:s).to_s, :class => 'item', :alt => art.name), art_profile_path(:slug => art.slug) %>
+  <% else %>
   <%= link_to image_tag(art.image.url(:s).to_s, :class => 'item', :alt => art.name), art_profile_path(:slug => art.slug) %>
+  <% end %>
   </div>
-  <p class="center s14"><%= link_to art.name, art_profile_path(:slug => art.slug) %></p>
+  <p class="center s14"><%= link_to truncate(art.name, :length => 50, :omission => '...'), art_profile_path(:slug => art.slug), :alt => art.name %></p>
   <% else %>
   <div class="image">
+  <% if art.aod == true %>
+  <%= link_to image_tag(art.aodimage.url(:s).to_s, :class => 'item', :alt => art.name), photo_profile_path(:slug => art.slug) %>
+  <% else %>
   <%= link_to image_tag(art.image.url(:s).to_s, :class => 'item', :alt => art.name), photo_profile_path(:slug => art.slug) %>
-  </div>
-  <p class="center s14"><%= link_to art.name, photo_profile_path(:slug => art.slug) %></p>
   <% end %>
-  <p class="center s11"><%= link_to art.user.name, user_profile_path(:username => art.user.username)%></p>
+  </div>
+  <p class="center s14"><%= link_to truncate(art.name, :length => 40, :omission => '...'), photo_profile_path(:slug => art.slug) %></p>
+  <% end %>
+  <p class="center s11"><%= link_to art.user.name, shop_user_path(:username => art.user.username)%></p>
 </li>

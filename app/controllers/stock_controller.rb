@@ -78,7 +78,7 @@ class StockController < ApplicationController
     if @image['licenses_details']['L']
       @width = @image['licenses_details']['L']['width'].to_f
       @height = @image['licenses_details']['L']['height'].to_f
-      @correction = @height / @width
+      @correction = @width / @height
       @license = 'L'
     end
     puts "#{@width} x #{@height} -> #{@correction} -> #{@license}"
@@ -86,14 +86,14 @@ class StockController < ApplicationController
     if @image['licenses_details']['XL']
       @width = @image['licenses_details']['XL']['width'].to_f
       @height = @image['licenses_details']['XL']['height'].to_f
-      @correction = @height / @width
+      @correction = @width / @height
       @license = 'XL'
     end
     puts "#{@width} x #{@height} -> #{@correction} -> #{@license}"
     if @image['licenses_details']['XXL']
       @width = @image['licenses_details']['XXL']['width'].to_f
       @height = @image['licenses_details']['XXL']['height'].to_f
-      @correction = @height / @width
+      @correction = @width / @height
       @license = 'XXL'
     end
     puts "#{@width} x #{@height} -> #{@correction} -> #{@license}"
@@ -112,13 +112,13 @@ class StockController < ApplicationController
     if @width > @height
       @max_height = 100
       @min_height = 20
-      @max_width = (100 / @correction).round(2)
-      @min_width = (20 / @correction).round(2)
+      @max_width = (100 * @correction).round(2)
+      @min_width = (20 * @correction).round(2)
     else
       @max_width = 100
       @min_width = 20
-      @max_height = (100 / @correction).round(2)
-      @min_height = (20 / @correction).round(2)
+      @max_height = (100 * @correction).round(2)
+      @min_height = (20 * @correction).round(2)
     end
     
     if @width == @height
@@ -127,6 +127,12 @@ class StockController < ApplicationController
       @max_height = 100
       @min_height = 20
     end
+    
+    puts @max_width
+    puts @min_width
+    puts @max_height
+    puts @min_height
+    puts @correction
     
     # Calling to an Art class to get the prices
     @art = Art.where(:slug => 'fotolia').first
@@ -138,6 +144,8 @@ class StockController < ApplicationController
         @tabelia_price = @art.get_price(@min_height, @min_width, 2, 0).to_f
       when 'watercolor'
         @tabelia_price = @art.get_price(@min_height, @min_width, 4, 0).to_f
+      when 'aluminium'
+        @tabelia_price = @art.get_price_fixed(5, 's', 0).to_f
       else
         @tabelia_price = @art.get_price(@min_height, @min_width, 3, 0).to_f
       end
@@ -154,11 +162,14 @@ class StockController < ApplicationController
         @tabelia_price = @art.get_price(@item.height, @item.width, 3, 0).to_f
       when 'watercolor'
         @tabelia_price = @art.get_price(@item.height, @item.width, 4, 0).to_f
+      when 'aluminium'
+        @tabelia_price = @art.get_price_fixed(5, @item.size, framed).to_f
       else
         @tabelia_price = @art.get_price(@item.height, @item.width, 3, framed).to_f
       end
     end
   
+    @art_price = @license_cost
     @total = @license_cost + @tabelia_price
     
     respond_to do |format|

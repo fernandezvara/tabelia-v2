@@ -4,6 +4,7 @@ es:
         id_2: 'Papel fotográfico'
         id_3: 'Lienzo'
         id_4: 'Papel texturado'
+        id_5: 'Aluminio'
     cart:
         title: 'Cesta de la compra'
         1item: '1 artículo'

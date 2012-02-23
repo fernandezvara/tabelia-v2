@@ -5,6 +5,10 @@ class Color
   field :blue, :type => Integer
   field :rgb, :type => String
   
+  index :red
+  index :green
+  index :blue
+  
   index :rgb, :unique => true
   
   has_many :color_relations

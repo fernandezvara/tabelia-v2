@@ -2,6 +2,7 @@ en:
     arts:
         paintings_title: 'Paintings'
         photos_title: 'Photographs'
+        photos_decoration_title: 'Stock Photographs'
         paintings_by_populatity: 'Paintings by popularity'
         photos_by_populatity: 'Photographs by popularity'
         singular: 'art'
@@ -76,7 +77,10 @@ en:
         attributes:
             art:
                 name: 'Title'
-                price: 'Price'
+                price_a4: 'Price A4'
+                price_a3: 'Price A3'
+                price_artistic: 'Price A3-1m'
+                price_wallcovering: 'Price >1m'
                 description: 'Description'
                 original: 'Original file'
                 genre: 'Genre/Idiom'
@@ -89,6 +93,10 @@ en:
             art:
                 name: 'Name of this art'
                 price: 'Write how much you want to get for each reproduction sold. Price must be writen in Euros.'
+                price_a4: 'Write the value of a reproduction sold up to format DIN A4(21x29,7cm). Price must be writen in Euros.'
+                price_a3: 'Write the value of a reproduction sold up to format DIN A3(29,7x42cm). Price must be writen in Euros.'
+                price_artistic: 'Write the value of a reproduction sold up to 1 meter on the short side. Price must be writen in Euros.'
+                price_wallcovering: 'Write the value of a reproduction sold up to 1 meter on the short side (used for cover big surfaces like walls). Price must be writen in Euros.'
                 description: 'Information about this art.'
                 original: 'Upload the original file of this art. This is a time consuming task, please be patient'
                 category: 'Select the style of this art.'

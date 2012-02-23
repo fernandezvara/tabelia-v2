@@ -165,4 +165,32 @@ class ShopController < ApplicationController
     end
   end
 
+  def shop_user
+    if current_user
+      show_search_level = 1
+    else
+      show_search_level = 2
+    end
+    
+    @user = User.where(:username => params[:username]).first
+    user = @user # necesario para la busqueda no funciona el global -lol-
+    
+    if @user.nil? == false
+      @search = Sunspot.search(Art) do
+        with(:user_id, user.id.to_s)
+        with(:show_search).greater_than(show_search_level)
+        order_by(:name, :asc)
+        paginate(:per_page => 16, :page => params[:page])
+      end
+      @arts = @search.results
+      @title = @user.name
+      respond_to do |format|
+        format.html { render :layout => 'shop' }
+        format.js
+      end
+    else
+      show_404
+    end
+  end
+
 end

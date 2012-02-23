@@ -1,11 +1,183 @@
 <% content_for :title do %>
-  <%= render :partial => 'partials/photos/profile/title' %>
+<div class="column unitx4 left first">
+  <div class="left inner-title"><p><%= @art.name %></p></div>
+</div>
+<div class="column unitx1" id="like_status">
+  <% if current_user %>
+    <% if current_user != @art.user %>
+      <% if GraphClient.connected?('Forward', 'Like', current_user, @art) == false %>
+        <%= link_to t('common.like'), action_like_path(:slug => @art.slug), :remote => true, :class => ['abutton', 'like'], :walk => 'no' %>
+      <% else %>
+        <%= link_to t('common.you_like_it'), action_unlike_path(:slug => @art.slug), :remote => true, :class => ['abutton', 'unlike'], :walk => 'no' %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<div class="column unitx3"></div>
+<div class="clearfix"></div>
 <% end %>
 
-<% content_for :left do %>
-  <%= render :partial => 'partials/photos/profile/left' %>
+<% content_for :product do %>
+<% if @item.new?
+  url = cart_create_url
+else
+  url = cart_update_url(:id => params[:item_id])
+end
+%>
+<%= form_for @item, :url => url do |f| %>
+<div style="width:100%; text-align:center">
+  <% case params[:material]
+  when 'aluminium'
+    classimg = 'crop'
+  %>
+  <% if @art.aod == true %>
+  <%= f.hidden_field :remote_crop_url, :value => @art.aod_image_url %>
+  <% else %>
+  <%= f.hidden_field :remote_crop_url, :value => "http:#{@art.image.url(:normal).to_s}" %>
+  <% end %>
+  
+  <%
+  else
+    classimg = 'item2'
+  end
+  %>
+  <div style="width:550px; margin:0 auto;text-align:center">
+  <% if @art.aod == true %>
+  <%= image_tag(@art.aod_image_url.to_s, :alt => @art.name, :class => classimg) %>
+  <% else %>
+  <%= image_tag(@art.image.url(:normal).to_s, :alt => @art.name, :class => classimg) %>
+  <% end %>
+  </div>
+  <% if @art.aod == true %>
+  <p class="center s11">La marca de agua 'Art on Demand' no aparecerá impresa, se utiliza para preservar los derechos del autor.</p>
+  <% end %>
+  <div class="clear" style="overflow:hidden;">
+  <% art_colors_count = @art_colors.count
+    if art_colors_count > 0
+    @width = (660 / art_colors_count).to_i
+    @art_colors.each do |color|
+   %>
+   
+   <div style="background-color:<%= color.color.rgb %>; width:<%= @width %>px; height:20px; float:left;" onclick="location.href='/color/<%= color.color.rgb.gsub("#", "") %>';" id="color"></div>
+   <% end %>
+   <% end %>
+   </div>
+  
+</div>
+<div class="box common">
+  <div class="title">
+    <p>INFORMACIÓN</p>
+  </div>
+  <div class="content">
+    <% followers = GraphClient.get_count('Backward', 'Follow', @art.user).to_i %>
+    <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <p> @ <%= link_to raw("<span itemprop=\"name\">") + @art.user.name + raw("</span>"), shop_user_path(:username => @art.user.username), :itemprop => 'url' %>
+        <% case followers %>
+        <% when 0 %>
+        <% when 1 %>
+        &nbsp;&nbsp;(<%= link_to "#{followers} #{t('common.follower')}", user_followers_path(:username => @art.user.username) %>)
+        <% else %>
+        &nbsp;&nbsp;(<%= link_to "#{followers} #{t('common.followers')}", user_followers_path(:username => @art.user.username) %>)
+        <% end %>
+        </p>
+    </div>
+    <br />
+    <% if @art.description %>
+    <%= Redcarpet.new(@art.description, :filter_html, :hard_wrap, :autolink, :no_intraemphasis).to_html.html_safe %>
+    <% else %>
+    <%= t('arts.profile.no_art_description') %>
+    <% end %>
+    <br />
+    <p>
+    <% if @art.subject.nil? == false %>
+    <%= t('arts.profile.subject') %><%= link_to @art.subject.name, shop_photos_path(:subject => @art.subject.slug, :tecnique => '_') %>
+    <% end %>
+    </p>
+    <br />
+    <p id="liked_by"><%= render :partial => 'partials/art/profile/liked_by' %></p>
+    
+    <% if @tags.count > 0 %>
+      <br />
+      <p><% @tags.each do |tag| %>
+        <%= link_to tag, "#", :class => 'tag' %>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+</div>
+<div class="box common">
+  <div class="title">
+    <p><%= t('common.comments') %></p>
+  </div>
+  <div class="content">
+    <div class="fb-comments" data-href="<%= @canonical %>" data-num-posts="6" data-width="640"></div>
+  </div>
+</div> 
+  <br />
+</section>
+<section class="column width1-5" id="main-right">
+<% if @art.status == false %>
+  <div class="box common">
+    <div class="content"><%= t('arts.you_selected_do_not_show') %></div>
+  </div>
 <% end %>
 
-<% content_for :right do %>
-  <%= render :partial => 'partials/photos/profile/right' %>
+<% if @art.accepted == false %>
+<div class="box common">
+  <div class="title"><%= t('arts.status_title')%></div>
+  <div class="content">
+  <% case @art.status_reason 
+    when 0 %>
+    <%= t("arts.status.non_accepted_reason0") %>
+  <% when 1 %>
+    <%= t("arts.status.non_accepted_reason1") %>
+  <% when 2 %>
+    <%= t("arts.status.non_accepted_reason2") %>
+  <% end %>    
+  </div>
+</div>
 <% end %>
+
+<% if @art.user == current_user %>
+<div class="box common">
+  <div class="content">
+  <%= link_to t('arts.profile.edit_art_information'), edit_art_path(:slug => @art.slug), :class => 'abutton' %>
+  </div>
+</div>
+<% end %>
+<%# if params[:material] %>
+  <%#= render :partial => "partials/cart/#{params[:material]}", :locals => { :f => f } %>
+<%# else %>
+  <%= render :partial => 'partials/cart/canvas', :locals => { :f => f } %>
+<%# end %>
+<%= render :partial => 'partials/common/share_234px' %>
+<div class="box common">
+  <div class="title"><%= t('arts.profile.similar_art') %></div>
+  <div class="content">
+    <ul id="llll">
+    <% items_to_show = @similar_art.count - 1%>
+    <% items_to_show = 7 if items_to_show > 7 %>
+    <% 0.upto(items_to_show) do |n| %>
+      <%# begin %>
+      <li>
+         <div class="image">
+         <% if @similar_art[n].aod == true %>
+         <%= link_to image_tag(@similar_art[n].aod_image.url(:thumb).to_s, :alt => @similar_art[n].name, :class=> 'item'), art_profile_path(:slug => @similar_art[n].slug) %>
+         <% else %>  
+         <%= link_to image_tag(@similar_art[n].image.url(:thumb).to_s, :alt => @similar_art[n].name, :class=> 'item'), art_profile_path(:slug => @similar_art[n].slug) %>
+         <% end %>
+         </div>
+         <p class="center"><%= link_to truncate(@similar_art[n].name, :length => 50), art_profile_path(:slug => @similar_art[n].slug) %></p>
+       </li>
+      <%# rescue %>
+      
+      <%# end %>
+    <% end %>
+    </ul>
+  </div>
+</div>
+
+<% end %>
+
+<% end %>
+

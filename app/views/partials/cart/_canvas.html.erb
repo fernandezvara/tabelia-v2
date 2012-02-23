@@ -28,9 +28,13 @@
   </div>
   <br />
   <p class="cart_title"><%= t('cart.summary')%></p>
-  <div style="float:left; width: 150px; color:#aaa;" class="s12"><%= t('cart.license') %></div><div id="artist_price" style="text-align:right; color:#aaa;" class="s12"><%= number_to_currency(@license_cost, :unit => '€')%></div>
+  <% if @art.fotolia == true or @art.aod == true %>
+  <div style="float:left; width: 150px; color:#aaa;" class="s12"><%= t('cart.license') %></div><div id="artist_price" style="text-align:right; color:#aaa;" class="s12"><%= number_to_currency(@art_price, :unit => '€') %></div>
+  <% else %>
+  <div style="float:left; width: 150px; color:#aaa;" class="s12"><%= t('cart.artist') %></div><div id="artist_price" style="text-align:right; color:#aaa;" class="s12"><%= number_to_currency(@art_price, :unit => '€') %></div>
+  <% end %>
   <div style="float:left; width: 150px; color:#aaa;" class="s12"><%= t('cart.manipullation') %></div><div id="tabelia_price" style="text-align:right;  color:#aaa;" class="s12"><%= number_to_currency(@tabelia_price, :unit => '€') %></div>
-  <div style="float:left; width: 150px; font-weight:bold;" class="s12"><%= t('cart.total') %></div><div id="total_price" style="text-align:right; font-weight:bold" class="s12"><%= number_to_currency(@total, :unit => '€') %></div>    
+  <div style="float:left; width: 150px; font-weight:bold;" class="s12"><%= t('cart.total') %></div><div id="total_price" style="text-align:right; font-weight:bold" class="s12"><%= number_to_currency(@total, :unit => '€') %></div> 
   <br />
   <br />
   <%= f.submit %>
@@ -43,11 +47,11 @@ var correction = <%= @correction %>;
   $("#item_width").slider({ 
     from: <%= @min_width %>, 
     to: <%= @max_width %>, 
-    step: 0.5, 
+    step: 1, 
     round: 2, 
     onstatechange: function(value) { 
       $("span#width").text(parseFloat(value).toFixed(2));
-      var height = parseFloat(value * correction);
+      var height = parseFloat(value / correction);
       $("input#item_height").val(height.toFixed(2));
       $("span#mheight").text(height.toFixed(2));
       },
@@ -62,7 +66,11 @@ var correction = <%= @correction %>;
   		$.ajax({
         url: '/cart/price',
         data: {
+          <% if @art.fotolia == true %>
           'credits'  : '<%= @license_cost %>',
+          <% else %>
+          'art_id'   : '<%= @art.slug.to_s %>',
+          <% end %>
           'height'   : $('input#item_height').val(),
           'width'    : $('input#item_width').val(),
           'media_id' : $('input#item_media_id').val(),

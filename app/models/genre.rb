@@ -6,4 +6,5 @@ class Genre
   field :slug
 
   has_many :arts
+  index :slug
 end

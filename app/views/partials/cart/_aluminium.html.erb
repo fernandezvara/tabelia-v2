@@ -124,7 +124,6 @@ $(window).load(function(){
         $('input#item_width').val(s);
         $('input#item_height').val(l);
       }
-      alert('l=' + l + '  -  s=' + s + '  - aspectRatio:' + aspect_ratio);
       crop.setOptions({aspectRatio: aspect_ratio});
       crop.animateTo([0, 0, 1000 ,1000]);
       update_price();
@@ -134,7 +133,11 @@ $(window).load(function(){
 		$.ajax({
       url: '/cart/price',
       data: {
+        <% if @art.fotolia == true %>
         'credits'  : '<%= @license_cost %>',
+        <% else %>
+        'art_id'   : '<%= @art.slug.to_s %>',
+        <% end %>
         'media_id' : $('input#item_media_id').val(),
         'size'     : $('select#item_size').val(),
         'frame'    : $('select#item_frame').val()

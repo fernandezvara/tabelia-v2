@@ -1,0 +1,50 @@
+<% content_for :title do %>
+<div class="column unitx5 left first">
+  <div class="left inner-title"><p><%= @user.name %></p></div>
+</div>
+<div class="clearfix"></div>
+<% end %>
+
+<% content_for :left do %>
+<div class="box common">
+  <div class="title"><%= t('arts.title_paintings') %></div>
+  <div class="title"><%= t('arts.subject_title') %></div>
+  <div class="content" id="subjects">
+    <% @idioms.each do |c| %>
+      <p><%= link_to c.name, shop_paintings_path(:category => '_', :tecnique => '_', :idiom => c.slug) %></p>
+    <% end %>
+  </div>
+
+    <div class="title"><%= t('arts.style_title') %></div>
+    <div class="content" id="styles">
+      <% @categories.each do |c| %>
+        <p><%= link_to c.name, shop_paintings_path(:category => c.slug, :tecnique => '_', :idiom => '_') %></p>
+      <% end %>
+    </div>
+  </div>
+  <div class="box common">
+    <div class="title"><%= t('arts.title_photos') %></div>
+    <div class="title"><%= t('arts.subject_title') %></div>
+    <div class="content" id="psubjects">
+      <% @subjects.each do |s| %>
+        <p><%= link_to s.name, shop_photos_path(:subject => s.slug, :tecnique => '_') %></p>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :right do %>
+  <div class="paginate-right">
+    <%= paginate @arts, :inner_window => 1 %>
+  </div>
+  <div class="clearfix"></div>
+  <ul id="l">
+    <% @arts.each do |art| %>
+      <%= render :partial => 'partials/lists/shopitem', :locals => { :art => art } %>
+    <% end %>
+  </ul>
+  <div class="paginate-right">
+    <%= paginate @arts, :inner_window => 1 %>
+  </div>
+  <div class="clearfix"></div>
+<% end %>

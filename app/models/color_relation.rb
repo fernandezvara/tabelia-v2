@@ -4,6 +4,9 @@ class ColorRelation
   belongs_to :color
   belongs_to :art
   
+  index :art_id
+  index :color_id
+  
   def self.colors_of(art)
     return ColorRelation.where(:art_id => art.id)
   end

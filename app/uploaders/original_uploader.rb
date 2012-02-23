@@ -6,7 +6,7 @@ class OriginalUploader < CarrierWave::Uploader::Base
   storage :file
 
   version :scaled do
-    process :resize_to_fit => [730, 730]
+    process :resize_to_fit => [700, 900]
     process :quality => 95
   end
 

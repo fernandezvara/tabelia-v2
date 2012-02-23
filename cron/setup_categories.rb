@@ -4,60 +4,87 @@
 
 
 I18n.with_locale(:en) do 
+Category.create!(:name => 'Gothic', :url => 'http://en.wikipedia.org/wiki/Gothic_art', :slug=> 'gothic')
+Category.create!(:name => 'Renaissance', :url => 'http://en.wikipedia.org/wiki/Renaissance', :slug=> 'renaissance')
+Category.create!(:name => 'Mannerism', :url => 'http://en.wikipedia.org/wiki/Mannerism', :slug=> 'mannerism')
+Category.create!(:name => 'Flemish School', :url => 'http://en.wikipedia.org/wiki/Flemish_School', :slug=> 'flemish-school')
+Category.create!(:name => 'Baroque', :url => 'http://en.wikipedia.org/wiki/Baroque', :slug=> 'baroque')
+Category.create!(:name => 'Neoclassicism', :url => 'http://en.wikipedia.org/wiki/Neoclassicism', :slug=> 'neoclassicism')
 Category.create!(:name => 'Realism', :url => 'http://en.wikipedia.org/wiki/Realism_(arts)', :slug=> 'realism')
+Category.create!(:name => 'Romanticism', :url => 'http://en.wikipedia.org/wiki/Romanticism', :slug=> 'romanticism')
 Category.create!(:name => 'Impresionism', :url => 'http://en.wikipedia.org/wiki/Impressionism', :slug=> 'impresionism')
-Category.create!(:name => 'Pointillism', :url => 'http://en.wikipedia.org/wiki/Pointillism', :slug=> 'pointillism')
 Category.create!(:name => 'Post-Impresionism', :url => 'http://en.wikipedia.org/wiki/Post-Impressionism', :slug=> 'post-impresionism')
 Category.create!(:name => 'Symbolism', :url => 'http://en.wikipedia.org/wiki/Symbolism_(arts)', :slug=> 'symbolism')
-Category.create!(:name => 'Modernism', :url => 'http://en.wikipedia.org/wiki/Modernism', :slug=> 'modernism')
+Category.create!(:name => 'Art Nouveau', :url => 'http://en.wikipedia.org/wiki/Art_Nouveau', :slug=> 'art-nouveau')
+Category.create!(:name => 'Abstract', :url => 'http://en.wikipedia.org/wiki/Abstract_art', :slug=> 'abstract')
 Category.create!(:name => 'Naïve Art', :url => 'http://en.wikipedia.org/wiki/Na%C3%AFve_art', :slug=> 'naive')
 Category.create!(:name => 'Fauvism', :url => 'http://en.wikipedia.org/wiki/Fauvism', :slug=> 'fauvism')
 Category.create!(:name => 'Expressionism', :url => 'http://en.wikipedia.org/wiki/Expressionism', :slug=> 'expressionism')
-Category.create!(:name => 'New Objectivity', :url => 'http://en.wikipedia.org/wiki/New_Objectivity', :slug=> 'new-objectivity')
+Category.create!(:name => 'Surrealism', :url => 'http://en.wikipedia.org/wiki/Surrealism', :slug=> 'surrealism')
 Category.create!(:name => 'Cubism', :url => 'http://en.wikipedia.org/wiki/Cubism', :slug=> 'cubism')
 Category.create!(:name => 'Futurism', :url => 'http://en.wikipedia.org/wiki/Futurism', :slug=> 'futurism')
-Category.create!(:name => 'Dadaism', :url => 'http://en.wikipedia.org/wiki/Dada', :slug=> 'dadaism')
-Category.create!(:name => 'Metaphysical', :url => 'http://en.wikipedia.org/wiki/Metaphysical_art', :slug=> 'metaphysical')
-Category.create!(:name => 'Surrealism', :url => 'http://en.wikipedia.org/wiki/Surrealism', :slug=> 'surrealism')
-Category.create!(:name => 'Abstract', :url => 'http://en.wikipedia.org/wiki/Abstract_art', :slug=> 'abstract')
-Category.create!(:name => 'Neoplasticism', :url => 'http://en.wikipedia.org/wiki/Neoplasticism', :slug=> 'neoplasticism')
-Category.create!(:name => 'Constructivism', :url => 'http://en.wikipedia.org/wiki/Constructivism_(art)', :slug=> 'constructivism')
-Category.create!(:name => 'Abstract Expressionism', :url => 'http://en.wikipedia.org/wiki/Abstract_expressionism', :slug=> 'abstract-expressionism')
-Category.create!(:name => 'Op Art', :url => 'http://en.wikipedia.org/wiki/Op_art', :slug=> 'op-art')
-Category.create!(:name => 'Pop Art', :url => 'http://en.wikipedia.org/wiki/Pop_art', :slug=> 'pop-art')
-Category.create!(:name => 'Minimalism', :url => 'http://en.wikipedia.org/wiki/Minimalism', :slug=> 'minimalism')
-Category.create!(:name => 'Hyperrealism', :url => 'http://en.wikipedia.org/wiki/Hyperrealism_(visual_arts)', :slug=> 'hyperrealism')
-Category.create!(:name => 'Digital Art', :url => 'http://en.wikipedia.org/wiki/Digital_art', :slug=> 'digital-art')
-Category.create!(:name => 'Psychedelic Art', :url => 'http://en.wikipedia.org/wiki/Psychedelic_art' , :slug=> 'psychedelic-art')
+Category.create!(:name => 'Contemporary Art', :url => 'http://en.wikipedia.org/wiki/Contemporary_art', :slug=> 'contemporary-art')
 Category.create!(:name => 'Manga / Anime', :url => 'http://en.wikipedia.org/wiki/Manga', :slug=> 'manga-anime')
-
 end
 
 I18n.with_locale(:es) do 
-
+c = Category.where(:slug=> 'gothic').first
+c.name = 'Gótico'
+c.url = 'http://es.wikipedia.org/wiki/Arte_gótico'
+c.save
+c = Category.where(:slug=> 'renaissance').first
+c.name = 'Renacimiento'
+c.url = 'http://es.wikipedia.org/wiki/Renacimiento'
+c.save
+c = Category.where(:slug=> 'mannerism').first
+c.name = 'Manierismo'
+c.url = 'http://es.wikipedia.org/wiki/Manierismo'
+c.save
+c = Category.where(:slug=> 'flemish-school').first
+c.name = 'Pintura flamenca'
+c.url = 'http://es.wikipedia.org/wiki/Pintura_flamenca_(siglos_XV_y_XVI)'
+c.save
+c = Category.where(:slug=> 'baroque').first
+c.name = 'Barroco'
+c.url = 'http://es.wikipedia.org/wiki/Barroco'
+c.save
+c = Category.where(:slug=> 'neoclassicism').first
+c.name = 'Neoclasicismo'
+c.url = 'http://es.wikipedia.org/wiki/Neoclasicismo'
+c.save
 c = Category.where(:slug=> 'realism').first
 c.name = 'Realismo'
 c.url = 'http://es.wikipedia.org/wiki/Pintura_del_realismo'
+c.save
+c = Category.where(:slug=> 'romanticism').first
+c.name = 'Romanticismo'
+c.url = 'http://es.wikipedia.org/wiki/Romanticismo'
 c.save
 c = Category.where(:slug=> 'impresionism').first
 c.name = 'Impresionismo'
 c.url = 'http://es.wikipedia.org/wiki/Impresionismo'
 c.save
-c = Category.where(:slug=> 'pointillism').first
-c.name = 'Puntillismo'
-c.url = 'http://es.wikipedia.org/wiki/Posimpresionismo'
-c.save
 c = Category.where(:slug=> 'post-impresionism').first
 c.name = 'Post-Impresionismo'
 c.url = 'http://es.wikipedia.org/wiki/Posimpresionismo'
+c.save
+c = Category.where(:slug=> 'art-nouveau').first
+c.name = 'Modernismo'
+c.url = 'http://es.wikipedia.org/wiki/Modernismo'
+c.save
+c = Category.where(:slug=> 'surrealism').first
+c.name = 'Surrealismo'
+c.url = 'http://es.wikipedia.org/wiki/Surrealismo'
 c.save
 c = Category.where(:slug=> 'symbolism').first
 c.name = 'Simbolismo'
 c.url = 'http://es.wikipedia.org/wiki/Simbolismo'
 c.save
-c = Category.where(:slug=> 'modernism').first
-c.name = 'Modernismo'
-c.url = 'http://es.wikipedia.org/wiki/Modernismo'
+
+
+c = Category.where(:slug=> 'abstract').first
+c.name = 'Abstracto'
+c.url = 'http://es.wikipedia.org/wiki/Arte_abstracto' 
 c.save
 c = Category.where(:slug=> 'naive').first
 c.name = 'Arte Naïf'
@@ -71,10 +98,6 @@ c = Category.where(:slug=> 'expressionism').first
 c.name = 'Expresionismo'
 c.url = 'http://es.wikipedia.org/wiki/Expresionismo'
 c.save
-c = Category.where(:slug=> 'new-objectivity').first
-c.name = 'Nueva Objetividad'
-c.url = 'http://es.wikipedia.org/wiki/Nueva_objetividad'
-c.save
 c = Category.where(:slug=> 'cubism').first
 c.name = 'Cubismo'
 c.url = 'http://es.wikipedia.org/wiki/Cubismo'
@@ -83,63 +106,14 @@ c = Category.where(:slug=> 'futurism').first
 c.name = 'Futurismo'
 c.url = 'http://es.wikipedia.org/wiki/Futurismo'
 c.save
-c = Category.where(:slug=> 'dadaism').first
-c.name = 'Dadaísmo'
-c.url = 'http://es.wikipedia.org/wiki/Dada%C3%ADsmo'
-c.save
-c = Category.where(:slug=> 'metaphysical').first
-c.name = 'Metafísica'
-c.url = 'http://es.wikipedia.org/wiki/Pintura_metaf%C3%ADsica'
-c.save
-c = Category.where(:slug=> 'surrealism').first
-c.name = 'Surrealismo'
-c.url = 'http://es.wikipedia.org/wiki/Surrealismo'
-c.save
-c = Category.where(:slug=> 'abstract').first
-c.name = 'Abstracto'
-c.url = 'http://es.wikipedia.org/wiki/Arte_abstracto' 
-c.save
-c = Category.where(:slug=> 'neoplasticism').first
-c.name = 'Neoplasticismo'
-c.url = 'http://es.wikipedia.org/wiki/Neoplasticismo'
-c.save
-c = Category.where(:slug=> 'constructivism').first
-c.name = 'Constructivismo'
-c.url = 'http://es.wikipedia.org/wiki/Constructivismo_(arte)'
-c.save
-c = Category.where(:slug=> 'abstract-expressionism').first
-c.name = 'Expresionismo Abstracto'
-c.url = 'http://es.wikipedia.org/wiki/Expresionismo_abstracto'
-c.save
-c = Category.where(:slug=> 'op-art').first
-c.name = 'Op Art'
-c.url = 'http://en.wikipedia.org/wiki/Op_art'
-c.save
-c = Category.where(:slug=> 'pop-art').first
-c.name = 'Pop Art'
-c.url = 'http://en.wikipedia.org/wiki/Pop_art'
-c.save
-c = Category.where(:slug=> 'minimalism').first
-c.name = 'Minimalismo'
-c.url = 'http://es.wikipedia.org/wiki/Minimalismo_(pintura)'
-c.save
-c = Category.where(:slug=> 'hyperrealism').first
-c.name = 'Hiperrealismo'
-c.url ='http://es.wikipedia.org/wiki/Hiperrealismo'
-c.save
-c = Category.where(:slug=> 'digital-art').first
-c.name = 'Arte Digital'
-c.url = 'http://es.wikipedia.org/wiki/Arte_digital'
-c.save
-c = Category.where(:slug=> 'psychedelic-art').first
-c.name = 'Arte Psicodélico'
-c.url = 'http://es.wikipedia.org/wiki/Arte_psicod%C3%A9lico'
+c = Category.where(:slug=> 'contemporary-art').first
+c.name = 'Arte Contemporáneo'
+c.url = 'http://es.wikipedia.org/wiki/Arte_contemporáneo'
 c.save
 c = Category.where(:slug=> 'manga-anime').first
 c.name = 'Manga y Anime'
 c.url = 'http://es.wikipedia.org/wiki/Manga'
 c.save
-
 end
 
 I18n.with_locale(:en) do 
@@ -148,11 +122,18 @@ I18n.with_locale(:en) do
   Genre.create!(:name => 'Landscape', :slug => 'landscape', :url => 'http://en.wikipedia.org/wiki/Landscape_art')
   Genre.create!(:name => 'Marine', :slug => 'marine', :url => 'http://en.wikipedia.org/wiki/Marine_art')
   Genre.create!(:name => 'Figure', :slug => 'figure', :url => 'http://en.wikipedia.org/wiki/Figure_painting')
-  Genre.create!(:name => 'Allegory', :slug => 'allegory', :url => 'http://en.wikipedia.org/wiki/Allegory')
-  Genre.create!(:name => 'History', :slug => 'history', :url => 'http://en.wikipedia.org/wiki/History_painting')
   Genre.create!(:name => 'Religious', :slug => 'religious', :url => 'http://commons.wikimedia.org/wiki/Category:Religious_paintings')
-  Genre.create!(:name => 'Genre Works', :slug => 'genre-works', :url => 'http://en.wikipedia.org/wiki/Genre_works')
   Genre.create!(:name => 'Illustration', :slug => 'illustration', :url => 'http://en.wikipedia.org/wiki/Illustration')
+  Genre.create!(:name => 'Children', :slug => 'children', :url => '')
+  Genre.create!(:name => 'Botany', :slug => 'botany', :url => '')
+  Genre.create!(:name => 'Fauna', :slug => 'fauna', :url => '')
+  Genre.create!(:name => 'Cinema', :slug => 'cinema', :url => '')
+  Genre.create!(:name => 'Architecture', :slug => 'architecture', :url => '')
+  Genre.create!(:name => 'Regional', :slug => 'regional', :url => '')
+  Genre.create!(:name => 'Motor', :slug => 'motor', :url => '')
+  Genre.create!(:name => 'Cartography', :slug => 'cartography', :url => '')
+  
+  
   #Genre.create!(:name => '', :slug => '', :url => '')
 end
 
@@ -177,109 +158,89 @@ I18n.with_locale(:es) do
   g.name = 'Figuras humanas y desnudos'
   g.url = 'http://es.wikipedia.org/wiki/Desnudo_(g%C3%A9nero_art%C3%ADstico)'
   g.save
-  g = Genre.where(:slug => 'allegory').first
-  g.name = 'Alegoría'
-  g.url = 'http://es.wikipedia.org/wiki/Alegor%C3%ADa'
-  g.save
-  g = Genre.where(:slug => 'history').first
-  g.name = 'Histórica'
-  g.url = 'http://es.wikipedia.org/wiki/Pintura_hist%C3%B3rica'
-  g.save
   g = Genre.where(:slug => 'religious').first
   g.name = 'Religiosa'
   g.url = 'http://es.wikipedia.org/wiki/Pintura_religiosa'
-  g.save
-  g = Genre.where(:slug => 'genre-works').first
-  g.name = 'Costumbrista'
-  g.url = 'http://es.wikipedia.org/wiki/Pintura_de_g%C3%A9nero'
   g.save
   g = Genre.where(:slug => 'illustration').first
   g.name = 'Ilustración'
   g.url = 'http://es.wikipedia.org/wiki/Ilustraci%C3%B3n_(dise%C3%B1o_gr%C3%A1fico)'
   g.save
-  
+  g = Genre.where(:slug => 'children').first
+  g.name = 'Infantil'
+  g.url = ''
+  g.save
+  g = Genre.where(:slug => 'botany').first
+  g.name = 'Botánica'
+  g.url = ''
+  g.save
+  g = Genre.where(:slug => 'fauna').first
+  g.name = 'Fauna'
+  g.url = ''
+  g.save
+  g = Genre.where(:slug => 'cinema').first
+  g.name = 'Cine'
+  g.url = ''
+  g.save
+  g = Genre.where(:slug => 'architecture').first
+  g.name = 'Arquitectura'
+  g.url = ''
+  g.save
+  g = Genre.where(:slug => 'regional').first
+  g.name = 'Regional'
+  g.url = ''
+  g.save
+  g = Genre.where(:slug => 'motor').first
+  g.name = 'Motor'
+  g.url = ''
+  g.save
+  g = Genre.where(:slug => 'cartography').first
+  g.name = 'Cartografía'
+  g.url = ''
+  g.save
 end
 
+# ACABAR CON LOS GENEROS!!!
+
 I18n.with_locale(:en) do 
-  Subject.create!(:name => 'Portrait', :slug => 'portrait')
-  Subject.create!(:name => 'Urban', :slug => 'urban')
+  Subject.create!(:name => 'Architecture - Urban', :slug => 'urban')
+  Subject.create!(:name => 'People', :slug => 'people')
+  Subject.create!(:name => 'Digital', :slug => 'digital')
+  Subject.create!(:name => 'Graphic', :slug => 'graphic')
+  Subject.create!(:name => 'Botany', :slug => 'botany')
+  Subject.create!(:name => 'Fauna', :slug => 'fauna')
+  Subject.create!(:name => 'Travel', :slug => 'travel')
   Subject.create!(:name => 'Landscape', :slug => 'landscape')
-  Subject.create!(:name => 'War', :slug => 'war')
-  Subject.create!(:name => 'Nature', :slug => 'nature')
-  Subject.create!(:name => 'Subacuatic', :slug => 'subacuatic')
-  Subject.create!(:name => 'Documental', :slug => 'documental')
-  Subject.create!(:name => 'Skyline', :slug => 'skyline')
-  Subject.create!(:name => 'Glamour', :slug => 'glamour')
-  Subject.create!(:name => 'Still Life', :slug => 'still-life')
+  Subject.create!(:name => 'Artistic', :slug => 'artistic')
 end
 
 I18n.with_locale(:es) do 
-  g = Subject.where(:slug => 'portrait').first
-  g.name = 'Retrato'
-  g.save
+
   g = Subject.where(:slug => 'urban').first
-  g.name = 'Urbano'
+  g.name = 'Arquitectura - Urbano'
+  g.save
+  g = Subject.where(:slug => 'people').first
+  g.name = 'Gente'
+  g.save
+  g = Subject.where(:slug => 'digital').first
+  g.name = 'Digital'
+  g.save
+  g = Subject.where(:slug => 'graphic').first
+  g.name = 'Gráfica'
+  g.save
+  g = Subject.where(:slug => 'botany').first
+  g.name = 'Botánica'
+  g.save
+  g = Subject.where(:slug => 'fauna').first
+  g.name = 'Fauna'
+  g.save
+  g = Subject.where(:slug => 'travel').first
+  g.name = 'Viajes'
   g.save
   g = Subject.where(:slug => 'landscape').first
-  g.name = 'Paisaje'
+  g.name = 'Paisajes'
   g.save
-  g = Subject.where(:slug => 'war').first
-  g.name = 'Guerra'
-  g.save
-  g = Subject.where(:slug => 'nature').first
-  g.name = 'Naturaleza'
-  g.save
-  g = Subject.where(:slug => 'subacuatic').first
-  g.name = 'Subacuatic'
-  g.save
-  g = Subject.where(:slug => 'documental').first
-  g.name = 'Documental'
-  g.save
-  g = Subject.where(:slug => 'skyline').first
-  g.name = 'Skyline'
-  g.save
-  g = Subject.where(:slug => 'glamour').first
-  g.name = 'Glamour'
-  g.save
-  g = Subject.where(:slug => 'still-life').first
-  g.name = 'Bodegón'
-  g.save
-end
-
-I18n.with_locale(:en) do 
-  Tecnique.create!(:name => 'HDR', :slug => 'hdr')
-  Tecnique.create!(:name => 'Collage', :slug => 'collage')
-  Tecnique.create!(:name => 'Black and white', :slug => 'black-and-white')
-  Tecnique.create!(:name => 'Macro', :slug => 'macro')
-  Tecnique.create!(:name => 'Panoramic', :slug => 'panoramic')
-  Tecnique.create!(:name => 'Analogical', :slug => 'analogical')
-  Tecnique.create!(:name => 'Realistic', :slug => 'realistic')
-  Tecnique.create!(:name => 'Artistic', :slug => 'artistic')
-end
-
-I18n.with_locale(:es) do 
-  g = Tecnique.where(:slug => 'hdr').first
-  g.name = 'HDR'
-  g.save
-  g = Tecnique.where(:slug => 'collage').first
-  g.name = 'Collage'
-  g.save
-  g = Tecnique.where(:slug => 'black-and-white').first
-  g.name = 'Blanco y Negro'
-  g.save
-  g = Tecnique.where(:slug => 'macro').first
-  g.name = 'Macro'
-  g.save
-  g = Tecnique.where(:slug => 'panoramic').first
-  g.name = 'Panorámica'
-  g.save
-  g = Tecnique.where(:slug => 'analogical').first
-  g.name = 'Analógica'
-  g.save
-  g = Tecnique.where(:slug => 'realistic').first
-  g.name = 'Realística'
-  g.save
-  g = Tecnique.where(:slug => 'artistic').first
+  g = Subject.where(:slug => 'artistic').first
   g.name = 'Artística'
   g.save
 end

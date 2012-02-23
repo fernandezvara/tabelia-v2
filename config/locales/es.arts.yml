@@ -2,6 +2,7 @@ es:
     arts:
         paintings_title: 'Pintura'
         photos_title: 'Fotografía'
+        photos_decoration_title: 'Fotografías para decoración'
         paintings_by_populatity: 'Pinturas por popularidad'
         photos_by_populatity: 'Fotografías por popularidad'
         singular: 'obra'
@@ -78,6 +79,10 @@ es:
             art:
                 name: 'Título'
                 price: 'Precio'
+                price_a4: 'Precio hasta A4'
+                price_a3: 'Precio hasta A3'
+                price_artistic: 'Precio hasta 1m'
+                price_wallcovering: 'Precio más de 1m'
                 description: 'Descripción'
                 genre: 'Tema'
                 original: 'Fichero original'
@@ -89,7 +94,11 @@ es:
         hints:
             art:
                 name: 'Nombre de la obra'
-                price: 'Escribe el valor que tiene cada reproducción. Ten en cuenta que la cantidad es en euros.'
+                price: ''
+                price_a4: 'Escribe el valor que tiene cada reproducción hasta un formato A4(21x29,7cm). Ten en cuenta que la cantidad es en euros.'
+                price_a3: 'Escribe el valor que tiene cada reproducción hasta un formato A3(29,7x42cm). Ten en cuenta que la cantidad es en euros.'
+                price_artistic: 'Escribe el valor que tiene cada reproducción para los formatos hasta 1m por el lado más corto. Ten en cuenta que la cantidad es en euros.'
+                price_wallcovering: 'Escribe el valor que tiene cada reproducción en formato pared (aquellos que ocupan más de 1m por el lado más corto). Ten en cuenta que la cantidad es en euros.'
                 description: 'Escribe la información que desees mostrar sobre esta obra.'
                 original: 'Pulsa para seleccionar el fichero original de la obra. Cuando crees la obra o guardes los cambios la obra comenzará a copiarse a nuestros servidores. Este proceso puede tardar unos minutos, en función de la velocidad de tu conexión. Por favor sé paciente.'
                 genre: 'Selecciona la temática de tu obra.'

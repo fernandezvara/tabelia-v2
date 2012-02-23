@@ -79,62 +79,24 @@
       		</li>
           <li><%= link_to t('arts.photos_title'), shop_popular_photos_path %>
       			<!-- start mega menu -->
-      			<div class="cols4">
-      				<div class="col2">
+      			<div class="cols1">
+      				<div class="col1">
       					<h4><%= t('arts.subject_title') %></h4>
-      				</div>
-      				<div class="col2">
-      					<h4><%= t('arts.tecnique_title') %></h4>
       				</div>
       				<div class="col1">
       				 <ol>
       				  <% # subjects
-      				  total_subjects = @subjects.count
-      				  (0..((total_subjects/2).to_i - 1)).each do |count|
+      				  @subjects.each do |subject|
       				    %>
       				    <li>
-      				      <%= link_to "#{@subjects[count].name} (#{@subjects[count].arts.count})", shop_photos_path(:subject => @subjects[count].slug, :tecnique => '_') %>
+      				      <%= link_to "#{subject.name} (#{subject.arts.count})", shop_photos_path(:subject => subject.slug, :tecnique => '_') %>
       				    </li>
-      				    <% end %>
+      				  <% end %>
       					</ol>
-      				</div>
-      				<div class="col1">
-      					<ol>
-      					  <%
-      					  ((total_subjects/2).to_i..(total_subjects -1)).each do |count|
-      					  %>
-      				    <li>
-      				      <%= link_to "#{@subjects[count].name} (#{@subjects[count].arts.count})", shop_photos_path(:subject => @subjects[count].slug, :tecnique => '_') %>
-      				    </li>
-                  <% end %>
-      					</ol>
-      				</div>
-      				<div class="col1">
-      					 <ol>
-        				  <% # subjects
-        				  total_tecniques = @tecniques.count
-        				  (0..((total_tecniques/2).to_i - 1)).each do |count|
-        				    %>
-        				    <li>
-        				      <%= link_to "#{@tecniques[count].name} (#{@tecniques[count].arts.count})", shop_photos_path(:subject => '_', :tecnique => @tecniques[count].slug) %>
-        				    </li>
-        				    <% end %>
-        					</ol>
-        				</div>
-        				<div class="col1">
-        					<ol>
-        					  <%
-        					  ((total_tecniques/2).to_i..(total_tecniques -1)).each do |count|
-        					  %>
-        				    <li>
-        				      <%= link_to "#{@tecniques[count].name} (#{@tecniques[count].arts.count})", shop_photos_path(:subject => '_', :tecnique => @tecniques[count].slug) %>
-        				    </li>
-                    <% end %>
-        					</ol>
       				</div>
       			</div>
       		</li>
-      		<li><%= link_to t('arts.photos_title'), shop_popular_photos_path %>
+      		<li><%= link_to t('arts.photos_decoration_title'), shop_popular_photos_path %>
       			<!-- start mega menu -->
       			<div class="cols1">
       				<div class="col1">

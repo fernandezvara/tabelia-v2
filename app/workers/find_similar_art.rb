@@ -36,7 +36,7 @@ class FindSimilarArt
     related_arts_by_color = Array.new
     colors = ColorRelation.colors_of(art)
     colors.each do |color|
-      relations = Color.near_colors(color.color.rgb, 4)
+      relations = Color.near_colors(color.color.rgb, 1)
       relations.each do |relation|
         temp_art = relation.art
         if related_arts.include?(temp_art) == false

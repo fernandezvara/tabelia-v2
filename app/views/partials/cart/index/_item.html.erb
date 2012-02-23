@@ -11,8 +11,12 @@
     framed = 0
   end
   case item.media_id
+  when 2
+    material = 'photographic'
   when 3
     material = 'canvas'
+  when 4
+    material = 'watercolor'
   when 5
     material = 'aluminium'
   end
@@ -37,7 +41,11 @@
       <% if art.fotolia == true %>
         <%= image_tag image['thumbnail_url'], :class => 'item2', :height => image['thumbnail_height'], :width => image['thumbnail_width'], :alt => image['title'] %>
       <% else %>
+        <% if art.aod == true %>
+        <%= image_tag art.aodimage.url(:cart).to_s, :alt => art.name, :title => art.name %>
+        <% else %>
         <%= image_tag art.image.url(:cart).to_s, :alt => art.name, :title => art.name %>
+        <% end %>
       <% end %>
     <% else %>
       <%= image_tag item.crop.url(:cropped_thumb), :alt => art.name, :title => art.name %>
@@ -108,7 +116,11 @@
       <% if item.art.fotolia == true %>
       <%= link_to t('cart.edit'), fotolia_show_path(:id => item.fotolia_id, :material => material, :item_id => item.id.to_s), :class => 'abutton' %>
       <% else %>
-      <%= link_to t('cart.edit'), cart_edit_path(:id => item.id.to_s), :class => 'abutton', :rel => 'modal', :walk => 'no' %>
+        <% if item.art.photo == false %>
+          <%= link_to t('cart.edit'), art_profile_path(:slug => item.art.slug, :material => material, :item_id => item.id.to_s), :class => 'abutton' %>
+        <% else %>
+        <%= link_to t('cart.edit'), photo_profile_path(:slug => item.art.slug, :material => material, :item_id => item.id.to_s), :class => 'abutton' %>
+        <% end %>
       <% end %>
       <%= link_to t('cart.delete'), cart_delete_path(:id => item.id.to_s) %>
     </p>

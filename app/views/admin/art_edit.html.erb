@@ -64,7 +64,11 @@
   </ul>
 </div>
 <div class="right">
-  <%= image_tag @art.image.url(:cart).to_s %>
+  <% if @art.aod == true %>
+    <%= image_tag @art.aod_image.url(:cart).to_s %>
+  <% else %>
+    <%= image_tag @art.image.url(:cart).to_s %>
+  <% end %>
 </div>
 <% end %>
 </div>

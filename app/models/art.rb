@@ -19,51 +19,57 @@ class Art
   has_many :color_relations
   has_many :items
   
-  field :name,              :type => String,   :presence => true
-  field :price,             :type => Integer,  :presence => true
-  field :max_height,        :type => Float
-  field :max_width,         :type => Float
-  field :description,       :type => String
-  field :status,            :type => Boolean,  :default => true
-  field :accepted,          :type => Boolean,  :default => false
-  field :status_reason,     :type => Integer,  :default => 0
-  field :photo,             :type => Boolean,  :default => false
+  field :name,               :type => String,   :presence => true
+  field :price,              :type => Integer,  :presence => true
+  field :price_a4,           :type => Integer
+  field :price_a3,           :type => Integer
+  field :price_artistic,     :type => Integer
+  field :price_wallcovering, :type => Integer
+  field :max_height,         :type => Float
+  field :max_width,          :type => Float
+  field :description,        :type => String
+  field :status,             :type => Boolean,  :default => true
+  field :accepted,           :type => Boolean,  :default => false
+  field :status_reason,      :type => Integer,  :default => 0
+  field :photo,              :type => Boolean,  :default => false
   
-  field :m_oil,             :type => Boolean, :default => false             # Óleo
-  field :m_watercolor,      :type => Boolean, :default => false             # Acuarela
-  field :m_hot_wax,         :type => Boolean, :default => false             # Encaústica
-  field :m_pastel,          :type => Boolean, :default => false             # Pastel
-  field :m_gouache,         :type => Boolean, :default => false             # Gouache
-  field :m_tempera,         :type => Boolean, :default => false             # Témpera
-  field :m_ink,             :type => Boolean, :default => false             # Tinta
-  field :m_graphite,        :type => Boolean, :default => false             # Grafito
-  field :m_charcoal,        :type => Boolean, :default => false             # Carboncillo
-  field :m_sepia,           :type => Boolean, :default => false             # Sepia
-  field :m_sanguine,        :type => Boolean, :default => false             # Sanguina
-  field :m_crayon,          :type => Boolean, :default => false             # Ceras
-  field :m_acrylic,         :type => Boolean, :default => false             # Acrílico
-  field :m_aerography,      :type => Boolean, :default => false             # Aerografía
-  field :m_marker_pen,      :type => Boolean, :default => false             # Rotuladores
-  field :m_colored_pencil,  :type => Boolean, :default => false             # Lápices de colores
-  field :m_digital,         :type => Boolean, :default => false             # Pintura digital
-  field :m_mixed,           :type => Boolean, :default => false             # Técnicas mixtas
+  field :m_oil,              :type => Boolean, :default => false             # Óleo
+  field :m_watercolor,       :type => Boolean, :default => false             # Acuarela
+  field :m_hot_wax,          :type => Boolean, :default => false             # Encaústica
+  field :m_pastel,           :type => Boolean, :default => false             # Pastel
+  field :m_gouache,          :type => Boolean, :default => false             # Gouache
+  field :m_tempera,          :type => Boolean, :default => false             # Témpera
+  field :m_ink,              :type => Boolean, :default => false             # Tinta
+  field :m_graphite,         :type => Boolean, :default => false             # Grafito
+  field :m_charcoal,         :type => Boolean, :default => false             # Carboncillo
+  field :m_sepia,            :type => Boolean, :default => false             # Sepia
+  field :m_sanguine,         :type => Boolean, :default => false             # Sanguina
+  field :m_crayon,           :type => Boolean, :default => false             # Ceras
+  field :m_acrylic,          :type => Boolean, :default => false             # Acrílico
+  field :m_aerography,       :type => Boolean, :default => false             # Aerografía
+  field :m_marker_pen,       :type => Boolean, :default => false             # Rotuladores
+  field :m_colored_pencil,   :type => Boolean, :default => false             # Lápices de colores
+  field :m_digital,          :type => Boolean, :default => false             # Pintura digital
+  field :m_mixed,            :type => Boolean, :default => false             # Técnicas mixtas
   
-  field :exif_manu,         :type => String # Manufacturer
-  field :exif_model,        :type => String # Model
-  field :exif_expos,        :type => String # Exposure
-  field :exif_f,            :type => String # f-factor
-  field :exif_iso,          :type => String # ISO
+  field :exif_manu,          :type => String # Manufacturer
+  field :exif_model,         :type => String # Model
+  field :exif_expos,         :type => String # Exposure
+  field :exif_f,             :type => String # f-factor
+  field :exif_iso,           :type => String # ISO
   
-  field :fotolia,           :type => Boolean, :default => false
+  field :fotolia,            :type => Boolean, :default => false
   
-  field :popularity,        :type => Float
+  field :popularity,         :type => Float
   
   # art on demand
-  field :aod,               :type => Boolean,  :default => false
-  field :aod_id,            :type => Integer
-  field :aod_min_width,     :type => Float
-  field :aod_min_height,    :type => Float
-  field :aod_image_url,     :type => String
+  field :aod,                :type => Boolean,  :default => false
+  field :aod_id,             :type => Integer
+  field :aod_min_width,      :type => Float
+  field :aod_min_height,     :type => Float
+  field :aod_image_url,        :type => String
+  
+  mount_uploader :aodimage, AodimageUploader
   # art on demand
   
   slug :name
@@ -71,6 +77,8 @@ class Art
   index :slug, unique: true
   index :photo
   index :popularity
+  index :aod
+  index :aod_id
   
   validates_presence_of :name
   validates_presence_of :price
@@ -130,36 +138,52 @@ class Art
   end
   
   def category_slug
-    if self.photo == false
-     slug = self.category.slug
-    else
-     slug = ""
+    begin
+      if self.photo == false
+       slug = self.category.slug
+      else
+       slug = ""
+      end
+    rescue
+      slug = ""
     end
     slug
   end
   
   def genre_slug
-    if self.photo == false
-      slug = self.genre.slug
-    else
+    begin
+      if self.photo == false
+        slug = self.genre.slug
+      else
+        slug = ""
+      end
+    rescue
       slug = ""
     end
     slug
   end
   
   def subject_slug
-    if self.photo == true
-      slug = self.subject.slug
-    else
+    begin
+      if self.photo == true
+        slug = self.subject.slug
+      else
+        slug = ""
+      end
+    rescue
       slug = ""
     end
     slug
   end
   
   def tecnique_slug
-    if self.photo == true
-      slug = self.tecnique.slug
-    else
+    begin
+      if self.photo == true
+        slug = self.tecnique.slug
+      else
+        slug = ""
+      end
+    rescue
       slug = ""
     end
     slug
@@ -199,6 +223,64 @@ class Art
   
   def dimension_correction(width = self.max_width, height = self.max_height)
     width / height
+  end
+  
+  def quote(height, width, aod, media_id, size = nil)
+    # devuelve el precio a cobrar en función del tamaño de la reproducción y materiales.
+    # Si es una obra de un usuario tabelia, este precio será valorado en función del precio que haya seleccionado
+    #   el usuario.
+    # Si es una obra de AOD se aplican los precios estimados por estos
+    
+    # los tamaños no serán usados en este momento, pero pueden ser útiles después
+    # para valorar usaremos el media_id, size y aod
+    puts "aod = #{aod}"
+    puts "media_id = #{media_id}"
+    case aod
+    when true
+      case media_id
+      when 2
+        quote = 11.8
+      when 3
+        quote = 11.8
+      when 4
+        quote = 11.8
+      when 5
+        case size
+        when 's'
+          quote = 5.94
+        when 'm'
+          quote = 8.4
+        when 'l'
+          quote = 11.8
+        end
+      when 10
+        #wallcovering
+        quote = 23.6
+      end
+    when false
+      case media_id
+      when 2
+        quote = self.price_artistic
+      when 3
+        quote = self.price_artistic
+      when 4
+        quote = self.price_artistic
+      when 5
+        case size
+        when 's'
+          quote = self.price_a4
+        when 'm'
+          quote = self.price_a3
+        when 'l'
+          quote = self.price_artistic
+        end
+      when 10
+        # wallcovering
+        quote = self.price_wallcovering
+      end
+    end
+      
+    quote.to_f
   end
   
   def get_price(height, width, paper_id, frame = 0)

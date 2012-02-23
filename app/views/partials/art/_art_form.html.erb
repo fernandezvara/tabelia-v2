@@ -5,8 +5,20 @@
     <%= f.text_field :name, :maxlenght => 50, :title => t("mongoid.hints.art.name") %>
   </div>
   <div class="input string optional">
-    <%= f.label :price, :class => ['string', 'optional'] %>
-    <%= f.text_field :price, :maxlenght => 8, :title => t("mongoid.hints.art.price") %>
+    <%= f.label :price_a4, :class => ['string', 'optional'] %>
+    <%= f.text_field :price_a4, :maxlenght => 8, :title => t("mongoid.hints.art.price_a4") %>
+  </div>
+  <div class="input string optional">
+    <%= f.label :price_a3, :class => ['string', 'optional'] %>
+    <%= f.text_field :price_a3, :maxlenght => 8, :title => t("mongoid.hints.art.price_a3") %>
+  </div>
+  <div class="input string optional">
+    <%= f.label :price_artistic, :class => ['string', 'optional'] %>
+    <%= f.text_field :price_artistic, :maxlenght => 8, :title => t("mongoid.hints.art.price_artistic") %>
+  </div>
+  <div class="input string optional">
+    <%= f.label :price_wallcovering, :class => ['string', 'optional'] %>
+    <%= f.text_field :price_wallcovering, :maxlenght => 8, :title => t("mongoid.hints.art.price_wallcovering") %>
   </div>
   <div class="input text optional">
     <%= f.label :description, :class => ['text', 'optional']%>

@@ -6,4 +6,7 @@ class ArtSimilar
   field :similar_id,   type: String
   field :why,          type: Integer
   
+  index :art_id
+  index :similar_id
+  
 end
