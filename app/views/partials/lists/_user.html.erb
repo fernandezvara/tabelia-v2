@@ -28,9 +28,9 @@
     <% arts.each do |a| %>
       <% if a.aod == true %>
       <% if a.photo == false %>
-      <%= link_to image_tag(a.aod_image.url(:thumb).to_s, :alt => a.name, :style => 'margin-right:10px;', :class => 'tip', :title => a.name), art_profile_path(:slug => a.slug) %>
+      <%= link_to image_tag(a.aodimage.url(:thumb).to_s, :alt => a.name, :style => 'margin-right:10px;', :class => 'tip', :title => a.name), art_profile_path(:slug => a.slug) %>
       <% else %>
-      <%= link_to image_tag(a.aod_image.url(:thumb).to_s, :alt => a.name, :style => 'margin-right:10px;', :class => 'tip', :title => a.name), photo_profile_path(:slug => a.slug) %>
+      <%= link_to image_tag(a.aodimage.url(:thumb).to_s, :alt => a.name, :style => 'margin-right:10px;', :class => 'tip', :title => a.name), photo_profile_path(:slug => a.slug) %>
       <% end %>
       <% else %>
         <% if a.photo == false %>

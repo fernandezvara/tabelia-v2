@@ -69,6 +69,8 @@ es:
             terms: 'Condiciones generales'
             jobs: 'Trabajo'
             help: 'Ayuda'
+    search:
+        search: 'Buscar'
     sessions:
         new:
             title: "Inicio de sesión"

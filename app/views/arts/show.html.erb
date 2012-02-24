@@ -35,15 +35,15 @@ end
   <%= f.hidden_field :remote_crop_url, :value => "http:#{@art.image.url(:normal).to_s}" %>
   <%
   else
-    classimg = 'item2'
+    classimg = ''
   end
   %>
   <div style="width:550px; margin:0 auto;text-align:center">
-  <% if @art.aod == true %>
-  <%= image_tag(@art.aod_image_url.to_s, :alt => @art.name, :class => classimg) %>
-  <% else %>
-  <%= image_tag(@art.image.url(:normal).to_s, :alt => @art.name, :class => classimg) %>
-  <% end %>
+  <%# if @art.aod == true %>
+  <%= image_tag(@art.canvasimage.url.to_s, :alt => @art.name, :class => classimg) %>
+  <%# else %>
+  <%#= image_tag(@art.image.url(:normal).to_s, :alt => @art.name, :class => classimg) %>
+  <%# end %>
   </div>
   <% if @art.aod == true %>
   <p class="center s11">La marca de agua 'Art on Demand' no aparecerá impresa, se utiliza para preservar los derechos del autor.</p>

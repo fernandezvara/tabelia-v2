@@ -10,7 +10,7 @@ require File.expand_path("../../config/environment", __FILE__)
 i = 0
 xml = Nokogiri::XML(File.open('../../../ES_aod.xml'))
 
-xml.xpath('//products//product').each do |node|
+xml.xpath('//products2//product').each do |node|
   node.children.each do |product|
     if product.name == 'product_id'
       @product_id = product.children.to_s.to_i
@@ -127,11 +127,13 @@ xml.xpath('//products//product').each do |node|
       art.aod_min_width = @product_min_width
       art.aod_min_height = @product_min_height
       art.aod_image_url = @product_imageURL
-      art.remote_aodimage_url = @product_imageURL
+      #art.remote_aodimage_url = @product_imageURL
       art.user = user
       art.save
+      Resque.enqueue(AodThumbs, art.id.to_s)
       Resque.enqueue(ColorsFromImage, art.id.to_s)
       Resque.enqueue(FindSimilarArt, art.id.to_s)
+      Resque.enqueue(CreateCanvas, art.id.to_s)
     end
 end
 

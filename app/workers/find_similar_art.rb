@@ -47,8 +47,11 @@ class FindSimilarArt
     
     related_arts_by_color.each do |related|
       if art != related
-        ArtSimilar.create!(:art_id => art_id, :photo => art.photo, :similar_id => related.id.to_s, :why => 2)
-        puts "Added by color: #{art.name} --> #{related.name}"
+        begin
+          ArtSimilar.create!(:art_id => art_id, :photo => art.photo, :similar_id => related.id.to_s, :why => 2)
+          puts "Added by color: #{art.name} --> #{related.name}"
+        rescue
+        end
       else
         puts "Not Added: #{art.name} --> #{related.name}"
       end 

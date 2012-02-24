@@ -87,6 +87,8 @@ class Art
   mount_uploader :image,       ImageUploader
   mount_uploader :original,    OriginalUploader
   
+  mount_uploader :canvasimage, CanvasimageUploader
+  
   after_save     :resque_solr_update
   before_destroy :resque_solr_remove
   

@@ -19,8 +19,9 @@ class AodimageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    if version_name.to_s == "static"
-      return "s.jpg"
+    case version_name.to_s
+    when 'static'
+      return 's.jpg'
     else
       return "#{random_token}.jpg" if original_filename.present?
     end

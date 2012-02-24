@@ -2,7 +2,7 @@
   <div class="artlist left">
     <div class="avatar left">
       <% if art.aod == true %>
-      <%= link_to image_tag(art.aod_image.url(:thumb).to_s, :alt => art.name), art_profile_path(:slug => art.slug) %>
+      <%= link_to image_tag(art.aodimage.url(:thumb).to_s, :alt => art.name), art_profile_path(:slug => art.slug) %>
       <% else %>
       <%= link_to image_tag(art.image.url(:thumb).to_s, :alt => art.name), art_profile_path(:slug => art.slug) %>
       <% end %>
