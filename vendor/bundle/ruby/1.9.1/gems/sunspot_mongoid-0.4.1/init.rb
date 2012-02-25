@@ -1,1 +1,0 @@
-require 'sunspot_mongoid'
