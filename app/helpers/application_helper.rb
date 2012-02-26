@@ -19,7 +19,7 @@ module ApplicationHelper
   end
   
   def flag(country)
-    image_tag("//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/countries/#{country.code}.png".downcase, :alt => country.name)
+    image_tag("//assets.tabelia.com/assets/countries/#{country.code}.png".downcase, :alt => country.name)
   end
   
   def fotolia_category_name(id)

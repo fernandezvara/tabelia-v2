@@ -160,6 +160,8 @@ Tabelia::Application.routes.draw do
     get 'page/:page', :action => :index, :on => :collection
   end
   
+  mount Resque::Server.new, :at => "/resque"
+  
   # FACEBOOK specific
   match 'channel/:locale', :controller => 'pages', :action => 'channel'
   

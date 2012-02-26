@@ -68,7 +68,7 @@ ul.menu li span.message_count {
 	height:			10px;
 	text-indent: 	-999em;
 	overflow:		hidden;
-	background:		url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/menu/arrows-ffffff.png) no-repeat -10px -100px; /* 8-bit indexed alpha png. IE6 gets solid image only */
+	background:		url(//assets.tabelia.com/assets/menu/arrows-ffffff.png) no-repeat -10px -100px; /* 8-bit indexed alpha png. IE6 gets solid image only */
 }
 a > .sf-sub-indicator {  /* give all except IE6 the correct values */
 	top:			.8em;
@@ -97,7 +97,7 @@ li.sfHover > a > .sf-sub-indicator {
 
 /*** shadows for all but IE6 ***/
 .sf-shadow ul {
-	background:	url(//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/menu/shadow.png) no-repeat bottom right;
+	background:	url(//assets.tabelia.com/assets/menu/shadow.png) no-repeat bottom right;
 	padding: 0 10px 12px 0;
 
 }

@@ -9,17 +9,22 @@ test:
 # set these environment variables on your prod server
 
 production:
-    hosts:
-        -   -   server1-data.retocontinuo.local
-            -   27017
-        -   -   server2-data.retocontinuo.local
-            -   27017
-        -   -   server3-data.retocontinuo.local
-            -   27017
-    read_secondary: true
-    username: tabelia
-    password: 123456
+    host: localhost
     database: tabelia_production
+
+
+#production:
+#    hosts:
+#        -   -   server1-data.retocontinuo.local
+#            -   27017
+#        -   -   server2-data.retocontinuo.local
+#            -   27017
+#        -   -   server3-data.retocontinuo.local
+#            -   27017
+#    read_secondary: true
+#    username: tabelia
+#    password: 123456
+#    database: tabelia_production
 
 productionold:
   host: <%= ENV['MONGOID_HOST'] %>

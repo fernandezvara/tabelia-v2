@@ -10,7 +10,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "//s3-eu-west-1.amazonaws.com/assets.tabelia.com/assets/fallback/art_" + [version_name, "default.jpg"].compact.join('_')
+    "//assets.tabelia.com/assets/fallback/art_" + [version_name, "default.jpg"].compact.join('_')
   end
 
   def filename
