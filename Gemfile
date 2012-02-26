@@ -25,8 +25,6 @@ gem 'redcarpet', '1.17.2'
 gem 'kaminari'
 
 # search
-#gem 'sunspot', "~> 1.3.0.rc6"
-#gem "sunspot_rails", "~> 1.3.0.rc6"
 gem 'sunspot_mongoid'
 
 # Crypt
@@ -87,10 +85,10 @@ end
 
 gem 'jquery-rails'
 
-gem 'thin'
+#gem 'thin'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
