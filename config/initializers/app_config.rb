@@ -11,11 +11,11 @@ LANGUAGES = {
 I18n.available_locales= [:en, :es]
 
 #Juggernaut config
-if Rails.env == 'development'
+#if Rails.env == 'development'
   Juggernaut.url = "localhost:6379"
-else
-  Juggernaut.url = "server5-data.retocontinuo.local"
-end
+#else
+#  Juggernaut.url = "server5-data.retocontinuo.local"
+#end
 
 
 # MAIL CONFIGURATION

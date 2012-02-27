@@ -11,9 +11,11 @@ class CreateCanvas
       original = Magick::ImageList.new
       url = open("#{art.aod_image_url}")
       original.from_blob(url.read)
+      puts "image -> aod"
     else
       # Creates the images files, and uploads them to S3 storage
       original = Magick::Image.read(art.original.versions[:scaled].to_s).first
+      puts "image -> tabelia"
     end
 
     valor_corte = (original.columns * 0.02).to_i # cortamos un 5% de la imagen
@@ -44,7 +46,7 @@ class CreateCanvas
     final.composite!(lateral_distorted, original.columns - valor_corte, 0, Magick::OverCompositeOp)
     final.composite!(main, 0, 0, Magick::OverCompositeOp)
     # guardamos
-    shadow = final.shadow(0,0,valor_shadow,0.6)
+    shadow = final.shadow(0,0,valor_shadow,0.4)
     
     new_file = Magick::Image.new(shadow.columns, shadow.rows) do 
       self.depth = 8
@@ -62,6 +64,9 @@ class CreateCanvas
 
     art.canvasimage = File.open(rand_filename, "rb")
     art.save
+    
+    sleep 2
+    
     begin
       i = File.delete(rand_filename)
       if i == 1

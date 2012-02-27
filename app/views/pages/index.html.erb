@@ -1,5 +1,5 @@
 <% content_for :title do %>
-<div class="left inner-title"><p><%= t('common.in_spotlight')%></p></div>
+<div class="left inner-title"></div>
 <div class="right-box">
   <div style="padding:10px 20px;float:right">
     <fb:like href="https://www.facebook.com/tabelia" send="false" layout="button_count" width="120" show_faces="false"></fb:like>
@@ -13,14 +13,20 @@
 <% end %>
 
 <% content_for :spotlight do %>
+  <!--
   <div id="spotlight-wrapper" class="clearfix">
     <div id="spotlight">
-    <% @spotlight.each do |article| %>
-      <%= render :partial => 'partials/articles/spotlight', :locals => { :article => article } %>
-    <% end %>
-    </div>
+  -->
+    <%# @spotlight.each do |article| %>
+      <%#= render :partial => 'partials/articles/spotlight', :locals => { :article => article } %>
+    <%# end %>
+  <!--  </div>
   </div>
+  -->
+<% end %>
 
+<% content_for :slider do %>
+  <%= render :partial => 'partials/common/slider' %>
 <% end %>
 
 <% content_for :left do %>
@@ -56,7 +62,7 @@
   <% end %>
 <% end %>
 
-<% content_for :right do %>
+<% content_for :right_old do %>
 <div class="box common">
   <div class="title">
     AGENDA  <%= link_to 'ver todos', agenda_path(:category => '_', :year => Date.today.year, :month => Date.today.month, :day => Date.today.day)%> 

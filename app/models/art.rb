@@ -98,7 +98,7 @@ class Art
       name.downcase
     end
     string :user_id do
-      self.user.id.to_s
+      self.user.id.to_s if self.user
     end
     integer :show_search do 
       # show in search can be false if the user don't wants to show any art, this art independly or the art haven't

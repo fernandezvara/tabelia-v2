@@ -1,142 +1,40 @@
 <% content_for :title do %>
-
-<% end %>
-
-<% content_for :left do %>
-  <div class="box orange">
-    <div class="title"><%= t('arts.title_paintings') %></div>
-    <div class="title"><%= t('arts.subject_title') %></div>
-    <div class="content" id="subjects">
-      <% @idioms.each do |c| %>
-        <p><%= link_to c.name, shop_paintings_path(:category => '_', :tecnique => '_', :idiom => c.slug) %></p>
-      <% end %>
-    </div>
-
-      <div class="title"><%= t('arts.style_title') %></div>
-      <div class="content" id="styles">
-        <% @categories.each do |c| %>
-          <p><%= link_to c.name, shop_paintings_path(:category => c.slug, :tecnique => '_', :idiom => '_') %></p>
-        <% end %>
-      </div>
-
-      <div class="title"><%= t('arts.tecnique_title') %></div>
-      <div class="content" id="tecniques">
-        <% 
-        tecniques = {
-          t('arts.media.oil') => 'oil',
-          t('arts.media.watercolor') => 'watercolor',
-          t('arts.media.hot_wax') => 'hot_wax',
-          t('arts.media.pastel') => 'pastel',
-          t('arts.media.gouache') => 'gouache',
-          t('arts.media.tempera') => 'tempera',
-          t('arts.media.ink') => 'ink',
-          t('arts.media.graphite') => 'graphite',
-          t('arts.media.charcoal') => 'charcoal',
-          t('arts.media.sepia') => 'sepia',
-          t('arts.media.sanguine') => 'sanguine',
-          t('arts.media.crayon') => 'crayon',
-          t('arts.media.acrylic') => 'acrylic',
-          t('arts.media.aerography') => 'aerography',
-          t('arts.media.marker_pen') => 'marker_pen',
-          t('arts.media.colored_pencil') => 'colored_pencil',
-          t('arts.media.digital') => 'digital',
-          t('arts.media.mixed') => 'mixed'
-        }
-        tecniques.each do |key, value| %>
-          <p><%= link_to key, shop_paintings_path(:category => '_', :tecnique => value, :idiom => '_') %></p>
-        <% end %>
-      </div>
-    </div>
-    <div class="box green">
-      <div class="title"><%= t('arts.title_photos') %></div>
-      <div class="title"><%= t('arts.subject_title') %></div>
-      <div class="content" id="psubjects">
-        <% @subjects.each do |s| %>
-          <p><%= link_to s.name, shop_photos_path(:subject => s.slug, :tecnique => '_') %></p>
-        <% end %>
-      </div>
-      <div class="title"><%= t('arts.tecnique_title') %></div>
-      <div class="content" id="ptecniques">
-        <% @tecniques.each do |t| %>
-          <p><%= link_to t.name, shop_photos_path(:subject => '_', :tecnique => t.slug) %></p>
-        <% end %>
-      </div>
-    </div>
-
-
-    <script type="text/javascript">
-    var subh = $("div#subjects").height();
-    var styh = $("div#styles").height();
-    var tech = $("div#tecniques").height();
-    var subhp = $("div#psubjects").height();
-    var techp = $("div#ptecniques").height();  
-    $(window).load(function(){
-      $('#slider').nivoSlider({
-        controlNav:false,
-        pauseTime:6000,
-        keyboadNav:false,
-        effect: 'slideInLeft',
-        directionNav: false,
-        slices: 0
-      });
-    });
-
-
-      $(window).ready(function(){
-
-        $("div#subjects").css("height", "90px");
-        $("div#styles").css("height", "90px");
-        $("div#tecniques").css("height", "90px");
-        $("div#psubjects").css("height", "90px");
-        $("div#ptecniques").css("height", "90px");
-
-        $("div#subjects").hover(
-          function() { $(this).animate({ "height":subh}, "slow"); },
-          function() { $(this).animate({ "height":'90px'}, "fast"); }
-        );
-        $("div#styles").hover(
-          function() { $(this).animate({ "height":styh}, "slow"); },
-          function() { $(this).animate({ "height":'90px'}, "fast"); }
-        );
-        $("div#tecniques").hover(
-          function() { $(this).animate({ "height":tech}, "slow"); },
-          function() { $(this).animate({ "height":'90px'}, "fast"); }
-        );
-        $("div#psubjects").hover(
-          function() { $(this).animate({ "height":subhp}, "slow"); },
-          function() { $(this).animate({ "height":'90px'}, "fast"); }
-        );
-        $("div#ptecniques").hover(
-          function() { $(this).animate({ "height":techp}, "slow"); },
-          function() { $(this).animate({ "height":'90px'}, "fast"); }
-        );
-      });
-    </script>
-<% end %>
-
-<% content_for :right do %>
-
-
-<div id="slider" class="nivoSlider">
-  <% case I18n.locale.to_s %>
-  <% when 'en' %>
-    <a href="/help/how_to_buy"><img src="//assets.tabelia.com/assets/welcome/slide_01_en.jpg" alt="Buy art" /></a>
-    <a href="/help/how_to_sell"><img src="//assets.tabelia.com/assets/welcome/slide_02_en.jpg" alt="Sell your art" /></a>
-  <% when 'es' %>
-    <a href="/help/how_to_buy"><img src="//assets.tabelia.com/assets/welcome/slide_01_es.jpg" alt="Compra arte" /></a>
-    <a href="/help/how_to_sell"><img src="//assets.tabelia.com/assets/welcome/slide_02_es.jpg" alt="Vende tus obras" /></a>
-  <% end %>
-</div>
-  <div style="padding:30px 0 10px 4px;float:right; height:310px;width:108px; text-align:center">
-    <fb:like href="https://www.facebook.com/tabelia" send="false" layout="button_count" width="112" show_faces="false"></fb:like>
-    <br /><br />
+<div class="left inner-title"></div>
+<div class="right-box">
+  <div style="padding:10px 20px;float:right">
+    <fb:like href="https://www.facebook.com/tabelia" send="false" layout="button_count" width="120" show_faces="false"></fb:like>
+    &nbsp;&nbsp;&nbsp;&nbsp;
     <div class="g-plusone" data-size="medium" data-href="http://www.tabelia.com/"></div>
-    <br /><br />
     <a href="//twitter.com/share" class="twitter-share-button" data-count="none">Tweet it</a>
     <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
   </div>
+</div>
 <div class="clearfix"></div>
-  <p class="s14 b" style="margin:5px 10px"><%= t('common.trending_paintings') %>  <%= link_to t('common.see_all_male'), shop_popular_paintings_path %></p>
+<% end %>
+
+<% content_for :spotlight do %>
+  <!--
+  <div id="spotlight-wrapper" class="clearfix">
+    <div id="spotlight">
+  -->
+    <%# @spotlight.each do |article| %>
+      <%#= render :partial => 'partials/articles/spotlight', :locals => { :article => article } %>
+    <%# end %>
+  <!--  </div>
+  </div>
+  -->
+<% end %>
+
+<% content_for :slider do %>
+  <%= render :partial => 'partials/common/slider' %>
+<% end %>
+
+<% content_for :left do %>
+  <div class="box common">
+    <div class="title">
+    <%= t('common.trending_paintings') %>  <%= link_to t('common.see_all_male'), shop_popular_paintings_path %>
+    </div>
+    <div class="content">
   <% cache(@popular_paintings_cache, :expire_in => 1.hour) do %>
       <% @arts = @search_popular_paintings.results %>
   <ul id="l">
@@ -144,8 +42,14 @@
       <%= render :partial => 'partials/lists/shopitem', :locals => { :art => art } %>
     <% end %>
   </ul>
+    </div>
+  </div>
   <% end %>
-  <p class="s14 b" style="margin:5px 10px"><%= t('common.trending_photos') %>  <%= link_to t('common.see_all_female'), shop_popular_photos_path %></p>
+  <div class="box common">
+    <div class="title">
+  <%= t('common.trending_photos') %>  <%= link_to t('common.see_all_female'), shop_popular_photos_path %>
+    </div>
+    <div class="content">
   <% cache(@popular_photos_cache, :expire_in => 1.hour) do %>
     <% @photos = @search_popular_photos.results %>
   <ul id="l">
@@ -153,5 +57,23 @@
       <%= render :partial => 'partials/lists/shopitem', :locals => { :art => art } %>
     <% end %>
   </ul>
+    </div>
+  </div>
   <% end %>
+<% end %>
+
+<% content_for :right_old do %>
+<div class="box common">
+  <div class="title">
+    AGENDA  <%= link_to 'ver todos', agenda_path(:category => '_', :year => Date.today.year, :month => Date.today.month, :day => Date.today.day)%> 
+  </div>
+  <div class="title">
+    <p><%= @city %>, <%= @country %></p>
+    <p><%= @request_ip %></p>
+    <p><%= @long %>, <%= @lat %></p>
+  </div>
+  <div class="content">
+    TODO!
+  </div>
+</div>
 <% end %>

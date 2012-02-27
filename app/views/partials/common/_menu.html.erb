@@ -1,4 +1,5 @@
       <ul class="menu gray slide" id="menu">
+        <!--
         <li><a href="">Revista</a>
           <div class="cols2">
             <div class="col1"><h4>Noticias</h4></div>
@@ -19,6 +20,9 @@
             </div>
           </div>
         </li>
+        -->
+          <% cache("menu_arts", :expire_in => 1.hour) do %> <%# comienzo cache %>
+          
       		<li><%= link_to t('arts.paintings_title'), shop_popular_paintings_path %>
       			<!-- start mega menu -->
       			<div class="cols4">
@@ -34,9 +38,11 @@
         				  total_idioms = @idioms.count
         				  (0..((total_idioms/2).to_i - 1)).each do |count|
         				    %>
+        				    <% if @idioms[count].arts.count > 0 %>
         				    <li>
-        				      <%= link_to "#{@idioms[count].name} (#{@idioms[count].arts.count})", shop_paintings_path(:category => '_', :tecnique => '_', :idiom => @idioms[count].slug) %>
+        				      <%= link_to "#{@idioms[count].name}", shop_paintings_path(:category => '_', :tecnique => '_', :idiom => @idioms[count].slug) %>
         				    </li>
+        				    <% end %>
         				    <% end %>
         					</ol>
         				</div>
@@ -45,9 +51,11 @@
         					  <%
         					  ((total_idioms/2).to_i..(total_idioms -1)).each do |count|
         					  %>
+        					  <% if @idioms[count].arts.count > 0 %>
         				    <li>
-        				      <%= link_to "#{@idioms[count].name} (#{@idioms[count].arts.count})", shop_paintings_path(:category => '_', :tecnique => '_', :idiom => @idioms[count].slug) %>
+        				      <%= link_to "#{@idioms[count].name}", shop_paintings_path(:category => '_', :tecnique => '_', :idiom => @idioms[count].slug) %>
         				    </li>
+        				    <% end %>
                     <% end %>
         					</ol>
       				</div>
@@ -57,9 +65,11 @@
         				  total_styles = @categories.count
         				  (0..((total_styles/2).to_i - 1)).each do |count|
         				    %>
+        				    <% if @categories[count].arts.count > 0 %>
         				    <li>
-        				      <%= link_to "#{@categories[count].name} (#{@categories[count].arts.count})", shop_paintings_path(:category => @categories[count].slug, :tecnique => '_', :idiom => '_') %>
+        				      <%= link_to "#{@categories[count].name}", shop_paintings_path(:category => @categories[count].slug, :tecnique => '_', :idiom => '_') %>
         				    </li>
+        				    <% end %>
         				    <% end %>
         					</ol>
         				</div>
@@ -68,9 +78,11 @@
         					  <%
         					  ((total_styles/2).to_i..(total_styles -1)).each do |count|
         					  %>
+        					  <% if @categories[count].arts.count > 0 %>
         				    <li>
-        				      <%= link_to "#{@categories[count].name} (#{@categories[count].arts.count})", shop_paintings_path(:category => @categories[count].slug, :tecnique => '_', :idiom => '_') %>
+        				      <%= link_to "#{@categories[count].name}", shop_paintings_path(:category => @categories[count].slug, :tecnique => '_', :idiom => '_') %>
         				    </li>
+        				    <% end %>
                     <% end %>
         					</ol>
       				</div>
@@ -88,9 +100,11 @@
       				  <% # subjects
       				  @subjects.each do |subject|
       				    %>
+      				    <% if subject.arts.count > 0 %>
       				    <li>
-      				      <%= link_to "#{subject.name} (#{subject.arts.count})", shop_photos_path(:subject => subject.slug, :tecnique => '_') %>
+      				      <%= link_to "#{subject.name}", shop_photos_path(:subject => subject.slug, :tecnique => '_') %>
       				    </li>
+      				  <% end %>
       				  <% end %>
       					</ol>
       				</div>
@@ -115,6 +129,8 @@
       				</div>
       			</div>
       		</li>
+      		
+      		<% end %> <%# fin de cache %>
           <li class="floatr"><a href="/cart"><%= t('mainmenu.cart') %> 
             <% if current_cart.items.count > 0 %>
               <span class="bubble"><%= current_cart.items.count %></span>

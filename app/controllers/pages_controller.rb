@@ -9,7 +9,7 @@ class PagesController < ApplicationController
         @search_popular_paintings = Sunspot.search(Art) do
           with(:show_search).greater_than(1)
           with(:photo, false)
-          paginate(:per_page => 8, :page => 1)
+          paginate(:per_page => 10, :page => 1)
           order_by(:popularity, :desc)
         end
       end
@@ -17,29 +17,29 @@ class PagesController < ApplicationController
         @search_popular_photos = Sunspot.search(Art) do
           with(:show_search).greater_than(1)
           with(:photo, true)
-          paginate(:per_page => 8, :page => 1)
+          paginate(:per_page => 10, :page => 1)
           order_by(:popularity, :desc)
         end
       end
       
-      @cache = "front-page-logged-#{rand(10)}"
-      @cache_photos = "front-page-logged-photos-#{rand(10)}"
-      if fragment_exist?(@cache) == false
-        @search = Sunspot.search(Art) do
-           with(:show_search).greater_than(1)
-           with(:photo, false)
-           paginate(:per_page => 40, :page => 1)
-           order_by(:random)
-         end
-      end
-      if fragment_exist?(@cache_photos) == false
-        @search_photos = Sunspot.search(Art) do
-           with(:show_search).greater_than(1)
-           with(:photo, true)
-           paginate(:per_page => 40, :page => 1)
-           order_by(:random)
-         end
-      end
+      #@cache = "front-page-logged-#{rand(10)}"
+      #@cache_photos = "front-page-logged-photos-#{rand(10)}"
+      #if fragment_exist?(@cache) == false
+      #  @search = Sunspot.search(Art) do
+      #     with(:show_search).greater_than(1)
+      #     with(:photo, false)
+      #     paginate(:per_page => 40, :page => 1)
+      #     order_by(:random)
+      #   end
+      #end
+      #if fragment_exist?(@cache_photos) == false
+      #  @search_photos = Sunspot.search(Art) do
+      #     with(:show_search).greater_than(1)
+      #     with(:photo, true)
+      #     paginate(:per_page => 40, :page => 1)
+      #     order_by(:random)
+      #   end
+      #end
       respond_to do |format|
         format.html { render :layout => 'index' }
       end
@@ -51,7 +51,7 @@ class PagesController < ApplicationController
         @search_popular_paintings = Sunspot.search(Art) do
           with(:show_search).greater_than(2)
           with(:photo, false)
-          paginate(:per_page => 8, :page => 1)
+          paginate(:per_page => 10, :page => 1)
           order_by(:popularity, :desc)
         end
       end
@@ -59,28 +59,28 @@ class PagesController < ApplicationController
         @search_popular_photos = Sunspot.search(Art) do
           with(:show_search).greater_than(2)
           with(:photo, true)
-          paginate(:per_page => 8, :page => 1)
+          paginate(:per_page => 10, :page => 1)
           order_by(:popularity, :desc)
         end
       end
-      @cache = "front-non-logged-#{rand(10)}"
-      @cache_photos = "front-non-logged-photos-#{rand(10)}"
-      if fragment_exist?(@cache) == false
-        @search = Sunspot.search(Art) do
-           with(:show_search).greater_than(2)
-           with(:photo, false)
-           paginate(:per_page => 40, :page => 1)
-           order_by(:random)
-         end
-      end
-      if fragment_exist?(@cache_photos) == false
-        @search_photos = Sunspot.search(Art) do
-           with(:show_search).greater_than(1)
-           with(:photo, true)
-           paginate(:per_page => 40, :page => 1)
-           order_by(:random)
-         end
-      end
+      #@cache = "front-non-logged-#{rand(10)}"
+      #@cache_photos = "front-non-logged-photos-#{rand(10)}"
+      #if fragment_exist?(@cache) == false
+      #  @search = Sunspot.search(Art) do
+      #     with(:show_search).greater_than(2)
+      #     with(:photo, false)
+      #     paginate(:per_page => 40, :page => 1)
+      #     order_by(:random)
+      #   end
+      #end
+      #if fragment_exist?(@cache_photos) == false
+      #  @search_photos = Sunspot.search(Art) do
+      #     with(:show_search).greater_than(1)
+      #     with(:photo, true)
+      #     paginate(:per_page => 40, :page => 1)
+      #     order_by(:random)
+      #   end
+      #end
       
       respond_to do |format|
         #format.html { render  'notloggedin', :layout => 'shop' }

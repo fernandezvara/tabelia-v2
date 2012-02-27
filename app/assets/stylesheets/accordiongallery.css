@@ -1,0 +1,334 @@
+/* component holder */
+#sliderWrapper{
+	position:relative;
+	top:0px;	
+	left:50%;
+	
+	margin-left:-495px;
+	/* margin-top:-166px; */
+	margin-bottom:20px;
+	/* hide component, we fade it in on beginning */
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	-moz-opacity:0;
+	-khtml-opacity: 0;
+	opacity: 0;
+	height:450px;
+	
+}
+
+#sliderWrapper .sliderCointainer{
+	position:absolute;
+	top:0px;
+	left:0px;
+	overflow:hidden;
+}
+
+#sliderWrapper .sliderHolder{
+	position:relative;
+	top:0px;
+	left:0px;
+}
+
+/* div that holds actual slides */
+.slideDiv{
+	position:absolute;
+	background:#999;
+	
+	/* adjust drop shadow in component slides here */
+	-moz-box-shadow: 0px -5px 5px #333;
+	-webkit-box-shadow: 0px -5px 5px #333;
+	box-shadow: 0px -5px 5px #333;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=180, Color='#333333')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=180, Color='#333333');
+	
+}
+
+/* playlist holder (hidden) */
+#sliderWrapper .sliderImages{
+	display:none;
+}
+
+
+/* captions */
+.caption {
+	position: absolute;
+	padding: 5px 20px 5px 20px;
+	/* font-family: 'Terminal Dosis', sans-serif; */
+	font-size: 27px;
+}
+
+.caption a{
+	color:white;
+	text-decoration:underline;
+}
+
+.caption a:hover, a:active{
+  text-decoration:underline;
+}
+
+/* caption holder div, for mask, dont touch */
+.captionHolder{
+	position:absolute;
+	overflow:hidden;
+}
+
+
+
+/* titles */
+#sliderWrapper div.title {
+	position: absolute;
+	padding: 5px 20px 5px 20px;
+	/* font-family: 'Terminal Dosis', sans-serif; */
+	font-size: 27px;
+}
+
+
+
+/* close video btn settings for vimeo and youtube */
+.closeVimeoNormal {
+	background: #000000;
+	
+     -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.closeVimeoOver {
+	background: #00adef;
+	
+     -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.closeYTNormal {
+	background: #333;
+}
+
+.closeYTOver {
+	background: #ccc;
+}
+
+
+/* slideshow controls */
+#sliderWrapper .controls{
+	position:absolute;
+	width:77px;
+	height:27px;
+	top:341px;
+	left:15px;
+	background:#333;
+	
+	-moz-box-shadow: 1px 2px 4px #333;
+	-webkit-box-shadow: 1px2px 4px #333;
+	box-shadow: 1px 2px 4px #333;
+	
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	-moz-opacity:0;
+	-khtml-opacity: 0;
+	opacity: 0;
+	
+}
+
+#sliderWrapper .controls_prev, .controls_toggle, .controls_next{
+	position:absolute;
+	width:9px;
+	height:13px;
+	top:4px;
+}
+
+#sliderWrapper .controls_prev{
+	left:12px;
+}
+
+#sliderWrapper .controls_toggle{
+	left:34px;
+}
+
+#sliderWrapper .controls_next{
+	left:57px;
+}
+
+
+
+
+/* scrollbar settings. If you use images inside make sure you enter correct width and height in css*/
+#sliderWrapper .scroll{
+	position:absolute;
+	top:390px;
+	left:50%;
+	margin-left:-240px;
+	
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	-moz-opacity:0;
+	-khtml-opacity: 0;
+	opacity: 0;
+}
+
+#sliderWrapper .scrollTrack{
+	position:absolute;
+	width:400px;
+	height:10px;
+	top:0px;
+	left:0px;
+	background:#ccc;
+}
+
+/* image in scrollbar
+#sliderWrapper .scrollTrack img{
+	position:absolute;
+	width:500px;
+	height:15px;
+	top:0px;
+	left:0px;
+}
+*/
+
+#sliderWrapper .scrollBar{
+	position:absolute;
+	width:50px;
+	height:10px;
+	top:0px;
+	left:0px;
+	background:#666;	
+}
+
+/*
+#sliderWrapper .scrollBar img{
+	position:absolute;
+	width:50px;
+	height:15px;
+	top:0px;
+	left:0px;
+}
+*/
+
+
+/* loader for component  */
+#componentLoader{
+	position:absolute;
+	width:35px;
+	height:35px;
+	top:50%;	
+	left:50%;
+	margin-left:-17px;
+	margin-top:-17px;
+}
+
+
+
+
+
+
+
+/* CUSTOM CONTENT */
+#custom_gmap{
+	position:absolute;
+	width:600px;
+	height:333px;
+	top:0px;
+	left:0px;
+}
+
+#custom_snow{
+	position:absolute;
+	width:500px;
+	height:333px;
+	top:0px;
+	left:0px;
+	z-index:0;
+}
+
+
+
+
+
+
+/* font calculations */
+#sliderWrapper .fontMeasure{
+	visibility:hidden;
+}
+
+
+
+/* public functions */
+#publicFunctions{
+	position:absolute;
+	top:50px;
+	left:50px;
+	z-index:99999;
+	background:#444;
+	padding:20px;
+	display:none;
+}
+
+#publicFunctions li{
+	text-decoration:none;	
+	list-style: none;
+}
+
+#publicFunctions li a{
+	color:white;
+}
+
+#publicFunctions p{
+	color:white;
+}
+
+
+
+#previewInfo {
+	position: absolute;
+	padding: 10px 20px 10px 30px;
+	background:#99c;
+	ltft:50px;
+	top:100px;
+	/* font-family: 'Terminal Dosis', sans-serif; */
+	font-size: 17px;
+	color:#fff;
+	
+}
+
+
+
+
+#previewMenu {
+	position: absolute;
+	width:605px;
+	top:0px;
+	left:50%;
+	margin-left:-303px;
+}
+
+#previewMenu ul{
+    margin: 0; 
+	padding: 0;
+}
+
+#previewMenu li{
+	display:block;
+	float:left;
+	list-style:none;
+}
+
+#previewMenu li a{
+	padding: 5px 10px 5px 10px;
+	background-color:#99C;
+	border-right:1px solid white;
+	
+	/* font-family: 'Terminal Dosis', sans-serif; */
+	font-size: 23px;
+	color:#fff;
+}
+
+#previewMenu li a:hover, #previewMenu li .current{
+    background-color:#ccc;
+	text-decoration: none;
+}

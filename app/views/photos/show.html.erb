@@ -105,6 +105,7 @@ end
     <% end %>
   </div>
 </div>
+<% if @bot == false %>
 <div class="box common">
   <div class="title">
     <p><%= t('common.comments') %></p>
@@ -114,6 +115,7 @@ end
   </div>
 </div> 
   <br />
+<% end %>
 </section>
 <section class="column width1-5" id="main-right">
 <% if @art.status == false %>

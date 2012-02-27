@@ -5,7 +5,7 @@ class AodThumbs
   def self.perform(art_id)
 
     art = Art.find(art_id)
-    art.remote_aodimage_url = @product_imageURL
+    art.remote_aodimage_url = art.oad_image_url
     art.save
     
     puts "'#{art.name}' -> thumbs created!"

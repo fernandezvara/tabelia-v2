@@ -5,7 +5,7 @@
     Tabelia::Application.config.session_store :redis_session_store
   else
     Tabelia::Application.config.session_store :redis_session_store, {
-      :host => '192.168.2.205',
+      :host => 'localhost',
       :port => 6379,
       :db => 3
     }

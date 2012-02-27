@@ -44,12 +44,17 @@
       <meta property="og:description" content="<%= @art.description.to_s %>" />
       <meta itemprop="name" content="<%= @art.name %>">
       <meta itemprop="description" content="<%= @art.description.to_s %>">
-      <% if @art.image.to_s.nil? == true %>
-      <meta property="og:image" content="http://assets.tabelia.com<%= @art.image.url(:thumb).to_s %>" />
-      <meta itemprop="image" content="http://assets.tabelia.com<%= @art.image.url(:thumb).to_s %>">
+      <% if @art.aod == true %>
+      <meta property="og:image" content="http:<%= @art.aodimage.url(:s).to_s %>" />
+      <meta itemprop="image" content="http:<%= @art.aodimage.url(:s).to_s %>">
       <% else %>
-      <meta property="og:image" content="http:<%= @art.image.url(:static).to_s %>" />
-      <meta itemprop="image" content="http:<%= @art.image.url(:static).to_s %>" />
+        <% if @art.image.to_s.nil? == true %>
+        <meta property="og:image" content="http:<%= @art.image.url(:thumb).to_s %>" />
+        <meta itemprop="image" content="http:<%= @art.image.url(:thumb).to_s %>">
+        <% else %>
+        <meta property="og:image" content="http:<%= @art.image.url(:static).to_s %>" />
+        <meta itemprop="image" content="http:<%= @art.image.url(:static).to_s %>" />
+        <% end %>
       <% end %>
       <% cache("art-tags-#{@art.slug}", :expire_in => 1.day) do %>
       <meta name="description" content="<%= @art.description %>" />
@@ -64,7 +69,7 @@
       <meta itemprop="name" content="<%= @user.name %>">
       <meta itemprop="description" content="<%= @user.about.to_s %>">
       <% if @user.avatar.to_s.nil? == true %>
-      <meta property="og:image" content="http://assets.tabelia.com<%= @user.avatar.url(:thumb).to_s %>" />
+      <meta property="og:image" content="http:<%= @user.avatar.url(:thumb).to_s %>" />
       <% else %>
       <meta property="og:image" content="http:<%= @user.avatar.url(:thumb).to_s %>" />
       <% end %>
@@ -79,7 +84,74 @@
     <% end %>
   <% end %>
   
-  <!-- <link href='//fonts.googleapis.com/css?family=Cabin&amp;v2' rel='stylesheet' type='text/css'> -->
+  <% if controller_name == "pages" %>
+    <% if action_name == "index" or action_name == "notloggedin" %>
+    	<script type="text/javascript">
+  			var settings = {
+  				orientation: 'horizontal',
+  				componentWidth: 990,
+  				componentHeight: 400,
+  				visibleItems:5,
+  				hideTitleOnOpen: true,
+  				unSelectableCaptions: true,
+  				videoAutoplay: true,
+  				slideshowOn: true,
+  				useGlobalDelay: true,
+  				slideshowDelay: 3000,
+  				randomPlay: false,
+  				includeVideoInSlideshow: true,
+  				openYoutubeOnBuffering: false,
+  				openOnRollover: false,
+  				openOnClickAllSlidesButtonMode: false,
+  				useScroll: true,
+  				scrollOrientation: 'horizontal',
+  				scrollDraggerOverColor: '#658',
+  				useControls: true,
+  				openSlideNum: 0,
+  				keepSelection: true,
+  				transitionTime: 4000,
+  				transitionEase: 'easeOutQuint',
+  				useBorder: true,
+  				borderSize: 0,
+  				borderColor: '#fff',
+  				useKeyboardNavigation: true,
+  				videoDisablesAllNavigation: true
+  			};
+
+  			jQuery(window).load(function() {
+  				 /* WebFontConfig = {
+  				google: {
+  					families: [ 'Terminal Dosis' ]
+  				  },
+  				  fontactive: function(fontFamily, fontDescription) {
+  					
+  					*/
+  					jQuery.accordionGallery('#sliderWrapper', settings);
+  					settings = null;
+
+  					jQuery('#m0').children('a').css({
+  					   background : '#ccc',
+  					   cursor : 'default'
+  					});
+
+  				  /* } 
+  			  };
+  			  
+  			  (function() {
+  				var wf = document.createElement('script');
+  				wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+  					'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+  				wf.type = 'text/javascript';
+  				wf.async = 'true';
+  				var s = document.getElementsByTagName('script')[0];
+  				s.parentNode.insertBefore(wf, s);
+  			  })();
+          */
+  			});
+          </script>
+    <% end %>
+  <% end %>
+  
   <% if flash.count > 0 %>
   <script type="text/javascript">
   $(document).ready(function() {

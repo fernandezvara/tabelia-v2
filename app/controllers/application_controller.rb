@@ -145,7 +145,6 @@ class ApplicationController < ActionController::Base
   end
   
   def current_cart
-    logger.error "BOT = #{is_bot?.to_s}"
     if is_bot? == false
       if cookies[:cart_id]
         begin
@@ -261,7 +260,7 @@ class ApplicationController < ActionController::Base
   end
   
   def is_bot?
-    !(request.user_agent =~ /(Baidu|Bing|bot|Google|SiteUptime|Slurp|WordPress|ZIBB|ZyBorg)/i).nil?
+    @bot ||= !(request.user_agent =~ /(Baidu|Bing|bot|Google|SiteUptime|Slurp|WordPress|ZIBB|ZyBorg)/i).nil?
   end
   
   

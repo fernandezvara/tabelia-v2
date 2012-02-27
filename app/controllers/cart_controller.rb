@@ -1,7 +1,7 @@
 #encoding: UTF-8
 class CartController < ApplicationController
   
-  force_ssl
+  force_ssl :only => [:index, :checkout, :create, :edit, :update, :destroy]
   
   def index
     @current_cart = current_cart

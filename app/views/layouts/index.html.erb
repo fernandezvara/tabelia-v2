@@ -18,14 +18,19 @@
           <section class="column width-x" id="main-messages">
             <%= yield :messages %>
           </section>
-          <section class="column width-y first" id="main-left">
+          <section class="column full first">
+            <%= yield :slider %>
+          </section>
+          <section class="column full first" id="main-left">
             <%= yield :left %>
             <br />
           </section>   
+          <!-- 
           <section class="column width-x" id="main-right">
             <%= yield :right %>
             <br />
           </section>
+          -->
         </section>
       </div><!-- content -->
       <hr class="full nobottom">

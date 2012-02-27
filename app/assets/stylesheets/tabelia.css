@@ -17,6 +17,7 @@
  *= require menu
  *= require blog
  *= require jcrop
+ *= require accordiongallery
 
  *= require_self
 */
