@@ -3,15 +3,29 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
 
-  storage :fog
+  #storage :fog
 
-  def store_dir
+  #def store_dir
     # "#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  #  if version_name
+  #    "#{mounted_as}/#{model.id}"
+  #  else
+  #    "#{mounted_as}_orig/#{model.id}"
+  #  end
+  #end
+
+  storage :file
+  
+  def store_dir
     if version_name
-      "#{mounted_as}/#{model.id}"
+      "/opt/public_img/image/#{model.id}"
     else
-      "#{mounted_as}_orig/#{model.id}"
+      "/opt/private/image_orig/#{model.od}"
     end
+  end
+  
+  def url_path
+    "//img.tabelia.com/image/#{model.id}"
   end
 
   def default_url

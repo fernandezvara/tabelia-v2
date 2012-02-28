@@ -10,7 +10,7 @@ require File.expand_path("../../config/environment", __FILE__)
 i = 0
 xml = Nokogiri::XML(File.open('../../../ES_aod.xml'))
 
-xml.xpath('//products2//product').each do |node|
+xml.xpath('//products//product').each do |node|
   node.children.each do |product|
     if product.name == 'product_id'
       @product_id = product.children.to_s.to_i
@@ -127,13 +127,75 @@ xml.xpath('//products2//product').each do |node|
       art.aod_min_width = @product_min_width
       art.aod_min_height = @product_min_height
       art.aod_image_url = @product_imageURL
-      #art.remote_aodimage_url = @product_imageURL
+      
+      art.remote_aodimage_url = @product_imageURL
+      art.save
+      
+      original = Magick::ImageList.new(art.aodimage.to_s)
+      puts "canvas -> begin"
+    
+      valor_corte = (original.columns * 0.02).to_i # cortamos un 5% de la imagen
+      valor_shadow = (original.rows * 0.01).to_i # El valor de la sombra lo hacemos proporcinal 400px = 2
+
+      main = original.crop(0,0,original.columns - valor_corte, original.rows)
+
+      lateral = original.crop(original.columns - valor_corte, 0, original.columns, original.rows)
+      lateral.background_color = "transparent"
+      lateral.virtual_pixel_method = Magick::TransparentVirtualPixelMethod
+
+      lateral_img = Magick::Image.new(lateral.columns + 20, lateral.rows + 20) do 
+        self.depth = 8
+        self.background_color = "transparent"
+      end
+      lateral_img.virtual_pixel_method = Magick::TransparentVirtualPixelMethod
+
+      lateral_distorted = lateral_img.composite(lateral.distort(Magick::PerspectiveDistortion, [0,0,0,0, 0,lateral.rows,0,lateral.rows, lateral.columns,0,lateral.columns,15, lateral.columns,lateral.rows,lateral.columns,lateral.rows - 10]),0,0, Magick::OverCompositeOp)
+      lateral_distorted.virtual_pixel_method = Magick::TransparentVirtualPixelMethod
+      lateral.background_color = "transparent"  
+
+      final = Magick::Image.new(original.columns + 10, original.rows + 10) do 
+        self.depth = 8
+        self.background_color = "transparent"
+      end
+      final.virtual_pixel_method = Magick::TransparentVirtualPixelMethod
+
+      final.composite!(lateral_distorted, original.columns - valor_corte, 0, Magick::OverCompositeOp)
+      final.composite!(main, 0, 0, Magick::OverCompositeOp)
+      # guardamos
+      shadow = final.shadow(0,0,valor_shadow,0.4)
+
+      new_file = Magick::Image.new(shadow.columns, shadow.rows) do 
+        self.depth = 8
+        self.background_color = "#fbfbfb"
+      end
+      new_file.composite!(shadow, 0,0, Magick::OverCompositeOp)
+      new_file.composite!(final,  0,0, Magick::OverCompositeOp)
+
+      #new_file = shadow.composite(final, 0,0, Magick::OverCompositeOp)
+      rand_filename = "#{rand(100000)}.jpg"
+
+      new_file.write(rand_filename) do
+        self.quality = 70
+      end
+
+      art.canvasimage = File.open(rand_filename, "rb")
+
       art.user = user
       art.save
-      Resque.enqueue(AodThumbs, art.id.to_s)
+      #Resque.enqueue(AodThumbs, art.id.to_s)
       Resque.enqueue(ColorsFromImage, art.id.to_s)
       Resque.enqueue(FindSimilarArt, art.id.to_s)
-      Resque.enqueue(CreateCanvas, art.id.to_s)
+      #Resque.enqueue(CreateCanvas, art.id.to_s)
+      
+      begin
+        i = File.delete(rand_filename)
+        if i == 1
+          puts "canvas -> File deleted"
+        end
+      rescue
+        puts "canvas -> Error borrando imagen!!!!"
+      end
+      puts "canvas -> done!"
     end
 end
 

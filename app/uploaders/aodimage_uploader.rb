@@ -3,15 +3,25 @@ class AodimageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
 
-  storage :fog
+  #storage :fog
 
-  def store_dir
+  #def store_dir
     # "#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-    if version_name
-      "#{mounted_as}/#{model.id}"
-    else
-      "#{mounted_as}_orig/#{model.id}"
-    end
+  #  if version_name
+  #    "#{mounted_as}/#{model.id}"
+  #  else
+  #    "#{mounted_as}_orig/#{model.id}"
+  #  end
+  #end
+
+  storage :file
+  
+  def store_dir
+    "/opt/public_img/aod/#{model.id}"
+  end
+  
+  def url_path
+    "//img.tabelia.com/aod/#{model.id}"
   end
 
   def default_url
@@ -19,12 +29,7 @@ class AodimageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    case version_name.to_s
-    when 'static'
-      return 's.jpg'
-    else
-      return "#{random_token}.jpg" if original_filename.present?
-    end
+    return "#{random_token}.jpg" if original_filename.present?
   end
 
   def random_token

@@ -13,6 +13,7 @@
 //= require tipsy
 //= require autosuggest
 //= require jcrop
+//= require slider
 //= require accordiongallery
 
 //= require onload

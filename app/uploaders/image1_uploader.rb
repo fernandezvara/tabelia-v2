@@ -1,10 +1,21 @@
 # encoding: utf-8
 class Image1Uploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
-  storage :fog
+  #storage :fog
 
+  #def store_dir
+  #  "#{mounted_as}/#{model.id}"
+  #end
+  
+  
+  storage :file
+  
   def store_dir
-    "#{mounted_as}/#{model.id}"
+    "/opt/public_img/post_image/#{model.id}"
+  end
+  
+  def url_path
+    "//img.tabelia.com/post_image/#{model.id}"
   end
   
   def default_url

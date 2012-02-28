@@ -3,10 +3,20 @@ class CanvasimageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
 
-  storage :fog
+  #storage :fog
 
+  #def store_dir
+  #  "#{mounted_as}/#{model.id}"
+  #end
+
+  storage :file
+  
   def store_dir
-    "#{mounted_as}/#{model.id}"
+    "/opt/public_img/canvas/#{model.id}"
+  end
+  
+  def url_path
+    "//img.tabelia.com/canvas/#{model.id}"
   end
 
   def default_url
