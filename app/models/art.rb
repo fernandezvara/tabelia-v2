@@ -52,6 +52,11 @@ class Art
   field :m_digital,          :type => Boolean, :default => false             # Pintura digital
   field :m_mixed,            :type => Boolean, :default => false             # Técnicas mixtas
   
+  #materiales
+  field :mat_artistic,       :type => Boolean, :default => false
+  field :mat_wallcovering,   :type => Boolean, :default => false
+  field :mat_rigid,          :type => Boolean, :default => false
+  
   field :exif_manu,          :type => String # Manufacturer
   field :exif_model,         :type => String # Model
   field :exif_expos,         :type => String # Exposure

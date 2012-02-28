@@ -19,9 +19,21 @@ class AvatarUploader < CarrierWave::Uploader::Base
   def store_dir
     "/opt/public_img/avatar/#{model.id}"
   end
-  
-  def url_path
-    "//img.tabelia.com/avatar/#{model.id}"
+    
+  def url(version = nil)
+    begin
+      if version.nil?
+        "//img.tabelia.com#{current_path.gsub("/opt/public_img", '')}"
+      else
+        "//img.tabelia.com#{versions[version].to_s.gsub("/opt/public_img", '')}"
+      end
+    rescue
+      if version.nil?
+        "//assets.tabelia.com/assets/fallback/avatar_default.jpg"
+      else
+        "//assets.tabelia.com/assets/fallback/avatar_#{version.to_s}_default.jpg"
+      end
+    end
   end
   
   def default_url

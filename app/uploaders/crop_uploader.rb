@@ -20,13 +20,19 @@ class CropUploader < CarrierWave::Uploader::Base
     "/opt/public_img/crop/#{model.id}"
   end
   
-  def url_path
-    "//img.tabelia.com/crop/#{model.id}"
+  def url(version = nil)
+    begin
+      if version.nil?
+        "//img.tabelia.com#{current_path.gsub("/opt/public_img", '')}"
+      else
+        "//img.tabelia.com#{versions[version].to_s.gsub("/opt/public_img", '')}"
+      end
+    rescue
+      ""
+    end
   end
 
   def filename
-    # "avatar.jpg" if original_filename
-    # "crop.jpg" if original_filename.present?
     "#{random_token}.jpg" if original_filename.present?
   end
 

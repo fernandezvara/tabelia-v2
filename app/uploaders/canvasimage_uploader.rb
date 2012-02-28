@@ -15,8 +15,16 @@ class CanvasimageUploader < CarrierWave::Uploader::Base
     "/opt/public_img/canvas/#{model.id}"
   end
   
-  def url_path
-    "//img.tabelia.com/canvas/#{model.id}"
+  def url(version = nil)
+    begin
+      if version.nil?
+        "//img.tabelia.com#{current_path.gsub("/opt/public_img", '')}"
+      else
+        "//img.tabelia.com#{versions[version].to_s.gsub("/opt/public_img", '')}"
+      end
+    rescue
+      nil
+    end
   end
 
   def default_url

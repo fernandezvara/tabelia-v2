@@ -20,8 +20,20 @@ class AodimageUploader < CarrierWave::Uploader::Base
     "/opt/public_img/aod/#{model.id}"
   end
   
-  def url_path
-    "//img.tabelia.com/aod/#{model.id}"
+  def url(version = nil)
+    begin
+      if version.nil?
+        "//img.tabelia.com#{current_path.gsub("/opt/public_img", '')}"
+      else
+        "//img.tabelia.com#{versions[version].to_s.gsub("/opt/public_img", '')}"
+      end
+    rescue
+      if version.nil?
+        "//assets.tabelia.com/assets/fallback/art_default.jpg"
+      else
+        "//assets.tabelia.com/assets/fallback/art_#{version.to_s}_default.jpg"
+      end
+    end
   end
 
   def default_url

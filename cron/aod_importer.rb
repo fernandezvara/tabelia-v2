@@ -8,7 +8,9 @@ require File.expand_path("../../config/environment", __FILE__)
 #xml = Nokogiri::XML(open(url))
 
 i = 0
-xml = Nokogiri::XML(File.open('../../../ES_aod.xml'))
+#xml = Nokogiri::XML(File.open('../../../ES_aod.xml'))
+
+xml = Nokogiri::XML(open('http://www.artondemand.es/aod_xml/ES/ES_aod.xml'))
 
 xml.xpath('//products//product').each do |node|
   node.children.each do |product|
@@ -61,6 +63,26 @@ xml.xpath('//products//product').each do |node|
         @artist_surname.gsub!("]]>", "")
       end
     end
+    @artistic = false
+    @wallcovering = false
+    @rigid = false
+    node.xpath('.//mediaAllowed').children.each do |media|
+      if media.name == "artistic"
+        if media.children.to_s == "True"
+          @artistic = true
+        end
+      end
+      if media.name == "wallcovering"
+        if media.children.to_s == "True"
+          @wallcovering = true
+        end
+      end
+      if media.name == "rigid"
+        if media.children.to_s == "True"
+          @rigid = true
+        end
+      end
+    end
   end
   i = i + 1
   
@@ -71,8 +93,7 @@ xml.xpath('//products//product').each do |node|
     puts "Max: #{@product_max_width}x#{@product_max_height}"
     puts "Min: #{@product_min_width}x#{@product_min_height}"
     puts "Artist ID: #{@artist_id}. #{@artist_name} #{@artist_surname}"
-
-
+    
     # Creacion de usuario si no existe
     user = User.where(:aod => true, :aod_id => @artist_id).first
     if user.nil? == true
@@ -112,6 +133,7 @@ xml.xpath('//products//product').each do |node|
     if art.nil? == true
       art = Art.new
       art.aod = true
+      art.user = user
       art.aod_id = @product_id
       art.name = @product_name
       art.photo = false 
@@ -127,6 +149,11 @@ xml.xpath('//products//product').each do |node|
       art.aod_min_width = @product_min_width
       art.aod_min_height = @product_min_height
       art.aod_image_url = @product_imageURL
+      
+      #medias soportadas
+      art.mat_artistic = @artistic
+      art.mat_wallcovering = @wallcovering
+      art.mat_rigid = @rigid
       
       art.remote_aodimage_url = @product_imageURL
       art.save
@@ -180,7 +207,7 @@ xml.xpath('//products//product').each do |node|
 
       art.canvasimage = File.open(rand_filename, "rb")
 
-      art.user = user
+      
       art.save
       #Resque.enqueue(AodThumbs, art.id.to_s)
       Resque.enqueue(ColorsFromImage, art.id.to_s)
@@ -188,8 +215,8 @@ xml.xpath('//products//product').each do |node|
       #Resque.enqueue(CreateCanvas, art.id.to_s)
       
       begin
-        i = File.delete(rand_filename)
-        if i == 1
+        u = File.delete(rand_filename)
+        if u == 1
           puts "canvas -> File deleted"
         end
       rescue

@@ -20,12 +20,24 @@ class ImageUploader < CarrierWave::Uploader::Base
     if version_name
       "/opt/public_img/image/#{model.id}"
     else
-      "/opt/private/image_orig/#{model.od}"
+      "/opt/private/image_orig/#{model.id}"
     end
   end
   
-  def url_path
-    "//img.tabelia.com/image/#{model.id}"
+  def url(version = nil)
+    begin
+      if version.nil?
+        "//img.tabelia.com#{current_path.gsub("/opt/public_img", '')}"
+      else
+        "//img.tabelia.com#{versions[version].to_s.gsub("/opt/public_img", '')}"
+      end
+    rescue
+      if version.nil?
+        "//assets.tabelia.com/assets/fallback/art_default.jpg"
+      else
+        "//assets.tabelia.com/assets/fallback/art_#{version.to_s}_default.jpg"
+      end
+    end
   end
 
   def default_url

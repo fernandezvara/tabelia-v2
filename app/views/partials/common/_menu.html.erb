@@ -21,7 +21,7 @@
           </div>
         </li>
         -->
-          <% cache("menu_arts", :expire_in => 1.hour) do %> <%# comienzo cache %>
+          <% cache("menu_arts_#{I18n.locale.to_s}", :expire_in => 1.hour) do %> <%# comienzo cache %>
           
       		<li><%= link_to t('arts.paintings_title'), shop_popular_paintings_path %>
       			<!-- start mega menu -->
