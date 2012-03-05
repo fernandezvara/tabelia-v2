@@ -5,6 +5,7 @@ es:
         id_3: 'Lienzo'
         id_4: 'Papel texturado'
         id_5: 'Aluminio'
+        id_6: 'Vinilo para pared'
     cart:
         title: 'Cesta de la compra'
         1item: '1 artículo'
@@ -42,6 +43,22 @@ es:
         delete: 'Borrar'
         in_frame: '· En bastidor.'
         fill_your_address: 'Escribe tu dirección, por favor.'
+        materials_title: 'MATERIALES'
+        orientation: 'Orientación'
+        size: 'Tamaño'
+        photo_paper_type: 'Tipo de papel'
+        materials:
+            photo_paper:
+                '0': 'Brillante 250g'
+                '1': 'Satin 250g'
+            warps:
+                '0': 'Sin bastidor'
+                '1': 'Canto blanco'
+                '2': 'Canto negro'
+                '3': 'Canto cubierto'
+            photographic:
+                glossy: 'Brillo 250g'
+                matte: 'Satinado 250g'
     address:
         new:
             title: 'Nueva dirección'

@@ -38,7 +38,6 @@ $(document).ready(function(){
 		cleartype: true,
 		cleartypeNoBg: true
 	});
-	
 });
 
 $(window).load(function(){  

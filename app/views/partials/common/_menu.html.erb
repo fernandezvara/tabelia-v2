@@ -6,16 +6,16 @@
             <div class="col1"><h4>Agenda</h4></div>
             <div class="col1">
               <ol>
-                <% Postcategory.all.each do |cat| %>
-                  <li><%= link_to cat.title, posts_category_path(:category => cat.slug, :who => '_', :lang => session[:locale].to_s) %></li>
-                <% end %>
+                <%# Postcategory.all.each do |cat| %>
+                  <li><%#= link_to cat.title, posts_category_path(:category => cat.slug, :who => '_', :lang => session[:locale].to_s) %></li>
+                <%# end %>
               </ol>
             </div>
             <div class="col1">
               <ol>
-                <% Eventcategory.all.each do |event| %>
-                  <li><%= link_to event.name, agenda_path(:category => event.slug) %></li>
-                <% end %>
+                <%# Eventcategory.all.each do |event| %>
+                  <li><%#= link_to event.name, agenda_path(:category => event.slug) %></li>
+                <%# end %>
               </ol>
             </div>
           </div>
@@ -137,20 +137,22 @@
               <% end %>
           </a></li>
           <% if current_user.nil? %>
-          <li class="floatr"><%= link_to t('mainmenu.signup'), '/signup', :rel => 'nofollow' %></li>
-          <li class="floatr"><%= link_to t('mainmenu.login'), 'http://www.tabelia.com/login', :rel => 'modal nofollow' %></li>
+          <li class="floatr"><%= link_to t('mainmenu.signup'), 'https://www.tabelia.com/signup', :rel => 'nofollow' %></li>
+          <li class="floatr"><%= link_to t('mainmenu.login'), 'https://www.tabelia.com/login', :rel => 'modal nofollow' %></li>
           <% else %>
           <li class="floatr"><%= link_to current_user.name, user_profile_path(current_user.username) %>
             <div class="cols1">
               <ol>
                 <li><%= link_to t('mainmenu.myart'), arts_path %></li>
                 <li><%= link_to t('mainmenu.myphotos'), photos_path %></li>
-                <li><%= link_to t('mainmenu.myarticles'), posts_path %></li>
-                <li><%= link_to t('mainmenu.myevents'), events_path %></li>
+                <!--
+                <li><%#= link_to t('mainmenu.myarticles'), posts_path %></li>
+                <li><%#= link_to t('mainmenu.myevents'), events_path %></li>
+                -->
                 <li><%= link_to t('mainmenu.mysettings'), profile_basic_path %></li>
-                <% if current_user.arts.count > 0 %>
-                <li><%= link_to t('mainmenu.mysellitems'), '#' %></li>
-                <% end %>
+                <%# if current_user.arts.count > 0 %>
+                <!-- <li><%#= link_to t('mainmenu.mysellitems'), '#' %></li> -->
+                <%# end %>
                 <li><%= link_to t('mainmenu.signout'), logout_path %></li>
               </ol>
             </div>

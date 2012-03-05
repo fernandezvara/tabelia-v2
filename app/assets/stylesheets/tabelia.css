@@ -151,7 +151,7 @@ div#color                { cursor:pointer;}
 
 .ml10                    { margin-left:10px;}
 .ml20                    { margin-left:20px;}
-.cart_title              { font-size:14px; font-weight:bold; color:#464646; margin-bottom:5px;}
+.cart_title              { font-size:14px; font-weight:bold; color:#464646; margin:5px 0;}
 
 div.bimg {font-size:13px; line-height:13px; min-height:165px;}
 
@@ -186,6 +186,17 @@ ul#lll li div.image { height:150px; text-align:center; }
 ul#llll { margin:0 0 20px 0; padding:0; list-style:none; overflow:hidden; }
 ul#llll li { margin:0; min-height:165px; width:146px; float:left; text-align:center; }
 ul#llll li div.image { height:110px; text-align:center; }
+
+ul.options { margin: 5px 0; padding:0; list-style:none; overflow:hidden; }
+ul.options li { margin:0; background-color: none; text-align:center; height:72px; width:72px; float:left;}
+ul.options li.active { background-color:#c20000 !important;}
+ul.options li img { margin:3px; cursor:pointer; }
+
+ul.material_options { margin: 0; padding:0; list-style:none; overflow:hidden; }
+ul.material_options li { margin:0; background-color: #e0e0e0; text-align:center; height:53px; width:146px; float:left;}
+ul.material_options li:hover { background-color: #ddd !important; }
+ul.material_options li.active { background-color:#c20000 !important;}
+ul.material_options li img { margin:2px; cursor:pointer; }
 
 img.item { padding:7px; background-color:#f0f0f0; border: solid 1px #ddd; -moz-box-shadow: 1px 1px 5px #ccc; -webkit-box-shadow: 1px 1px 5px #ccc; box-shadow: 1px 1px 5px #ccc; }
 img.item:hover { border: solid 1px #aaa; -moz-box-shadow: 1px 1px 5px #999; -webkit-box-shadow: 1px 1px 5px #999; box-shadow: 1px 1px 5px #999; }

@@ -290,8 +290,8 @@ class Art
     quote.to_f
   end
   
-  def get_price(height, width, paper_id, frame = 0)
-    
+  def get_price(height, width, paper_id, warp = 0, frame = 0)
+    #constantes que deberan salir de aqui algun dia    
     # margins, especifica el margen a añadir
     margin = 3
     # paper prices
@@ -302,12 +302,20 @@ class Art
     papers[4] = 0.129 # texturado
     papers[5] = 0     # aluminio
     papers[6] = 0     # metacrilato
+    papers[99] = 0    # wallcovering
+    #coste de bastidor por metro lineal, se tiene por un lado un id para bastidor(warp) y otro para marco(frame)
+    cost_warp = 5  # 2 euros per lineal meter
+    #aqui iran los costes de los marcos, ahora no tenemos de momento.
+    case frame
+    when 1
+      cost_frame = 0
+    end
 
-    # frame
+
+    # dimensiones
     frame_cms = ((width + height) * 2)
     meters_round = (frame_cms / 100).ceil
-    cost_frame = 5  # 2 euros per lineal meter
-    total_frame = cost_frame * meters_round
+
     
     # Costes de manipulacion
     case paper_id    # manipullation cost varies from paper type
@@ -315,7 +323,7 @@ class Art
       manipullation_cost = 5
       manipullation_cost_cm = 0.15
     when 2
-      manipullation_cost = 5
+      manipullation_cost = 3
       manipullation_cost_cm = 0.2
     else
       manipullation_cost = 5
@@ -349,7 +357,13 @@ class Art
     
     price = price + (paper_length * manipullation_cost_cm)
     
-    if frame == 1
+    if warp != 0
+      total_warp = cost_warp * meters_round
+      price = price + total_warp
+    end
+    
+    if frame != 0
+      total_frame = cost_frame * meters_round
       price = price + total_frame
     end
     

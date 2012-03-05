@@ -56,6 +56,7 @@ end
 <% end %>
 </section>
 <section class="column width1-5" id="main-right">
+  <%= render :partial => "partials/cart/materials" %>
 <% if params[:material] %>
   <%= render :partial => "partials/cart/#{params[:material]}", :locals => { :f => f } %>
 <% else %>

@@ -1,8 +1,6 @@
-<%= image_tag("//assets.tabelia.com/assets/materials/#{I18n.locale.to_s}/aluminium.jpg") %>
 <div class="box common">
   <div class="content">
   <% if @item.new? %>
-
     <%= f.hidden_field :art_id, :value => @art.id.to_s %> <%# aqui debe ir el id personalizable....%>
     <%= f.hidden_field :media_id, :value => 5 %>
     <%= f.hidden_field :fotolia_id, :value => params[:id] %>
@@ -39,12 +37,12 @@
   
   <%= f.hidden_field :custom_price, :value => @license_cost %>
   
-  <p class="cart_title"><%= t('cart.framed_add_to_cart')%></p>
+  <p class="cart_title"><%= t('cart.orientation')%></p>
   <div class="input string" style="margin-top:5px">
     <% orientations =  { 'horizontal' => 'h', 'vertical' => 'v' } %>
     <%= f.select :orientation, options_for_select(orientations, @item.orientation), {}, :style => 'width:150px;' %>
   </div>
-  <p class="cart_title"><%= t('cart.framed_add_to_cart')%></p>
+  <p class="cart_title"><%= t('cart.size')%></p>
   <div class="input string" style="margin-top:5px">
     <% sizes =  { '20,32cm x 25,4cm' => 's', '27,94cm x 35,56cm' => 'm', '40,68cm x 50,80cm' => 'l' } %>
     <%= f.select :size, options_for_select(sizes, @item.size), {}, :style => 'width:150px;' %>

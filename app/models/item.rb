@@ -8,8 +8,9 @@ class Item
   field :width,        :type => Float
   
   field :media_id,     :type => Integer
-  field :frame,        :type => Boolean
-  field :frame_type,   :type => String
+  field :warp,         :type => Integer # bastidor
+  field :frame,        :type => Integer # marco
+  #field :frame_type,   :type => String
   
   field :orientation,  :type => String
   field :size,         :type => String
@@ -26,12 +27,10 @@ class Item
   
   mount_uploader :crop,       CropUploader
   
-  
   belongs_to :art
   belongs_to :cart
   
   def crop_on_save
-    puts "estoy haciendo el crop"
     crop.recreate_versions! if x.present?
   end
 end

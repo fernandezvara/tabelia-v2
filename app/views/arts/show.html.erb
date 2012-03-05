@@ -21,9 +21,9 @@
 
 <% content_for :product do %>
 <% if @item.new?
-  url = cart_create_url
+  url = cart_create_url(:protocol => 'https')
 else
-  url = cart_update_url(:id => params[:item_id])
+  url = cart_update_url(:id => params[:item_id], :protocol => 'https')
 end
 %>
 <%= form_for @item, :url => url do |f| %>
@@ -147,6 +147,7 @@ end
   </div>
 </div>
 <% end %>
+<%= render :partial => "partials/cart/materials" %>
 <% if params[:material] %>
   <%= render :partial => "partials/cart/#{params[:material]}", :locals => { :f => f } %>
 <% else %>

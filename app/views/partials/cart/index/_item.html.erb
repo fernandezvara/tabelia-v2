@@ -5,11 +5,6 @@
   else
     artist_price = art.price
   end
-  if item.frame == true
-    framed = 1
-  else
-    framed = 0
-  end
   case item.media_id
   when 2
     material = 'photographic'
@@ -28,9 +23,9 @@
   end
   case item.media_id
   when 1,2,3,4
-    tabelia_price = art.get_price(item.height, item.width, item.media_id, framed)
+    tabelia_price = art.get_price(item.height, item.width, item.media_id, item.warp, item.frame)
   when 5
-    tabelia_price = art.get_price_fixed(item.media_id, item.size, framed)
+    tabelia_price = art.get_price_fixed(item.media_id, item.size, item.frame)
   end
   total_price = artist_price + tabelia_price
 %>
@@ -60,7 +55,7 @@
       <% else %>
       <p class="s16"><%= link_to art.name, photo_profile_path(:slug => art.slug) %></p>
       <% end %>
-    <p class="s14"><%= link_to art.user.name, user_profile_path(:username => art.user.username) %></p>
+    <p class="s14"><%= link_to art.user.name, shop_user_path(:username => art.user.username) %></p>
     <% end %>
     <br />
     <table cellspacing="0" cellpadding="0">
@@ -96,15 +91,16 @@
           <td></td>
         </tr>
         <tr>
-          <% if item.media_id == 3 %>
+          <% case item.media_id %>
+          <% when 2 %>
+          <td></td>
+          <td><%= t("cart.materials.photo_paper.#{item.warp}") %></td>
+          <% when 3 %>
           <td><%= t("cart.framed_canvas") %></td>
-            <% if item.frame == true %>
-            <td><%= t('common.oyes') %></td>
-            <% else %>
-            <td><%= t('common.ono') %></td>
-            <% end %>
+          <td><%= t("cart.materials.warps.#{item.warp}") %></td>
           <% else %>
-          <td></td><td></td>
+          <td></td>
+          <td></td>
           <% end %>
           <td class="b"><%= t("cart.total") %></td>
           <td class="b"><%= number_to_currency(total_price, :unit => '€') %></td>

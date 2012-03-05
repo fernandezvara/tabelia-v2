@@ -1,3 +1,10 @@
 en:
     cart:
         title: 'Title!'
+        materials_title: 'MATERIALS'
+        materials:
+            warps:
+                '0': 'No'
+                '1': 'Canto blanco'
+                '2': 'Canto negro'
+                '3': 'Canto cubierto'

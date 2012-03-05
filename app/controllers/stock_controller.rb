@@ -137,35 +137,32 @@ class StockController < ApplicationController
     # Calling to an Art class to get the prices
     @art = Art.where(:slug => 'fotolia').first
     if @item.new?
+      @item.warp = 0
+      @item.frame = 0
       case params[:material]
       when 'canvas'
-        @tabelia_price = @art.get_price(@min_height, @min_width, 3, 0).to_f
+        @tabelia_price = @art.get_price(@min_height, @min_width, 3, 0, 0).to_f
       when 'photographic'
-        @tabelia_price = @art.get_price(@min_height, @min_width, 2, 0).to_f
+        @tabelia_price = @art.get_price(@min_height, @min_width, 2, 0, 0).to_f
       when 'watercolor'
-        @tabelia_price = @art.get_price(@min_height, @min_width, 4, 0).to_f
+        @tabelia_price = @art.get_price(@min_height, @min_width, 4, 0, 0).to_f
       when 'aluminium'
         @tabelia_price = @art.get_price_fixed(5, 's', 0).to_f
       else
-        @tabelia_price = @art.get_price(@min_height, @min_width, 3, 0).to_f
+        @tabelia_price = @art.get_price(@min_height, @min_width, 3, 0, 0).to_f
       end
     else
-      if @item.frame == true
-        framed = 1
-      else
-        framed = 0
-      end
       case params[:material]
       when 'canvas'
-        @tabelia_price = @art.get_price(@item.height, @item.width, 3, framed).to_f
+        @tabelia_price = @art.get_price(@item.height, @item.width, 3, @item.warp, @item.frame).to_f
       when 'photographic'
-        @tabelia_price = @art.get_price(@item.height, @item.width, 3, 0).to_f
+        @tabelia_price = @art.get_price(@item.height, @item.width, 2, @item.warp, @item.frame).to_f
       when 'watercolor'
-        @tabelia_price = @art.get_price(@item.height, @item.width, 4, 0).to_f
+        @tabelia_price = @art.get_price(@item.height, @item.width, 4, @item.warp, @item.frame).to_f
       when 'aluminium'
-        @tabelia_price = @art.get_price_fixed(5, @item.size, framed).to_f
+        @tabelia_price = @art.get_price_fixed(5, @item.size, @item.frame).to_f
       else
-        @tabelia_price = @art.get_price(@item.height, @item.width, 3, framed).to_f
+        @tabelia_price = @art.get_price(@item.height, @item.width, 3, @item.warp, @item.frame).to_f
       end
     end
   

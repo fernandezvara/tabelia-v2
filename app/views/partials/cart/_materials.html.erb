@@ -1,4 +1,102 @@
-<%= link_to image_tag("//assets.tabelia.com/assets/materials/#{I18n.locale.to_s}/canvas.jpg"), fotolia_show_path(:id => params[:id], :material => 'canvas')%>
-<%= link_to image_tag("//assets.tabelia.com/assets/materials/#{I18n.locale.to_s}/photo.jpg"), fotolia_show_path(:id => params[:id], :material => 'photo')%>
-<%= link_to image_tag("//assets.tabelia.com/assets/materials/#{I18n.locale.to_s}/watercolor.jpg"), fotolia_show_path(:id => params[:id], :material => 'watercolor')%>
-<%= link_to image_tag("//assets.tabelia.com/assets/materials/#{I18n.locale.to_s}/aluminium.jpg"), fotolia_show_path(:id => params[:id], :material => 'aluminium')%>            
+<div class="box common">
+
+  <div class="content">
+    <ul class="material_options">
+<% if controller_name == "arts" or controller_name == "photos" %>
+  <% if params[:material].present? == false or params[:material] == 'canvas' %>
+  <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+  <% if controller_name == "arts" %>
+    <%= link_to image_tag("materials/#{I18n.locale.to_s}-canvas.jpg"), art_profile_path(:slug => @art.slug, :material => 'canvas')%>
+  <% else %>
+    <%= link_to image_tag("materials/#{I18n.locale.to_s}-canvas.jpg"), photo_profile_path(:slug => @art.slug, :material => 'canvas')%>
+  <% end %>
+  </li>
+  <% if params[:material] == 'photographic' %>
+  <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+  <% if controller_name == "arts" %>
+    <%= link_to image_tag("materials/#{I18n.locale.to_s}-photographic.jpg"), art_profile_path(:slug => @art.slug, :material => 'photographic')%>
+  <% else %>
+    <%= link_to image_tag("materials/#{I18n.locale.to_s}-photographic.jpg"), photo_profile_path(:slug => @art.slug, :material => 'photographic')%>
+  <% end %>
+  </li>
+  <% if params[:material] == 'watercolor' %>
+  <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+  <% if controller_name == "arts" %>
+    <%= link_to image_tag("materials/#{I18n.locale.to_s}-watercolor.jpg"), art_profile_path(:slug => @art.slug, :material => 'watercolor')%>
+  <% else %>
+    <%= link_to image_tag("materials/#{I18n.locale.to_s}-watercolor.jpg"), photo_profile_path(:slug => @art.slug, :material => 'watercolor')%>
+  <% end %>
+  </li>
+  <% if params[:material] == 'aluminium' %>
+  <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+  <% if controller_name == "arts" %>
+    <%= link_to image_tag("materials/#{I18n.locale.to_s}-aluminium.jpg"), art_profile_path(:slug => @art.slug, :material => 'aluminium')%>
+  <% else %>
+    <%= link_to image_tag("materials/#{I18n.locale.to_s}-aluminium.jpg"), photo_profile_path(:slug => @art.slug, :material => 'aluminium')%>
+  <% end %>
+  </li>
+  <% if params[:material] == 'wallcovering' %>
+  <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+  <% if controller_name == "arts" %>
+    <%= link_to image_tag("materials/#{I18n.locale.to_s}-wallcovering.jpg"), art_profile_path(:slug => @art.slug, :material => 'wallcovering')%>
+  <% else %>
+    <%= link_to image_tag("materials/#{I18n.locale.to_s}-wallcovering.jpg"), photo_profile_path(:slug => @art.slug, :material => 'wallcovering')%>
+  <% end %>
+  </li>
+<% end %>
+
+<% if controller_name == "stock" %>
+  <% if params[:material].present? == false or params[:material] == 'canvas' %>
+  <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+<%= link_to image_tag("materials/#{I18n.locale.to_s}-canvas.jpg"), fotolia_show_path(:id => params[:id], :material => 'canvas')%>
+  </li>
+  <% if params[:material] == 'photographic' %>
+  <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+<%= link_to image_tag("materials/#{I18n.locale.to_s}-photographic.jpg"), fotolia_show_path(:id => params[:id], :material => 'photo')%>
+  </li>
+  <% if params[:material] == 'watercolor' %>
+  <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+<%= link_to image_tag("materials/#{I18n.locale.to_s}-watercolor.jpg"), fotolia_show_path(:id => params[:id], :material => 'watercolor')%>
+  </li>
+  <% if params[:material] == 'aluminium' %>
+  <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+<%= link_to image_tag("materials/#{I18n.locale.to_s}-aluminium.jpg"), fotolia_show_path(:id => params[:id], :material => 'aluminium')%>
+  </li>
+  <% if params[:material] == 'wallcovering' %>
+  <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+<%= link_to image_tag("materials/#{I18n.locale.to_s}-wallcovering.jpg"), fotolia_show_path(:id => params[:id], :material => 'wallcovering')%> 
+  </li>
+<% end %>
+    </ul>
+  </div>
+</div>

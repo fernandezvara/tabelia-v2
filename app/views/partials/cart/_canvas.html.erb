@@ -1,4 +1,3 @@
-<%= image_tag("//assets.tabelia.com/assets/materials/#{I18n.locale.to_s}/canvas.jpg") %>
 <div class="box common">
   <div class="content">
   <% if @item.new? %>
@@ -7,12 +6,16 @@
     <%= f.hidden_field :art_id, :value => @art.id.to_s %> <%# aqui debe ir el id personalizable....%>
     <%= f.hidden_field :media_id, :value => 3 %>
     <%= f.hidden_field :fotolia_id, :value => params[:id] %>
+    <%= f.hidden_field :warp, :value => 0 %>
+    <%= f.hidden_field :frame, :value => 0 %>
   <% else %>
     <%= f.hidden_field :width %>
     <%= f.hidden_field :height %>  
     <%= f.hidden_field :art_id %>
     <%= f.hidden_field :media_id %>
     <%= f.hidden_field :fotolia_id %>
+    <%= f.hidden_field :warp %>
+    <%= f.hidden_field :frame %>
   <% end %>
   
   <%= f.hidden_field :cart_id, :value => @current_cart.id.to_s %>
@@ -21,10 +24,37 @@
   <p style="text-align:center"><%= t('cart.dimensions')%> <span id="width"><%= @min_width %></span>cm x <span id="mheight"><%= @min_height %></span>cm</p>
   
   <p class="cart_title"><%= t('cart.framed_add_to_cart')%></p>
-  <div class="input string" style="margin-top:5px">
-    <% frames =  { t('common.ono') => false, t('common.oyes') => true} %>
-    
-    <%= f.select :frame, options_for_select(frames, @item.frame), {}, :style => 'width:150px;' %>
+  <div>
+    <ul id="options_warp" class="options">
+      <% if @item.warp == 0 %>
+        <li class="active" warp="0">
+      <% else %>
+        <li warp="0">
+      <% end %>
+      <%= image_tag 'materials/common/canvas-none.jpg', :class => 'tip', :title => 'Sin bastidor. Recibirás tu obra en un rollo.' %>
+      </li>
+      <% if @item.warp == 1 %>
+        <li class="active" warp="1">
+      <% else %>
+        <li warp="1">
+      <% end %>
+      <%= image_tag 'materials/common/canvas-white.jpg', :class => 'tip' %>
+      </li>
+      <% if @item.warp == 2 %>
+        <li class="active" warp="2">
+      <% else %>
+        <li warp="2">
+      <% end %>
+      <%= image_tag 'materials/common/canvas-black.jpg', :class => 'tip' %>
+      </li>
+      <% if @item.warp == 3 %>
+        <li class="active" warp="3">
+      <% else %>
+        <li warp="3">
+      <% end %>
+      <%= image_tag 'materials/common/canvas-full.jpg', :class => 'tip' %>
+      </li>
+    </ul>
   </div>
   <br />
   <p class="cart_title"><%= t('cart.summary')%></p>
@@ -62,6 +92,15 @@ var correction = <%= @correction %>;
   $('select#item_frame').change(function(){
     update_price();
   });
+  $('ul#options_warp li').each(function(i, v){
+    $(this).click(function(){                     
+        $(this).
+            siblings().each(function(){ $(this).removeClass("active");  }).
+            end().addClass("active");
+        $('input#item_warp').val($(this).attr('warp'));
+        update_price();
+    });
+	});
   function update_price() {
   		$.ajax({
         url: '/cart/price',
@@ -74,7 +113,8 @@ var correction = <%= @correction %>;
           'height'   : $('input#item_height').val(),
           'width'    : $('input#item_width').val(),
           'media_id' : $('input#item_media_id').val(),
-          'frame'    : $('select#item_frame').val()
+          'warp'     : $('input#item_warp').val(),
+          'frame'    : $('input#item_frame').val()
         },
         dataType: 'script'
       });

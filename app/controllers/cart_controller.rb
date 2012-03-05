@@ -89,10 +89,9 @@ class CartController < ApplicationController
       @subtotal_payment = (@subtotal_payment + pay_user + pay_tabelia).round(2)
     end
     puts "@total_weight = #{@total_weight}"
-    @total_payment_transport = (Transport.calculate(@invoice_address.country_id.upcase,@total_weight)).round(2)      
-    
     
     if @invoice_address
+      @total_payment_transport = (Transport.calculate(@invoice_address.country_id.upcase,@total_weight)).round(2)
       @total_payment_transport = @total_payment_transport + Taxes.calculate(@invoice_address.country_id.upcase, @invoice_address.is_company, @total_payment_transport).round(2)
       @total_payment_taxes = Taxes.calculate(@invoice_address.country_id.upcase, @invoice_address.is_company, @subtotal_payment).round(2)
       @total_payment = (@subtotal_payment + @total_payment_taxes + @total_payment_transport).round(2)
@@ -205,19 +204,13 @@ class CartController < ApplicationController
       @artist_price = params[:credits].to_f
     end
     
-    if params[:frame] == "true"
-      framed = 1
-    else
-      framed = 0
-    end
-
     case params[:media_id].to_i
     when 1,2,3,4
-      @tabelia_price = @art.get_price(params[:height].to_f, params[:width].to_f, params[:media_id].to_i, framed).to_f
+      @tabelia_price = @art.get_price(params[:height].to_f, params[:width].to_f, params[:media_id].to_i, params[:warp].to_i, params[:frame].to_i).to_f
     when 5
-      @tabelia_price = @art.get_price_fixed(params[:media_id], params[:size], framed).to_f
+      @tabelia_price = @art.get_price_fixed(params[:media_id], params[:size], params[:frame]).to_f
     end
-    @total = @artist_price + @tabelia_price
+    @total = (@artist_price + @tabelia_price).round(2)
     
     respond_to do |format|
       format.js

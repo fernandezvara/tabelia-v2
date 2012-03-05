@@ -36,9 +36,10 @@ Tabelia::Application.routes.draw do
   match "user/:username/photos",      :controller => 'photos',   :action => 'user_photos_show', :as => "user_photos"
   match "user/:username/followers",   :controller => 'users',    :action => 'followers',        :as => "user_followers"
   match "user/:username/following",   :controller => 'users',    :action => 'following',        :as => "user_following"
-  match "art/:slug/(:material)",      :controller => 'arts',     :action => 'show',             :as => "art_profile"
+  
   match "art/:slug/likes",            :controller => 'arts',     :action => 'likes',            :as => "art_likes"
   match "art/:slug/edit",             :controller => 'arts',     :action => 'edit',             :as => "edit_art"
+  match "art/:slug/(:material)",      :controller => 'arts',     :action => 'show',             :as => "art_profile"
 
   match "photo/:slug/(:material)",    :controller => 'photos',   :action => 'show',             :as => "photo_profile"
   match "photo/:slug/likes",          :controller => 'photos',   :action => 'likes',            :as => "photo_likes"

@@ -3,12 +3,6 @@ class CanvasimageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
 
-  #storage :fog
-
-  #def store_dir
-  #  "#{mounted_as}/#{model.id}"
-  #end
-
   storage :file
   
   def store_dir
@@ -32,7 +26,7 @@ class CanvasimageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    return "#{random_token}.jpg"
+    return "image.jpg"
   end
 
   def random_token
@@ -40,11 +34,13 @@ class CanvasimageUploader < CarrierWave::Uploader::Base
     model.instance_variable_get(var) or model.instance_variable_set(var, ActiveSupport::SecureRandom.hex(2))
   end
   
-  #process :convert => 'png'
-  process :quality => 70
-  
   def extension_white_list
     %w(jpg jpeg png tif tiff)
-  end
+  end  
   
+  process :quality => 70
+  
+  version :small do
+    process :resize_to_fit => [165, 165]
+  end
 end

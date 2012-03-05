@@ -207,7 +207,6 @@ xml.xpath('//products//product').each do |node|
 
       art.canvasimage = File.open(rand_filename, "rb")
 
-      
       art.save
       #Resque.enqueue(AodThumbs, art.id.to_s)
       Resque.enqueue(ColorsFromImage, art.id.to_s)

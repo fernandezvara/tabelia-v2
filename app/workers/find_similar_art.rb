@@ -24,7 +24,7 @@ class FindSimilarArt
     # Add every art with the same tag
     ArtSimilar.where(:art_id => art_id).delete_all
     related_arts.each do |related|
-      if art != related
+      if art != related and art.photo == related.photo
         ArtSimilar.create!(:art_id => art_id, :photo => art.photo, :similar_id => related.id.to_s, :why => 1)
         puts "Added: #{art.name} --> #{related.name}"
       else
@@ -46,7 +46,7 @@ class FindSimilarArt
     end
     
     related_arts_by_color.each do |related|
-      if art != related
+      if art != related and art.photo == related.photo
         begin
           ArtSimilar.create!(:art_id => art_id, :photo => art.photo, :similar_id => related.id.to_s, :why => 2)
           puts "Added by color: #{art.name} --> #{related.name}"
